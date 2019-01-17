@@ -194,11 +194,9 @@ desired effect
 
 		<!-- Main Footer -->
 		<footer class="main-footer">
-			<!-- To the right -->
-			<div class="pull-right hidden-xs">Anything you want</div>
-			<!-- Default to the left -->
-			<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>.
-			</strong> All rights reserved.
+				<!-- Default to the right -->
+				<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
+				</strong>
 		</footer>
 
 		<!-- Control Sidebar -->
