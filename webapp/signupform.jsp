@@ -15,7 +15,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- 부트스트랩의 자바 스크립트를 사용하겠다는 뜻 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- 이스터에그 -->
 	<style type="text/css">
 		.signborder{
 			border: 2px solid maroon;
