@@ -188,8 +188,8 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-			
-	
+			<!-- adasd -->
+			<!-- test -->
 			<!-- 서경환 -->
 			</section>
 			<!-- /.content -->
