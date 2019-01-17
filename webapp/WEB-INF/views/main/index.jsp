@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -28,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/dist/css/skins/skin-red-light.min.css">
+	href="${pageContext.request.contextPath}/dist/css/skins/skin-red-light.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,7 +39,69 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Google Font -->
 <!-- <link rel="stylesheet" -->
 <!-- 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+<style>
+.ko-12 {
+	font-family: Nanum Gothic, dotum, sans-serif;
+	font-size: 12px;
+}
+
+.sidebar-list {
+	list-style: none;
+	margin: 0;
+}
+
+.sidebar-header, .sidebar-list li {
+	white-space: nowrap;
+}
+
+.sidebar-box, .sidebar-list {
+	overflow: hidden;
+	padding: 10px 15px;
+	line-height: 20px;
+}
+
+.sidebar-list .fa, .sidebar-list .glyphicon, .sidebar-list .ion {
+	width: 20px;
+}
+
+.skin-blue .sidebar-menu>li.header {
+	color: #4b646f;
+	background: #1a2226;
+}
+
+.sidebar-box, .sidebar-list {
+	overflow: hidden;
+	padding: 10px 15px;
+	line-height: 20px;
+}
+
+.sidebar-header {
+	padding: 10px 25px 10px 15px;
+	font-size: 12px;
+	color: #ffffff;
+	background: #1a2226;
+}
+
+.side-pad {
+	pading: 10px;
+	margin-bottom: 10px;
+}
+
+.sidebar-list .ko-12 {
+	display: block;
+}
+
+.pull-center {
+	margin: 0 auto;
+}
+
+.gaeyeya {
+	text-align: center;
+}
+</style>
+
 </head>
+
 <!--
 BODY TAG OPTIONS:
 =================
@@ -84,7 +145,7 @@ desired effect
 								<img
 								src="${pageContext.request.contextPath}/dist/images/profile1.png"
 								class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Alexander Pierce</span>
+								<span class="hidden-xs">Seya</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -93,8 +154,7 @@ desired effect
 									class="img-circle" alt="User Image">
 
 									<p>
-										Alexander Pierce - Web Developer <small>Member since
-											Nov. 2012</small>
+										Seya <small>Member since Nov. 2012</small>
 									</p></li>
 								<!-- Menu Body -->
 								<li class="user-body">
@@ -145,6 +205,13 @@ desired effect
 					</div>
 				</div>
 
+				<div class="sidebar-content">
+					<p class="gaeyeya">소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염ㅍ</p>
+
+
+
+				</div>
+
 				<!-- search form (Optional) -->
 				<form action="#" method="get" class="sidebar-form">
 					<div class="input-group">
@@ -161,12 +228,12 @@ desired effect
 
 				<!-- Sidebar Menu -->
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">HEADER</li>
+					<li class="header">단 어 장</li>
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="#"><i class="fa fa-link"></i>
-							<span>Link</span></a></li>
-					<li><a href="#"><i class="fa fa-link"></i> <span>Another
-								Link</span></a></li>
+							<span>내 단어장</span></a></li>
+					<li><a href="#"><i class="fa fa-link"></i> <span>해
+								볼 게 </span></a></li>
 					<li class="treeview"><a href="#"><i class="fa fa-link"></i>
 							<span>Multilevel</span> <span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
@@ -177,6 +244,27 @@ desired effect
 						</ul></li>
 				</ul>
 				<!-- /.sidebar-menu -->
+				<!-- 다녀간사람 목록 띄우기 -->
+				<div class="sidebar-misc">
+					<ul class="sidebar-menu" data-widget="tree">
+						<div class="sidebar-header">GUEST LIST</div>
+						<ul class="sidebar-list ko-12">
+							<li class="side-pad"><a
+								href="http://vrpano.kr/bbs/current_connect.php"> <i
+									class="fa fa-circle-o red"></i> <span class="center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+
+						</ul>
+					</ul>
+				</div>
+				<!-- 다녀간사람 목록 띄우기 -->
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -194,9 +282,10 @@ desired effect
 
 		<!-- Main Footer -->
 		<footer class="main-footer">
-				<!-- Default to the right -->
-				<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
-				</strong>
+			<!-- Default to the right -->
+			<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
+			</strong>
+
 		</footer>
 
 		<!-- Control Sidebar -->
