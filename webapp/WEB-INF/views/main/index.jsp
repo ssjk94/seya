@@ -189,9 +189,7 @@ desired effect
 			<!-- Main content -->
 			<section class="content container">
 			
-			
-			
-			<!--  -->
+	
 			<!-- 서경환 -->
 			</section>
 			<!-- /.content -->
