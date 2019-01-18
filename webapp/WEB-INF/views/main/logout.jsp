@@ -99,84 +99,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	text-align: center;
 }
 
-.content {
-	min-height: 250px;
-	padding: 35px;
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: 35px;
-	padding-right: 35px
+.login-box{
+	backgroud : #fff;
+	padding : 50px;
+	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.dropdown-menu .user-header{
+	padding:10px;
+	background :#fff;
+
 }
 
-.content-header>.breadcrumb {
-	float: left;
-	background: transparent;
-	margin-top: 0;
-	margin-bottom: 0;
-	font-size: 12px;
-	padding-left: 35px;
-	position: static;
-	top: 15px;
-	right: 10px;
-	border-radius: 2px
-}
-
-.box-header>.box-tools {
-	position: absolute;
-	right: 20px;
-	top: 10px
-}
-
-.btn-info {
-	background-color: #dd4b39;
-	border-color: #dd4b39
-}
-
-.small-box .icon {
-	-webkit-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	transition: all .3s linear;
-	position: absolute;
-	top: -10px;
-	right: 35px;
-	z-index: 0;
-	font-size: 90px;
-	color: rgba(0, 0, 0, 0.15)
-}
-
-.row {
-	margin-right: 0px;
-	margin-left: 0px
-}
-
-.text-white {
-	color: #fff !important
-}
-
-.bgcolor-default {
-	background: rgba(221, 75, 57, 0.5) !important;
-}
-
-.color-default {
-	color: rgba(221, 75, 57, 0.5) !important
-}
-
-.small-box .icon {
-	-webkit-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	transition: all .3s linear;
-	position: absolute;
-	top: 20px;
-	right: 35px;
-	z-index: 0;
-	font-size: 90px;
-	color: rgba(221, 75, 57, 0.5);
-}
-
-.small-box:hover {
-	text-decoration: none;
-	color: #dd4b39 !important
-}
 </style>
 
 </head>
@@ -222,43 +155,28 @@ desired effect
 							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img
-								src="${pageContext.request.contextPath}/dist/images/profile1.png"
+								src="${pageContext.request.contextPath}/dist/images/user.png"
 								class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Seya</span>
+								<span class="hidden-xs">로그인</span>
 						</a>
-							<ul class="dropdown-menu">
+							<div class="dropdown-menu">
 								<!-- The user image in the menu -->
-								<li class="user-header"><img
-									src="${pageContext.request.contextPath}/dist/images/profile1.png"
-									class="img-circle" alt="User Image">
-
-									<p>
-										Seya <small>Member since Nov. 2012</small>
-									</p></li>
-								<!-- Menu Body -->
-								<li class="user-body">
-									<div class="row">
-										<div class="col-xs-4 text-center">
-											<a href="#">Followers</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Sales</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Friends</a>
-										</div>
-									</div> <!-- /.row -->
-								</li>
-								<!-- Menu Footer-->
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">Profile</a>
+								<div class="user-header">	
+										<h3 class="text-center">로그인</h3>
+									
+									<div class ="form-group">
+										<input type="text" class ="form-control" placeholder="아이디" name="userId" maxlength="20">
+									</div>								
+									<div class ="form-group">
+										<input type="password" class ="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
 									</div>
-									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">Sign out</a>
-									</div>
-								</li>
-							</ul>
+									<div>
+									 	<input type="submit" class="btn btn-block btn-danger form control" value="로그인" >
+									 	<input type="submit" class="btn btn-block btn-danger form control" value="회원가입">
+									 	<input type="submit" class="btn btn-block btn-danger form control" value="비밀번호찾기">
+									</div>		
+								</div>					
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -292,7 +210,7 @@ desired effect
 				</div>
 
 				<!-- search form (Optional) -->
-				<form action="#" method="get" class="sidebar-form">
+				<!-- <form action="#" method="get" class="sidebar-form">
 					<div class="input-group">
 						<input type="text" name="q" class="form-control"
 							placeholder="Search..."> <span class="input-group-btn">
@@ -302,18 +220,18 @@ desired effect
 							</button>
 						</span>
 					</div>
-				</form>
+				</form> -->
 				<!-- /.search form -->
 
 				<!-- Sidebar Menu -->
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">단 어 장</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="#"><i class="fa fa-link"></i>
+					<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
 							<span>내 단어장</span></a></li>
-					<li><a href="#"><i class="fa fa-link"></i> <span>해
+					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>해
 								볼 게 </span></a></li>
-					<li class="treeview"><a href="#"><i class="fa fa-link"></i>
+					<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
 							<span>Multilevel</span> <span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
 						</span> </a>
@@ -325,19 +243,19 @@ desired effect
 				<!-- /.sidebar-menu -->
 				<!-- 다녀간사람 목록 띄우기 -->
 				<div class="sidebar-misc">
-					<ul class="sidebar-menu" data-widget="tree">
 						<div class="sidebar-header">GUEST LIST</div>
+					<ul class="sidebar-menu" data-widget="tree">
 						<ul class="sidebar-list ko-12">
-							<li class="side-pad"> 
-							<i class="fa fa-circle-o red"></i> <span class="center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o red"></i>
+								<span class="center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i>
+								<span class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
+								<span class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i>
+								<span class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
+								<span class="pull-center">다녀간사람</span></li>
 
 						</ul>
 					</ul>
@@ -463,5 +381,3 @@ desired effect
 	<!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-</body>
-</html>
