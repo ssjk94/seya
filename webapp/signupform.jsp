@@ -8,7 +8,7 @@
 <!-- 부트스트랩 css사용 -->
     <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- 
+<!-- d
 	jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다)
 	이게 자바스크립트보다 먼저와야함
 	 -->
