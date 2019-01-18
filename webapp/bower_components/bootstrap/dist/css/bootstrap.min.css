@@ -83,7 +83,7 @@ sub {
 }
 
 img {
-	border: 0
+
 }
 
 svg:not (:root ){
@@ -225,7 +225,8 @@ td, th {
 		page-break-inside: avoid
 	}
 	img {
-		max-width: 100% !important
+		max-width: 100% !important;
+		border: 0
 	}
 	h2, h3, p {
 		orphans: 3;
