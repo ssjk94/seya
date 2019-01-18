@@ -378,6 +378,7 @@ a:hover, a:active, a:focus {
 .user-panel>.img-circle {
 	vertical-align:middle;
 	margin: 0, auto; 
+	border: 1px solid black;
 }
 
 /* .user-panel>.image { */

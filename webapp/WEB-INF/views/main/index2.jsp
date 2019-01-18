@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -37,8 +37,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <![endif]-->
 
 <!-- Google Font -->
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
 .ko-12 {
 	font-family: Nanum Gothic, dotum, sans-serif;
@@ -48,6 +48,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .sidebar-list {
 	list-style: none;
 	margin: 0;
+}
+
+.sidebar-list .ko-12{
+
 }
 
 .sidebar-header, .sidebar-list li {
@@ -92,22 +96,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .pull-center {
-	margin: 0 auto;
+	margin-left: 62px;
+}
+.dropdown-menu .user-footer .pull-center {
+	padding-left:20px;
 }
 
 .gaeyeya {
 	text-align: center;
+	margin-top: 20px;
+	margin-bottom:10px;
 }
-
-.login-box{
-	backgroud : #fff;
-	padding : 50px;
-	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 6px 20px 0 rgba(0, 0, 0, 0.19);
+.profile-content{
+	text-align: center;
 }
-.dropdown-menu .user-header{
-	padding:10px;
-	background :#fff;
-
+.side-cont {
+	padding: 10px;
+	text-align: center;
 }
 
 </style>
@@ -155,28 +160,46 @@ desired effect
 							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img
-								src="${pageContext.request.contextPath}/dist/images/user.png"
+								src="${pageContext.request.contextPath}/dist/images/profile1.png"
 								class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">로그인</span>
+								<span class="hidden-xs">Seya</span>
 						</a>
-							<div class="dropdown-menu">
+							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
-								<div class="user-header">	
-										<h3 class="text-center">로그인</h3>
-									
-									<div class ="form-group">
-										<input type="text" class ="form-control" placeholder="아이디" name="userId" maxlength="20">
-									</div>								
-									<div class ="form-group">
-										<input type="password" class ="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
+								<li class="user-header"><img
+									src="${pageContext.request.contextPath}/dist/images/profile1.png"
+									class="img-circle" alt="User Image">
+
+									<p>
+										Seya <small>Member since Nov. 2012</small>
+									</p></li>
+								<!-- Menu Body -->
+							<!-- 	<li class="user-body">
+									<div class="row">
+										<div class="col-xs-4 text-center">
+											<a href="#">Followers</a>
+										</div>
+										<div class="col-xs-4 text-center">
+											<a href="#">Sales</a>
+										</div>
+										<div class="col-xs-4 text-center">
+											<a href="#">Friends</a>
+										</div>
+									</div> /.row
+								</li> -->
+								<!-- Menu Footer-->
+								<li class="user-footer">
+									<div class="pull-left">
+										<a href="#" class="btn btn-default btn-flat">프로필</a>
 									</div>
-									<div>
-									 	<input type="submit" class="btn btn-block btn-danger form control" value="로그인" >
-									 	<input type="submit" class="btn btn-block btn-danger form control" value="회원가입">
-									 	<input type="submit" class="btn btn-block btn-danger form control" value="비밀번호찾기">
-									</div>		
-								</div>					
-							</div>
+									<div class="pull-right">
+										<a href="#" class="btn btn-default btn-flat">로그아웃</a>
+										</div>
+									<div class="pull-center">
+										<a href="#" class="btn btn-default btn-flat">내블로그</a>
+										</div>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</div>
@@ -190,25 +213,21 @@ desired effect
 
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">
-					<div class="pull-left image">
-						<img
-							src="${pageContext.request.contextPath}/dist/images/profile1.png"
-							class="img-circle" alt="User Image">
-					</div>
-					<div class="pull-left info">
-						<p>Seya</p>
-						<!-- Status -->
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
+					<img
+						src="${pageContext.request.contextPath}/dist/images/profile1.png"
+						class="img-circle" alt="User Image">
 				</div>
 
 				<div class="sidebar-content">
-					<p class="gaeyeya">소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염ㅍ</p>
-
-
-
+					<p class="gaeyeya">NickName</p>
+					<div class="profile-content">
+						<p class="side-cont">
+						 	여기에 자기소개를 적어주세요
+						</p>
+					
+					</div>
 				</div>
-
+					<div class="btn btn-block btn-danger" value="프로필 변경" style="margin-bottom:5px"><span>프로필변경</span></div>
 				<!-- search form (Optional) -->
 				<!-- <form action="#" method="get" class="sidebar-form">
 					<div class="input-group">
@@ -229,34 +248,33 @@ desired effect
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
 							<span>내 단어장</span></a></li>
-					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>해
-								볼 게 </span></a></li>
-					<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
+					<li><a href="#"><i class="fa fa-fw fa-book"></i> 
+							<span>공유 단어장 </span></a></li>
+				<!-- 	<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
 							<span>Multilevel</span> <span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
 						</span> </a>
 						<ul class="treeview-menu">
 							<li><a href="#">Link in level 2</a></li>
 							<li><a href="#">Link in level 2</a></li>
-						</ul></li>
+						</ul></li>  네비게이션 열고 닫으면서 이용할수있는것 일단 주석-->
 				</ul>
 				<!-- /.sidebar-menu -->
-				<!-- 다녀간사람 목록 띄우기 -->
+					<!-- 다녀간사람 목록 띄우기 -->
 				<div class="sidebar-misc">
 						<div class="sidebar-header">GUEST LIST</div>
 					<ul class="sidebar-menu" data-widget="tree">
 						<ul class="sidebar-list ko-12">
-							<li class="side-pad"><i class="fa fa-circle-o red"></i>
-								<span class="pull-center">다녀간사람</span></li>
 							<li class="side-pad"><i class="fa fa-circle-o green"></i>
-								<span class="pull-center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
-								<span class="pull-center">다녀간사람</span></li>
+								<span class="center">다녀간사람</span></li>
 							<li class="side-pad"><i class="fa fa-circle-o green"></i>
-								<span class="pull-center">다녀간사람</span></li>
+								<span class="center">다녀간사람</span></li>
 							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
-								<span class="pull-center">다녀간사람</span></li>
-
+								<span class="center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i>
+								<span class="center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
+								<span class="center">다녀간사람</span></li>
 						</ul>
 					</ul>
 				</div>
@@ -272,9 +290,7 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-			<!-- adasd -->
-			<!-- test -->
-			<!-- 서경환 -->
+
 			</section>
 			<!-- /.content -->
 		</div>
@@ -287,78 +303,6 @@ desired effect
 			</strong>
 
 		</footer>
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li class="active"><a href="#control-sidebar-home-tab"
-					data-toggle="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
-						class="fa fa-gears"></i></a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane active" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:;"> <i
-								class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-									<p>Will be 23 on April 24th</p>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:;">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design <span class="pull-right-container">
-										<span class="label label-danger pull-right">70%</span>
-									</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger"
-										style="width: 70%"></div>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
-					Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Report panel
-								usage <input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>Some information about this general settings option</p>
-						</div>
-						<!-- /.form-group -->
-					</form>
-				</div>
-				<!-- /.tab-pane -->
-			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 
 	</div>
@@ -381,3 +325,5 @@ desired effect
 	<!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+</body>
+</html>
