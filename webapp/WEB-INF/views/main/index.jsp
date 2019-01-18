@@ -37,8 +37,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <![endif]-->
 
 <!-- Google Font -->
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
 .ko-12 {
 	font-family: Nanum Gothic, dotum, sans-serif;
@@ -193,20 +193,13 @@ desired effect
 
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">
-					<div class="pull-left image">
-						<img
-							src="${pageContext.request.contextPath}/dist/images/profile1.png"
-							class="img-circle" alt="User Image">
-					</div>
-					<div class="pull-left info">
-						<p>Seya</p>
-						<!-- Status -->
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
+					<img
+						src="${pageContext.request.contextPath}/dist/images/profile1.png"
+						class="img-circle" alt="User Image">
 				</div>
 
 				<div class="sidebar-content">
-					<p class="gaeyeya">소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염ㅍ</p>
+					<p class="gaeyeya">소개염</p>
 
 
 
@@ -246,22 +239,20 @@ desired effect
 				<!-- /.sidebar-menu -->
 				<!-- 다녀간사람 목록 띄우기 -->
 				<div class="sidebar-misc">
-					<ul class="sidebar-menu" data-widget="tree">
-						<div class="sidebar-header">GUEST LIST</div>
-						<ul class="sidebar-list ko-12">
-							<li class="side-pad"><a
-								href="http://vrpano.kr/bbs/current_connect.php"> <i
-									class="fa fa-circle-o red"></i> <span class="center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-								class="pull-center">다녀간사람</span></li>
-
-						</ul>
+					<div class="sidebar-header sidebar-menu" data-widget="tree">GUEST
+						LIST</div>
+					<!-- 					<div class="sidebar-menu" data-widget="tree"> -->
+					<ul class="sidebar-list ko-12">
+						<li class="side-pad"><i class="fa fa-circle-o red"></i> <span
+							class="center">다녀간사람</span></li>
+						<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+							class="pull-center">다녀간사람</span></li>
+						<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+							class="pull-center">다녀간사람</span></li>
+						<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+							class="pull-center">다녀간사람</span></li>
+						<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+							class="pull-center">다녀간사람</span></li>
 					</ul>
 				</div>
 				<!-- 다녀간사람 목록 띄우기 -->
@@ -276,9 +267,9 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-			<!-- adasd -->
-			<!-- test -->
-			<!-- 서경환 -->
+				<!-- adasd -->
+				<!-- test -->
+				<!-- 서경환 -->
 			</section>
 			<!-- /.content -->
 		</div>
@@ -291,78 +282,6 @@ desired effect
 			</strong>
 
 		</footer>
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li class="active"><a href="#control-sidebar-home-tab"
-					data-toggle="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
-						class="fa fa-gears"></i></a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane active" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:;"> <i
-								class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-									<p>Will be 23 on April 24th</p>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:;">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design <span class="pull-right-container">
-										<span class="label label-danger pull-right">70%</span>
-									</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger"
-										style="width: 70%"></div>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
-					Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Report panel
-								usage <input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>Some information about this general settings option</p>
-						</div>
-						<!-- /.form-group -->
-					</form>
-				</div>
-				<!-- /.tab-pane -->
-			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 
 	</div>
