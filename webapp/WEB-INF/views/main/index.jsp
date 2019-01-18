@@ -341,7 +341,6 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-<<<<<<< HEAD
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
@@ -452,9 +451,6 @@ desired effect
 						<!-- /.box -->
 					</div>
 				</div>
-=======
-
->>>>>>> refs/remotes/seya/master
 			</section>
 			<!-- /.content -->
 		</div>
