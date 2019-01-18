@@ -631,7 +631,7 @@ none
 }
 
 .sidebar-menu li>a>.pull-right-container {
-	position: absolute;
+	position: relative;
 	right: 10px;
 	top: 50%;
 	margin-top: -7px
