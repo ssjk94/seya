@@ -249,9 +249,8 @@ desired effect
 					<ul class="sidebar-menu" data-widget="tree">
 						<div class="sidebar-header">GUEST LIST</div>
 						<ul class="sidebar-list ko-12">
-							<li class="side-pad"><a
-								href="http://vrpano.kr/bbs/current_connect.php"> <i
-									class="fa fa-circle-o red"></i> <span class="center">다녀간사람</span></li>
+							<li class="side-pad"> 
+							<i class="fa fa-circle-o red"></i> <span class="center">다녀간사람</span></li>
 							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
 								class="pull-center">다녀간사람</span></li>
 							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
