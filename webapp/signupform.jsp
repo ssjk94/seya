@@ -8,14 +8,13 @@
 <!-- 부트스트랩 css사용 -->
     <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- 
+<!-- d
 	jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다)
 	이게 자바스크립트보다 먼저와야함
 	 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- 부트스트랩의 자바 스크립트를 사용하겠다는 뜻 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
-
 	<style type="text/css">
 		.signborder{
 			border: 2px solid maroon;
