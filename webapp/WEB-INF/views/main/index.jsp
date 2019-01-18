@@ -37,8 +37,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <![endif]-->
 
 <!-- Google Font -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 <style>
 .ko-12 {
 	font-family: Nanum Gothic, dotum, sans-serif;
@@ -97,6 +97,85 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .gaeyeya {
 	text-align: center;
+}
+
+.content {
+	min-height: 250px;
+	padding: 35px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 35px;
+	padding-right: 35px
+}
+
+.content-header>.breadcrumb {
+	float: left;
+	background: transparent;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 12px;
+	padding-left: 35px;
+	position: static;
+	top: 15px;
+	right: 10px;
+	border-radius: 2px
+}
+
+.box-header>.box-tools {
+	position: absolute;
+	right: 20px;
+	top: 10px
+}
+
+.btn-info {
+	background-color: #dd4b39;
+	border-color: #dd4b39
+}
+
+.small-box .icon {
+	-webkit-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+	position: absolute;
+	top: -10px;
+	right: 35px;
+	z-index: 0;
+	font-size: 90px;
+	color: rgba(0, 0, 0, 0.15)
+}
+
+.row {
+	margin-right: 0px;
+	margin-left: 0px
+}
+
+.text-white {
+	color: #fff !important
+}
+
+.bgcolor-default {
+	background: rgba(221, 75, 57, 0.5) !important;
+}
+
+.color-default {
+	color: rgba(221, 75, 57, 0.5) !important
+}
+
+.small-box .icon {
+	-webkit-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+	position: absolute;
+	top: 20px;
+	right: 35px;
+	z-index: 0;
+	font-size: 90px;
+	color: rgba(221, 75, 57, 0.5);
+}
+
+.small-box:hover {
+	text-decoration: none;
+	color: #dd4b39 !important
 }
 </style>
 
@@ -177,7 +256,7 @@ desired effect
 									</div>
 									<div class="pull-right">
 										<a href="#" class="btn btn-default btn-flat">Sign out</a>
-										</div>
+									</div>
 								</li>
 							</ul>
 						</li>
@@ -193,13 +272,20 @@ desired effect
 
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">
-					<img
-						src="${pageContext.request.contextPath}/dist/images/profile1.png"
-						class="img-circle" alt="User Image">
+					<div class="pull-left image">
+						<img
+							src="${pageContext.request.contextPath}/dist/images/profile1.png"
+							class="img-circle" alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<p>Seya</p>
+						<!-- Status -->
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					</div>
 				</div>
 
 				<div class="sidebar-content">
-					<p class="gaeyeya">소개염</p>
+					<p class="gaeyeya">소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염소개염ㅍ</p>
 
 
 
@@ -223,11 +309,11 @@ desired effect
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">단 어 장</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
+					<li class="active"><a href="#"><i class="fa fa-link"></i>
 							<span>내 단어장</span></a></li>
-					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>해
+					<li><a href="#"><i class="fa fa-link"></i> <span>해
 								볼 게 </span></a></li>
-					<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
+					<li class="treeview"><a href="#"><i class="fa fa-link"></i>
 							<span>Multilevel</span> <span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
 						</span> </a>
@@ -238,7 +324,24 @@ desired effect
 				</ul>
 				<!-- /.sidebar-menu -->
 				<!-- 다녀간사람 목록 띄우기 -->
-				
+				<div class="sidebar-misc">
+					<ul class="sidebar-menu" data-widget="tree">
+						<div class="sidebar-header">GUEST LIST</div>
+						<ul class="sidebar-list ko-12">
+							<li class="side-pad"> 
+							<i class="fa fa-circle-o red"></i> <span class="center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+							<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
+								class="pull-center">다녀간사람</span></li>
+
+						</ul>
+					</ul>
+				</div>
 				<!-- 다녀간사람 목록 띄우기 -->
 			</section>
 			<!-- /.sidebar -->
@@ -250,8 +353,124 @@ desired effect
 			<section class="content-header"></section>
 
 			<!-- Main content -->
+<<<<<<< HEAD
 			<section class="content container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<!-- .box-header -->
+							<div class="box-header">
+								<h3 class="box-title">내 단어장</h3>
+								<!--갤러리, 리스트 버튼 -->
+								<div class="pull-right box-tools">
+									<a type="button" class="btn btn-info btn-xs"
+										data-toggle="tooltip"
+										href="${pageContext.request.contextPath}/mypage/list"><i
+										class="fa fa-bars"></i></a> <a type="button"
+										class="btn btn-info btn-xs" data-toggle="tooltip"
+										href="${pageContext.request.contextPath}/mypage/gallery"><i
+										class="fa fa-th-large"></i></a>
+								</div>
+								<!--/갤러리, 리스트 버튼 -->
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<div class="row">
+									<div class="col-lg-3 col-xs-6">
+										<!-- small box -->
+										<div class="small-box">
+											<div class="inner">
+												<h3>새 단어장</h3>
+												<p>&nbsp;</p>
+												<p>&nbsp;</p>
+												<p>&nbsp;</p>
 
+											</div>
+											<div class="icon">
+												<i class="fa fa-plus"> </i>
+											</div>
+											<a href="#" class="small-box-footer bgcolor-default">
+												More <i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
+									</div>
+									<!-- ./col -->
+									<div class="col-lg-3 col-xs-6">
+										<!-- small box -->
+										<div class="small-box">
+											<div class="inner">
+												<h3>단어장 1</h3>
+												<p>Seya</p>
+												<p>2019-01-01</p>
+												<p>
+													<span class="label label-danger">공유불가</span>
+												</p>
+
+											</div>
+											<div class="icon">
+												<i class="fa fa-file-text"> </i>
+											</div>
+											<a href="#" class="small-box-footer bgcolor-default">
+												More <i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
+									</div>
+									<!-- ./col -->
+									<div class="col-lg-3 col-xs-6">
+										<!-- small box -->
+										<div class="small-box">
+											<div class="inner">
+												<h3>단어장 2</h3>
+												<p>Seya</p>
+												<p>2019-01-02</p>
+												<p>
+													<span class="label label-warning">선택허용</span>
+												</p>
+
+											</div>
+											<div class="icon">
+												<i class="fa fa-file-text"> </i>
+											</div>
+											<a href="#" class="small-box-footer bgcolor-default">
+												More <i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
+									</div>
+									<!-- ./col -->
+									<div class="col-lg-3 col-xs-6">
+										<!-- small box -->
+										<div class="small-box">
+											<div class="inner">
+												<h3>단어장 3</h3>
+												<p>Seya</p>
+												<p>2019-01-03</p>
+												<p>
+													<span class="label label-success">공유가능</span>
+												</p>
+
+											</div>
+											<div class="icon">
+												<i class="fa fa-file-text"> </i>
+											</div>
+											<a href="#" class="small-box-footer bgcolor-default">
+												More <i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
+									</div>
+									<!-- ./col -->
+								</div>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+				</div>
+=======
+			<section class="content container">
+			<!-- adasd -->
+			<!-- test -->
+			<!-- 서경환 -->
+>>>>>>> refs/remotes/seya/master
 			</section>
 			<!-- /.content -->
 		</div>
@@ -264,6 +483,78 @@ desired effect
 			</strong>
 
 		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Create the tabs -->
+			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+				<li class="active"><a href="#control-sidebar-home-tab"
+					data-toggle="tab"><i class="fa fa-home"></i></a></li>
+				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
+						class="fa fa-gears"></i></a></li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<!-- Home tab content -->
+				<div class="tab-pane active" id="control-sidebar-home-tab">
+					<h3 class="control-sidebar-heading">Recent Activity</h3>
+					<ul class="control-sidebar-menu">
+						<li><a href="javascript:;"> <i
+								class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+									<p>Will be 23 on April 24th</p>
+								</div>
+						</a></li>
+					</ul>
+					<!-- /.control-sidebar-menu -->
+
+					<h3 class="control-sidebar-heading">Tasks Progress</h3>
+					<ul class="control-sidebar-menu">
+						<li><a href="javascript:;">
+								<h4 class="control-sidebar-subheading">
+									Custom Template Design <span class="pull-right-container">
+										<span class="label label-danger pull-right">70%</span>
+									</span>
+								</h4>
+
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-danger"
+										style="width: 70%"></div>
+								</div>
+						</a></li>
+					</ul>
+					<!-- /.control-sidebar-menu -->
+
+				</div>
+				<!-- /.tab-pane -->
+				<!-- Stats tab content -->
+				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
+					Content</div>
+				<!-- /.tab-pane -->
+				<!-- Settings tab content -->
+				<div class="tab-pane" id="control-sidebar-settings-tab">
+					<form method="post">
+						<h3 class="control-sidebar-heading">General Settings</h3>
+
+						<div class="form-group">
+							<label class="control-sidebar-subheading"> Report panel
+								usage <input type="checkbox" class="pull-right" checked>
+							</label>
+
+							<p>Some information about this general settings option</p>
+						</div>
+						<!-- /.form-group -->
+					</form>
+				</div>
+				<!-- /.tab-pane -->
+			</div>
+		</aside>
+		<!-- /.control-sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 
 	</div>

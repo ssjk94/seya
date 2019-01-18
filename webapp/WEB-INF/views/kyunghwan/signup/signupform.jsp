@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 부트스트랩 css사용 -->
-    <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- d
 	jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다)
@@ -14,29 +14,30 @@
 	 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- 부트스트랩의 자바 스크립트를 사용하겠다는 뜻 -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<style type="text/css">
 		.signborder{
-			border: 2px solid maroon;
-			padding: 40px;
+			border: 2px solid darkgray;
+			padding: 38px;
 			border-radius: 6px;
+			width: 780px;
 		}
 	</style>
 
 </head>
 <body>
 	<!-- 고정폭으로 만들기 -->
-	<div class="container signborder" style="width: 800px; max-width: none !important;">
+	<div class="container signborder">
 	
 	<!-- 정보가 들어가는 컨테이너 패딩 40 테두리 라운드 -->
-		<div style="float: left;">
+		<div style="float: left; width: 360px;">
 			<!-- 기본적인 텍스트 로고 들어가는 div -->
 			<div>
 				<p>Seya World 계정 만들기</p>
 			</div>
 			<!-- 실질적인 정보 들어가는창 -->
 			<div>
-				<!-- 이름 170 20 170 -->
+				<!-- 이름 170 20 170 height 20 -->
 				<div>
 					<input type="text" class="form-control" placeholder="Name">
 				</div>
@@ -61,17 +62,17 @@
 					<input type="text" class="form-control" placeholder="Year Month Day">
 				</div>
 				<!-- 확인 누르는 버튼  90-->
-				<div>
+				<div style="margin-left: 284px;">
 					<button type="submit" class="btn btn-default">Sign Up</button>
 				</div>
 				
 			</div>
 		</div>
 	<!-- 이미지, 글 들어가는 컨테이너 -->
-		<div style="float: left;">
+		<div style="float: left; width: 340px">
 			<!-- 이미지 -->
 			<div>
-				<img alt="dkdkk" src="assets/images/account.svg">
+				<img alt="dkdkk" src="dist/images/account.svg">
 			</div>
 			<!-- 이미지 글 -->
 			<div>
