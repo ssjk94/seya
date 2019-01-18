@@ -90,6 +90,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	pading: 10px;
 	margin-bottom: 10px;
 }
+.sidebar-menu .side-pad {
+	padding: 12px 5px 0px 15px;
+    display: block;
+}
+
 
 .sidebar-list .ko-12 {
 	display: block;
@@ -216,9 +221,6 @@ desired effect
 					<img
 						src="${pageContext.request.contextPath}/dist/images/profile1.png"
 						class="img-circle" alt="User Image">
-				</div>
-
-				<div class="sidebar-content">
 					<p class="gaeyeya">NickName</p>
 					<div class="profile-content">
 						<p class="side-cont">
@@ -226,8 +228,12 @@ desired effect
 						</p>
 					
 					</div>
+					<div class="btn btn-block btn-danger" value="프로필 변경" style="margin-bottom:5px">
+					<span>프로필변경</span></div>
 				</div>
-					<div class="btn btn-block btn-danger" value="프로필 변경" style="margin-bottom:5px"><span>프로필변경</span></div>
+
+				
+				
 				<!-- search form (Optional) -->
 				<!-- <form action="#" method="get" class="sidebar-form">
 					<div class="input-group">
@@ -262,7 +268,21 @@ desired effect
 				<!-- /.sidebar-menu -->
 					<!-- 다녀간사람 목록 띄우기 -->
 				<div class="sidebar-misc">
-						<div class="sidebar-header">GUEST LIST</div>
+				<ul class="sidebar-menu" data-widget="tree">
+					<li class="header">방문자 로그</li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i>
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i>
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i> 
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i>
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i> 
+							<span class="center">다녀간사람</span></li>
+					
+				</ul>
+				<!-- 		<div class="sidebar-header">GUEST LIST</div>
 					<ul class="sidebar-menu" data-widget="tree">
 						<ul class="sidebar-list ko-12">
 							<li class="side-pad"><i class="fa fa-circle-o green"></i>
@@ -276,7 +296,7 @@ desired effect
 							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
 								<span class="center">다녀간사람</span></li>
 						</ul>
-					</ul>
+					</ul> -->
 				</div>
 				<!-- 다녀간사람 목록 띄우기 -->
 			</section>

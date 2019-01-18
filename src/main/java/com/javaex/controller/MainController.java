@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String main(){
-		System.out.println("main");
+	@RequestMapping(value="/main1", method=RequestMethod.GET)
+	public String main1(){
+		System.out.println("main1");
 		return "main/index";
+	}
+	@RequestMapping(value="/main2", method=RequestMethod.GET)
+	public String main2(){
+		System.out.println("main2");
+		return "main/index2";
 	}
 	
 	@RequestMapping(value="/project", method=RequestMethod.GET)

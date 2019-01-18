@@ -362,7 +362,8 @@ a:hover, a:active, a:focus {
 	position: static;
 	width: 100%;
 	padding: 10px;
-	overflow: hidden
+	overflow: hidden;
+	text-align: center;
 }
 
 .user-panel:before, .user-panel:after {
