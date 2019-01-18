@@ -18,6 +18,11 @@ public class MainController {
 		System.out.println("project");
 		return "main/project";
 	}
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(){
+		System.out.println("logout");
+		return "main/logout";
+	}
 		
 //	@RequestMapping("/hello")
 //	public String hello() {

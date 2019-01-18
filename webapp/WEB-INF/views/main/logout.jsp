@@ -98,6 +98,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .gaeyeya {
 	text-align: center;
 }
+
+.login-box{
+	backgroud : #fff;
+	padding : 50px;
+	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.dropdown-menu .user-header{
+	padding:10px;
+	background :#fff;
+
+}
+
 </style>
 
 </head>
@@ -143,43 +155,28 @@ desired effect
 							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img
-								src="${pageContext.request.contextPath}/dist/images/profile1.png"
+								src="${pageContext.request.contextPath}/dist/images/user.png"
 								class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Seya</span>
+								<span class="hidden-xs">로그인</span>
 						</a>
-							<ul class="dropdown-menu">
+							<div class="dropdown-menu">
 								<!-- The user image in the menu -->
-								<li class="user-header"><img
-									src="${pageContext.request.contextPath}/dist/images/profile1.png"
-									class="img-circle" alt="User Image">
-
-									<p>
-										Seya <small>Member since Nov. 2012</small>
-									</p></li>
-								<!-- Menu Body -->
-								<li class="user-body">
-									<div class="row">
-										<div class="col-xs-4 text-center">
-											<a href="#">Followers</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Sales</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Friends</a>
-										</div>
-									</div> <!-- /.row -->
-								</li>
-								<!-- Menu Footer-->
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">Profile</a>
+								<div class="user-header">	
+										<h3 class="text-center">로그인</h3>
+									
+									<div class ="form-group">
+										<input type="text" class ="form-control" placeholder="아이디" name="userId" maxlength="20">
+									</div>								
+									<div class ="form-group">
+										<input type="password" class ="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
 									</div>
-									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">Sign out</a>
-										</div>
-								</li>
-							</ul>
+									<div>
+									 	<input type="submit" class="btn btn-block btn-danger form control" value="로그인" >
+									 	<input type="submit" class="btn btn-block btn-danger form control" value="회원가입">
+									 	<input type="submit" class="btn btn-block btn-danger form control" value="비밀번호찾기">
+									</div>		
+								</div>					
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -213,7 +210,7 @@ desired effect
 				</div>
 
 				<!-- search form (Optional) -->
-				<form action="#" method="get" class="sidebar-form">
+				<!-- <form action="#" method="get" class="sidebar-form">
 					<div class="input-group">
 						<input type="text" name="q" class="form-control"
 							placeholder="Search..."> <span class="input-group-btn">
@@ -223,7 +220,7 @@ desired effect
 							</button>
 						</span>
 					</div>
-				</form>
+				</form> -->
 				<!-- /.search form -->
 
 				<!-- Sidebar Menu -->
@@ -384,5 +381,3 @@ desired effect
 	<!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-</body>
-</html>
