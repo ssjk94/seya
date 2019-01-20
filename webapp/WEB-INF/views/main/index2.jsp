@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <!DOCTYPE html>
+
+
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -310,7 +314,10 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-
+				
+				<c:import url="/WEB-INF/views/kyunghwan/gamepage/_gamepageoutline.jsp"></c:import>
+			
+			<!-- 서경환 -->
 			</section>
 			<!-- /.content -->
 		</div>
