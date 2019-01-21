@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -37,7 +36,7 @@
 									name="userPassword" maxlength="20">
 							</div>
 							<div>
-								<a href="${pageContext.request.contextPath}/main2" class="btn btn-block btn-danger form control" style="width:100%">로그인</a>
+								<a href="${pageContext.request.contextPath}/mypage/list" class="btn btn-block btn-danger form control" style="width:100%">로그인</a>
 								<a href="#" class="btn btn-block btn-danger form control" style="width:100%">회원가입</a>
 								<a href="#" class="btn btn-block btn-danger form control" style="width:100%">비밀번호
 									찾기</a>
