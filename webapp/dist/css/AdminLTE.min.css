@@ -362,6 +362,7 @@ a:hover, a:active, a:focus {
 	position: static;
 	width: 100%;
 	padding: 10px;
+	text-align: center;
 	overflow: hidden
 }
 

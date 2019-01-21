@@ -130,67 +130,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	padding: 10px;
 }
 
-.content {
-	min-height: 250px;
-	padding: 35px;
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: 35px;
-	padding-right: 35px
-}
-
-.content-header>.breadcrumb {
-	float: left;
-	background: transparent;
-	margin-top: 0;
-	margin-bottom: 0;
-	font-size: 12px;
-	padding-left: 35px;
-	position: static;
-	top: 15px;
-	right: 10px;
-	border-radius: 2px
-}
-
 .box-header>.box-tools {
-	position: absolute;
-	right: 20px;
-	top: 10px
-}
-
-.btn-info {
-	background-color: #dd4b39;
-	border-color: #dd4b39
-}
-
-.small-box .icon {
-	-webkit-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	transition: all .3s linear;
-	position: absolute;
-	top: -10px;
-	right: 35px;
-	z-index: 0;
-	font-size: 90px;
-	color: rgba(0, 0, 0, 0.15)
-}
-
-.row {
-	margin-right: 0px;
-	margin-left: 0px
-}
-
-.text-white {
-    color: #fff !important
-}
-
-
-.bgcolor-default{
-    background: rgba(221, 75, 57, 0.5) !important; 
-}
-
-.color-default{
-	color: rgba(221, 75, 57, 0.5) !important    
+    position: absolute;
+    right: 20px;
+    top: 10px;
 }
 
 .small-box .icon {
@@ -198,22 +141,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -o-transition: all .3s linear;
     transition: all .3s linear;
     position: absolute;
-    top: 20px;
-    right: 35px;
+    top: -10px;
+    right: 30px;
     z-index: 0;
     font-size: 90px;
-    color: rgba(221, 75, 57, 0.5);
+    color: rgba(0, 0, 0, 0.15);
 }
 
 .small-box:hover {
     text-decoration: none;
     color: #dd4b39 !important
-}
-
-.box-header>.box-tools {
-    position: absolute;
-    right: 20px;
-    top: 10px;
 }
 
 </style>
@@ -244,7 +181,7 @@ desired effect
 	<div class="wrapper">
 
 		<!-- header -->
-		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- /header -->
 		
 		<!-- navigation -->
@@ -252,14 +189,7 @@ desired effect
 		<!-- /navigation -->
 
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header"></section>
-
-			<!-- Main content -->
-			<section class="content container"></section>
-			<!-- /.content -->
-		</div>
+		<c:import url="/WEB-INF/views/mypage/gallery.jsp"></c:import>
 		<!-- /.content-wrapper -->
 
 		<!-- footer -->

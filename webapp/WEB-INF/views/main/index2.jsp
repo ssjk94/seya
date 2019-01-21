@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -50,8 +53,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	margin: 0;
 }
 
-.sidebar-list .ko-12{
-
+.sidebar-list .ko-12 {
+	
 }
 
 .sidebar-header, .sidebar-list li {
@@ -98,21 +101,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .pull-center {
 	margin-left: 62px;
 }
+
 .dropdown-menu .user-footer .pull-center {
-	padding-left:20px;
+	padding-left: 20px;
 }
 
 .gaeyeya {
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom:10px;
-}
-.profile-content{
+	font-size: 22px;
 	text-align: center;
 }
+
+.profile-content {
+	text-align: center;
+}
+
 .side-cont {
 	padding: 10px;
 	text-align: center;
+}
+
+.btn-block {
+	display: block;
+	width: 50%;
+	margin: auto;
+}
+
+.sidebar-content {
+	padding: 10px;
+}
+
+.box-header>.box-tools {
+    position: absolute;
+    right: 20px;
+    top: 10px;
 }
 
 </style>
@@ -142,168 +163,21 @@ desired effect
 <body class="hold-transition skin-red-light fixed">
 	<div class="wrapper">
 
-		<!-- Main Header -->
-		<header class="main-header">
-
-			<!-- Logo -->
-			<a href="${pageContext.request.contextPath}/main" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-lg"><b>Seya</b>Word</span>
-			</a>
-
-			<!-- Header Navbar -->
-			<nav class="navbar navbar-static-top" role="navigation">
-				<!-- Navbar Right Menu -->
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<!-- User Account Menu -->
-						<li class="dropdown user user-menu">
-							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"> <!-- The user image in the navbar-->
-								<img
-								src="${pageContext.request.contextPath}/dist/images/profile1.png"
-								class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Seya</span>
-						</a>
-							<ul class="dropdown-menu">
-								<!-- The user image in the menu -->
-								<li class="user-header"><img
-									src="${pageContext.request.contextPath}/dist/images/profile1.png"
-									class="img-circle" alt="User Image">
-
-									<p>
-										Seya <small>Member since Nov. 2012</small>
-									</p></li>
-								<!-- Menu Body -->
-							<!-- 	<li class="user-body">
-									<div class="row">
-										<div class="col-xs-4 text-center">
-											<a href="#">Followers</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Sales</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Friends</a>
-										</div>
-									</div> /.row
-								</li> -->
-								<!-- Menu Footer-->
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">프로필</a>
-									</div>
-									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">로그아웃</a>
-										</div>
-									<div class="pull-center">
-										<a href="#" class="btn btn-default btn-flat">내블로그</a>
-										</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</header>
-		<!-- Left side column. contains the logo and sidebar -->
-		<aside class="main-sidebar">
-
-			<!-- sidebar: style can be found in sidebar.less -->
-			<section class="sidebar">
-
-				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel">
-					<img
-						src="${pageContext.request.contextPath}/dist/images/profile1.png"
-						class="img-circle" alt="User Image">
-				</div>
-
-				<div class="sidebar-content">
-					<p class="gaeyeya">NickName</p>
-					<div class="profile-content">
-						<p class="side-cont">
-						 	여기에 자기소개를 적어주세요
-						</p>
-					
-					</div>
-				</div>
-					<div class="btn btn-block btn-danger" value="프로필 변경" style="margin-bottom:5px"><span>프로필변경</span></div>
-				<!-- search form (Optional) -->
-				<!-- <form action="#" method="get" class="sidebar-form">
-					<div class="input-group">
-						<input type="text" name="q" class="form-control"
-							placeholder="Search..."> <span class="input-group-btn">
-							<button type="submit" name="search" id="search-btn"
-								class="btn btn-flat">
-								<i class="fa fa-search"></i>
-							</button>
-						</span>
-					</div>
-				</form> -->
-				<!-- /.search form -->
-
-				<!-- Sidebar Menu -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">단 어 장</li>
-					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
-							<span>내 단어장</span></a></li>
-					<li><a href="#"><i class="fa fa-fw fa-book"></i> 
-							<span>공유 단어장 </span></a></li>
-				<!-- 	<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
-							<span>Multilevel</span> <span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-						</span> </a>
-						<ul class="treeview-menu">
-							<li><a href="#">Link in level 2</a></li>
-							<li><a href="#">Link in level 2</a></li>
-						</ul></li>  네비게이션 열고 닫으면서 이용할수있는것 일단 주석-->
-				</ul>
-				<!-- /.sidebar-menu -->
-					<!-- 다녀간사람 목록 띄우기 -->
-				<div class="sidebar-misc">
-						<div class="sidebar-header">GUEST LIST</div>
-					<ul class="sidebar-menu" data-widget="tree">
-						<ul class="sidebar-list ko-12">
-							<li class="side-pad"><i class="fa fa-circle-o green"></i>
-								<span class="center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i>
-								<span class="center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
-								<span class="center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i>
-								<span class="center">다녀간사람</span></li>
-							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
-								<span class="center">다녀간사람</span></li>
-						</ul>
-					</ul>
-				</div>
-				<!-- 다녀간사람 목록 띄우기 -->
-			</section>
-			<!-- /.sidebar -->
-		</aside>
+		<!-- header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+		<!-- /header -->
+		
+		<!-- navigation -->
+		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
+		<!-- /navigation -->
 
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header"></section>
-
-			<!-- Main content -->
-			<section class="content container">
-
-			</section>
-			<!-- /.content -->
-		</div>
+		<c:import url="/WEB-INF/views/mypage/list.jsp"></c:import>
 		<!-- /.content-wrapper -->
 
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<!-- Default to the right -->
-			<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
-			</strong>
-
-		</footer>
-		<div class="control-sidebar-bg"></div>
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+		<!-- /footer -->
 
 	</div>
 	<!-- ./wrapper -->
