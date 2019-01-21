@@ -255,43 +255,7 @@ desired effect
 		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
 		<!-- /navigation -->
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header"></section>
-
-			<!-- Main content -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<section class="content container">
-			
-			<c:import url="/WEB-INF/views/kyunghwan/vocabularymodify/_vocabularymodify.jsp"></c:import>
-
-			</section>
-			<!-- 서경환 -->
-			<section class="content container">
->>>>>>> refs/remotes/seya/master
-			
-=======
-			</section>
-			<section class="content container">
-
-			</section>
-			<section class="content container">
-			<!-- adasd -->
-			<!-- test -->
-			<!-- 서경환 -->
-
->>>>>>> refs/remotes/origin/master
-			</section>
-=======
-			<section class="content container"></section>
->>>>>>> refs/remotes/origin/master
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-
+		
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- /footer -->

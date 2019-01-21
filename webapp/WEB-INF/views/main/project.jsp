@@ -160,9 +160,133 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .content-header>.breadcrumb {
-    position: static;
+	position: static;
 }
 
+.profileborder {
+	top: 2px;
+	left: 2px;
+	bottom: 2px;
+	right: 2px;
+	border: 2px solid #ff6666;
+	border-radius: 6px;
+}
+
+.lev1 {
+	border-bottom: 2px solid #ff6666;
+}
+
+.gamepagecontainer {
+	width: 780px;
+	max-width: none !important;
+	margin: auto
+}
+
+.clear {
+	clear: both;
+}
+
+.leftattach {
+	float: left;
+}
+
+.pagefly {
+	margin-top: 30px;
+}
+
+.firstpage {
+	width: 340px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.secondpage {
+	margin-left: 30px;
+	width: 310px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.pageincludefly {
+	margin-left: 10px;
+}
+
+.gamestartbtn {
+	width: 100%;
+}
+
+.gamepageborder {
+	top: 2px;
+	left: 2px;
+	bottom: 2px;
+	right: 2px;
+	border: 2px solid rgba(221, 75, 57, 0.5);
+	border-radius: 6px;
+}
+
+.imgsize {
+	width: 50px;
+	margin: auto;
+}
+
+.flashcard {
+	background-color: deeppink;
+	padding-top: 40px;
+	text-align: center;
+	height: 120px;
+}
+
+.explain {
+	padding-left: 20px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-right: 20px;
+}
+
+.rankingprofile {
+	margin-left: 40px;
+}
+
+p {
+	padding-top: 15px;
+	margin: auto;
+}
+
+.pscore {
+	padding-left: 40px;
+}
+
+.shapemargin {
+	margin-top: 5px;
+	margin-left: 125px;
+	color: rgba(221, 75, 57, 0.5);
+}
+
+.vocabularycontainer {
+	width: 780px;
+	max-width: none !important;
+	margin: auto
+}
+
+.vocabu {
+	border: 2px solid #dd4b39;
+	padding: 10px 20px 10px 20px;
+}
+
+.vocamodifybtn {
+	width: 100%;
+}
+
+.signborder {
+	border: 2px solid darkgray;
+	padding: 38px;
+	border-radius: 6px;
+	width: 780px;
+}
 </style>
 
 </head>
@@ -201,96 +325,61 @@ desired effect
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<!--단어장 경로 -->
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Simple</li>
-				</ol>
-				<!--/단어장 경로 -->
-			</section>
+			<!-- 고정폭으로 만들기 -->
+			<div class="container signborder">
 
-			<!-- Main content -->
-			<section class="content container">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box">
-							<!-- .box-header -->
-							<div class="box-header">
-								<h3 class="box-title">내 단어장</h3>
-								<!--갤러리, 리스트 버튼 -->
-								<div class="pull-right box-tools">
-									<a type="button" class="btn btn-info btn-xs"
-										data-toggle="tooltip"
-										href="${pageContext.request.contextPath}/main2"><i
-										class="fa fa-bars"></i></a> <a type="button"
-										class="btn btn-info btn-xs" data-toggle="tooltip"
-										href="${pageContext.request.contextPath}/main3"><i
-										class="fa fa-th-large"></i></a>
-								</div>
-								<!--/갤러리, 리스트 버튼 -->
-							</div>
-							<!-- /.box-header -->
-							<div class="box-body no-padding">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>단어장 이름</th>
-											<th>만든 이</th>
-											<th>만든 날짜</th>
-											<th>상태</th>
-											<th>설명</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>단어장 1</td>
-											<td>Seya</td>
-											<td>2019-01-01</td>
-											<td><span class="label label-danger">공유불가</span></td>
-											<td>토익 단어장 chp.1<a
-												href="${pageContext.request.contextPath}/flashcard"
-												class="pull-right">바로가기</a></td>
-
-										</tr>
-
-										<tr>
-											<td>단어장 2</td>
-											<td>Seya</td>
-											<td>2019-01-02</td>
-											<td><span class="label label-warning">선택허용</span></td>
-											<td>토익 단어장 chp.2<a
-												href="${pageContext.request.contextPath}/flashcard"
-												class="pull-right">바로가기</a></td>
-
-										</tr>
-
-										<tr>
-											<td>단어장 3</td>
-											<td>Seya</td>
-											<td>2019-01-03</td>
-											<td><span class="label label-success">공유허용</span></td>
-											<td>토익 단어장 chp.3<a
-												href="${pageContext.request.contextPath}/flashcard"
-												class="pull-right">바로가기</a></td>
-										</tr>
-										<tr>
-											<td align="center" colspan="5">새 단어장 추가</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<!-- /.box-body -->
+				<!-- 정보가 들어가는 컨테이너 패딩 40 테두리 라운드 -->
+				<div style="float: left; width: 360px;">
+					<!-- 기본적인 텍스트 로고 들어가는 div -->
+					<div>
+						<p>Seya World 계정 만들기</p>
+					</div>
+					<!-- 실질적인 정보 들어가는창 -->
+					<div>
+						<!-- 이름 170 20 170 height 20 -->
+						<div>
+							<input type="text" class="form-control" placeholder="Name">
 						</div>
-						<!-- /.box -->
+						<!-- 별명 or nickname -->
+						<div>
+							<input type="text" class="form-control" placeholder="Nick name">
+						</div>
+						<!-- 아이디 or 메일 360 -->
+						<div>
+							<input type="email" class="form-control" placeholder="E-Mail">
+						</div>
+						<!-- 아이디 중복일 경우 나오게 만드는 div -->
+						<div></div>
+						<!-- 비밀번호 -->
+						<div>
+							<input type="password" class="form-control"
+								placeholder="Password">
+						</div>
+						<!-- 생년월일 -->
+						<div>
+							<input type="text" class="form-control"
+								placeholder="Year Month Day">
+						</div>
+						<!-- 확인 누르는 버튼  90-->
+						<div style="margin-left: 284px;">
+							<button type="submit" class="btn btn-default">Sign Up</button>
+						</div>
+
 					</div>
 				</div>
-			</section>
-			<!-- /.content -->
+				<!-- 이미지, 글 들어가는 컨테이너 -->
+				<div style="float: left; width: 340px">
+					<!-- 이미지 -->
+					<div>
+						<img alt="dkdkk" src="dist/images/account.svg">
+					</div>
+					<!-- 이미지 글 -->
+					<div>
+						<p>하나의 계정으로 모든 SeyaWorld 서비스를 이용할 수 있습니다.</p>
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- /.content-wrapper -->
 
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

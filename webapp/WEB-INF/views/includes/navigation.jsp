@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="btn btn-block btn-danger" style="margin-bottom: 5px">
-			<span>프로필변경</span>
+			<a href="${pageContext.request.contextPath}/profilemodify"><span style="color: #ffffff">프로필변경</span></a>
 		</div>
 		<!-- search form (Optional) -->
 		<!-- <form action="#" method="get" class="sidebar-form">

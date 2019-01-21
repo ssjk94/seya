@@ -47,6 +47,30 @@ public class MainController {
 		System.out.println("flashcard");
 		return "wordpad/flashcard";
 	}
+	
+	@RequestMapping(value = "/profilemodify", method = RequestMethod.GET)
+	public String profilemodify() {
+		System.out.println("profilemodify");
+		return "kyunghwan/profilemodify/_profilemodify";
+	}
+
+	@RequestMapping(value = "/gamepage", method = RequestMethod.GET)
+	public String gamepage() {
+		System.out.println("gamepage");
+		return "kyunghwan/gamepage/_gamepageoutline";
+	}
+	
+	@RequestMapping(value = "/vocabularymodify", method = RequestMethod.GET)
+	public String vocabularymodify() {
+		System.out.println("gamepage");
+		return "kyunghwan/vocabularymodify/_vocabularymodify";
+	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup() {
+		System.out.println("signup");
+		return "kyunghwan/signup/signupform";
+	}
 
 //	@RequestMapping("/hello")
 //	public String hello() {
