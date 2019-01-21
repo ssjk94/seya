@@ -7,14 +7,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
+<<<<<<< HEAD
 	@RequestMapping(value = "/main1", method = RequestMethod.GET)
 	public String main1() {
+=======
+	@RequestMapping(value="/main1", method=RequestMethod.GET)
+	public String main1(){
+>>>>>>> refs/remotes/seya/master
 		System.out.println("main1");
 		return "main/index";
 	}
+<<<<<<< HEAD
 
 	@RequestMapping(value = "/main2", method = RequestMethod.GET)
 	public String main2() {
+=======
+	@RequestMapping(value="/main2", method=RequestMethod.GET)
+	public String main2(){
+>>>>>>> refs/remotes/seya/master
 		System.out.println("main2");
 		return "main/index2";
 	}
