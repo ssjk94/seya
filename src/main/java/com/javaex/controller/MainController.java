@@ -17,6 +17,11 @@ public class MainController {
 		System.out.println("main2");
 		return "main/index2";
 	}
+	@RequestMapping(value="/fcpage", method=RequestMethod.GET)
+	public String fcpage(){
+		System.out.println("fcpage");
+		return "main/flashcardpage";
+	}
 	
 	@RequestMapping(value="/project", method=RequestMethod.GET)
 	public String project(){

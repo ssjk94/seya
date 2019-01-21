@@ -353,7 +353,7 @@ desired effect
 			<section class="content-header"></section>
 
 			<!-- Main content -->
-<<<<<<< HEAD
+
 			<section class="content container">
 				<div class="row">
 					<div class="col-xs-12">
@@ -465,12 +465,12 @@ desired effect
 						<!-- /.box -->
 					</div>
 				</div>
-=======
+
 			<section class="content container">
 			<!-- adasd -->
 			<!-- test -->
 			<!-- 서경환 -->
->>>>>>> refs/remotes/seya/master
+
 			</section>
 			<!-- /.content -->
 		</div>
