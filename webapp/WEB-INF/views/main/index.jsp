@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-=======
-	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
->>>>>>> refs/remotes/origin/master
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -185,41 +180,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .text-white {
-    color: #fff !important
+	color: #fff !important
 }
 
-
-.bgcolor-default{
-    background: rgba(221, 75, 57, 0.5) !important; 
+.bgcolor-default {
+	background: rgba(221, 75, 57, 0.5) !important;
 }
 
-.color-default{
-	color: rgba(221, 75, 57, 0.5) !important    
+.color-default {
+	color: rgba(221, 75, 57, 0.5) !important
 }
 
 .small-box .icon {
-    -webkit-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    transition: all .3s linear;
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    z-index: 0;
-    font-size: 90px;
-    color: rgba(221, 75, 57, 0.5);
+	-webkit-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+	position: absolute;
+	top: 20px;
+	right: 35px;
+	z-index: 0;
+	font-size: 90px;
+	color: rgba(221, 75, 57, 0.5);
 }
 
 .small-box:hover {
-    text-decoration: none;
-    color: #dd4b39 !important
+	text-decoration: none;
+	color: #dd4b39 !important
 }
 
 .box-header>.box-tools {
-    position: absolute;
-    right: 20px;
-    top: 10px;
+	position: absolute;
+	right: 20px;
+	top: 10px;
 }
-
 </style>
 
 </head>
@@ -250,12 +243,15 @@ desired effect
 		<!-- header -->
 		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
 		<!-- /header -->
-		
+
 		<!-- navigation -->
 		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
 		<!-- /navigation -->
 
-		
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+		</div>
+		<!-- /.Content Wrapper -->
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- /footer -->
