@@ -43,178 +43,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
-.ko-12 {
-	font-family: Nanum Gothic, dotum, sans-serif;
-	font-size: 12px;
+.fixed .content-main, .fixed .footer-main {
+	min-height: 100%;
+	z-index: 800;
 }
 
-.sidebar-list {
-	list-style: none;
-	margin: 0;
+b, strong {
+	font-weight: 700;
 }
 
-.sidebar-list .ko-12 {
-	
+.user-page {
+	padding-left: 20%;
+	padding-right: 20%;
+	margin-left: 17%;
+	margin-right: 17%;
+	margin-top: 20%
 }
 
-.sidebar-header, .sidebar-list li {
-	white-space: nowrap;
+.content-wrapper, .main-footer {
+	-webkit-transition: -webkit-transform .3s ease-in-out, margin .3s
+		ease-in-out;
+	-moz-transition: -moz-transform .3s ease-in-out, margin .3s ease-in-out;
+	-o-transition: -o-transform .3s ease-in-out, margin .3s ease-in-out;
+	transition: transform .3s ease-in-out, margin .3s ease-in-out;
+	margin-left: 0px;
+	z-index: 820;
 }
-
-.sidebar-box, .sidebar-list {
-	overflow: hidden;
-	padding: 10px 15px;
-	line-height: 20px;
-}
-
-.sidebar-list .fa, .sidebar-list .glyphicon, .sidebar-list .ion {
-	width: 20px;
-}
-
-.skin-blue .sidebar-menu>li.header {
-	color: #4b646f;
-	background: #1a2226;
-}
-
-.sidebar-box, .sidebar-list {
-	overflow: hidden;
-	padding: 10px 15px;
-	line-height: 20px;
-}
-
-.sidebar-header {
-	padding: 10px 25px 10px 15px;
-	font-size: 12px;
-	color: #ffffff;
-	background: #1a2226;
-}
-
-.side-pad {
-	pading: 10px;
-	margin-bottom: 10px;
-}
-
-.sidebar-list .ko-12 {
-	display: block;
-}
-
-.pull-center {
-	margin-left: 62px;
-}
-
-.dropdown-menu .user-footer .pull-center {
-	padding-left: 20px;
-}
-
-.gaeyeya {
-	font-size: 22px;
-	text-align: center;
-}
-
-.profile-content {
-	text-align: center;
-}
-
-.side-cont {
-	padding: 10px;
-	text-align: center;
-}
-
-.btn-block {
-	display: block;
-	width: 50%;
-	margin: auto;
-}
-
-.sidebar-content {
-	padding: 10px;
-}
-
-.content {
-	min-height: 250px;
-	padding: 35px;
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: 35px;
-	padding-right: 35px
-}
-
-.content-header>.breadcrumb {
-	float: left;
-	background: transparent;
-	margin-top: 0;
-	margin-bottom: 0;
-	font-size: 12px;
-	padding-left: 35px;
-	position: static;
-	top: 15px;
-	right: 10px;
-	border-radius: 2px
-}
-
-.box-header>.box-tools {
-	position: absolute;
-	right: 20px;
-	top: 10px
-}
-
-.btn-info {
-	background-color: #dd4b39;
-	border-color: #dd4b39
-}
-
-.small-box .icon {
-	-webkit-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	transition: all .3s linear;
-	position: absolute;
-	top: -10px;
-	right: 35px;
-	z-index: 0;
-	font-size: 90px;
-	color: rgba(0, 0, 0, 0.15)
-}
-
-.row {
-	margin-right: 0px;
-	margin-left: 0px
-}
-
-.text-white {
-	color: #fff !important
-}
-
-.bgcolor-default {
-	background: rgba(221, 75, 57, 0.5) !important;
-}
-
-.color-default {
-	color: rgba(221, 75, 57, 0.5) !important
-}
-
-.small-box .icon {
-	-webkit-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	transition: all .3s linear;
-	position: absolute;
-	top: 20px;
-	right: 35px;
-	z-index: 0;
-	font-size: 90px;
-	color: rgba(221, 75, 57, 0.5);
-}
-
-.small-box:hover {
-	text-decoration: none;
-	color: #dd4b39 !important
-}
-
-.box-header>.box-tools {
-	position: absolute;
-	right: 20px;
-	top: 10px;
-}
-
 </style>
 
 </head>
@@ -246,19 +100,47 @@ desired effect
 		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
 		<!-- /header -->
 
-		<!-- navigation -->
-		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
-		<!-- /navigation -->
-
-
-		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
+			<div class="user-page">
+				<!-- The user image in the menu -->
+				<div class="user-header">
+					<h3 class="text-center">로그인</h3>
+				</div>
+				<div class="user-body">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디"
+							name="userId" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호"
+							name="userPassword" maxlength="20">
+					</div>
+					<div>
+						<a href="${pageContext.request.contextPath}/mypage/gallery"
+							class="btn btn-block btn-danger form control" style="width: 100%">로그인</a>
+						<a href="${pageContext.request.contextPath}/signup"
+							class="btn btn-block btn-danger form control" style="width: 100%">회원가입</a>
+						<a href="#" class="btn btn-block btn-danger form control"
+							style="width: 100%">비밀번호 찾기</a>
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- /.Content Wrapper -->
+	</div>
+	<!-- /.Content Wrapper -->
 
-		<!-- footer -->
-		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-		<!-- /footer -->
+	<!-- Main Footer -->
+
+	<footer class="main-footer">
+
+		<!-- Default to the right -->
+		<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
+		</strong>
+
+	</footer>
+	<!-- /footer -->
+
+	<div class="control-sidebar-bg"></div>
 
 	</div>
 	<!-- ./wrapper -->

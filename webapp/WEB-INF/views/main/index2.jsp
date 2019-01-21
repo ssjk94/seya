@@ -201,7 +201,7 @@ desired effect
 		<!-- /navigation -->
 
 		<!-- Content Wrapper. Contains page content -->
-		<c:import url="/WEB-INF/views/wordpad/flashcard.jsp"></c:import>
+		<c:import url="/WEB-INF/views/mypage/gallery.jsp"></c:import>
 		<!-- /.content-wrapper -->
 
 		<!-- footer -->

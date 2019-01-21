@@ -44,258 +44,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
-.ko-12 {
-	font-family: Nanum Gothic, dotum, sans-serif;
-	font-size: 12px;
+.fixed .content-main, .fixed .footer-main {
+	min-height: 100%;
+	z-index: 800;
 }
 
-.sidebar-list {
-	list-style: none;
-	margin: 0;
+b, strong {
+	font-weight: 700;
 }
 
-.sidebar-header, .sidebar-list li {
-	white-space: nowrap;
+.user-page {
+	padding-left: 20%;
+	padding-right: 20%;
+	margin-left: 17%;
+	margin-right: 17%;
+	margin-top: 20%
 }
 
-.sidebar-box, .sidebar-list {
-	overflow: hidden;
-	padding: 10px 15px;
-	line-height: 20px;
+.content-wrapper, .main-footer {
+	-webkit-transition: -webkit-transform .3s ease-in-out, margin .3s
+		ease-in-out;
+	-moz-transition: -moz-transform .3s ease-in-out, margin .3s ease-in-out;
+	-o-transition: -o-transform .3s ease-in-out, margin .3s ease-in-out;
+	transition: transform .3s ease-in-out, margin .3s ease-in-out;
+	margin-left: 0px;
+	z-index: 820;
 }
 
-.sidebar-list .fa, .sidebar-list .glyphicon, .sidebar-list .ion {
-	width: 20px;
-}
-
-.skin-blue .sidebar-menu>li.header {
-	color: #4b646f;
-	background: #1a2226;
-}
-
-.sidebar-box, .sidebar-list {
-	overflow: hidden;
-	padding: 10px 15px;
-	line-height: 20px;
-}
-
-.sidebar-header {
-	padding: 10px 25px 10px 15px;
-	font-size: 12px;
-	color: #ffffff;
-	background: #1a2226;
-}
-
-.side-pad {
-	pading: 10px;
+.form-control {
+	border-radius: 0;
+	box-shadow: none;
+	border-color: #d2d6de;
 	margin-bottom: 10px;
 }
 
-.sidebar-list .ko-12 {
-	display: block;
-}
-
-.pull-center {
-	margin-left: 62px;
-}
-
-.dropdown-menu .user-footer .pull-center {
-	padding-left: 20px;
-}
-
-.gaeyeya {
-	font-size: 22px;
-	text-align: center;
-}
-
-.profile-content {
-	text-align: center;
-}
-
-.side-cont {
-	padding: 10px;
-	text-align: center;
-}
-
-.btn-block {
-	display: block;
-	width: 50%;
-	margin: auto;
-}
-
-.sidebar-content {
-	padding: 10px;
-}
-
-.box-header>.box-tools {
-	position: absolute;
-	right: 20px;
-	top: 10px;
-}
-
-.small-box .icon {
-	-webkit-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	transition: all .3s linear;
-	position: absolute;
-	top: -10px;
-	right: 30px;
-	z-index: 0;
-	font-size: 90px;
-	color: rgba(0, 0, 0, 0.15);
-}
-
-.small-box:hover {
-	text-decoration: none;
-	color: #dd4b39 !important
-}
-
-.fixed .content-wrapper, .fixed .right-side {
-	padding-top: 85px;
-}
-
-.table-hover>tbody>tr:hover {
-	background-color: #f5f5f5;
-	color: #dd4b39 !important;
-}
-
-.content-header>.breadcrumb {
-	position: static;
-}
-
-.profileborder {
-	top: 2px;
-	left: 2px;
-	bottom: 2px;
-	right: 2px;
-	border: 2px solid #ff6666;
-	border-radius: 6px;
-}
-
-.lev1 {
-	border-bottom: 2px solid #ff6666;
-}
-
-.gamepagecontainer {
-	width: 780px;
-	max-width: none !important;
-	margin: auto
-}
-
-.clear {
-	clear: both;
-}
-
-.leftattach {
-	float: left;
-}
-
-.pagefly {
-	margin-top: 30px;
-}
-
-.firstpage {
-	width: 340px;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.secondpage {
-	margin-left: 30px;
-	width: 310px;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.pageincludefly {
-	margin-left: 10px;
-}
-
-.gamestartbtn {
-	width: 100%;
-}
-
-.gamepageborder {
-	top: 2px;
-	left: 2px;
-	bottom: 2px;
-	right: 2px;
-	border: 2px solid rgba(221, 75, 57, 0.5);
-	border-radius: 6px;
-}
-
-.imgsize {
-	width: 50px;
-	margin: auto;
-}
-
-.flashcard {
-	background-color: deeppink;
-	padding-top: 40px;
-	text-align: center;
-	height: 120px;
-}
-
-.explain {
-	padding-left: 20px;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	padding-right: 20px;
-}
-
-.rankingprofile {
-	margin-left: 40px;
-}
-
-p {
-	padding-top: 15px;
-	margin: auto;
-}
-
-.pscore {
-	padding-left: 40px;
-}
-
-.shapemargin {
-	margin-top: 5px;
-	margin-left: 125px;
-	color: rgba(221, 75, 57, 0.5);
-}
-
-.vocabularycontainer {
-	width: 780px;
-	max-width: none !important;
-	margin: auto
-}
-
-.vocabu {
-	border: 2px solid #dd4b39;
-	padding: 10px 20px 10px 20px;
-}
-
-.vocamodifybtn {
-	width: 100%;
-}
-
-.signborder {
-	border: 2px solid darkgray;
-	padding: 38px;
-	border-radius: 6px;
-	width: 780px;
-}
-
-.signup-header {
-	font-size: 35px
-}
-
 .signup-content {
-	font-size: 10px
+	padding-top: 30px;
+	margin: auto;
+	font-size: 12px
 }
-
 </style>
 
 </head>
@@ -327,10 +114,6 @@ desired effect
 		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
 		<!-- /header -->
 
-		<!-- navigation -->
-		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
-		<!-- /navigation -->
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 
@@ -338,7 +121,7 @@ desired effect
 			<div class="container signborder">
 
 				<!-- 정보가 들어가는 컨테이너 패딩 40 테두리 라운드 -->
-				<div style="float: left; width: 360px;">
+				<div class="signup-content" style="width: 360px;">
 					<!-- 기본적인 텍스트 로고 들어가는 div -->
 					<div>
 						<h3 class="text-center">Seya World 계정 만들기</h3>
@@ -374,26 +157,35 @@ desired effect
 						<div style="margin-left: 284px;">
 							<button type="submit" class="btn btn-default">Sign Up</button>
 						</div>
-
+						<div>
+							<img alt="dkdkk" src="dist/images/account.svg">
+						</div>
+						<!-- 이미지 글 -->
+						<div>
+							<p class="signup-content text-center">하나의 계정으로 모든 SeyaWorld 서비스를 이용할 수
+								있습니다.</p>
+						</div>
 					</div>
 				</div>
 				<!-- 이미지, 글 들어가는 컨테이너 -->
-				<div style="float: left; width: 340px">
-					<!-- 이미지 -->
-					<div>
-						<img alt="dkdkk" src="dist/images/account.svg">
-					</div>
-					<!-- 이미지 글 -->
-					<div>
-						<p class="signup-content">하나의 계정으로 모든 SeyaWorld 서비스를 이용할 수 있습니다.</p>
-					</div>
-				</div>
+				<!-- 이미지 -->
+
 			</div>
 		</div>
+	</div>
 
-		<!-- footer -->
-		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-		<!-- /footer -->
+	<!-- Main Footer -->
+
+	<footer class="main-footer">
+
+		<!-- Default to the right -->
+		<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
+		</strong>
+
+	</footer>
+	<!-- /footer -->
+
+	<div class="control-sidebar-bg"></div>
 
 	</div>
 	<!-- ./wrapper -->

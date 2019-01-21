@@ -160,7 +160,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .content-header>.breadcrumb {
-    position: static;
+	position: static;
+}
+
+.breadcrumb {
+	background-color: #ffffff;
+}
+
+.button-name {
+    padding-bottom: 20px;
 }
 
 </style>
@@ -203,13 +211,28 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<!--단어장 경로 -->
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Simple</li>
-				</ol>
-				<!--/단어장 경로 -->
+				<div class="path-name">
+					<!--단어장 경로 -->
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li><a href="#">Tables</a></li>
+						<li class="active">Simple</li>
+					</ol>
+					<!--/단어장 경로 -->
+				</div>
+				<!--갤러리, 리스트 버튼 -->
+				<div class="button-name">
+
+					<div class="pull-right box-tools">
+						<a type="button" class="btn btn-info btn-xs" data-toggle="tooltip"
+							href="${pageContext.request.contextPath}/mypage/list"><i
+							class="fa fa-bars"></i></a> <a type="button"
+							class="btn btn-info btn-xs" data-toggle="tooltip"
+							href="${pageContext.request.contextPath}/mypage/gallery"><i
+							class="fa fa-th-large"></i></a>
+					</div>
+				</div>
+				<!--/갤러리, 리스트 버튼 -->
 			</section>
 
 			<!-- Main content -->
@@ -217,22 +240,6 @@ desired effect
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
-							<!-- .box-header -->
-							<div class="box-header">
-								<h3 class="box-title">내 단어장</h3>
-								<!--갤러리, 리스트 버튼 -->
-								<div class="pull-right box-tools">
-									<a type="button" class="btn btn-info btn-xs"
-										data-toggle="tooltip"
-										href="${pageContext.request.contextPath}/mypage/list"><i
-										class="fa fa-bars"></i></a> <a type="button"
-										class="btn btn-info btn-xs" data-toggle="tooltip"
-										href="${pageContext.request.contextPath}/mypage/gallery"><i
-										class="fa fa-th-large"></i></a>
-								</div>
-								<!--/갤러리, 리스트 버튼 -->
-							</div>
-							<!-- /.box-header -->
 							<div class="box-body no-padding">
 								<table class="table table-hover">
 									<thead>

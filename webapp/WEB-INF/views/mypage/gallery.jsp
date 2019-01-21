@@ -138,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	-o-transition: all .3s linear;
 	transition: all .3s linear;
 	position: absolute;
-	top: -10px;
+	top: 20px;
 	right: 30px;
 	z-index: 0;
 	font-size: 90px;
@@ -162,6 +162,22 @@ a.wordpad-link {
 	color: #000000
 }
 
+.breadcrumb {
+	background-color: #ffffff;
+}
+
+.button-name {
+	padding-bottom: 20px;
+}
+
+.inner .tools {
+	display: none;
+	float: right
+}
+
+.small-box:hover .tools {
+	display: inline-block
+}
 </style>
 
 </head>
@@ -199,109 +215,121 @@ desired effect
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<!--단어장 경로 -->
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Simple</li>
-				</ol>
-				<!--/단어장 경로 -->
-			</section>
+				<div class="path-name">
+					<!--단어장 경로 -->
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li><a href="#">Tables</a></li>
+						<li class="active">Simple</li>
+					</ol>
+					<!--/단어장 경로 -->
+				</div>
+				<!--갤러리, 리스트 버튼 -->
+				<div class="button-name">
 
+					<div class="pull-right box-tools">
+						<a type="button" class="btn btn-info btn-xs" data-toggle="tooltip"
+							href="${pageContext.request.contextPath}/mypage/list"><i
+							class="fa fa-bars"></i></a> <a type="button"
+							class="btn btn-info btn-xs" data-toggle="tooltip"
+							href="${pageContext.request.contextPath}/mypage/gallery"><i
+							class="fa fa-th-large"></i></a>
+					</div>
+				</div>
+				<!--/갤러리, 리스트 버튼 -->
+			</section>
 			<!-- Main content -->
 			<section class="content container">
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
-							<!-- .box-header -->
-							<div class="box-header">
-								<h2 class="box-title">내 단어장</h2>
-								<!--갤러리, 리스트 버튼 -->
-								<div class="pull-right box-tools">
-									<a type="button" class="btn btn-info btn-xs"
-										data-toggle="tooltip"
-										href="${pageContext.request.contextPath}/mypage/list"><i
-										class="fa fa-bars"></i></a> <a type="button"
-										class="btn btn-info btn-xs" data-toggle="tooltip"
-										href="${pageContext.request.contextPath}/mypage/gallery"><i
-										class="fa fa-th-large"></i></a>
-								</div>
-								<!--/갤러리, 리스트 버튼 -->
-							</div>
-							<!-- /.box-header -->
 							<div class="box-body no-padding">
 								<div class="row">
 									<div class="col-lg-3 col-xs-6">
-										<!-- small box -->
-										<div class="small-box">
-											<div class="inner">
-												<h3>새 단어장</h3>
-												<p>&nbsp;</p>
-												<p>&nbsp;</p>
-												<p>&nbsp;</p>
+										<a href="${pageContext.request.contextPath}/vocabularymodify"
+											class="wordpad-link"> <!-- small box -->
+											<div class="small-box">
+												<span class="wordpad-link"> </span>
+												<div class="inner">
+													<h3>새 단어장</h3>
+													<p>&nbsp;</p>
+													<p>&nbsp;</p>
+													<p>&nbsp;</p>
+												</div>
+												<div class="icon">
+													<i class="fa fa-plus"> </i>
+												</div>
+												<div class="small-box-footer bgcolor-default">
+													More <i class="fa fa-arrow-circle-right"></i>
+												</div>
+											</div>
+										</a>
+									</div>
 
+									<!-- ./col -->
+									<div class="col-lg-3 col-xs-6">
+										<a href="#" class="wordpad-link"> <!-- small box -->
+											<div class="small-box">
+												<div class="inner">
+													<div class="tools">
+														<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
+													</div>
+													<h3>단어장 1</h3>
+													<p>Seya</p>
+													<p>2019-01-01</p>
+													<p>
+														<span class="label label-danger">공유불가</span>
+													</p>
+
+												</div>
+												<div class="icon">
+													<i class="fa fa-file-text"> </i>
+												</div>
+												<div class="small-box-footer bgcolor-default">
+													More <i class="fa fa-arrow-circle-right"></i>
+												</div>
 											</div>
-											<div class="icon">
-												<i class="fa fa-plus"> </i>
-											</div>
-											<a href="#" class="small-box-footer bgcolor-default">
-												More <i class="fa fa-arrow-circle-right"></i>
-											</a>
-										</div>
 									</div>
 									<!-- ./col -->
 									<div class="col-lg-3 col-xs-6">
-										<!-- small box -->
-										<div class="small-box">
-											<div class="inner">
-												<h3>단어장 1</h3>
-												<p>Seya</p>
-												<p>2019-01-01</p>
-												<p>
-													<span class="label label-danger">공유불가</span>
-												</p>
+										<a href="#" class="wordpad-link"> <!-- small box -->
+											<div class="small-box">
+												<div class="inner">
+													<div class="tools">
+														<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
+													</div>
+													<h3>단어장 2</h3>
+													<p>Seya</p>
+													<p>2019-01-02</p>
+													<p>
+														<span class="label label-warning">선택허용</span>
+													</p>
+
+
+												</div>
+												<div class="icon">
+													<i class="fa fa-file-text"> </i>
+												</div>
+												<div class="small-box-footer bgcolor-default">
+													More <i class="fa fa-arrow-circle-right"></i>
+												</div>
+
 
 											</div>
-											<div class="icon">
-												<i class="fa fa-file-text"> </i>
-											</div>
-											<a href="#" class="small-box-footer bgcolor-default">
-												More <i class="fa fa-arrow-circle-right"></i>
-											</a>
-										</div>
+										</a>
 									</div>
 									<!-- ./col -->
 									<div class="col-lg-3 col-xs-6">
-										<!-- small box -->
-										<div class="small-box">
-											<div class="inner">
-												<h3>단어장 2</h3>
-												<p>Seya</p>
-												<p>2019-01-02</p>
-												<p>
-													<span class="label label-warning">선택허용</span>
-												</p>
-
-											</div>
-											<div class="icon">
-												<i class="fa fa-file-text"> </i>
-											</div>
-											<a href="#" class="small-box-footer bgcolor-default">
-												More <i class="fa fa-arrow-circle-right"></i>
-											</a>
-										</div>
-									</div>
-									<a href="${pageContext.request.contextPath}/flashcard" class="wordpad-link">
-										<!-- ./col -->
-										<div class="col-lg-3 col-xs-6">
-											<!-- small box -->
+										<a href="${pageContext.request.contextPath}/flashcard"
+											class="wordpad-link"> <!-- small box -->
 
 											<div class="small-box">
 												<div class="inner">
-
+													<div class="tools">
+														<i class="fa fa-edit"></i> <i class="fa fa-trash-o"></i>
+													</div>
 													<h3>단어장 3</h3>
 													<p>Seya</p>
 													<p>2019-01-03</p>
@@ -317,8 +345,9 @@ desired effect
 													<i class="fa fa-arrow-circle-right">More</i>
 												</div>
 											</div>
-										</div>
-									</a>
+										</a>
+									</div>
+
 									<!-- ./col -->
 								</div>
 							</div>
