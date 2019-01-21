@@ -216,6 +216,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     top: 10px;
 }
 
+
 </style>
 
 </head>
@@ -257,7 +258,6 @@ desired effect
 			<section class="content-header"></section>
 
 			<!-- Main content -->
-<<<<<<< HEAD
 
 			<section class="content container">
 				<div class="row">
@@ -377,9 +377,8 @@ desired effect
 			<!-- 서경환 -->
 
 			</section>
-=======
 			<section class="content container"></section>
->>>>>>> refs/remotes/origin/master
+
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
