@@ -202,13 +202,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	padding-right: 20px;
 }
 
+.pageadd{
+margin-left: 50px;
+}
+
 .secondpage {
-	margin-left: 30px;
-	width: 310px;
+	width: 300px;
 	padding-bottom: 10px;
 	padding-top: 10px;
 	padding-left: 20px;
-	padding-right: 20px;
 }
 
 .pageincludefly {
@@ -309,7 +311,7 @@ desired effect
 						<c:import url="/WEB-INF/views/kyunghwan/gamepage/gametitle.jsp"></c:import>
 					</div>
 					<!-- 랭킹 타이틀 -->
-					<div class="leftattach secondpage">
+					<div class="leftattach secondpage pageadd">
 						<c:import
 							url="/WEB-INF/views/kyunghwan/gamepage/gamepagerankingtitle.jsp"></c:import>
 					</div>
@@ -338,7 +340,7 @@ desired effect
 					</div>
 
 					<!-- 랭킹 -->
-					<div class="leftattach firstpage">
+					<div class="leftattach firstpage pageadd">
 						<!-- 랭킹1 -->
 						<div class="secondpage gamepageborder">
 							<!-- 랭킹 이미지 -->
@@ -438,7 +440,7 @@ desired effect
 						<div class="pagefly secondpage gamepageborder">
 							<!-- 랭킹 이미지 -->
 							<div class="leftattach">
-								<c:import url="/WEB-INF/views/kyunghwan/gamepage/rankingimg.jsp"></c:import>
+								<c:import url="/WEB-INF/views/kyunghwan/gamepage/myranking.jsp"></c:import>
 							</div>
 							<!-- 랭커 프로필 사진 -->
 							<div class="leftattach pageincludefly">

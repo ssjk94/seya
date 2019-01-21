@@ -254,7 +254,10 @@ desired effect
 		<!-- navigation -->
 		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
 		<!-- /navigation -->
-
+		
+		<!-- content -->
+		<c:import url="/WEB-INF/views/kyunghwan/gamepage/_gamepageoutline.jsp"></c:import>
+		<!-- content -->
 		
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
