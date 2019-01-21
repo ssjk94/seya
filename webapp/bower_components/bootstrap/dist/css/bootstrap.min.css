@@ -1539,6 +1539,7 @@ p {
 	text-align: center
 }
 
+
 .text-justify {
 	text-align: justify
 }
@@ -4741,7 +4742,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .pager {
 	padding-left: 0;
-	margin: 20px 0;
+	margin-top: -10px;
 	text-align: center;
 	list-style: none
 }
@@ -5479,9 +5480,10 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus,
 }
 
 .panel {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	background-color: #fff;
 	border: 1px solid transparent;
+	
 	border-radius: 4px;
 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
@@ -5758,7 +5760,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus,
 }
 
 .panel-primary {
-	border-color: #337ab7
+	border-color: #000000;
 }
 
 .panel-primary>.panel-heading {
