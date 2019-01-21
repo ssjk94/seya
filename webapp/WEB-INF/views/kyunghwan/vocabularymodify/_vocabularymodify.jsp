@@ -1,36 +1,31 @@
 <%@ page language="java" contentType="text/html;"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
 <head>
-
-	
-
-<meta charset="UTF-8">
-<title>SeyYYa</title>
-
-<!-- 부트스트랩 css사용 -->
-    <link href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- 
-	jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다)
-	이게 자바스크립트보다 먼저와야함
-	 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- 부트스트랩의 자바 스크립트를 사용하겠다는 뜻 -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	
 	<style type="text/css">
 	
 		.vocabularycontainer{
 			width: 780px;
 			max-width: none !important;
 		}			
+		.vocabu{
 		
+			border: 2px solid #dd4b39;
+			padding: 10px 20px 10px 20px;
+		}
+		.vocamodifybtn{
+		width: 100%;
+		}
 	</style>
+	
+
+
+	<!-- TextArea Tab키 먹히게하는 함수 -->
+
     
 </head>
+
+
 <body>
 
 	<!-- 
@@ -43,24 +38,25 @@
 			<c:import
 				url="/WEB-INF/views/kyunghwan/vocabularymodify/modifyhead.jsp"></c:import>
 			<div>
-				<!-- section 1 -->
-				<!-- Text area 구역 -->
-				<c:import
-					url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaeditorarea.jsp"></c:import>
-
-				<!-- section 3 -->
-				<!-- 리스트 추가하기 -->
-				<c:import
-					url="/WEB-INF/views/kyunghwan/vocabularymodify/listaddbutton.jsp"></c:import>
-
-				<!-- section 4 -->
-				<!-- submit 구역 -->
-				<c:import
-					url="/WEB-INF/views/kyunghwan/vocabularymodify/vocalistsubmit.jsp"></c:import>
-
+				<div>
+					<!-- section 1 -->
+					<!-- Text area 구역 -->
+					<c:import
+						url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaeditorarea.jsp"></c:import>
+				</div>
+				<div>
+					<!-- section 3 -->
+					<!-- 리스트 추가하기 -->
+					<c:import
+						url="/WEB-INF/views/kyunghwan/vocabularymodify/listaddbutton.jsp"></c:import>
+				</div>
+				<div>
+					<!-- section 4 -->
+					<!-- submit 구역 -->
+					<c:import
+						url="/WEB-INF/views/kyunghwan/vocabularymodify/vocalistsubmit.jsp"></c:import>
+				</div>
 			</div>
 		</div>
 	</form>
-
 </body>
-</html>

@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+>>>>>>> refs/remotes/seya/master
 <!DOCTYPE html>
+
+
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -50,8 +60,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	margin: 0;
 }
 
-.sidebar-list .ko-12{
-
+.sidebar-list .ko-12 {
+	
 }
 
 .sidebar-header, .sidebar-list li {
@@ -90,6 +100,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	pading: 10px;
 	margin-bottom: 10px;
 }
+.sidebar-menu .side-pad {
+	padding: 12px 5px 0px 15px;
+    display: block;
+}
+
 
 .sidebar-list .ko-12 {
 	display: block;
@@ -98,21 +113,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .pull-center {
 	margin-left: 62px;
 }
+
 .dropdown-menu .user-footer .pull-center {
-	padding-left:20px;
+	padding-left: 20px;
 }
 
 .gaeyeya {
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom:10px;
-}
-.profile-content{
+	font-size: 22px;
 	text-align: center;
 }
+
+.profile-content {
+	text-align: center;
+}
+
 .side-cont {
 	padding: 10px;
 	text-align: center;
+}
+
+.btn-block {
+	display: block;
+	width: 50%;
+	margin: auto;
+}
+
+.sidebar-content {
+	padding: 10px;
+}
+
+.box-header>.box-tools {
+    position: absolute;
+    right: 20px;
+    top: 10px;
 }
 
 </style>
@@ -142,6 +175,15 @@ desired effect
 <body class="hold-transition skin-red-light fixed">
 	<div class="wrapper">
 
+<<<<<<< HEAD
+		<!-- header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+		<!-- /header -->
+		
+		<!-- navigation -->
+		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
+		<!-- /navigation -->
+=======
 		<!-- Main Header -->
 		<header class="main-header">
 
@@ -216,9 +258,6 @@ desired effect
 					<img
 						src="${pageContext.request.contextPath}/dist/images/profile1.png"
 						class="img-circle" alt="User Image">
-				</div>
-
-				<div class="sidebar-content">
 					<p class="gaeyeya">NickName</p>
 					<div class="profile-content">
 						<p class="side-cont">
@@ -226,8 +265,12 @@ desired effect
 						</p>
 					
 					</div>
+					<div class="btn btn-block btn-danger" value="프로필 변경" style="margin-bottom:5px">
+					<span>프로필변경</span></div>
 				</div>
-					<div class="btn btn-block btn-danger" value="프로필 변경" style="margin-bottom:5px"><span>프로필변경</span></div>
+
+				
+				
 				<!-- search form (Optional) -->
 				<!-- <form action="#" method="get" class="sidebar-form">
 					<div class="input-group">
@@ -262,7 +305,21 @@ desired effect
 				<!-- /.sidebar-menu -->
 					<!-- 다녀간사람 목록 띄우기 -->
 				<div class="sidebar-misc">
-						<div class="sidebar-header">GUEST LIST</div>
+				<ul class="sidebar-menu" data-widget="tree">
+					<li class="header">방문자 로그</li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i>
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i>
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i> 
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i>
+							<span class="center">다녀간사람</span></li>
+					<li class="side-pad"><i class="fa fa-circle-o green"></i> 
+							<span class="center">다녀간사람</span></li>
+					
+				</ul>
+				<!-- 		<div class="sidebar-header">GUEST LIST</div>
 					<ul class="sidebar-menu" data-widget="tree">
 						<ul class="sidebar-list ko-12">
 							<li class="side-pad"><i class="fa fa-circle-o green"></i>
@@ -276,34 +333,37 @@ desired effect
 							<li class="side-pad"><i class="fa fa-circle-o green"></i> 
 								<span class="center">다녀간사람</span></li>
 						</ul>
-					</ul>
+					</ul> -->
 				</div>
 				<!-- 다녀간사람 목록 띄우기 -->
 			</section>
 			<!-- /.sidebar -->
 		</aside>
+>>>>>>> refs/remotes/seya/master
 
 		<!-- Content Wrapper. Contains page content -->
+<<<<<<< HEAD
+		<c:import url="/WEB-INF/views/mypage/list.jsp"></c:import>
+=======
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header"></section>
 
 			<!-- Main content -->
 			<section class="content container">
-
+				
+				<c:import url="/WEB-INF/views/kyunghwan/gamepage/_gamepageoutline.jsp"></c:import>
+			
+			<!-- 서경환 -->
 			</section>
 			<!-- /.content -->
 		</div>
+>>>>>>> refs/remotes/seya/master
 		<!-- /.content-wrapper -->
 
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<!-- Default to the right -->
-			<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
-			</strong>
-
-		</footer>
-		<div class="control-sidebar-bg"></div>
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+		<!-- /footer -->
 
 	</div>
 	<!-- ./wrapper -->
