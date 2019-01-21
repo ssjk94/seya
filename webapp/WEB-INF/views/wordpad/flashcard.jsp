@@ -165,9 +165,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .panel-height {
 	height: 400px
 }
-.modal-notline{
-border-top: 0px;
+
+.modal-notline {
+	border-top: 0px;
 }
+
+.gli-left {
+	
+}
+
+.gli-right {
+	
+}
+
+.gli-left .glyphicon-chevron-left {
+	font-size: 80px;
+	float: left;
+	display: block;
+	color: white
+}
+
+.gli-right .glyphicon-chevron-right {
+	font-size: 80px;
+	float: right;
+	display: block;
+	color: white
+}
+
+.gli-left:hover .glyphicon-chevron-left {
+	font-size: 80px;
+	float: left;
+	display: block;
+	color: black
+}
+
+.gli-right:hover .glyphicon-chevron-right {
+	font-size: 80px;
+	float: right;
+	display: block;
+	color: black
+}
+
+.fc-wrapper {
+	margin-top: 110px;
+}
+
+p.flashcard-font{
+	font-size: 80px;
+	margin-top: -18px;
+	
+}
+
 </style>
 
 </head>
@@ -230,70 +278,83 @@ desired effect
 									<button type="button" class="btn btn-success btn-seung">외운단어</button>
 								</div>
 							</div>
+
+							<div class="col-xs-12">
+								<div class="fc-wrapper">
+									<div class="col-xs-2 gli-left">
+										<span class="glyphicon glyphicon-chevron-left"
+											aria-hidden="true"></span>
+									</div>
+									<div class="col-xs-8 text-center"><p class="flashcard-font">apple</p></div>
+									<div class="col-xs-2 gli-right">
+										<span class="glyphicon glyphicon-chevron-right"
+											aria-hidden="true"></span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<!--/플래시카드 -->
+					<!--/플래시카드 -->
 
-				<!--수정버튼-->
-				<div class="modiwrap">
-					<div class="text-center">
-						<a class="btn btn-primary" role="button" data-toggle="modal"
-							data-target="#vocaoneModal">수정</a>
-							
-							
-							
-							
-							   <div class="modal" id="vocaoneModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<!-- 모달 헤더 들어갈값 -->
-				<div class="modal-body">
-					<h3>Editor</h3>
-				</div>
-			
-			단어<input type="text">
-			뜻   <input type="text">
+					<!--수정버튼-->
+					<div class="modiwrap">
+						<div class="text-center">
+							<a class="btn btn-primary btn-danger" role="button" data-toggle="modal"
+								data-target="#vocaoneModal">수정</a>
 
-				<div class="modal-footer modal-notline">
-					<button type="button" class="btn btn-danger save"
-						data-dismiss="modal">Save</button>
-					<button type="button" class="btn" data-dismiss="modal">Close</button>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-					</div>
-				</div>
 
-				<!--/수정버튼-->
-				<br> <br>
 
-				<!--게임링크-->
-				<div class="gamerow text-center">
-					<div class="col-xs-4 col-md-4">
 
-						<a href="${pageContext.request.contextPath}/gamepage"><img class="flashcard-image"
-							src="dist/images/flashcards1.jpg" alt="플래시 카드"> </a>
-						<p class=text-center>플래시 카드</p>
+							<div class="modal" id="vocaoneModal" tabindex="-1" role="dialog">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<!-- 모달 헤더 들어갈값 -->
+										<div class="modal-body">
+											<h3>Editor</h3>
+										</div>
 
+										단어<input type="text"> 뜻 <input type="text">
+
+										<div class="modal-footer modal-notline">
+											<button type="button" class="btn btn-danger save"
+												data-dismiss="modal">Save</button>
+											<button type="button" class="btn" data-dismiss="modal">Close</button>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 
-					<div class="col-xs-4 col-md-4">
+					<!--/수정버튼-->
+					<br> <br>
 
-						<a href="#"><img class="flashcard-image"
-							src="dist/images/wordmatch.png" alt="짝 맞추기"> </a>
-						<p class=text-center>짝 맞추기</p>
-					</div>
-					<div class="col-xs-4 col-md-4">
+					<!--게임링크-->
+					<div class="gamerow text-center">
+						<div class="col-xs-4 col-md-4">
 
-						<a href="#"><img src="dist/images/question_mark.png"
-							alt="랜덤 퀴즈"> </a>
-						<p class=text-center>랜덤 퀴즈</p>
+							<a href="${pageContext.request.contextPath}/gamepage"><img
+								class="flashcard-image" src="dist/images/flashcards1.jpg"
+								alt="플래시 카드"> </a>
+							<p class=text-center>플래시 카드</p>
+
+						</div>
+
+						<div class="col-xs-4 col-md-4">
+
+							<a href="#"><img class="flashcard-image"
+								src="dist/images/wordmatch.png" alt="짝 맞추기"> </a>
+							<p class=text-center>짝 맞추기</p>
+						</div>
+						<div class="col-xs-4 col-md-4">
+
+							<a href="#"><img src="dist/images/question_mark.png"
+								alt="랜덤 퀴즈"> </a>
+							<p class=text-center>랜덤 퀴즈</p>
+						</div>
 					</div>
-				</div>
 			</section>
 			<!-- /.content -->
 		</div>
