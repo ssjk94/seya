@@ -21,8 +21,7 @@
 
 			</div>
 		</div>
-		<div class="btn btn-block btn-danger"
-			style="margin-bottom: 5px">
+		<div class="btn btn-block btn-danger" style="margin-bottom: 5px">
 			<span>프로필변경</span>
 		</div>
 		<!-- search form (Optional) -->
