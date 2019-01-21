@@ -21,7 +21,7 @@
 
 			</div>
 		</div>
-		<div class="btn btn-block btn-danger" value="프로필 변경"
+		<div class="btn btn-block btn-danger"
 			style="margin-bottom: 5px">
 			<span>프로필변경</span>
 		</div>

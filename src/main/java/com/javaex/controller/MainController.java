@@ -18,6 +18,11 @@ public class MainController {
 		System.out.println("main2");
 		return "main/index2";
 	}
+	@RequestMapping(value="/fcpage", method=RequestMethod.GET)
+	public String fcpage(){
+		System.out.println("fcpage");
+		return "main/flashcardpage";
+	}
 	
 	@RequestMapping(value = "/main3", method = RequestMethod.GET)
 	public String main3() {
@@ -35,6 +40,12 @@ public class MainController {
 	public String logout() {
 		System.out.println("logout");
 		return "main/logout";
+	}
+	
+	@RequestMapping(value = "/flashcard", method = RequestMethod.GET)
+	public String flashcard() {
+		System.out.println("flashcard");
+		return "wordpad/flashcard";
 	}
 
 //	@RequestMapping("/hello")
