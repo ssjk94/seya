@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<style>
+h5.gaeyeya {
+    font-size: 22px;
+    text-align: center
+}
+
+h5.side-cont {
+    padding: 10px;
+    text-align: center
+}
+</style>
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
@@ -15,9 +27,9 @@
 		</div>
 
 		<div class="sidebar-content">
-			<p class="gaeyeya">NickName</p>
+			<h5 class="gaeyeya">NickName</h5>
 			<div class="profile-content">
-				<p class="side-cont">여기에 자기소개를 적어주세요</p>
+				<h5 class="side-cont">여기에 자기소개를 적어주세요</h5>
 
 			</div>
 		</div>

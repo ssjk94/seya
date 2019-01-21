@@ -42,12 +42,6 @@ public class MainController {
 		return "main/logout";
 	}
 	
-	@RequestMapping(value = "/flashcard", method = RequestMethod.GET)
-	public String flashcard() {
-		System.out.println("flashcard");
-		return "wordpad/flashcard";
-	}
-	
 	@RequestMapping(value = "/profilemodify", method = RequestMethod.GET)
 	public String profilemodify() {
 		System.out.println("profilemodify");
@@ -72,6 +66,12 @@ public class MainController {
 		return "kyunghwan/signup/signupform";
 	}
 
+	@RequestMapping(value = "/flashcard", method = RequestMethod.GET)
+	public String flashcard() {
+		System.out.println("flashcard");
+		return "wordpad/flashcard";
+	}
+	
 //	@RequestMapping("/hello")
 //	public String hello() {
 //		System.out.println("/mysiteh/hello");

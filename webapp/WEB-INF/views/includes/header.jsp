@@ -5,7 +5,7 @@
 <header class="main-header">
 
 	<!-- Logo -->
-	<a href="/seya/main2" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="/seya/mypage/gallery" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-lg"><b>Seya</b>Word</span>
 	</a>
 

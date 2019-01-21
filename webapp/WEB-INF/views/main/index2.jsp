@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-
 
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -55,10 +54,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	margin: 0;
 }
 
-.sidebar-list .ko-12 {
-	
-}
-
 .sidebar-header, .sidebar-list li {
 	white-space: nowrap;
 }
@@ -95,11 +90,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	pading: 10px;
 	margin-bottom: 10px;
 }
-.sidebar-menu .side-pad {
-	padding: 12px 5px 0px 15px;
-    display: block;
-}
-
 
 .sidebar-list .ko-12 {
 	display: block;
@@ -143,44 +133,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
     top: 10px;
 }
 
-.panel-height {
-	height: 400px;
-	margin: auto;
-	margin-top: -20px;
+.small-box .icon {
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    z-index: 0;
+    font-size: 90px;
+    color: rgba(0, 0, 0, 0.15);
 }
 
-.panel-card {
-	height: 152px;
-	width: 212px;
-	margin: auto;
+.small-box:hover {
+    text-decoration: none;
+    color: #dd4b39 !important
 }
-.checker {
-	padding : 10px;
-	
+.fixed .content-wrapper, .fixed .right-side {
+    padding-top: 85px;
 }
-.gamerow {
-    margin-top: -30px;
-    margin-right: -15px;
-    margin-left: -15px;
+
+.panel-primary {
+	border-color: #000000;
 }
-.gamename{
-	margin-top:10px;
-	margin-bottom:10px;
+
+.content-header>.breadcrumb {
+    position: static;
 }
-.btn-seung{
-	position: relative;
-    display: inline-block;
-    vertical-align: inherit;
-    float: right;
-    margin: 10px;
+
+.panel-height {
+	height: 400px
 }
-.pagerwrap{
-	margin-top :-15px;
-}
-.modiwrap{
-	margin-top :-30px;
-	margin-bottom: -20px;
-}
+
 </style>
 
 </head>
@@ -218,7 +202,7 @@ desired effect
 
 		<!-- Content Wrapper. Contains page content -->
 		<c:import url="/WEB-INF/views/wordpad/flashcard.jsp"></c:import>
-		
+		<!-- /.content-wrapper -->
 
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

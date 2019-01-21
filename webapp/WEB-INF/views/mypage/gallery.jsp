@@ -157,6 +157,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .content-header>.breadcrumb {
 	position: static;
 }
+
+a.wordpad-link {
+	color: #000000
+}
+
 </style>
 
 </head>
@@ -289,27 +294,31 @@ desired effect
 											</a>
 										</div>
 									</div>
-									<!-- ./col -->
-									<div class="col-lg-3 col-xs-6">
-										<!-- small box -->
-										<div class="small-box">
-											<div class="inner">
-												<h3>단어장 3</h3>
-												<p>Seya</p>
-												<p>2019-01-03</p>
-												<p>
-													<span class="label label-success">공유가능</span>
-												</p>
+									<a href="${pageContext.request.contextPath}/flashcard" class="wordpad-link">
+										<!-- ./col -->
+										<div class="col-lg-3 col-xs-6">
+											<!-- small box -->
 
+											<div class="small-box">
+												<div class="inner">
+
+													<h3>단어장 3</h3>
+													<p>Seya</p>
+													<p>2019-01-03</p>
+													<p>
+														<span class="label label-success">공유가능</span>
+													</p>
+
+												</div>
+												<div class="icon">
+													<i class="fa fa-file-text"> </i>
+												</div>
+												<div class="small-box-footer bgcolor-default">
+													<i class="fa fa-arrow-circle-right">More</i>
+												</div>
 											</div>
-											<div class="icon">
-												<i class="fa fa-file-text"> </i>
-											</div>
-											<a href="#" class="small-box-footer bgcolor-default">
-												More <i class="fa fa-arrow-circle-right"></i>
-											</a>
 										</div>
-									</div>
+									</a>
 									<!-- ./col -->
 								</div>
 							</div>

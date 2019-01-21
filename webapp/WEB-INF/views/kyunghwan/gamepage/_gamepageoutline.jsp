@@ -267,6 +267,17 @@ p {
 	margin-left: 125px;
 	color: rgba(221, 75, 57, 0.5);
 }
+
+p.gaeyeya {
+    font-size: 22px;
+    text-align: center
+}
+
+p.side-cont {
+    padding: 10px;
+    text-align: center
+}
+
 </style>
 
 </head>
@@ -295,7 +306,7 @@ desired effect
 	<div class="wrapper">
 
 		<!-- header -->
-		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- /header -->
 
 		<!-- navigation -->
