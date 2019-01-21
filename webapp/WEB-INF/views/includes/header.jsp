@@ -48,13 +48,13 @@
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">프로필</a>
+								<a href="${pageContext.request.contextPath}/profilemodify" class="btn btn-default btn-flat">프로필</a>
 							</div>
 							<div class="pull-right">
 								<a href="${pageContext.request.contextPath}/main1" class="btn btn-default btn-flat">로그아웃</a>
 							</div>
 							<div class="pull-center">
-								<a href="#" class="btn btn-default btn-flat">내블로그</a>
+								<a href="${pageContext.request.contextPath}/mypage/gallery" class="btn btn-default btn-flat">내블로그</a>
 							</div>
 						</li>
 					</ul>

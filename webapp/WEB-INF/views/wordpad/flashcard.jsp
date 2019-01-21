@@ -216,6 +216,11 @@ p.flashcard-font{
 	
 }
 
+.breadcrumb {
+    background-color: #ffffff;
+}
+
+
 </style>
 
 </head>
@@ -256,13 +261,15 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<!--단어장 경로 -->
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Simple</li>
-				</ol>
-				<!--/단어장 경로 -->
+				<div class="path-name">
+					<!--단어장 경로 -->
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li><a href="#">Tables</a></li>
+						<li class="active">Simple</li>
+					</ol>
+					<!--/단어장 경로 -->
+				</div>
 			</section>
 
 			<!-- Main content -->

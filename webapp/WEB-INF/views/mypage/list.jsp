@@ -171,6 +171,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     padding-bottom: 20px;
 }
 
+.btn-info {
+    background-color: #dd4b39;
+    border-color: #dd4b39;
+}
+
 </style>
 
 </head>

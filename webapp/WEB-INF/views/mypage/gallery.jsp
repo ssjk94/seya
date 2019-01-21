@@ -178,6 +178,12 @@ a.wordpad-link {
 .small-box:hover .tools {
 	display: inline-block
 }
+
+.btn-info {
+    background-color: #dd4b39;
+    border-color: #dd4b39;
+}
+
 </style>
 
 </head>
