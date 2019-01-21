@@ -37,12 +37,10 @@
 									name="userPassword" maxlength="20">
 							</div>
 							<div>
-								<input type="submit"
-									class="btn btn-block btn-danger form control" value="로그인">
-								<input type="submit"
-									class="btn btn-block btn-danger form control" value="회원가입">
-								<input type="submit"
-									class="btn btn-block btn-danger form control" value="비밀번호찾기">
+								<a href="${pageContext.request.contextPath}/main2" class="btn btn-block btn-danger form control" style="width:100%">로그인</a>
+								<a href="#" class="btn btn-block btn-danger form control" style="width:100%">회원가입</a>
+								<a href="#" class="btn btn-block btn-danger form control" style="width:100%">비밀번호
+									찾기</a>
 							</div>
 						</div>
 					</div>

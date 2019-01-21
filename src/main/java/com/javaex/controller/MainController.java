@@ -36,6 +36,12 @@ public class MainController {
 		System.out.println("logout");
 		return "main/logout";
 	}
+	
+	@RequestMapping(value = "/flashcard", method = RequestMethod.GET)
+	public String flashcard() {
+		System.out.println("flashcard");
+		return "wordpad/flashcard";
+	}
 
 //	@RequestMapping("/hello")
 //	public String hello() {
