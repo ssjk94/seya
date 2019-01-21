@@ -274,10 +274,10 @@ desired effect
 >>>>>>> refs/remotes/seya/master
 			
 =======
-
+			</section>
 			<section class="content container">
 
-
+			</section>
 			<section class="content container">
 			<!-- adasd -->
 			<!-- test -->
