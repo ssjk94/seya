@@ -149,7 +149,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     text-decoration: none;
     color: #dd4b39 !important
 }
-
+.fixed .content-wrapper, .fixed .right-side {
+    padding-top: 85px;
+}
 </style>
 
 </head>
@@ -186,7 +188,7 @@ desired effect
 		<!-- /navigation -->
 
 		<!-- Content Wrapper. Contains page content -->
-		<c:import url="/WEB-INF/views/mypage/gallery.jsp"></c:import>
+		<c:import url="/WEB-INF/views/kyunghwan/profilemodify/_profilemodify.jsp"></c:import>
 		<!-- /.content-wrapper -->
 
 		<!-- footer -->

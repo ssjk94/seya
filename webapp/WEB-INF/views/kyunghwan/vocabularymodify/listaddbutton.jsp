@@ -15,21 +15,4 @@
 </section>			
 
 
-<script type="text/javascript">
 
-	$("#addvocalist").off("click").on("click", function(e){
-		
-		var div = document.createElement('div');
-
-	    div.innerHTML = document.getElementById('voca2').innerHTML;
-
-	    document.getElementById('vocalist').appendChild(div);
-
-		//추가되는 리스트 확인창	    
-	    console.log(document.getElementById('vocalist').innerHTML);
-	    
-	});
-	
-	
-
-</script>

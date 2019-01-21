@@ -8,13 +8,4 @@
 </body>
 
 
-<script type="text/javascript">
-	$(function(){
-	    $('#vocaarea').keydown(function(e){
-	        if(e.keyCode == 9){
-	            $(this).val($(this).val()+' ')
-	            return false
-	        }
-	    });
-	});
-</script>
+
