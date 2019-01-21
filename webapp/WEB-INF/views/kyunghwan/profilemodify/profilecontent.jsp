@@ -1,17 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	<style type="text/css">
-	
-
-	</style>
-</head>
-<body>
 
 <!-- 수정 내용 제목 -->
 			<span style="width: 110px; height: auto; display:inline-block; font-size: 16px;">
@@ -55,8 +43,3 @@
 			</div>
 		</div>
 	</div>
-
-
-</body>
-
-</html>

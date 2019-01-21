@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
+
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -51,10 +52,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .sidebar-list {
 	list-style: none;
 	margin: 0;
-}
-
-.sidebar-list .ko-12 {
-	
 }
 
 .sidebar-header, .sidebar-list li {
@@ -152,7 +149,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     text-decoration: none;
     color: #dd4b39 !important
 }
-
+.fixed .content-wrapper, .fixed .right-side {
+    padding-top: 85px;
+}
 </style>
 
 </head>
@@ -189,7 +188,7 @@ desired effect
 		<!-- /navigation -->
 
 		<!-- Content Wrapper. Contains page content -->
-		<c:import url="/WEB-INF/views/mypage/gallery.jsp"></c:import>
+		<c:import url="/WEB-INF/views/kyunghwan/profilemodify/_profilemodify.jsp"></c:import>
 		<!-- /.content-wrapper -->
 
 		<!-- footer -->

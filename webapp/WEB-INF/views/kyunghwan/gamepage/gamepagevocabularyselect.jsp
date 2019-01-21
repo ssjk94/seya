@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<select class="form-control">
+<select class="form-control gamepageborder">
   <option>내 단어장</option>
   <option>고등</option>
   <option>토익</option>
