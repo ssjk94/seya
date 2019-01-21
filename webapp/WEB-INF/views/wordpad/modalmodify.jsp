@@ -6,17 +6,22 @@
 <head>
 <meta name="viewport" charset=utf-8
 	content="width=device-width ,initial-scale=1maximum-scale=1, user-scalable=no">
-<link href="${pageContext.request.contextPath}/assets/css/bootstrap.css"
+<link href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.css"
 	rel="stylesheet" type="text/css">
 
 <title>Insert title here</title>
+<!-- 부트스트랩 css사용 -->
+    <link href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- ajax -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- 
+	jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다)
+	이게 자바스크립트보다 먼저와야함
+	 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 <!-- 부트스트랩의 자바 스크립트를 사용하겠다는 뜻 -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </head>
 <body>

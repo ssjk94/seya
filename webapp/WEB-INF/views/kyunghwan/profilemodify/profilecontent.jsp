@@ -36,7 +36,7 @@
 				</div>
 				<div class="modal-footer" style="border-top: 0px;">
 					<!-- 버튼 -->
-					<button type="button" class="btn btn-default"
+					<button type="button" class="btn btn-danger"
 						data-dismiss="modal" style="border-color: #ff6666;">Save</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>

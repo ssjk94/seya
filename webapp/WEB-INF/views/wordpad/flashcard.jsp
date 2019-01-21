@@ -165,6 +165,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .panel-height {
 	height: 400px
 }
+.modal-notline{
+border-top: 0px;
+}
 </style>
 
 </head>
@@ -236,7 +239,32 @@ desired effect
 				<!--수정버튼-->
 				<div class="modiwrap">
 					<div class="text-center">
-						<a class="btn btn-primary" href="${pageContext.request.contextPath}/vocabularymodify" role="button">수정</a>
+						<a class="btn btn-primary" role="button" data-toggle="modal"
+							data-target="#vocaoneModal">수정</a>
+							
+							
+							
+							
+							   <div class="modal" id="vocaoneModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- 모달 헤더 들어갈값 -->
+				<div class="modal-body">
+					<h3>Editor</h3>
+				</div>
+			
+			단어<input type="text">
+			뜻   <input type="text">
+
+				<div class="modal-footer modal-notline">
+					<button type="button" class="btn btn-danger save"
+						data-dismiss="modal">Save</button>
+					<button type="button" class="btn" data-dismiss="modal">Close</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
 					</div>
 				</div>
 
