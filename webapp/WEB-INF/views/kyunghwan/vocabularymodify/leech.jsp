@@ -160,8 +160,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .content-header>.breadcrumb {
 	position: static;
-    float: left;
-    margin-top: -35px
+	float: left;
+	margin-top: -35px
 }
 
 .profileborder {
@@ -287,7 +287,38 @@ p {
 }
 
 .vocamodifybtn {
-	width: 100%;
+	width: 92%;
+	margin-top: 20px;
+	padding-right: 30px;
+}
+
+.addlistline {
+	
+}
+
+.btn-sm {
+	margin-left: 700px;
+	margin-top: 20px;
+	margin-right: 35px;
+	margin-bottom: 20px;
+}
+
+.subheader {
+	width: 300px;
+	height: 50px;
+	border: 1px solid #000000;
+	margin-left: 50px;
+}
+
+.wordpadname {
+	width: 300px;
+	height: 50px;
+	border: 2px #ffffff;
+	border-bottom: solid 1.5px #dd4b39;
+	margin-left: 50px;
+	font-size: 25px;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
 </style>
 
@@ -330,6 +361,8 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
+				<input type="text" class="wordpadname" name="new-word">
+
 				<!--단어장 경로 -->
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -341,30 +374,46 @@ desired effect
 
 			<form action="">
 				<div class="vocabularycontainer">
-					<div>
-						<!-- section 1 -->
-						<!-- Text area 구역 -->
-						<c:import
-							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaeditorarea.jsp"></c:import>
-					</div>
-					<div>
-						<!-- section 2 -->
-						<!-- 리스트 추가하기 -->
-						<c:import
-							url="/WEB-INF/views/kyunghwan/vocabularymodify/listaddbutton.jsp"></c:import>
-					</div>
-					<div>
-						<!-- section 3 -->
-						<!-- submit 구역 -->
-						<c:import
-							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocalistsubmit.jsp"></c:import>
+
+					<!-- section 1 -->
+					<!-- Text area 구역 -->
+					<div style="margin-left: 30px;">
+						<textarea id="vocaarea" class="form-control" rows="6"
+							placeholder="단어1 뜻1&#13;&#10;단어2 뜻2" style="width: 720px;"></textarea>
 					</div>
 
-					<div class="vocabularycontainer page">
-						<!-- 페이지 네이션 -->
-						<c:import
-							url="/WEB-INF/views/kyunghwan/vocabularymodify/pagenation.jsp"></c:import>
+					<!-- section 2 -->
+					<!-- 리스트 추가하기 -->
+					<!-- 단어 리스트 추가할 버튼  style="margin-top: 50px;margin-left: 20%;margin-right: 20%;" -->
+					<div class="listaddline">
+						<button id="addvocalist" type="button"
+							class="btn btn-danger btn-block btn-lg vocamodifybtn">
+							단어추추</button>
 					</div>
+
+					<!-- 단어 리스트 들어가는 div -->
+
+					<section id="vocalist">
+						<c:import
+							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaonepage2.jsp"></c:import>
+					</section>
+					<div>
+						<input type="submit" class="btn-danger btn-sm">
+					</div>
+
+					<%-- 				<div>
+					<!-- section 3 -->
+					<!-- submit 구역 -->
+					<c:import
+						url="/WEB-INF/views/kyunghwan/vocabularymodify/vocalistsubmit.jsp"></c:import>
+				</div>
+
+				<div class="vocabularycontainer page">
+					<!-- 페이지 네이션 -->
+					<c:import
+						url="/WEB-INF/views/kyunghwan/vocabularymodify/pagenation.jsp"></c:import>
+				</div>
+				 --%>
 				</div>
 			</form>
 		</div>

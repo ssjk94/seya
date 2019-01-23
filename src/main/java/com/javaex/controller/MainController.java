@@ -71,6 +71,12 @@ public class MainController {
 		System.out.println("flashcard");
 		return "wordpad/flashcard";
 	}
+	@RequestMapping(value = "/leech", method = RequestMethod.GET)
+	public String modibreak() {
+		System.out.println("leech");
+		return "kyunghwan/vocabularymodify/leech";
+	}
+	
 	
 //	@RequestMapping("/hello")
 //	public String hello() {

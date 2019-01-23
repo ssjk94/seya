@@ -164,6 +164,7 @@ a.wordpad-link {
 
 .breadcrumb {
 	background-color: #ffffff;
+	margin-top : -35px;
 }
 
 .button-name {

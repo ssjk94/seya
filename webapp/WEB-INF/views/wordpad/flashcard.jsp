@@ -156,6 +156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .panel-primary {
 	border-color: #000000;
+	margin-top:35px;
 }
 
 .content-header>.breadcrumb {
@@ -218,6 +219,7 @@ p.flashcard-font{
 
 .breadcrumb {
     background-color: #ffffff;
+    margin-top:-35px;
 }
 
 
