@@ -76,6 +76,11 @@ public class MainController {
 		System.out.println("leech");
 		return "kyunghwan/vocabularymodify/leech";
 	}
+	@RequestMapping(value = "/listtest", method = RequestMethod.GET)
+	public String listtest() {
+		System.out.println("list test");
+		return "kyunghwan/vocabularymodify/listtest";
+	}
 	
 	
 //	@RequestMapping("/hello")
