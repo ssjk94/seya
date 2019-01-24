@@ -58,7 +58,7 @@ b, strong {
     margin-bottom: 0px;
     padding: 10px;
     position: absolute;
-    margin-top: -470px;
+    margin-top: -510px;
     width: 280px;
     background-color: rgba(255, 255, 255, 0.7);
 }
@@ -132,7 +132,7 @@ desired effect
 					<div>
 						<a href="${pageContext.request.contextPath}/mypage/gallery"
 							class="btn btn-block btn-danger form control" style="width: 100%">로그인</a>
-						<a href="${pageContext.request.contextPath}/signup"
+						<a href="${pageContext.request.contextPath}/main2"
 							class="btn btn-block btn-danger form control" style="width: 100%">회원가입</a>
 						<a href="#" class="btn btn-block btn-danger form control"
 							style="width: 100%">비밀번호 찾기</a>

@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -44,125 +43,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
-.ko-12 {
-	font-family: Nanum Gothic, dotum, sans-serif;
-	font-size: 12px;
+.fixed .content-main, .fixed .footer-main {
+	min-height: 100%;
+	z-index: 800;
 }
 
-.sidebar-list {
-	list-style: none;
-	margin: 0;
+b, strong {
+	font-weight: 700;
 }
 
-.sidebar-header, .sidebar-list li {
-	white-space: nowrap;
-}
-
-.sidebar-box, .sidebar-list {
-	overflow: hidden;
-	padding: 10px 15px;
-	line-height: 20px;
-}
-
-.sidebar-list .fa, .sidebar-list .glyphicon, .sidebar-list .ion {
-	width: 20px;
-}
-
-.skin-blue .sidebar-menu>li.header {
-	color: #4b646f;
-	background: #1a2226;
-}
-
-.sidebar-box, .sidebar-list {
-	overflow: hidden;
-	padding: 10px 15px;
-	line-height: 20px;
-}
-
-.sidebar-header {
-	padding: 10px 25px 10px 15px;
-	font-size: 12px;
-	color: #ffffff;
-	background: #1a2226;
-}
-
-.side-pad {
-	pading: 10px;
-	margin-bottom: 10px;
-}
-
-.sidebar-list .ko-12 {
-	display: block;
-}
-
-.pull-center {
-	margin-left: 62px;
-}
-
-.dropdown-menu .user-footer .pull-center {
-	padding-left: 20px;
-}
-
-.gaeyeya {
-	font-size: 22px;
-	text-align: center;
-}
-
-.profile-content {
-	text-align: center;
-}
-
-.side-cont {
+.user-page {
+	margin-left: 340px;
+	margin-right: 340px;
+	margin-bottom: 0px;
 	padding: 10px;
-	text-align: center;
+	position: absolute;
+	margin-top: -575px;
+	width: 400px;
+	background-color: rgba(255, 255, 255, 0.7);
 }
 
-.btn-block {
-	display: block;
-	width: 50%;
-	margin: auto;
+.content-wrapper {
+	background-color: rgb(10, 21, 23);
 }
 
-.sidebar-content {
-	padding: 10px;
+.content-wrapper, .main-footer {
+	margin-left: 0px;
 }
 
-.box-header>.box-tools {
-    position: absolute;
-    right: 20px;
-    top: 10px;
+.jumbotron {
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 50px;
+	padding-bottom: 690px;
+	margin-bottom: 0px;
+	background-position: center;
+	background-image:
+		url("${pageContext.request.contextPath}/dist/images/main1.jpg");
 }
 
-.small-box .icon {
-    -webkit-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    transition: all .3s linear;
-    position: absolute;
-    top: -10px;
-    right: 30px;
-    z-index: 0;
-    font-size: 90px;
-    color: rgba(0, 0, 0, 0.15);
-}
-
-.small-box:hover {
-    text-decoration: none;
-    color: #dd4b39 !important
-}
-.fixed .content-wrapper, .fixed .right-side {
-    padding-top: 85px;
-}
-
-.panel-primary {
-	border-color: #000000;
-}
-
-.content-header>.breadcrumb {
-    position: static;
-}
-
-.panel-height {
-	height: 400px
+p.signup-content.text-center {
+    margin-top: 10px;
 }
 
 </style>
@@ -193,24 +115,68 @@ desired effect
 	<div class="wrapper">
 
 		<!-- header -->
-		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
 		<!-- /header -->
-		
-		<!-- navigation -->
-		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
-		<!-- /navigation -->
 
-		<!-- Content Wrapper. Contains page content -->
-		<c:import url="/WEB-INF/views/mypage/gallery.jsp"></c:import>
-		<!-- /.content-wrapper -->
+		<div class="content-wrapper">
+			<div class="jumbotron"></div>
+			<div class="user-page">
+				<!-- The user image in the menu -->
+				<div class="user-header">
+					<h3 class="text-center">Seya World 계정
+						만들기</h3>
+				</div>
+				<div class="user-body">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디"
+							name="userId" maxlength="20">
+					</div>
 
-		<!-- footer -->
-		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="닉네임"
+							name="userNickname" maxlength="20">
+					</div>
+
+					<div class="form-group">
+						<input type="email" class="form-control" placeholder="이메일"
+							name="userEmail" maxlength="20">
+					</div>
+
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호"
+							name="userPassword" maxlength="20">
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="생년월일"
+							name="userBirth" maxlength="20">
+					</div>
+					<a href="${pageContext.request.contextPath}/main1"
+						class="btn btn-block btn-danger form control" style="width: 100%">계정
+						생성</a>
+
+					<p class="signup-content text-center">하나의 계정으로 모든 SeyaWord 서비스를
+						이용할 수 있습니다.</p>
+				</div>
+			</div>
+		</div>
+		<!-- /.Content Wrapper -->
+
+		<!-- Main Footer -->
+
+		<footer class="main-footer">
+
+			<!-- Default to the right -->
+			<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
+			</strong>
+
+		</footer>
 		<!-- /footer -->
+
+		<div class="control-sidebar-bg"></div>
 
 	</div>
 	<!-- ./wrapper -->
-
 
 
 	<!-- REQUIRED JS SCRIPTS -->
