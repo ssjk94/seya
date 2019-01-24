@@ -63,19 +63,23 @@ b, strong {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
+.content-wrapper{
+	background-color: rgb(10, 21, 23);
+}
+
 .content-wrapper, .main-footer {
 	margin-left: 0px;
 }
 
 .jumbotron {
-    background-image: url(http://2.bp.blogspot.com/-E3IZfz3DZV0/TXaZqfwwiOI/AAAAAAAACd4/RJj03lfUeR0/s1600/Buecherkubus-a18872702.jpg);
-    opacity: 0.7;
+    opacity: 0.8;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 50px;
-    padding-bottom: 598px;
+    padding-bottom: 690px;
     margin-bottom: 0px;
     background-position: center;
+    background-image: url("${pageContext.request.contextPath}/dist/images/main1.jpg");
 }
 </style>
 
@@ -109,7 +113,8 @@ desired effect
 		<!-- /header -->
 
 		<div class="content-wrapper">
-			<div class="jumbotron"></div>
+			<div class="jumbotron">
+			</div>
 			<div class="user-page">
 				<!-- The user image in the menu -->
 				<div class="user-header">
