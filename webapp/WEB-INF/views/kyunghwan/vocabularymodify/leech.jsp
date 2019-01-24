@@ -273,6 +273,9 @@ p {
 
 #vocaarea {
 	border-color: rgba(221, 75, 57, 0.5);
+	width:720px;
+	height:350px;
+
 }
 
 .vocabularycontainer {
@@ -320,6 +323,16 @@ p {
 	margin-bottom: 20px;
 	margin-top: 10px;
 }
+
+input:disabled {
+	background-color: #ffffff;
+}
+
+.form-control {
+
+	margin-left: 30px;
+}
+
 </style>
 
 
@@ -361,7 +374,8 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<input type="text" class="wordpadname" name="new-word">
+				<input type="text" class="wordpadname" name="new-word"
+					disabled="disabled">
 
 				<!--단어장 경로 -->
 				<ol class="breadcrumb">
@@ -377,9 +391,9 @@ desired effect
 
 					<!-- section 1 -->
 					<!-- Text area 구역 -->
-					<div style="margin-left: 30px;">
+					<div class="textboxsize">
 						<textarea id="vocaarea" class="form-control" rows="6"
-							placeholder="단어1 뜻1&#13;&#10;단어2 뜻2" style="width: 720px;"></textarea>
+							placeholder="단어1 엔터키로 한 단어를 구분합니다. &#13;&#10;단어2"></textarea>
 					</div>
 
 					<!-- section 2 -->
@@ -393,13 +407,13 @@ desired effect
 
 					<!-- 단어 리스트 들어가는 div -->
 
-					<section id="vocalist">
+					<%-- 	<section id="vocalist">
 						<c:import
 							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaonepage2.jsp"></c:import>
-					</section>
-					<div>
+					</section> --%>
+					<!-- <div>
 						<input type="submit" class="btn-danger btn-sm">
-					</div>
+					</div> -->
 
 					<%-- 				<div>
 					<!-- section 3 -->
