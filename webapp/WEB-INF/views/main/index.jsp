@@ -57,7 +57,7 @@ b, strong {
 	padding-right: 20%;
 	margin-left: 17%;
 	margin-right: 17%;
-	margin-top: 20%
+	margin-top: 10%
 }
 
 .content-wrapper, .main-footer {
@@ -69,6 +69,19 @@ b, strong {
 	margin-left: 0px;
 	z-index: 820;
 }
+
+.jumbotron {
+	background-image:
+		url("http://2.bp.blogspot.com/-E3IZfz3DZV0/TXaZqfwwiOI/AAAAAAAACd4/RJj03lfUeR0/s1600/Buecherkubus-a18872702.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 150px;
+	padding-bottom: 150px;
+	
+}
+
+
+
 </style>
 
 </head>
@@ -101,27 +114,32 @@ desired effect
 		<!-- /header -->
 
 		<div class="content-wrapper">
-			<div class="user-page">
-				<!-- The user image in the menu -->
-				<div class="user-header">
-					<h3 class="text-center">로그인</h3>
-				</div>
-				<div class="user-body">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디"
-							name="userId" maxlength="20">
+			<div class="jumbotron">
+			
+				<div class="user-page">
+					<!-- The user image in the menu -->
+					<div class="user-header">
+						<h3 class="text-center" style="">로그인</h3>
 					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" placeholder="비밀번호"
-							name="userPassword" maxlength="20">
-					</div>
-					<div>
-						<a href="${pageContext.request.contextPath}/mypage/gallery"
-							class="btn btn-block btn-danger form control" style="width: 100%">로그인</a>
-						<a href="${pageContext.request.contextPath}/signup"
-							class="btn btn-block btn-danger form control" style="width: 100%">회원가입</a>
-						<a href="#" class="btn btn-block btn-danger form control"
-							style="width: 100%">비밀번호 찾기</a>
+					<div class="user-body">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="아이디"
+								name="userId" maxlength="20">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" placeholder="비밀번호"
+								name="userPassword" maxlength="20">
+						</div>
+						<div>
+							<a href="${pageContext.request.contextPath}/mypage/gallery"
+								class="btn btn-block btn-danger form control"
+								style="width: 100%">로그인</a> <a
+								href="${pageContext.request.contextPath}/signup"
+								class="btn btn-block btn-danger form control"
+								style="width: 100%">회원가입</a> <a href="#"
+								class="btn btn-block btn-danger form control"
+								style="width: 100%">비밀번호 찾기</a>
+						</div>
 					</div>
 				</div>
 			</div>
