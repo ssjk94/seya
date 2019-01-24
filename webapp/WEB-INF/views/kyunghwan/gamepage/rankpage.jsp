@@ -379,6 +379,48 @@ style>.boardList thead th {
 	height: 700px;
 	border: 1px solid
 }
+
+.rank-header {
+	font-size: 16px;
+	background: #dd4b39;
+}
+
+.rank-content {
+	font-size: 20px;
+	border-bottom: 1px solid #000000;
+}
+
+.table-wrapper {
+	list-style: none;
+	margin: auto;
+	padding: 0;
+	text-align: center;
+}
+
+.rank-header-text {
+	text-align: center;
+}
+
+.rank-img-circle {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	float: right;
+}
+
+.rank-nickname {
+	margin-left: 20px;
+	text-align: left
+}
+
+.rank-score {
+	text-align: center;
+}
+
+td.col-xs-3.rank-no, td.col-xs-3.rank-nickname, td.col-xs-3.rank-score {
+	vertical-align: middle;
+}
+
 </style>
 
 
@@ -435,157 +477,32 @@ desired effect
 				<div class=rankgamecontainer>
 
 					<div id="div_ranking_list">
+						<ul class="table-wrapper">
+							<%-- <c:forEach items="${requestScope.gbList}" var="gbVo"> --%>
 
-						<div class="bs-example" data-example-id="hoverable-table">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>등수</th>
-										<th>닉네임</th>
-										<th>점수</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Seya</td>
-										<td>2662</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>3500</td>
-
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Larry</td>
-										<td>the Bird</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-
-
-						<div class="boardList">
-							<table summary="게시판 리스트">
-								<colgroup>
-									<col width="80px">
-									<col width="192px">
-									<col width="73px">
-								</colgroup>
-								<thead>
-									<tr>
-										<th>랭킹</th>
-										<th>닉네임</th>
-										<th>점수</th>
-									</tr>
-								</thead>
-							</table>
-							<div class="relative">
-								<table summary="게시판 리스트">
-									<colgroup>
-										<col width="80px">
-										<col width="192px">
-										<col width="73px">
-									</colgroup>
+							<li>
+								<table class="table table-hover">
+									<thead>
+										<tr class="rank-header">
+											<th class="col-xs-3 rank-header-text">등수</th>
+											<th class="col-xs-6 rank-header-text" colspan="2">닉네임</th>
+											<th class="col-xs-3 rank-header-text">점수</th>
+										</tr>
+									</thead>
 									<tbody>
-										<tr class="trline">
-											<td>1</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>2</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>3</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>4</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>5</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>6</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>7</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>8</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>9</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
-										</tr>
-										<tr class="trline">
-											<td>10</td>
-											<td class="left"><span class="grade small"> <img
-													src="/seya/dist/images/profile1.png"
-													class="img-circle imgsize" alt="User Image">
-											</span> <!-- <a href="javascript:;"
-							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
-											<td><span class="mmr small"> </span> 5,355 점</td>
+										<tr class="rank-content">
+											<td class="col-xs-3 rank-no">1</td>
+											<td class="col-xs-3"><img
+												src="/seya/dist/images/profile1.png" class="rank-img-circle"
+												alt="User Image"></td>
+											<td class="col-xs-3 rank-nickname">Seya</td>
+											<td class="col-xs-3 rank-score">5709점</td>
 										</tr>
 									</tbody>
 								</table>
-							</div>
-							<!-- //Board list -->
-						</div>
-
+							</li>
+							<%-- </c:forEach> --%>
+						</ul>
 					</div>
 				</div>
 			</section>

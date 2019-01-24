@@ -52,9 +52,27 @@ h5.side-cont {
 			<li class="header">단 어 장</li>
 			<!-- Optionally, you can add icons to the links -->
 			<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
-					<span>내 단어장</span></a></li>
-			<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>공유
-						단어장 </span></a></li>
+					<span>단어장 1</span></a></li>
+					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>단어장 2</span></a></li>
+					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>단어장 3</span></a></li>
+			
+			<!-- 	<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
+							<span>Multilevel</span> <span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+						</span> </a>
+						<ul class="treeview-menu">
+							<li><a href="#">Link in level 2</a></li>
+							<li><a href="#">Link in level 2</a></li>
+						</ul></li>  네비게이션 열고 닫으면서 이용할수있는것 일단 주석-->
+		</ul>
+		<ul class="sidebar-menu" data-widget="tree">
+			<li class="header">랭킹</li>
+			<!-- Optionally, you can add icons to the links -->
+			<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
+					<span>플래시 카드</span></a></li>
+					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>랜덤 게임</span></a></li>
+					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>짝 맞추기</span></a></li>
+			
 			<!-- 	<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
 							<span>Multilevel</span> <span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>

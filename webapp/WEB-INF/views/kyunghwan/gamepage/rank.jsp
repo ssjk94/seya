@@ -42,6 +42,7 @@
 .td {
 	padding: 5px;
 }
+
 </style>
 
 <div id="div_ranking_list">
