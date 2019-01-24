@@ -228,8 +228,9 @@ p.flashcard-font {
 	padding-bottom: 30px;
 	/* border: 5px double darkgray; */
 	border-top: 5px double darkgray;
-	width: 820px;
+	width: 800px;
 	border-bottom: 5px double darkgray;
+	margin-left:8px;
 }
 
 .vocafloat {
@@ -274,7 +275,7 @@ p {
 }
 
 .vocawordsection {
-	width: 360px;
+	width: 350px;
 	float: left;
 }
 
@@ -304,6 +305,7 @@ input:disabled {
 	float: right;
 	margin-left: 10px;
 	margin-top: 50px;
+	margin-right: 12px;
 }
 
 .btn-block+.btn-block {

@@ -149,10 +149,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	color: #dd4b39 !important
 }
 
-.fixed .content-wrapper, .fixed .right-side {
-	padding-top: 85px;
-}
-
 .table-hover>tbody>tr:hover {
 	background-color: #f5f5f5;
 	color: #dd4b39 !important;
@@ -294,10 +290,6 @@ p {
 	padding-right: 30px;
 }
 
-.addlistline {
-	
-}
-
 .btn-sm {
 	margin-left: 700px;
 	margin-top: 20px;
@@ -376,8 +368,8 @@ style>.boardList thead th {
 
 .rankgamecontainer {
 	width: 800px;
-	height: 700px;
-	border: 1px solid
+	height: 600px;
+	margin-left: 8px;
 }
 
 .rank-header {
@@ -387,7 +379,8 @@ style>.boardList thead th {
 
 .rank-content {
 	font-size: 20px;
-	border-bottom: 1px solid #000000;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1)
 }
 
 .table-wrapper {
@@ -421,6 +414,10 @@ td.col-xs-3.rank-no, td.col-xs-3.rank-nickname, td.col-xs-3.rank-score {
 	vertical-align: middle;
 }
 
+.breadcrumb {
+	background-color: #ffffff;
+	margin-bottom: 0px
+}
 </style>
 
 
@@ -462,18 +459,20 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<input type="text" class="wordpadname" name="new-word"
-					disabled="disabled">
 
-				<!--단어장 경로 -->
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Simple</li>
-				</ol>
-				<!--/단어장 경로 -->
+				<div class="path-name">
+					<!--단어장 경로 -->
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li><a href="#">Tables</a></li>
+						<li class="active">Simple</li>
+					</ol>
+					<!--/단어장 경로 -->
+				</div>
 			</section>
 			<section class="content container">
+				<input type="text" class="wordpadname" name="new-word"
+					disabled="disabled" value="플래시 카드">
 				<div class=rankgamecontainer>
 
 					<div id="div_ranking_list">
@@ -498,7 +497,26 @@ desired effect
 											<td class="col-xs-3 rank-nickname">Seya</td>
 											<td class="col-xs-3 rank-score">5709점</td>
 										</tr>
+										<tr class="rank-content">
+											<td class="col-xs-3 rank-no">1</td>
+											<td class="col-xs-3"><img
+												src="/seya/dist/images/profile1.png" class="rank-img-circle"
+												alt="User Image"></td>
+											<td class="col-xs-3 rank-nickname">Seya</td>
+											<td class="col-xs-3 rank-score">5709점</td>
+										</tr>
+										<tr class="rank-content">
+											<td class="col-xs-3 rank-no">1</td>
+											<td class="col-xs-3"><img
+												src="/seya/dist/images/profile1.png" class="rank-img-circle"
+												alt="User Image"></td>
+											<td class="col-xs-3 rank-nickname">Seya</td>
+											<td class="col-xs-3 rank-score">5709점</td>
+										</tr>
 									</tbody>
+
+
+
 								</table>
 							</li>
 							<%-- </c:forEach> --%>

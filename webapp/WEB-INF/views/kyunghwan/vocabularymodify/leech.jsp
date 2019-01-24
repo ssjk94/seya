@@ -272,13 +272,13 @@ p {
 }
 
 #vocaarea {
-	border-color: rgba(221, 75, 57, 0.5);
-	width: 720px;
+	border-color: #ddd;
+	width: 800px;
 	height: 350px;
 }
 
 .vocabularycontainer {
-	width: 780px;
+	width: 800px;
 	max-width: none !important;
 	margin: auto
 }
@@ -327,14 +327,9 @@ input:disabled {
 	background-color: #ffffff;
 }
 
-.form-control {
-	margin-left: 30px;
-}
-
 .breadcrumb {
 	background-color: #ffffff;
 }
-
 </style>
 
 
@@ -403,9 +398,11 @@ desired effect
 					<!-- 리스트 추가하기 -->
 					<!-- 단어 리스트 추가할 버튼  style="margin-top: 50px;margin-left: 20%;margin-right: 20%;" -->
 					<div class="listaddline">
-						<button id="addvocalist" type="button"
-							class="btn btn-danger btn-block btn-lg vocamodifybtn">
-							저장하기</button>
+						<a href="${pageContext.request.contextPath}/listtest">
+							<button id="addvocalist" type="button"
+								class="btn btn-danger btn-block btn-lg vocamodifybtn">
+								저장하기</button>
+						</a>
 					</div>
 
 				</div>

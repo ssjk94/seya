@@ -51,7 +51,7 @@ h5.side-cont {
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">단 어 장</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
+			<li class="active"><a href="${pageContext.request.contextPath}/flashcard"><i class="fa fa-fw fa-book"></i>
 					<span>단어장 1</span></a></li>
 					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>단어장 2</span></a></li>
 					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>단어장 3</span></a></li>
@@ -68,7 +68,7 @@ h5.side-cont {
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">랭킹</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="#"><i class="fa fa-fw fa-book"></i>
+			<li class="active"><a href="${pageContext.request.contextPath}/rankpage"><i class="fa fa-fw fa-book"></i>
 					<span>플래시 카드</span></a></li>
 					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>랜덤 게임</span></a></li>
 					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>짝 맞추기</span></a></li>
