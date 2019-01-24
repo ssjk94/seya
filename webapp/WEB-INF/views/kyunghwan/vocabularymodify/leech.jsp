@@ -150,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .fixed .content-wrapper, .fixed .right-side {
-	padding-top: 85px;
+	padding-top: 50px;
 }
 
 .table-hover>tbody>tr:hover {
@@ -273,9 +273,8 @@ p {
 
 #vocaarea {
 	border-color: rgba(221, 75, 57, 0.5);
-	width:720px;
-	height:350px;
-
+	width: 720px;
+	height: 350px;
 }
 
 .vocabularycontainer {
@@ -318,7 +317,7 @@ p {
 	height: 50px;
 	border: 2px #ffffff;
 	border-bottom: solid 1.5px #dd4b39;
-	margin-left: 50px;
+	margin-left: 65px;
 	font-size: 25px;
 	margin-bottom: 20px;
 	margin-top: 10px;
@@ -329,8 +328,11 @@ input:disabled {
 }
 
 .form-control {
-
 	margin-left: 30px;
+}
+
+.breadcrumb {
+	background-color: #ffffff;
 }
 
 </style>
@@ -374,19 +376,20 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<input type="text" class="wordpadname" name="new-word"
-					disabled="disabled">
-
-				<!--단어장 경로 -->
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Simple</li>
-				</ol>
-				<!--/단어장 경로 -->
+				<div class="path-name">
+					<!--단어장 경로 -->
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li><a href="#">Tables</a></li>
+						<li class="active">Simple</li>
+					</ol>
+					<!--/단어장 경로 -->
+				</div>
 			</section>
 
 			<form action="">
+				<input type="text" class="wordpadname" name="new-word"
+					disabled="disabled">
 				<div class="vocabularycontainer">
 
 					<!-- section 1 -->
@@ -405,29 +408,6 @@ desired effect
 							저장하기</button>
 					</div>
 
-					<!-- 단어 리스트 들어가는 div -->
-
-					<%-- 	<section id="vocalist">
-						<c:import
-							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaonepage2.jsp"></c:import>
-					</section> --%>
-					<!-- <div>
-						<input type="submit" class="btn-danger btn-sm">
-					</div> -->
-
-					<%-- 				<div>
-					<!-- section 3 -->
-					<!-- submit 구역 -->
-					<c:import
-						url="/WEB-INF/views/kyunghwan/vocabularymodify/vocalistsubmit.jsp"></c:import>
-				</div>
-
-				<div class="vocabularycontainer page">
-					<!-- 페이지 네이션 -->
-					<c:import
-						url="/WEB-INF/views/kyunghwan/vocabularymodify/pagenation.jsp"></c:import>
-				</div>
-				 --%>
 				</div>
 			</form>
 		</div>

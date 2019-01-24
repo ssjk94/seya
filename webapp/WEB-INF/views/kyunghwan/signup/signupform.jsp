@@ -83,6 +83,7 @@ b, strong {
 	margin: auto;
 	font-size: 12px
 }
+
 </style>
 
 </head>

@@ -222,14 +222,14 @@ p.flashcard-font {
 }
 
 .vocalistbox {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    /* border: 5px double darkgray; */
-    border-top: 5px double darkgray;
-    width: 820px;
-    border-bottom: 5px double darkgray;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	/* border: 5px double darkgray; */
+	border-top: 5px double darkgray;
+	width: 820px;
+	border-bottom: 5px double darkgray;
 }
 
 .vocafloat {
@@ -297,20 +297,18 @@ p {
 input:disabled {
 	background-color: #ffffff;
 }
-.vocamodi-btn{
+
+.vocamodi-btn {
 	width: 100px;
-	height : 40px;
-	float:right;
-	margin-left:10px;
-	margin-top:50px;
-}
-.btn-block+.btn-block{
+	height: 40px;
+	float: right;
+	margin-left: 10px;
 	margin-top: 50px;
-	
 }
 
-
-
+.btn-block+.btn-block {
+	margin-top: 50px;
+}
 </style>
 
 </head>
@@ -360,192 +358,197 @@ desired effect
 					</ol>
 					<!--/단어장 경로 -->
 					<input type="text" class="wordpadname" name="new-word"
-						disabled="disabled" placeholder="기말">
+						disabled="disabled" placeholder="단어장 1">
 
 					<button type="submit"
 						class="btn btn-danger btn-block btn-sm vocamodi-btn">확인</button>
-					<button id="addvocalist" type="button" class="btn btn-danger btn-block btn-sm vocamodi-btn">단어 추가</button>
-				
-				
+					<a href="${pageContext.request.contextPath}/leech">
+						<button id="addvocalist" type="button"
+							class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
+							추가</button>
+					</a>
+
 				</div>
 			</section>
 
 			<!-- Main content -->
 			<section class="content container">
-				<!-- 단어장 리스트 가장 바깥 상자 -->
-				<div class="vocalistbox">
-					<!-- 복사를 해야하는 div -->
-					<div class="vocaborder">
-						<!-- word -->
-						<div class="vocafloat vocawordsection">
-							<!-- 단어 -->
-							<div class="vocafloat">
-								<p>단어 :</p>
+				<form action="${pageContext.request.contextPath}/mypage/gallery">
+					<!-- 단어장 리스트 가장 바깥 상자 -->
+					<div class="vocalistbox">
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="chicken">
+								</div>
 							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="chicken">
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="치킨">
+								</div>
 							</div>
 						</div>
-						<!-- mean -->
-						<div class="vocafloat wordgapmean vocawordsection">
-							<!-- 뜻 -->
-							<div class="vocafloat">
-								<p>뜻 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="치킨">
-							</div>
-						</div>
-					</div>
-					<!-- 복사를 해야하는 div -->
+						<!-- 복사를 해야하는 div -->
 
 
 
 
-					<!-- 복사를 해야하는 div -->
-					<div class="vocaborder">
-						<!-- word -->
-						<div class="vocafloat vocawordsection">
-							<!-- 단어 -->
-							<div class="vocafloat">
-								<p>단어 :</p>
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox"
+										value="Would you something to drink?">
+								</div>
 							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="Would you something to drink?">
-							</div>
-						</div>
-						<!-- mean -->
-						<div class="vocafloat wordgapmean vocawordsection">
-							<!-- 뜻 -->
-							<div class="vocafloat">
-								<p>뜻 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="뭐 마실래?">
-							</div>
-						</div>
-					</div>
-					<!-- 복사를 해야하는 div -->
-					
-					<!-- 복사를 해야하는 div -->
-					<div class="vocaborder">
-						<!-- word -->
-						<div class="vocafloat vocawordsection">
-							<!-- 단어 -->
-							<div class="vocafloat">
-								<p>단어 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="OMG">
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="뭐 마실래?">
+								</div>
 							</div>
 						</div>
-						<!-- mean -->
-						<div class="vocafloat wordgapmean vocawordsection">
-							<!-- 뜻 -->
-							<div class="vocafloat">
-								<p>뜻 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="오마이갓!!!!!">
-							</div>
-						</div>
-					</div>
-					<!-- 복사를 해야하는 div -->
-					
-					<!-- 복사를 해야하는 div -->
-					<div class="vocaborder">
-						<!-- word -->
-						<div class="vocafloat vocawordsection">
-							<!-- 단어 -->
-							<div class="vocafloat">
-								<p>단어 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="jax">
-							</div>
-						</div>
-						<!-- mean -->
-						<div class="vocafloat wordgapmean vocawordsection">
-							<!-- 뜻 -->
-							<div class="vocafloat">
-								<p>뜻 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="잭스">
-							</div>
-						</div>
-					</div>
-					<!-- 복사를 해야하는 div -->
-					
-					<!-- 복사를 해야하는 div -->
-					<div class="vocaborder">
-						<!-- word -->
-						<div class="vocafloat vocawordsection">
-							<!-- 단어 -->
-							<div class="vocafloat">
-								<p>단어 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="count">
-							</div>
-						</div>
-						<!-- mean -->
-						<div class="vocafloat wordgapmean vocawordsection">
-							<!-- 뜻 -->
-							<div class="vocafloat">
-								<p>뜻 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="카운터">
-							</div>
-						</div>
-					</div>
-					<!-- 복사를 해야하는 div -->
-					
-					<!-- 복사를 해야하는 div -->
-					<div class="vocaborder">
-						<!-- word -->
-						<div class="vocafloat vocawordsection">
-							<!-- 단어 -->
-							<div class="vocafloat">
-								<p>단어 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="double">
-							</div>
-						</div>
-						<!-- mean -->
-						<div class="vocafloat wordgapmean vocawordsection">
-							<!-- 뜻 -->
-							<div class="vocafloat">
-								<p>뜻 :</p>
-							</div>
-							<!-- 텍스트박스 -->
-							<div class="vocafloat textgapbox">
-								<input type="text" class="voca-textbox" value="무가 두배에애ㅐ">
-							</div>
-						</div>
-					</div>
-					<!-- 복사를 해야하는 div -->
-					
-					
+						<!-- 복사를 해야하는 div -->
 
-				</div>
-				
-				<button type="submit"
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="OMG">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="오마이갓!!!!!">
+								</div>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div -->
+
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="jax">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="잭스">
+								</div>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div -->
+
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="count">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="카운터">
+								</div>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div -->
+
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="double">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" class="voca-textbox" value="무가 두배에애ㅐ">
+								</div>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div -->
+
+
+
+					</div>
+
+					<button type="submit"
 						class="btn btn-danger btn-block btn-sm vocamodi-btn">확인</button>
-				
+				</form>
 			</section>
 			<!-- /.content -->
 		</div>

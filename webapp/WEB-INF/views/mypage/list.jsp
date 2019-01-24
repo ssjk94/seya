@@ -151,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .fixed .content-wrapper, .fixed .right-side {
-	padding-top: 85px;
+	padding-top: 50px;
 }
 
 .table-hover>tbody>tr:hover {
