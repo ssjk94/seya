@@ -81,7 +81,11 @@ public class MainController {
 		System.out.println("list test");
 		return "kyunghwan/vocabularymodify/listtest";
 	}
-	
+	@RequestMapping(value = "/rankpage", method = RequestMethod.GET)
+	public String rankpage() {
+		System.out.println("list test");
+		return "kyunghwan/gamepage/rankpage";
+	}
 	
 //	@RequestMapping("/hello")
 //	public String hello() {

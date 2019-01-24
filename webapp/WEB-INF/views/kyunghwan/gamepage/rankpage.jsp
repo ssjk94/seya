@@ -273,9 +273,8 @@ p {
 
 #vocaarea {
 	border-color: rgba(221, 75, 57, 0.5);
-	width:720px;
-	height:350px;
-
+	width: 720px;
+	height: 350px;
 }
 
 .vocabularycontainer {
@@ -329,10 +328,57 @@ input:disabled {
 }
 
 .form-control {
-
 	margin-left: 30px;
 }
 
+<
+style>.boardList thead th {
+	height: 54px;
+	font-size: 14px;
+	font-weight: normal;
+	color: white;
+	background-color: #dd4b39;
+	text-align: center;
+}
+
+.div_ranking_list {
+	float: right;
+	height: 200px;
+	margin-left: 100px;
+}
+
+.boardList {
+	position: static;
+	margin-bottom: 27px;
+	border-bottom: 2px solid black;
+	margin-right: 20px;
+	float: right;
+}
+
+.small, small {
+	font-size: 85%;
+	padding-right: 10px;
+}
+
+.trline {
+	border-bottom: 1px solid black;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.grade .small img {
+	float: left;
+}
+
+.td {
+	padding: 5px;
+}
+
+.rankgamecontainer {
+	width: 800px;
+	height: 700px;
+	border: 1px solid
+}
 </style>
 
 
@@ -385,51 +431,167 @@ desired effect
 				</ol>
 				<!--/단어장 경로 -->
 			</section>
+			<section class="content container">
+				<div class=rankgamecontainer>
 
-			<form action="">
-				<div class="vocabularycontainer">
+					<div id="div_ranking_list">
 
-					<!-- section 1 -->
-					<!-- Text area 구역 -->
-					<div class="textboxsize">
-						<textarea id="vocaarea" class="form-control" rows="6"
-							placeholder="단어1 엔터키로 한 단어를 구분합니다. &#13;&#10;단어2"></textarea>
+						<div class="bs-example" data-example-id="hoverable-table">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>등수</th>
+										<th>닉네임</th>
+										<th>점수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Seya</td>
+										<td>2662</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Jacob</td>
+										<td>3500</td>
+
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Larry</td>
+										<td>the Bird</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+
+						<div class="boardList">
+							<table summary="게시판 리스트">
+								<colgroup>
+									<col width="80px">
+									<col width="192px">
+									<col width="73px">
+								</colgroup>
+								<thead>
+									<tr>
+										<th>랭킹</th>
+										<th>닉네임</th>
+										<th>점수</th>
+									</tr>
+								</thead>
+							</table>
+							<div class="relative">
+								<table summary="게시판 리스트">
+									<colgroup>
+										<col width="80px">
+										<col width="192px">
+										<col width="73px">
+									</colgroup>
+									<tbody>
+										<tr class="trline">
+											<td>1</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>2</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>3</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>4</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>5</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>6</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>7</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>8</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>9</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+										<tr class="trline">
+											<td>10</td>
+											<td class="left"><span class="grade small"> <img
+													src="/seya/dist/images/profile1.png"
+													class="img-circle imgsize" alt="User Image">
+											</span> <!-- <a href="javascript:;"
+							onclick="GetUserInfo('user','1560738298',this)"> --> <b>seya</b></a></td>
+											<td><span class="mmr small"> </span> 5,355 점</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- //Board list -->
+						</div>
+
 					</div>
-
-					<!-- section 2 -->
-					<!-- 리스트 추가하기 -->
-					<!-- 단어 리스트 추가할 버튼  style="margin-top: 50px;margin-left: 20%;margin-right: 20%;" -->
-					<div class="listaddline">
-						<button id="addvocalist" type="button"
-							class="btn btn-danger btn-block btn-lg vocamodifybtn">
-							저장하기</button>
-					</div>
-
-					<!-- 단어 리스트 들어가는 div -->
-
-					<%-- 	<section id="vocalist">
-						<c:import
-							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaonepage2.jsp"></c:import>
-					</section> --%>
-					<!-- <div>
-						<input type="submit" class="btn-danger btn-sm">
-					</div> -->
-
-					<%-- 				<div>
-					<!-- section 3 -->
-					<!-- submit 구역 -->
-					<c:import
-						url="/WEB-INF/views/kyunghwan/vocabularymodify/vocalistsubmit.jsp"></c:import>
 				</div>
+			</section>
 
-				<div class="vocabularycontainer page">
-					<!-- 페이지 네이션 -->
-					<c:import
-						url="/WEB-INF/views/kyunghwan/vocabularymodify/pagenation.jsp"></c:import>
-				</div>
-				 --%>
-				</div>
-			</form>
+
+
 		</div>
 		<!-- /.content-wrapper -->
 
@@ -452,33 +614,6 @@ desired effect
 <!-- AdminLTE App -->
 <script src="${pageContext.request.contextPath}/dist/js/adminlte.min.js"></script>
 
-
-<!-- 단어추가 페이지나오게하는 함수 -->
-<script type="text/javascript">
-	$("#addvocalist").off("click").on("click", function(e) {
-
-		var div = document.createElement('div');
-
-		div.innerHTML = document.getElementById('voca2').innerHTML;
-
-		document.getElementById('vocalist').appendChild(div);
-
-		//추가되는 리스트 확인창	    
-		console.log(document.getElementById('vocalist').innerHTML);
-
-	});
-</script>
-<!-- 탭키 먹히게하는 함수 -->
-<script type="text/javascript">
-	$(function() {
-		$('#vocaarea').keydown(function(e) {
-			if (e.keyCode == 9) {
-				$(this).val($(this).val() + ' ')
-				return false
-			}
-		});
-	});
-</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
