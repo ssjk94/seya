@@ -53,35 +53,30 @@ b, strong {
 }
 
 .user-page {
-	padding-left: 20%;
-	padding-right: 20%;
-	margin-left: 17%;
-	margin-right: 17%;
-	margin-top: 10%
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-bottom: 0px;
+    padding: 10px;
+    position: absolute;
+    margin-top: -470px;
+    width: 280px;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .content-wrapper, .main-footer {
-	-webkit-transition: -webkit-transform .3s ease-in-out, margin .3s
-		ease-in-out;
-	-moz-transition: -moz-transform .3s ease-in-out, margin .3s ease-in-out;
-	-o-transition: -o-transform .3s ease-in-out, margin .3s ease-in-out;
-	transition: transform .3s ease-in-out, margin .3s ease-in-out;
 	margin-left: 0px;
-	z-index: 820;
 }
 
 .jumbotron {
-	background-image:
-		url("http://2.bp.blogspot.com/-E3IZfz3DZV0/TXaZqfwwiOI/AAAAAAAACd4/RJj03lfUeR0/s1600/Buecherkubus-a18872702.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	padding-top: 150px;
-	padding-bottom: 150px;
-	
+    background-image: url(http://2.bp.blogspot.com/-E3IZfz3DZV0/TXaZqfwwiOI/AAAAAAAACd4/RJj03lfUeR0/s1600/Buecherkubus-a18872702.jpg);
+    opacity: 0.7;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 50px;
+    padding-bottom: 598px;
+    margin-bottom: 0px;
+    background-position: center;
 }
-
-
-
 </style>
 
 </head>
@@ -114,51 +109,46 @@ desired effect
 		<!-- /header -->
 
 		<div class="content-wrapper">
-			<div class="jumbotron">
-			
-				<div class="user-page">
-					<!-- The user image in the menu -->
-					<div class="user-header">
-						<h3 class="text-center" style="">로그인</h3>
+			<div class="jumbotron"></div>
+			<div class="user-page">
+				<!-- The user image in the menu -->
+				<div class="user-header">
+					<h3 class="text-center" style="color: #dd4b39">로그인</h3>
+				</div>
+				<div class="user-body">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디"
+							name="userId" maxlength="20">
 					</div>
-					<div class="user-body">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="아이디"
-								name="userId" maxlength="20">
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="비밀번호"
-								name="userPassword" maxlength="20">
-						</div>
-						<div>
-							<a href="${pageContext.request.contextPath}/mypage/gallery"
-								class="btn btn-block btn-danger form control"
-								style="width: 100%">로그인</a> <a
-								href="${pageContext.request.contextPath}/signup"
-								class="btn btn-block btn-danger form control"
-								style="width: 100%">회원가입</a> <a href="#"
-								class="btn btn-block btn-danger form control"
-								style="width: 100%">비밀번호 찾기</a>
-						</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호"
+							name="userPassword" maxlength="20">
+					</div>
+					<div>
+						<a href="${pageContext.request.contextPath}/mypage/gallery"
+							class="btn btn-block btn-danger form control" style="width: 100%">로그인</a>
+						<a href="${pageContext.request.contextPath}/signup"
+							class="btn btn-block btn-danger form control" style="width: 100%">회원가입</a>
+						<a href="#" class="btn btn-block btn-danger form control"
+							style="width: 100%">비밀번호 찾기</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- /.Content Wrapper -->
+		<!-- /.Content Wrapper -->
 
-	<!-- Main Footer -->
+		<!-- Main Footer -->
 
-	<footer class="main-footer">
+		<footer class="main-footer">
 
-		<!-- Default to the right -->
-		<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
-		</strong>
+			<!-- Default to the right -->
+			<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
+			</strong>
 
-	</footer>
-	<!-- /footer -->
+		</footer>
+		<!-- /footer -->
 
-	<div class="control-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
 
 	</div>
 	<!-- ./wrapper -->
