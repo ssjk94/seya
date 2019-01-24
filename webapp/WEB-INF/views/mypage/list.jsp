@@ -168,14 +168,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .button-name {
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .btn-info {
-    background-color: #dd4b39;
-    border-color: #dd4b39;
+	background-color: #dd4b39;
+	border-color: #dd4b39;
 }
 
+.table-list {
+	text-align: center
+}
+
+.table>tbody>tr>td {
+	vertical-align: middle;
+}
 </style>
 
 </head>
@@ -249,47 +256,73 @@ desired effect
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>단어장 이름</th>
-											<th>만든 이</th>
-											<th>만든 날짜</th>
-											<th>상태</th>
-											<th>설명</th>
+											<th class="col-xs-10">
+												<ul class="list-inline">
+													<li class="col-xs-2 table-list">단어장 이름</li>
+													<li class="col-xs-2 table-list">만든 이</li>
+													<li class="col-xs-2 table-list">만든 날짜</li>
+													<li class="col-xs-2 table-list">상태</li>
+													<li class="col-xs-4 table-list">설명</li>
+												</ul>
+											</th>
+											<th class="col-xs-2 table-list">링크</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>단어장 1</td>
-											<td>Seya</td>
-											<td>2019-01-01</td>
-											<td><span class="label label-danger">공유불가</span></td>
-											<td>토익 단어장 chp.1<a
-												href="${pageContext.request.contextPath}/flashcard"
-												class="pull-right">바로가기</a></td>
-
-										</tr>
-
-										<tr>
-											<td>단어장 2</td>
-											<td>Seya</td>
-											<td>2019-01-02</td>
-											<td><span class="label label-warning">선택허용</span></td>
-											<td>토익 단어장 chp.2<a
-												href="${pageContext.request.contextPath}/flashcard"
-												class="pull-right">바로가기</a></td>
-
-										</tr>
-
-										<tr>
-											<td>단어장 3</td>
-											<td>Seya</td>
-											<td>2019-01-03</td>
-											<td><span class="label label-success">공유허용</span></td>
-											<td>토익 단어장 chp.3<a
-												href="${pageContext.request.contextPath}/flashcard"
-												class="pull-right">바로가기</a></td>
+											<td class="col-xs-10">
+												<ul class="list-inline">
+													<a href="${pageContext.request.contextPath}/flashcard">
+														<li class="col-xs-2 table-list">단어장 1</li>
+														<li class="col-xs-2 table-list">Seya</li>
+														<li class="col-xs-2 table-list">2019-01-01</li>
+														<li class="col-xs-2 table-list"><span
+															class="label label-danger">공유불가</span></li>
+														<li class="col-xs-4 table-list">토익 단어장 chp.1</li>
+												</ul>
+											</td>
+											</a>
+											<td class="col-xs-2 table-list"><a href="#">공유&nbsp;&nbsp;</a><a
+												href="${pageContext.request.contextPath}/listtest">수정&nbsp;&nbsp;</a><a
+												href="#">삭제</a></td>
 										</tr>
 										<tr>
-											<td align="center" colspan="5">새 단어장 추가</td>
+											<td class="col-xs-10">
+												<ul class="list-inline">
+													<a href="${pageContext.request.contextPath}/flashcard">
+														<li class="col-xs-2 table-list">단어장 2</li>
+														<li class="col-xs-2 table-list">Seya</li>
+														<li class="col-xs-2 table-list">2019-01-02</li>
+														<li class="col-xs-2 table-list"><span
+															class="label label-warning">공유불가</span></li>
+														<li class="col-xs-4 table-list">토익 단어장 chp.2</li>
+													</a>
+												</ul>
+											</td>
+											<td class="col-xs-2 table-list"><a href="#">공유&nbsp;&nbsp;</a><a
+												href="${pageContext.request.contextPath}/listtest">수정&nbsp;&nbsp;</a><a
+												href="#">삭제</a></td>
+										</tr>
+										<tr>
+											<td class="col-xs-10">
+												<ul class="list-inline">
+													<a href="${pageContext.request.contextPath}/flashcard">
+														<li class="col-xs-2 table-list">단어장 3</li>
+														<li class="col-xs-2 table-list">Seya</li>
+														<li class="col-xs-2 table-list">2019-01-03</li>
+														<li class="col-xs-2 table-list"><span
+															class="label label-success">공유불가</span></li>
+														<li class="col-xs-4 table-list">토익 단어장 chp.3</li>
+													</a>
+												</ul>
+											</td>
+											<td class="col-xs-2 table-list"><a href="#">공유&nbsp;&nbsp;</a><a
+												href="${pageContext.request.contextPath}/listtest">수정&nbsp;&nbsp;</a><a
+												href="#">삭제</a></td>
+										</tr>
+										<tr>
+											<td align="center" colspan="2"><a
+												href=${pageContext.request.contextPath}/leech>새 단어장 추가</a></td>
 										</tr>
 									</tbody>
 								</table>

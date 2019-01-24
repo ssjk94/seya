@@ -324,7 +324,7 @@ desired effect
 											<div class="inner-header">
 												<div class="tools"></div>
 											</div>
-											<a href="${pageContext.request.contextPath}/vocabularymodify"
+											<a href="${pageContext.request.contextPath}/leech"
 												class="inner-body">
 												<div class="inner">
 													<h3>새 단어장</h3>
@@ -351,7 +351,7 @@ desired effect
 											<div class="inner-header">
 												<div class="tools">
 													<a href="#"><i class="fa fa-share"></i></a> <a
-														href="${pageContext.request.contextPath}/vocabularymodify"><i
+														href="${pageContext.request.contextPath}/listtest"><i
 														class="fa fa-edit"></i></a> <a href="#"><i
 														class="fa fa-trash-o"></i></a>
 												</div>
