@@ -132,6 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	right: 20px;
 	top: 10px;
 } */
+
 .small-box .icon {
 	-webkit-transition: all .3s linear;
 	-o-transition: all .3s linear;
@@ -194,24 +195,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .firstpage {
-	width: 380px;
+	width: 340px;
 	padding-bottom: 10px;
-	padding-top: 30px;
+	padding-top: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
-	font-size: 24px;
 }
 
-.pageadd {
-	margin-left: 50px;
+.pageadd{
+margin-left: 50px;
 }
 
 .secondpage {
 	width: 300px;
 	padding-bottom: 10px;
-	padding-top: 17px;
+	padding-top: 10px;
 	padding-left: 20px;
-	font-size: 24px;
 }
 
 .pageincludefly {
@@ -234,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .imgsize {
 	width: 50px;
 	margin: auto;
-	padding: 4px;
+	padding :4px;
 }
 
 .flashcard {
@@ -271,23 +270,15 @@ p {
 }
 
 p.gaeyeya {
-	font-size: 22px;
-	text-align: center
+    font-size: 22px;
+    text-align: center
 }
 
 p.side-cont {
-	padding: 10px;
-	text-align: center
+    padding: 10px;
+    text-align: center
 }
 
-.fcimg {
-	width: 100%;
-	border: 1px solid #336666;
-}
-.breadcrumb {
-	background-color: #ffffff;
-	margin-top : -35px;
-}
 </style>
 
 </head>
@@ -322,76 +313,185 @@ desired effect
 		<!-- navigation -->
 		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
 		<!-- /navigation -->
-		<!-- Content Header (Page header) -->
-			<!-- Content Wrapper. Contains page content -->
-			<div class="content-wrapper">
-			<section class="content-header">
-				<div class="path-name">
-					<!--단어장 경로 -->
-					<ol class="breadcrumb">
-						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li><a href="#">Tables</a></li>
-						<li class="active">Simple</li>
-					</ol>
-					<!--/단어장 경로 -->
-				</div>
-			</section>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
 			<div class="gamepagecontainer">
-					<!-- 게임명 타이틀 틀-->
-					<div>
-						<div class="leftattach firstpage">
-							<c:import url="/WEB-INF/views/kyunghwan/gamepage/gametitle.jsp"></c:import>
-						</div>
-						<!-- 랭킹 타이틀 -->
-						<div class="leftattach secondpage pageadd">
-							<c:import
-								url="/WEB-INF/views/kyunghwan/gamepage/gamepagerankingtitle.jsp"></c:import>
-						</div>
-						<!-- 다른 div에 영향을 안주기위한 div -->
-						<div class="clear"></div>
+				<!-- 게임명 타이틀 틀-->
+				<div>
+					<div class="leftattach firstpage">
+						<c:import url="/WEB-INF/views/kyunghwan/gamepage/gametitle.jsp"></c:import>
 					</div>
-					<!-- 게임과 랭킹이 그리고 단어고르기가 나오는 틀 -->
-					<div class="pagefly">
-
-						<!-- 게임 ui , 게임설명, 단어장 고르기 -->
-						<div class="leftattach">
-							<!-- 게임 ui -->
-							<div>
-								<c:import
-									url="/WEB-INF/views/kyunghwan/gamepage/gameuiexplain.jsp"></c:import>
-							</div>
-							<!-- 게임 설명 -->
-							<div class="pagefly">
-								<c:import
-									url="/WEB-INF/views/kyunghwan/gamepage/gameexplain.jsp"></c:import>
-							</div>
-							<!-- 단어장 고르기 -->
-							<div class="pagefly">
-								<c:import
-									url="/WEB-INF/views/kyunghwan/gamepage/gamepagevocabularyselect.jsp"></c:import>
-
-							</div>
-						</div>
-
-						<div>
-							<!-- 랭킹 -->
-							<c:import url="/WEB-INF/views/kyunghwan/gamepage/rank.jsp"></c:import>
-						</div>
-
-						<!-- 다른 div에 영향을 안주기위한 div -->
-						<div class="clear"></div>
-					</div>
-					<!-- 시작하는 버튼 나오는 틀 -->
-					<div class="pagefly">
+					<!-- 랭킹 타이틀 -->
+					<div class="leftattach secondpage pageadd">
 						<c:import
-							url="/WEB-INF/views/kyunghwan/gamepage/gamestartbutton.jsp"></c:import>
+							url="/WEB-INF/views/kyunghwan/gamepage/gamepagerankingtitle.jsp"></c:import>
 					</div>
+					<!-- 다른 div에 영향을 안주기위한 div -->
+					<div class="clear"></div>
+				</div>
+				<!-- 게임과 랭킹이 그리고 단어고르기가 나오는 틀 -->
+				<div class="pagefly">
+
+					<!-- 게임 ui , 게임설명, 단어장 고르기 -->
+					<div class="leftattach">
+						<!-- 게임 ui -->
+						<div>
+							<c:import
+								url="/WEB-INF/views/kyunghwan/gamepage/gameuiexplain.jsp"></c:import>
+						</div>
+						<!-- 게임 설명 -->
+						<div class="pagefly">
+							<c:import url="/WEB-INF/views/kyunghwan/gamepage/gameexplain.jsp"></c:import>
+						</div>
+						<!-- 단어장 고르기 -->
+						<div class="pagefly">
+							<c:import
+								url="/WEB-INF/views/kyunghwan/gamepage/gamepagevocabularyselect.jsp"></c:import>
+							
+						</div>
+					</div>
+
+					<!-- 랭킹 -->
+					<c:import url="/WEB-INF/views/kyunghwan/gamepage/rank.jsp"></c:import>
+							</div>	
+					 <div class="leftattach firstpage pageadd">
+						<!-- 랭킹1 -->
+						<div class="secondpage gamepageborder">
+							<!-- 랭킹 이미지 -->
+							<div class="leftattach">
+								<c:import url="/WEB-INF/views/kyunghwan/gamepage/rankingimg.jsp"></c:import>
+							</div>
+							<!-- 랭커 프로필 사진 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerprofilepicture.jsp"></c:import>
+							</div>
+							<!-- 랭커 닉네임 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankernickname.jsp"></c:import>
+							</div>
+							<!-- 랭커 점수 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerscore.jsp"></c:import>
+							</div>
+							<div class="clear"></div>
+						</div> 
+
+						<!-- 랭킹2 -->
+						 <div class="pagefly secondpage gamepageborder">
+							<!-- 랭킹 이미지 -->
+							<div class="leftattach">
+								<c:import url="/WEB-INF/views/kyunghwan/gamepage/rankingimg.jsp"></c:import>
+							</div>
+							<!-- 랭커 프로필 사진 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerprofilepicture.jsp"></c:import>
+							</div>
+							<!-- 랭커 닉네임 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankernickname.jsp"></c:import>
+							</div>
+							<!-- 랭커 점수 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerscore.jsp"></c:import>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<!-- 랭킹3 -->
+						<div class="pagefly secondpage gamepageborder">
+							<!-- 랭킹 이미지 -->
+							<div class="leftattach">
+								<c:import url="/WEB-INF/views/kyunghwan/gamepage/rankingimg.jsp"></c:import>
+							</div>
+							<!-- 랭커 프로필 사진 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerprofilepicture.jsp"></c:import>
+							</div>
+							<!-- 랭커 닉네임 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankernickname.jsp"></c:import>
+							</div>
+							<!-- 랭커 점수 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerscore.jsp"></c:import>
+							</div>
+							<div class="clear"></div>
+
+						</div> --%>
+
+					<!-- 자기 랭크 나오기전 이미지 들어가는 블럭 -->
+						<div class="secondpage pagefly">
+							<!-- 동그라미 1 -->
+							<div class="shapemargin">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/myrankingbefore.jsp"></c:import>
+							</div>
+
+							<!-- 동그라미 2 -->
+							<div class="shapemargin">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/myrankingbefore.jsp"></c:import>
+							</div>
+
+							<!-- 동그라미 3 -->
+							<div class="shapemargin">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/myrankingbefore.jsp"></c:import>
+							</div>
+
+						</div>
+
+						<!-- 내 랭킹 -->
+						<div class="pagefly secondpage gamepageborder">
+							<!-- 랭킹 이미지 -->
+							<div class="leftattach">
+								<c:import url="/WEB-INF/views/kyunghwan/gamepage/myranking.jsp"></c:import>
+							</div>
+							<!-- 랭커 프로필 사진 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerprofilepicture.jsp"></c:import>
+							</div>
+							<!-- 랭커 닉네임 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankernickname.jsp"></c:import>
+							</div>
+							<!-- 랭커 점수 -->
+							<div class="leftattach pageincludefly">
+								<c:import
+									url="/WEB-INF/views/kyunghwan/gamepage/rankerscore.jsp"></c:import>
+							</div> 
+							<div class="clear"></div>
+						</div>
+
+					</div>
+					<!-- 다른 div에 영향을 안주기위한 div -->
+					<div class="clear"></div>
+				</div>
+
+				<!-- 시작하는 버튼 나오는 틀 -->
+				<div class="pagefly">
+					<c:import
+						url="/WEB-INF/views/kyunghwan/gamepage/gamestartbutton.jsp"></c:import>
 				</div>
 			</div>
+		</div>
 
-			<!-- footer -->
-			<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-			<!-- /footer -->
+		<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+		<!-- /footer -->
+
 	</div>
 	<!-- ./wrapper -->
 

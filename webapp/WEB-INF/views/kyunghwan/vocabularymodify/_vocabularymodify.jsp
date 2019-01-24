@@ -160,6 +160,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .content-header>.breadcrumb {
 	position: static;
+    float: left;
+    margin-top: -35px
 }
 
 .profileborder {
@@ -346,13 +348,13 @@ desired effect
 							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocaeditorarea.jsp"></c:import>
 					</div>
 					<div>
-						<!-- section 3 -->
+						<!-- section 2 -->
 						<!-- 리스트 추가하기 -->
 						<c:import
 							url="/WEB-INF/views/kyunghwan/vocabularymodify/listaddbutton.jsp"></c:import>
 					</div>
 					<div>
-						<!-- section 4 -->
+						<!-- section 3 -->
 						<!-- submit 구역 -->
 						<c:import
 							url="/WEB-INF/views/kyunghwan/vocabularymodify/vocalistsubmit.jsp"></c:import>
