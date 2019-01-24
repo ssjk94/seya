@@ -8,17 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- 부트스트랩 css사용 -->
-    <link href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- 
-	jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다)
-	이게 자바스크립트보다 먼저와야함
-	 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- 부트스트랩의 자바 스크립트를 사용하겠다는 뜻 -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
 <style type="text/css">
 
 .flashcardcontainer{
@@ -43,12 +32,13 @@ margin-top:2px;
 background-color: #ffdfdf;
 padding-left: 310px;
 }
-.img-circle {
+.img-circle-btn {
   border-radius: 50%;
   width: 60px;
   height: 60px;
   background-color: #fff;
 }
+
 .gly-size{
 	font-size: 55px;
 }
@@ -71,11 +61,11 @@ margin-right: 30px;
 cursor: pointer;
 }
 
-#leftbtn.img-circle:hover{
+#leftbtn.img-circle-btn:hover{
 	background-color: #e7ff09;
 }
 
-#rightbtn.img-circle:hover{
+#rightbtn.img-circle-btn:hover{
 	background-color: #e7ff09;
 }
 

@@ -362,13 +362,10 @@ a:hover, a:active, a:focus {
 	position: static;
 	width: 100%;
 	padding: 10px;
-<<<<<<< HEAD
 	text-align: center;
 	overflow: hidden
-=======
 	overflow: hidden;
 	text-align: center;
->>>>>>> refs/remotes/seya/master
 }
 
 .user-panel:before, .user-panel:after {
@@ -380,7 +377,6 @@ a:hover, a:active, a:focus {
 	clear: both
 }
 
-<<<<<<< HEAD
 .user-panel>.img-circle {
 	vertical-align:middle;
 	margin: 0, auto; 
@@ -390,9 +386,6 @@ a:hover, a:active, a:focus {
 /* .user-panel>.image { */
 /* 	margin:100% */
 /* } */
-
-=======
->>>>>>> refs/remotes/origin/master
 .user-panel>.image>img {
 	width: 100%;
 	max-width: 45px;
