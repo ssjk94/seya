@@ -134,15 +134,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .small-box .icon {
-	-webkit-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	transition: all .3s linear;
-	position: absolute;
-	top: 20px;
-	right: 30px;
-	z-index: 0;
-	font-size: 90px;
-	color: rgba(0, 0, 0, 0.15);
+	top: 78px;
+	right: 40px;
+	font-size: 60px
 }
 
 .small-box:hover {
@@ -164,16 +158,17 @@ a.wordpad-link {
 
 .breadcrumb {
 	background-color: #ffffff;
-	margin-top : -35px;
+	margin-top: -35px;
 }
 
 .button-name {
 	padding-bottom: 20px;
 }
 
-.inner .tools {
+.inner-header .tools {
 	display: none;
-	float: right
+	float: right;
+	padding: 10px
 }
 
 .small-box:hover .tools {
@@ -185,12 +180,74 @@ a.wordpad-link {
 	border-color: #dd4b39;
 }
 
+i.fa-share {
+	font-size: 30px;
+	margin-right: 15px
+}
+
 i.fa-edit {
-	font-size: 20px;
+	font-size: 30px;
+	margin-right: 15px
 }
 
 i.fa-trash-o {
+	font-size: 30px;
+}
+
+.inner-body>.inner {
+	padding: 15px;
+	height: 175px;
+	color: #000000
+}
+
+.inner-body>.small-box-footer {
+	position: static;
+	text-align: center;
+	padding: 3px 0;
+	color: #fff;
+	color: rgba(255, 255, 255, 0.8);
+	display: block;
+	z-index: 10;
+	background: rgba(0, 0, 0, 0.1);
+	text-decoration: none;
+	/* margin-bottom: 100px; */
+}
+
+.inner-body h3 {
 	font-size: 20px;
+	margin: 20px 0 20px 0
+}
+
+.inner-body p {
+	font-size: 13px;
+	margin: 0 0 5px 10px;
+}
+
+.small-box:hover .icon {
+	font-size: 60px;
+	color: #dd4b39
+}
+
+.small-box:hover .small-box-footer {
+	background: #dd4b39
+}
+
+.small-box {
+	margin-top: 10px;
+	border-top: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.row {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.small-box:hover h3 {
+	color: #dd4b39
+}
+
+.small-box:hover p {
+	color: #dd4b39
 }
 </style>
 
@@ -261,16 +318,19 @@ desired effect
 						<div class="box">
 							<div class="box-body no-padding">
 								<div class="row">
-									<div class="col-lg-3 col-xs-6">
-										<a href="${pageContext.request.contextPath}/vocabularymodify"
-											class="wordpad-link"> <!-- small box -->
-											<div class="small-box">
-												<span class="wordpad-link"> </span>
+									<div class="col-lg-4 col-xs-4">
+										<!-- small box -->
+										<div class="small-box">
+											<div class="inner-header">
+												<div class="tools"></div>
+											</div>
+											<a href="${pageContext.request.contextPath}/vocabularymodify"
+												class="inner-body">
 												<div class="inner">
 													<h3>새 단어장</h3>
-													<p>&nbsp;</p>
-													<p>&nbsp;</p>
-													<p>&nbsp;</p>
+													<p></p>
+													<p></p>
+													<p></p>
 												</div>
 												<div class="icon">
 													<i class="fa fa-plus"> </i>
@@ -278,105 +338,110 @@ desired effect
 												<div class="small-box-footer bgcolor-default">
 													More <i class="fa fa-arrow-circle-right"></i>
 												</div>
-											</div>
-										</a>
+
+											</a>
+										</div>
 									</div>
+									<!-- ./col -->
 
 									<!-- ./col -->
-									<div class="col-lg-3 col-xs-6">
+									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
 										<div class="small-box">
-											<div class="inner">
+											<div class="inner-header">
 												<div class="tools">
-													<a
+													<a href="#"><i class="fa fa-share"></i></a> <a
 														href="${pageContext.request.contextPath}/vocabularymodify"><i
 														class="fa fa-edit"></i></a> <a href="#"><i
 														class="fa fa-trash-o"></i></a>
 												</div>
-												<h3>단어장 1</h3>
-												<p>Seya</p>
-												<p>2019-01-01</p>
-												<p>
-													<span class="label label-danger">공유불가</span>
-												</p>
+											</div>
+											<a href="${pageContext.request.contextPath}/flashcard"
+												class="inner-body">
+												<div class="inner">
+													<h3>단어장 1</h3>
+													<p>Seya</p>
+													<p>2019-01-01</p>
+													<p>
+														<span class="label label-danger">공유불가</span>
+													</p>
+												</div>
+												<div class="icon">
+													<i class="fa fa-file-text"> </i>
+												</div>
+												<div class="small-box-footer bgcolor-default">
+													More <i class="fa fa-arrow-circle-right"></i>
+												</div>
 
-											</div>
-											<div class="icon">
-												<i class="fa fa-file-text"> </i>
-											</div>
-											<div class="small-box-footer bgcolor-default">
-												<a href="${pageContext.request.contextPath}/flashcard"
-													class="wordpad-link"> More <i
-													class="fa fa-arrow-circle-right"></i></a>
-											</div>
+											</a>
 										</div>
 									</div>
+
 									<!-- ./col -->
-									<div class="col-lg-3 col-xs-6">
+									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
 										<div class="small-box">
-											<div class="inner">
+											<div class="inner-header">
 												<div class="tools">
-													<a
+													<a href="#"><i class="fa fa-share"></i></a> <a
 														href="${pageContext.request.contextPath}/vocabularymodify"><i
 														class="fa fa-edit"></i></a> <a href="#"><i
 														class="fa fa-trash-o"></i></a>
 												</div>
-												<h3>단어장 2</h3>
-												<p>Seya</p>
-												<p>2019-01-02</p>
-												<p>
-													<span class="label label-warning">선택허용</span>
-												</p>
-
-
 											</div>
-											<div class="icon">
-												<i class="fa fa-file-text"> </i>
-											</div>
-											<div class="small-box-footer bgcolor-default">
-												<a href="${pageContext.request.contextPath}/flashcard"
-													class="wordpad-link"> More <i
-													class="fa fa-arrow-circle-right"></i></a>
-											</div>
+											<a href="${pageContext.request.contextPath}/flashcard"
+												class="inner-body">
+												<div class="inner">
+													<h3>단어장 2</h3>
+													<p>Seya</p>
+													<p>2019-01-02</p>
+													<p>
+														<span class="label label-warning">선택허용</span>
+													</p>
+												</div>
+												<div class="icon">
+													<i class="fa fa-file-text"> </i>
+												</div>
+												<div class="small-box-footer bgcolor-default">
+													More <i class="fa fa-arrow-circle-right"></i>
+												</div>
 
-
+											</a>
 										</div>
-										</a>
 									</div>
-									<!-- ./col -->
-									<div class="col-lg-3 col-xs-6">
-										<!-- small box -->
 
+									<!-- ./col -->
+									<div class="col-lg-4 col-xs-4">
+										<!-- small box -->
 										<div class="small-box">
-											<div class="inner">
+											<div class="inner-header">
 												<div class="tools">
-													<a
+													<a href="#"><i class="fa fa-share"></i></a> <a
 														href="${pageContext.request.contextPath}/vocabularymodify"><i
 														class="fa fa-edit"></i></a> <a href="#"><i
 														class="fa fa-trash-o"></i></a>
 												</div>
-												<h3>단어장 3</h3>
-												<p>Seya</p>
-												<p>2019-01-03</p>
-												<p>
-													<span class="label label-success">공유가능</span>
-												</p>
+											</div>
+											<a href="${pageContext.request.contextPath}/flashcard"
+												class="inner-body">
+												<div class="inner">
+													<h3>단어장 3</h3>
+													<p>Seya</p>
+													<p>2019-01-03</p>
+													<p>
+														<span class="label label-success">공유가능</span>
+													</p>
+												</div>
+												<div class="icon">
+													<i class="fa fa-file-text"> </i>
+												</div>
+												<div class="small-box-footer bgcolor-default">
+													More <i class="fa fa-arrow-circle-right"></i>
+												</div>
 
-											</div>
-											<div class="icon">
-												<i class="fa fa-file-text"> </i>
-											</div>
-											<div class="small-box-footer bgcolor-default">
-												<a href="${pageContext.request.contextPath}/flashcard"
-													class="wordpad-link"><i
-													class="fa fa-arrow-circle-right">More</i></a>
-											</div>
+											</a>
 										</div>
-
 									</div>
-
-									<!-- ./col -->
 								</div>
 							</div>
 							<!-- /.box-body -->
