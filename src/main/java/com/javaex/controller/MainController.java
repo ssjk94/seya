@@ -1,14 +1,20 @@
 package com.javaex.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
 
-	@RequestMapping(value="/main1", method=RequestMethod.GET)
-	public String main1(){
+	@RequestMapping(value = "/main1", method = RequestMethod.GET)
+	public String main1() {
 		System.out.println("main1");
 		return "main/index";
 	}
@@ -18,12 +24,13 @@ public class MainController {
 		System.out.println("main2");
 		return "main/index2";
 	}
-	@RequestMapping(value="/fcpage", method=RequestMethod.GET)
-	public String fcpage(){
+
+	@RequestMapping(value = "/fcpage", method = RequestMethod.GET)
+	public String fcpage() {
 		System.out.println("fcpage");
 		return "main/flashcardpage";
 	}
-	
+
 	@RequestMapping(value = "/main3", method = RequestMethod.GET)
 	public String main3() {
 		System.out.println("main3");
@@ -41,7 +48,7 @@ public class MainController {
 		System.out.println("logout");
 		return "main/logout";
 	}
-	
+
 	@RequestMapping(value = "/profilemodify", method = RequestMethod.GET)
 	public String profilemodify() {
 		System.out.println("profilemodify");
@@ -53,13 +60,13 @@ public class MainController {
 		System.out.println("gamepage");
 		return "kyunghwan/gamepage/_gamepageoutline";
 	}
-	
+
 	@RequestMapping(value = "/vocabularymodify", method = RequestMethod.GET)
 	public String vocabularymodify() {
 		System.out.println("gamepage");
 		return "kyunghwan/vocabularymodify/_vocabularymodify";
 	}
-	
+
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup() {
 		System.out.println("signup");
@@ -67,15 +74,95 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/flashcard", method = RequestMethod.GET)
-	public String flashcard() {
+	public String flashcard(Model md, HttpServletRequest req) {
 		System.out.println("flashcard");
+		
+		List<String> list1 = new ArrayList<String>();
+		list1.add("aaa");
+		list1.add("bbb");
+		list1.add("ccc");
+		list1.add("ddd");
+		List<String> list2 = new ArrayList<String>();
+		list2.add("1 1 1");
+		list2.add("2 2 2");
+		list2.add("3 3 3");
+		list2.add("4 4 4");
+
+		if (req.getParameter("param") == null) {
+			test(0);
+			numc = 0;
+
+		} else {
+			if (req.getParameter("param").equals("pre")) {
+				if (num < list1.size() - 1) {
+					test(1);
+				}
+				numc = 0;
+			} else if (req.getParameter("param").equals("prev")) {
+				if (num > 0) {
+					test(-1);
+				}
+				numc = 0;
+			} else {
+				numc += 1;
+			}
+		}
+
+		String word;
+		String mean;
+
+		if (test(0) > 0 && test(0) < list1.size()) {
+			word = list1.get(test(0));
+			mean = list2.get(test(0));
+		} else if (test(0) <= 0) {
+			word = list1.get(0);
+			mean = list2.get(0);
+		} else {
+			word = list1.get(list1.size() - 1);
+			mean = list2.get(list1.size() - 1);
+		}
+
+		// prev 전에꺼
+
+		System.out.println("플래쉬 start");
+
+		System.out.println("param :" + test(0));
+		System.out.println("객체 전달함");
+		System.out.println(req.getParameter("param"));
+
+		if (numc % 2 != 0) {
+			md.addAttribute("mean", mean);
+		} else {
+			md.addAttribute("word", word);
+		}
+		
 		return "wordpad/flashcard";
 	}
-	
-//	@RequestMapping("/hello")
-//	public String hello() {
-//		System.out.println("/mysiteh/hello");
-//		return "index";
-//	}
 
+	@RequestMapping("/hello")
+	public String hello() {
+		System.out.println("/mysiteh/hello");
+		return "index";
+}
+
+	static int num = 0;
+	static int numc = 0;
+
+	static public
+
+			int test(int i) {
+		if (i < 0) {
+			num -= Math.abs(i);
+		} else {
+			num += i;
+		}
+		return num;
+	}
+
+
+	@RequestMapping(value = "/textarea", method = RequestMethod.GET)
+	public String area() {
+		System.out.println("text	test");
+		return "kyunghwan/vocabularymodify/ttest";
+	}
 }

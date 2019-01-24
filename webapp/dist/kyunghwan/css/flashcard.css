@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.flashcardcontainer{
+width: 790px;
+height: 450px;
+background-color: #ddd;
+}
+
+.flashcardbox{
+height: 370px;
+background-color: aliceblue; 
+}
+
+.flashcontrolbox{
+height: 85px;
+background-color: orange;
+padding-left: 270px;
+}
+.img-circle {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: #000000;	/*흰색으로 변경해야함*/
+}
+.gly-size{
+	font-size: 55px;
+}
+.chkbox-size{
+	width: 25px;
+	height: 25px;
+	font-size: 25px;
+}
+.flashcardattach{
+float: left;
+}
+.flashcardclear{
+clear: both;
+}
+.modiandchk{
+margin-left: 30px;
+margin-right: 30px;
+}
+.flashbtn{
+cursor: pointer;
+}
