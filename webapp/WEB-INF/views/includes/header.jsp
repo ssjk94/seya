@@ -54,7 +54,7 @@
 								<a href="${pageContext.request.contextPath}/main1" class="btn btn-default btn-flat">로그아웃</a>
 							</div>
 							<div class="pull-center">
-								<a href="${pageContext.request.contextPath}/mypage/gallery" class="btn btn-default btn-flat">내블로그</a>
+								<a href="${pageContext.request.contextPath}/mypage/gallery" class="btn btn-default btn-flat">내 단어장</a>
 							</div>
 						</li>
 					</ul>

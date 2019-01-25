@@ -327,16 +327,13 @@ desired effect
 											<a href="${pageContext.request.contextPath}/leech"
 												class="inner-body">
 												<div class="inner">
-													<h3>새 단어장</h3>
+													<h3>단어장 만들기</h3>
 													<p></p>
 													<p></p>
 													<p></p>
 												</div>
 												<div class="icon">
 													<i class="fa fa-plus"> </i>
-												</div>
-												<div class="small-box-footer bgcolor-default">
-													More <i class="fa fa-arrow-circle-right"></i>
 												</div>
 
 											</a>
@@ -370,7 +367,7 @@ desired effect
 													<i class="fa fa-file-text"> </i>
 												</div>
 												<div class="small-box-footer bgcolor-default">
-													More <i class="fa fa-arrow-circle-right"></i>
+													공부하기 <i class="fa fa-arrow-circle-right"></i>
 												</div>
 
 											</a>
@@ -403,7 +400,7 @@ desired effect
 													<i class="fa fa-file-text"> </i>
 												</div>
 												<div class="small-box-footer bgcolor-default">
-													More <i class="fa fa-arrow-circle-right"></i>
+													공부하기 <i class="fa fa-arrow-circle-right"></i>
 												</div>
 
 											</a>
@@ -436,7 +433,7 @@ desired effect
 													<i class="fa fa-file-text"> </i>
 												</div>
 												<div class="small-box-footer bgcolor-default">
-													More <i class="fa fa-arrow-circle-right"></i>
+													공부하기 <i class="fa fa-arrow-circle-right"></i>
 												</div>
 
 											</a>
