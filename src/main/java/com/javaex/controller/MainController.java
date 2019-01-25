@@ -154,6 +154,12 @@ public class MainController {
 		return "kyunghwan/gamepage/rankpage";
 	}
 	
+	@RequestMapping(value = "/modalmodify", method = RequestMethod.GET)
+	public String modalmodify() {
+		System.out.println("modalmodify");
+		return "wordpad/modalmodify";
+	}
+	
 //	@RequestMapping("/hello")
 //	public String hello() {
 //		System.out.println("/mysiteh/hello");

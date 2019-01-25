@@ -58,7 +58,7 @@ b, strong {
     margin-bottom: 0px;
     padding: 10px;
     position: absolute;
-    margin-top: -510px;
+    margin-top: -495px;
     width: 280px;
     background-color: rgba(255, 255, 255, 0.7);
 }
@@ -79,7 +79,7 @@ b, strong {
     padding-bottom: 690px;
     margin-bottom: 0px;
     background-position: center;
-    background-image: url("${pageContext.request.contextPath}/dist/images/main1.jpg");
+    background-image: url("${pageContext.request.contextPath}/dist/images/main1.png");
 }
 </style>
 

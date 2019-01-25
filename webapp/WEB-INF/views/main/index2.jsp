@@ -58,7 +58,7 @@ b, strong {
 	margin-bottom: 0px;
 	padding: 10px;
 	position: absolute;
-	margin-top: -575px;
+	margin-top: -565px;
 	width: 400px;
 	background-color: rgba(255, 255, 255, 0.7);
 }
@@ -80,7 +80,7 @@ b, strong {
 	margin-bottom: 0px;
 	background-position: center;
 	background-image:
-		url("${pageContext.request.contextPath}/dist/images/main1.jpg");
+		url("${pageContext.request.contextPath}/dist/images/main2.jpg");
 }
 
 p.signup-content.text-center {
