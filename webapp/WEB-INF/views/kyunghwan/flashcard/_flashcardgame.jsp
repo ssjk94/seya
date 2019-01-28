@@ -10,9 +10,9 @@
 
 <style type="text/css">
 .flashcardcontainer {
-	width: 800px;
+	width: 790px;
 	height: 450px;
-	margin-left: 8px;
+	margin-left: 15px;
 }
 
 .flashcardbox {
