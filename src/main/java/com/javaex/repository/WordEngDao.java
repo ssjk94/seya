@@ -5,20 +5,20 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.javaex.vo.UsersVo;
+import com.javaex.vo.WordEngVo;
 
 @Repository
-public class UsersDao {
+public class WordEngDao {
 
 	@Autowired
 	public SqlSession sqlSession;
 
-	public List<UsersVo> selectUsersList() {
-		return sqlSession.selectList("users.selectUsersList");
+	public List<WordEngVo> selectWordEngList() {
+		return sqlSession.selectList("wordeng.selectWordEngList");
 	}
 
-	public int insertUsers(UsersVo usersVo) {
-		return sqlSession.insert("users.insertUsers", usersVo);
+	public int insertWordEng(WordEngVo wordengVo) {
+		return sqlSession.insert("wordeng.insertWordEng", wordengVo);
 	}
 
 }

@@ -19,6 +19,6 @@ public class UsersService {
 	}
 
 	public int add(UsersVo usersVo) {
-		return usersDao.insert(usersVo);
+		return usersDao.insertUsers(usersVo);
 	}
 }

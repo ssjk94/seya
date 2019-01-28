@@ -1,16 +1,16 @@
 package com.javaex.vo;
 
 public class UsersVo {
-	int userNo;
-	String id;
-	String password;
-	String userName;
-	String email;
-	String nickname;
-	String userImage;
-	String userBirth;
-	int sex;
-	int userAccess;
+	private int userNo;
+	private String id;
+	private String password;
+	private String userName;
+	private String email;
+	private String nickname;
+	private String userImage;
+	private String userBirth;
+	private int sex;
+	private int userAccess;
 
 	public int getUserNo() {
 		return userNo;
