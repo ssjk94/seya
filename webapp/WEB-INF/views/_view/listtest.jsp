@@ -222,15 +222,13 @@ p.flashcard-font {
 }
 
 .vocalistbox {
-	padding-left: 20px;
-	padding-right: 20px;
 	padding-top: 20px;
 	padding-bottom: 30px;
 	/* border: 5px double darkgray; */
 	border-top: 5px double darkgray;
-	width: 800px;
+	width: 790px;
 	border-bottom: 5px double darkgray;
-	margin-left:8px;
+	margin-left:15px;
 }
 
 .vocafloat {
@@ -288,7 +286,7 @@ p {
 	height: 50px;
 	border: 2px #ffffff;
 	border-bottom: solid 1.5px #dd4b39;
-	margin-left: 50px;
+	margin-left: 15px;
 	font-size: 25px;
 	margin-bottom: 20px;
 	margin-top: 10px;
@@ -310,6 +308,10 @@ input:disabled {
 
 .btn-block+.btn-block {
 	margin-top: 50px;
+}
+
+.btn-padding{
+	padding-right: 5px;
 }
 </style>
 
@@ -351,7 +353,7 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<div class="path-name">
+				<div class="path-name btn-padding">
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
 						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -366,8 +368,7 @@ desired effect
 						class="btn btn-danger btn-block btn-sm vocamodi-btn">확인</button>
 						
 					<a href="${pageContext.request.contextPath}/leech">
-						<button id="addvocalist" type="button"
-							class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
+						<button type="button" class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
 							추가</button>
 					</a>
 
