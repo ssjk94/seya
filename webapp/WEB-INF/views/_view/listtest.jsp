@@ -359,11 +359,12 @@ desired effect
 						<li class="active">Simple</li>
 					</ol>
 					<!--/단어장 경로 -->
-					<input type="text" class="wordpadname" name="new-word"
-						disabled="disabled" placeholder="단어장 1">
-
+					<input type="text" class="wordpadname" name="wordbookname"
+						value="${req }" disabled="disabled">
+						
 					<button type="submit"
 						class="btn btn-danger btn-block btn-sm vocamodi-btn">확인</button>
+						
 					<a href="${pageContext.request.contextPath}/leech">
 						<button id="addvocalist" type="button"
 							class="btn btn-danger btn-block btn-sm vocamodi-btn">단어

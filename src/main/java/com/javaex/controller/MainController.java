@@ -141,12 +141,12 @@ public class MainController {
 	@RequestMapping(value = "/leech", method = RequestMethod.GET)
 	public String modibreak() {
 		System.out.println("leech");
-		return "kyunghwan/vocabularymodify/leech";
+		return "_view/leech";
 	}
 	@RequestMapping(value = "/listtest", method = RequestMethod.GET)
 	public String listtest() {
 		System.out.println("list test");
-		return "kyunghwan/vocabularymodify/listtest";
+		return "_view/listtest";
 	}
 	@RequestMapping(value = "/rankpage", method = RequestMethod.GET)
 	public String rankpage() {
@@ -185,11 +185,6 @@ public class MainController {
 		}
 		return num;
 	}
-
-
-	@RequestMapping(value = "/textarea", method = RequestMethod.GET)
-	public String area() {
-		System.out.println("text	test");
-		return "kyunghwan/vocabularymodify/ttest";
-	}
+	
+	
 }

@@ -10,19 +10,19 @@ public class MypageController {
 	@RequestMapping(value="/mypage/list", method=RequestMethod.GET)
 	public String MypageList(){
 		System.out.println("mypage/list");
-		return "mypage/list";
+		return "_view/list";
 	}
 		
 	@RequestMapping(value="/mypage/gallery", method=RequestMethod.GET)
 	public String MypageGallery(){
 		System.out.println("mypage/gallery");
-		return "mypage/gallery";
+		return "_view/gallery";
 	}
 	
 	@RequestMapping(value="/wordpad/flashcard", method=RequestMethod.GET)
 	public String flashcard(){
 		System.out.println("wordpad/flashcard");
-		return "wordpad/flashcard";
+		return "_view/flashcard";
 	}
 	
 	@RequestMapping(value="/user/loginform", method=RequestMethod.GET)
