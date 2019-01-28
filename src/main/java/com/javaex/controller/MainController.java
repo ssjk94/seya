@@ -136,7 +136,7 @@ public class MainController {
 			md.addAttribute("word", word);
 		}
 		
-		return "wordpad/flashcard";
+		return "_view/flashcard";
 	}
 	@RequestMapping(value = "/leech", method = RequestMethod.GET)
 	public String modibreak() {

@@ -8,7 +8,7 @@
 
 	<select id="selectWordEngList" resultType="com.javaex.vo.WordEngVo">
 		<![CDATA[
-			select * from users
+			select * from word_eng
 		]]>
 	</select>
 

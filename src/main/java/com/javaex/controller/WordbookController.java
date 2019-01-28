@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.WordbookService;
 import com.javaex.vo.WordbookVo;
 
-@Controller
+//@Controller
 public class WordbookController {
 
-	@Autowired
+//	@Autowired
 	WordbookService wordbookService;
 
-	@RequestMapping(value = "gbal/list", method = RequestMethod.GET)
+//	@RequestMapping(value = "gba2/list", method = RequestMethod.GET)
 	public String getList(Model md) {
 		List<WordbookVo> wordbookList = wordbookService.getList();
 		md.addAttribute("wordbookList", wordbookList);

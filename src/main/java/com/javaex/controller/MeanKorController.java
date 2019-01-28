@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.MeanKorService;
 import com.javaex.vo.MeanKorVo;
 
-@Controller
+//@Controller
 public class MeanKorController {
 
-	@Autowired
+//	@Autowired
 	MeanKorService meankorService;
 
-	@RequestMapping(value = "gbal/list", method = RequestMethod.GET)
+//	@RequestMapping(value = "gba1/list", method = RequestMethod.GET)
 	public String getList(Model md) {
 		List<MeanKorVo> meankorList = meankorService.getList();
 		md.addAttribute("meankorList", meankorList);

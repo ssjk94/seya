@@ -278,7 +278,7 @@ p {
 }
 
 .vocabularycontainer {
-	width: 800px;
+	width: 790px;
 	max-width: none !important;
 	margin: auto
 }
@@ -317,10 +317,11 @@ p {
 	height: 50px;
 	border: 2px #ffffff;
 	border-bottom: solid 1.5px #dd4b39;
-	margin-left: 65px;
+	margin-left: 30px;
 	font-size: 25px;
 	margin-bottom: 20px;
 	margin-top: 10px;
+	padding-left: 15px;
 }
 
 input:disabled {
@@ -330,6 +331,7 @@ input:disabled {
 .breadcrumb {
 	background-color: #ffffff;
 }
+
 </style>
 
 
@@ -391,7 +393,7 @@ desired effect
 					<!-- section 1 -->
 					<!-- Text area 구역 -->
 					<div class="textboxsize">
-						<textarea name="wordarea" class="form-control" rows="6"
+						<textarea name="wordarea" class="form-control" rows="18"
 							placeholder="단어1 엔터키로 한 단어를 구분합니다. &#13;&#10;단어2"></textarea>
 					</div>
 

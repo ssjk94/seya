@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.WordEngService;
 import com.javaex.vo.WordEngVo;
 
-@Controller
+//@Controller
 public class WordEngController {
 
-	@Autowired
+//	@Autowired
 	WordEngService wordengService;
 
-	@RequestMapping(value = "gbal/list", method = RequestMethod.GET)
+//	@RequestMapping(value = "gba3/list", method = RequestMethod.GET)
 	public String getList(Model md) {
 		List<WordEngVo> wordengList = wordengService.getList();
 		md.addAttribute("wordengList", wordengList);
