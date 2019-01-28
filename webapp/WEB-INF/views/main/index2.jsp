@@ -84,7 +84,18 @@ b, strong {
 }
 
 p.signup-content.text-center {
-    margin-top: 10px;
+	margin-top: 10px;
+}
+
+.sexcheck {
+	border: 1px solid #ccc;
+	margin-bottom: 15px;
+	height: 34px;
+	width: 100%;
+	padding: 6px 12px;
+	background-color: #fff;
+	border-color: #d2d6de;	
+	color : #666;
 }
 
 </style>
@@ -123,13 +134,16 @@ desired effect
 			<div class="user-page">
 				<!-- The user image in the menu -->
 				<div class="user-header">
-					<h3 class="text-center">Seya World 계정
-						만들기</h3>
+					<h3 class="text-center">Seya World 계정 만들기</h3>
 				</div>
 				<div class="user-body">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디"
 							name="userId" maxlength="20">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호"
+							name="userPassword" maxlength="20">
 					</div>
 
 					<div class="form-group">
@@ -143,13 +157,16 @@ desired effect
 					</div>
 
 					<div class="form-group">
-						<input type="password" class="form-control" placeholder="비밀번호"
-							name="userPassword" maxlength="20">
-					</div>
-
-					<div class="form-group">
 						<input type="text" class="form-control" placeholder="생년월일"
 							name="userBirth" maxlength="20">
+					</div>
+					<div class="sexcheck">
+						성별 
+						
+						<input type="radio" name="sex" id="male">
+						<label for="male">남자</label>
+						<input type="radio" name="sex" id="female">
+						<label for="female"">여자</label>
 					</div>
 					<a href="${pageContext.request.contextPath}/main1"
 						class="btn btn-block btn-danger form control" style="width: 100%">계정
