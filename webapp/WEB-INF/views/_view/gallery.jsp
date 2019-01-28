@@ -353,7 +353,7 @@ desired effect
 														class="fa fa-trash-o"></i></a>
 												</div>
 											</div>
-											<a href="/seya/flashcard"
+											<a href="${pageContext.request.contextPath}/flashcard"
 												class="inner-body">
 												<div class="inner">
 													<h3>단어장 1</h3>
