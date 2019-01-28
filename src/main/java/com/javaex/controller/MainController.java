@@ -192,4 +192,22 @@ public class MainController {
 		System.out.println("text	test");
 		return "kyunghwan/vocabularymodify/ttest";
 	}
+	
+	
+	@RequestMapping(value = "/lean", method = RequestMethod.GET)
+	public String leeach(HttpServletRequest req) {
+		System.out.println("leanc");
+		String wordbookname=req.getParameter("wordbookname");
+		String wordarea = req.getParameter("wordarea");
+		
+		//변수 들어옵니다.
+		//단어장 이름
+		System.out.println(wordbookname);
+		//textarea
+		System.out.println(wordarea);
+		
+		return "mypage/gallery";
+	}
+	
+	
 }

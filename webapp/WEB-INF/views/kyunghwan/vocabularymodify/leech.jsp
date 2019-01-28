@@ -381,16 +381,17 @@ desired effect
 					<!--/단어장 경로 -->
 				</div>
 			</section>
-
-			<form action="">
-				<input type="text" class="wordpadname" name="new-word"
-					disabled="disabled">
+			
+			
+			<!-- 자바로 보내야함 -->
+			<form action="${pageContext.request.contextPath}/listtest">
+				<input type="text" class="wordpadname" name="wordbookname">
+				
 				<div class="vocabularycontainer">
-
 					<!-- section 1 -->
 					<!-- Text area 구역 -->
 					<div class="textboxsize">
-						<textarea id="vocaarea" class="form-control" rows="6"
+						<textarea name="wordarea" class="form-control" rows="6"
 							placeholder="단어1 엔터키로 한 단어를 구분합니다. &#13;&#10;단어2"></textarea>
 					</div>
 
@@ -398,11 +399,11 @@ desired effect
 					<!-- 리스트 추가하기 -->
 					<!-- 단어 리스트 추가할 버튼  style="margin-top: 50px;margin-left: 20%;margin-right: 20%;" -->
 					<div class="listaddline">
-						<a href="${pageContext.request.contextPath}/listtest">
-							<button id="addvocalist" type="button"
+						
+							<button type="submit"
 								class="btn btn-danger btn-block btn-lg vocamodifybtn">
 								저장하기</button>
-						</a>
+						
 					</div>
 
 				</div>
@@ -429,33 +430,6 @@ desired effect
 <!-- AdminLTE App -->
 <script src="${pageContext.request.contextPath}/dist/js/adminlte.min.js"></script>
 
-
-<!-- 단어추가 페이지나오게하는 함수 -->
-<script type="text/javascript">
-	$("#addvocalist").off("click").on("click", function(e) {
-
-		var div = document.createElement('div');
-
-		div.innerHTML = document.getElementById('voca2').innerHTML;
-
-		document.getElementById('vocalist').appendChild(div);
-
-		//추가되는 리스트 확인창	    
-		console.log(document.getElementById('vocalist').innerHTML);
-
-	});
-</script>
-<!-- 탭키 먹히게하는 함수 -->
-<script type="text/javascript">
-	$(function() {
-		$('#vocaarea').keydown(function(e) {
-			if (e.keyCode == 9) {
-				$(this).val($(this).val() + ' ')
-				return false
-			}
-		});
-	});
-</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
