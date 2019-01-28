@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <meta name="viewport">
 <title>SeyaWord</title>
 <!-- Tell the browser to be responsive to screen width -->
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css">
 <!-- Font Awesome -->
