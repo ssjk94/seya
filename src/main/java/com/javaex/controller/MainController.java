@@ -141,12 +141,12 @@ public class MainController {
 	@RequestMapping(value = "/leech", method = RequestMethod.GET)
 	public String modibreak() {
 		System.out.println("leech");
-		return "kyunghwan/vocabularymodify/leech";
+		return "_view/leech";
 	}
 	@RequestMapping(value = "/listtest", method = RequestMethod.GET)
 	public String listtest() {
 		System.out.println("list test");
-		return "kyunghwan/vocabularymodify/listtest";
+		return "_view/listtest";
 	}
 	@RequestMapping(value = "/rankpage", method = RequestMethod.GET)
 	public String rankpage() {
@@ -184,29 +184,6 @@ public class MainController {
 			num += i;
 		}
 		return num;
-	}
-
-
-	@RequestMapping(value = "/textarea", method = RequestMethod.GET)
-	public String area() {
-		System.out.println("text	test");
-		return "kyunghwan/vocabularymodify/ttest";
-	}
-	
-	
-	@RequestMapping(value = "/lean", method = RequestMethod.GET)
-	public String leeach(HttpServletRequest req) {
-		System.out.println("leanc");
-		String wordbookname=req.getParameter("wordbookname");
-		String wordarea = req.getParameter("wordarea");
-		
-		//변수 들어옵니다.
-		//단어장 이름
-		System.out.println(wordbookname);
-		//textarea
-		System.out.println(wordarea);
-		
-		return "mypage/gallery";
 	}
 	
 	
