@@ -47,18 +47,23 @@
 					<!-- 					</form> -->
 
 					<ul>
-						<c:forEach items="${requestScope.gbList}" var="gbVo">
+						<c:forEach items="${requestScope.usersList}" var="usersVo">
 
 							<li>
 								<table>
 									<tr>
-										<td>${gbVo.no}</td>
-										<td>${gbVo.name}</td>
-										<td>${gbVo.reg_date}</td>
-										<td><a href="">삭제</a></td>
+										<td>${usersVo.userNo}</td>
+										<td>${usersVo.id}</td>
+										<td>${usersVo.password}</td>
+										<td>${usersVo.userName}</td>
+										<td>${usersVo.email}</td>
 									</tr>
 									<tr>
-										<td colspan=4>${gbVo.content}</td>
+										<td>${usersVo.nickname}</td>
+										<td>${usersVo.userImage}</td>
+										<td>${usersVo.userBirth}</td>
+										<td>${usersVo.sex}</td>
+										<td>${usersVo.userAccess}</td>
 									</tr>
 								</table> <br>
 							</li>
@@ -81,7 +86,7 @@
 	<!-- /container -->
 
 </body>
-
+<!-- 
 <script type="text/javascript">
 	$("#btnAdd").click(function(){
 		console.log("ajax 실행");
@@ -106,5 +111,5 @@
 		});
 	});
 </script>
-
+ -->
 </html>
