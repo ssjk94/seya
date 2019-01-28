@@ -118,7 +118,7 @@ desired effect
 			<div class="user-page">
 				<!-- The user image in the menu -->
 				<div class="user-header">
-					<h3 class="text-center" style="color: #dd4b39">로그인</h3>
+					<h2 class="text-center" style="color: #dd4b39">로그인</h2>
 				</div>
 				<div class="user-body">
 					<div class="form-group">

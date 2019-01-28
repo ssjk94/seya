@@ -133,7 +133,7 @@ desired effect
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="닉네임"
+						<input type="text" class="form-control" placeholder="이름"
 							name="userNickname" maxlength="20">
 					</div>
 

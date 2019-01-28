@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 
 <style>
-h5.gaeyeya {
+h3.gaeyeya {
     font-size: 22px;
     text-align: center
 }
 
-h5.side-cont {
+p.side-cont {
     padding: 10px;
     text-align: center
 }
@@ -27,9 +27,9 @@ h5.side-cont {
 		</div>
 
 		<div class="sidebar-content">
-			<h5 class="gaeyeya">NickName</h5>
+			<h3 class="gaeyeya">NickName</h3>
 			<div class="profile-content">
-				<h5 class="side-cont">여기에 자기소개를 적어주세요</h5>
+				<p class="side-cont">여기에 자기소개를 적어주세요</p>
 
 			</div>
 		</div>
