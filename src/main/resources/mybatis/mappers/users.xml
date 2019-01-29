@@ -11,6 +11,23 @@
 			select * from users
 		]]>
 	</select>
+	
+	<!-- 유저 insert 쿼리문 -->
+	<insert id="insertUsers" parameterType="com.javaex.vo.UsersVo">
+		<![CDATA[
+			insert into users
+			values (usersno_seq.nextval,
+			#{id},
+			#{password},
+			#{email},
+			#{nickname},
+			'none',
+			#{userbirth},
+			#{sex},
+			 3)
+		]]>
+	</insert>
+	
 
 <!-- 
 	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">

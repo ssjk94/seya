@@ -94,10 +94,9 @@ p.signup-content.text-center {
 	width: 100%;
 	padding: 6px 12px;
 	background-color: #fff;
-	border-color: #d2d6de;	
-	color : #666;
+	border-color: #d2d6de;
+	color: #666;
 }
-
 </style>
 
 </head>
@@ -136,45 +135,45 @@ desired effect
 				<div class="user-header">
 					<h3 class="text-center">Seya World 계정 만들기</h3>
 				</div>
-				<div class="user-body">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디"
-							name="userId" maxlength="20">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" placeholder="비밀번호"
-							name="userPassword" maxlength="20">
-					</div>
+				<form action="signup.do" method ="get">
+					<div class="user-body">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="아이디"
+								name="userId" maxlength="20">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" placeholder="비밀번호"
+								name="userPassword" maxlength="20">
+						</div>
 
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="이름"
-							name="userNickname" maxlength="20">
-					</div>
+						<div class="form-group">
+							<input type="email" class="form-control" placeholder="이메일"
+								name="userEmail" maxlength="20">
+						</div>
 
-					<div class="form-group">
-						<input type="email" class="form-control" placeholder="이메일"
-							name="userEmail" maxlength="20">
-					</div>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="이름"
+								name="userNickname" maxlength="20">
+						</div>
 
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="생년월일"
-							name="userBirth" maxlength="20">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="생년월일"
+								name="userBirth" maxlength="20">
+						</div>
+						<div class="sexcheck">
+							성별 <input type="radio" name="sex" id="male"> <label
+								for="male">남자</label> <input type="radio" name="sex" id="female">
+							<label for="female">여자</label>
+						</div>
+						<%-- <a href="${pageContext.request.contextPath}/main1"
+							class="btn btn-block btn-danger form control" style="width: 100%">계정
+							생성</a> --%>
+						<input type="submit" class="btn btn-block btn-danger form control"
+						 style="width: 100%" value="계정 생성">
+						<p class="signup-content text-center">하나의 계정으로 모든 SeyaWord
+							서비스를 이용할 수 있습니다.</p>
 					</div>
-					<div class="sexcheck">
-						성별 
-						
-						<input type="radio" name="sex" id="male">
-						<label for="male">남자</label>
-						<input type="radio" name="sex" id="female">
-						<label for="female"">여자</label>
-					</div>
-					<a href="${pageContext.request.contextPath}/main1"
-						class="btn btn-block btn-danger form control" style="width: 100%">계정
-						생성</a>
-
-					<p class="signup-content text-center">하나의 계정으로 모든 SeyaWord 서비스를
-						이용할 수 있습니다.</p>
-				</div>
+				</form>
 			</div>
 		</div>
 		<!-- /.Content Wrapper -->

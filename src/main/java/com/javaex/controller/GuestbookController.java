@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.javaex.service.GuestBookService;
 import com.javaex.vo.GuestBookVo;
 
-@Controller
+//@Controller
 public class GuestbookController {
 
-	@Autowired
+//	@Autowired
 	GuestBookService gbService;
 
-	@RequestMapping(value = "gba/list", method = RequestMethod.GET)
+//	@RequestMapping(value = "gba/list", method = RequestMethod.GET)
 	public String getList(Model md) {
 		List<GuestBookVo> gbList = gbService.getList();
 		md.addAttribute("gbList", gbList);
@@ -27,8 +27,8 @@ public class GuestbookController {
 		return "guestbook/list-ajax";
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "gba/add", method = RequestMethod.POST)
+//	@ResponseBody
+//	@RequestMapping(value = "gba/add", method = RequestMethod.POST)
 	public int gbAdd(@ModelAttribute GuestBookVo guestbookVo) {
 		System.out.println("gba/add" + " " + guestbookVo);
 		int count = gbService.add(guestbookVo);
@@ -36,19 +36,19 @@ public class GuestbookController {
 		return count;
 	}
 
-	@RequestMapping(value = "gb/list", method = RequestMethod.GET)
+//	@RequestMapping(value = "gb/list", method = RequestMethod.GET)
 	public String gbList() {
 		System.out.println("gb/list");
 		return "guestbook/list";
 	}
 
-	@RequestMapping(value = "gb/deleteform", method = RequestMethod.GET)
+//	@RequestMapping(value = "gb/deleteform", method = RequestMethod.GET)
 	public String gbDeleteform() {
 		System.out.println("gb/deleteform");
 		return "guestbook/deleteform";
 	}
 
-	@RequestMapping(value = "gb/add", method = RequestMethod.GET)
+//	@RequestMapping(value = "gb/add", method = RequestMethod.GET)
 	public String add(@ModelAttribute GuestBookVo guestbookVo, Model md) {
 		System.out.println("gb/add");
 		System.out.println(guestbookVo);
