@@ -2,7 +2,10 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,13 +30,16 @@ public class UsersController {
 //		return "guestbook/list-ajax";
 //	}
 	
-	@ResponseBody
+	//@ResponseBody
 	@RequestMapping("/userinsert.do")
-	public String insertUser(@ModelAttribute UsersVo usersVo) {
-
+	public String insertUser(@ModelAttribute UsersVo usersVo,HttpServletRequest req) {
+		System.out.println("여기왔니 렛츠고");
+		
+		usersVo.toString();
+		
 		usersService.insertUser(usersVo);
 		
-
+		usersVo.toString();
 		return "main/index";
 
 	}

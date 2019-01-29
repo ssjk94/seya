@@ -16,12 +16,13 @@
 	<insert id="insertUsers" parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
 			insert into users
-			values (usersno_seq.nextval,
+			values (usersNo_seq.nextval,
 			#{id},
 			#{password},
+			#{username},
 			#{email},
-			#{nickname},
-			'none',
+			#{nickname},	
+			#{userimage},
 			#{userbirth},
 			#{sex},
 			 3)
