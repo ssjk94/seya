@@ -358,7 +358,9 @@ desired effect
 										</div>
 									</div>
 									<!-- ./col -->
-
+<!--
+<c:forEach items="${requestScope.wordbooklist}" var="wordbookVo">
+-->
 									<!-- ./col -->
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
@@ -374,11 +376,11 @@ desired effect
 											<a href="${pageContext.request.contextPath}/flashcard"
 												class="inner-body">
 												<div class="inner">
-													<h3>단어장 1</h3>
-													<p>Seya</p>
-													<p>2019-01-01</p>
+													<h3>${wordbookVo.wordbookname}</h3>
+													<p>${nickname}</p>
+													<p>${wordbookVo.wordbookregdate}</p>
 													<p>
-														<span class="label label-danger">공유불가</span>
+														<span class="label label-danger">${wordbooktype}s</span>
 													</p>
 												</div>
 												<div class="icon">
@@ -391,7 +393,9 @@ desired effect
 											</a>
 										</div>
 									</div>
-
+<!--
+</c:forEach>
+-->
 
 
 								</div>
@@ -431,4 +435,6 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
+
+<!-- 자바스크립트로 타입이 1이면 공유 가능 2면 공유 불가 이런식으로 레디로 만들어야함 -->
 </html>

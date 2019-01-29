@@ -13,18 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.WordbookService;
 import com.javaex.vo.WordbookVo;
 
-//@Controller
+@Controller
 public class WordbookController {
 
-//	@Autowired
+//@Autowired
 	WordbookService wordbookService;
 
-//	@RequestMapping(value = "gba2/list", method = RequestMethod.GET)
-	public String getList(Model md) {
-		List<WordbookVo> wordbookList = wordbookService.getList();
-		md.addAttribute("wordbookList", wordbookList);
-		System.out.println("wordbook/list");
-		return "guestbook/list-ajax";
+	@RequestMapping(value = "mypage/gallery", method = RequestMethod.GET)
+	public String gallery() {
+		System.out.println("gallery");
+		return "_view/gallery";
 	}
 
 //	@ResponseBody
