@@ -170,6 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .button-name {
 	padding-bottom: 20px;
+	padding-right: 15px;
 }
 
 .btn-info {
@@ -184,6 +185,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .table>tbody>tr>td {
 	vertical-align: middle;
 }
+.container {
+    width: 830px;
+}
+.row {
+    margin-right: -10px;
+}
+
 </style>
 
 </head>
@@ -287,40 +295,9 @@ desired effect
 												href="${pageContext.request.contextPath}/listtest">수정&nbsp;&nbsp;</a><a
 												href="#">삭제</a></td>
 										</tr>
-										<tr>
-											<td class="col-xs-10">
-												<ul class="list-inline">
-													<a href="${pageContext.request.contextPath}/flashcard">
-														<li class="col-xs-2 table-list">단어장 2</li>
-														<li class="col-xs-2 table-list">Seya</li>
-														<li class="col-xs-2 table-list">2019-01-02</li>
-														<li class="col-xs-2 table-list"><span
-															class="label label-warning">공유불가</span></li>
-														<li class="col-xs-4 table-list">토익 단어장 chp.2</li>
-													</a>
-												</ul>
-											</td>
-											<td class="col-xs-2 table-list"><a href="#">공유&nbsp;&nbsp;</a><a
-												href="${pageContext.request.contextPath}/listtest">수정&nbsp;&nbsp;</a><a
-												href="#">삭제</a></td>
-										</tr>
-										<tr>
-											<td class="col-xs-10">
-												<ul class="list-inline">
-													<a href="${pageContext.request.contextPath}/flashcard">
-														<li class="col-xs-2 table-list">단어장 3</li>
-														<li class="col-xs-2 table-list">Seya</li>
-														<li class="col-xs-2 table-list">2019-01-03</li>
-														<li class="col-xs-2 table-list"><span
-															class="label label-success">공유불가</span></li>
-														<li class="col-xs-4 table-list">토익 단어장 chp.3</li>
-													</a>
-												</ul>
-											</td>
-											<td class="col-xs-2 table-list"><a href="#">공유&nbsp;&nbsp;</a><a
-												href="${pageContext.request.contextPath}/listtest">수정&nbsp;&nbsp;</a><a
-												href="#">삭제</a></td>
-										</tr>
+										
+										
+										
 										<tr>
 											<td align="center" colspan="2"><a
 												href=${pageContext.request.contextPath}/leech>새 단어장 추가</a></td>

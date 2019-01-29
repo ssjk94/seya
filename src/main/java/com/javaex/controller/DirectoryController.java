@@ -1,5 +1,6 @@
 package com.javaex.controller;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +64,11 @@ public class DirectoryController {
 //		return "index";
 //	}
 
+=======
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class DirectoryController {
+	
+>>>>>>> refs/remotes/seya/master
 }
