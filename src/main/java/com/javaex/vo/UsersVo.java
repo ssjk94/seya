@@ -11,51 +11,54 @@ public class UsersVo {
 	private String userbirth;
 	private int sex;
 	private int useraccess;
-	
-	
-	public UsersVo(){
-		
-	}
-	
+
 	public int getUserNo() {
 		return userNo;
 	}
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getNickname() {
 		return nickname;
 	}
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	
+
 	public int getSex() {
 		return sex;
 	}
+
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
-	
 
 	public String getUsername() {
 		return username;
@@ -89,8 +92,6 @@ public class UsersVo {
 		this.useraccess = useraccess;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "UsersVo [userNo=" + userNo + ", id=" + id + ", password=" + password + ", username=" + username
@@ -98,8 +99,12 @@ public class UsersVo {
 				+ userbirth + ", sex=" + sex + ", useraccess=" + useraccess + "]";
 	}
 
-	public UsersVo(int userNo, String id, String password, String username, String email, String nickname,
-			String userimage, String userbirth, int sex, int useraccess) {
+	public UsersVo() {
+		super();
+	}
+
+	public UsersVo(int userNo, String id, String password, String userName, String email, String nickname,
+			String userImage, String userBirth, int sex, int userAccess) {
 		super();
 		this.userNo = userNo;
 		this.id = id;
@@ -114,6 +119,3 @@ public class UsersVo {
 	}
 
 }
-	
-	
-

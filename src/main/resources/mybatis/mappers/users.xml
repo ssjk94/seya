@@ -30,16 +30,16 @@
 	</insert>
 	
 
-<!-- 
-	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">
+	<select id="selectUserNickNameList"
+		resultType="com.javaex.vo.UsersVo">
 		<![CDATA[
-			insert into guestbook
-			values (guestbook_seq.nextval,
-			#{name},
-			#{content},
-			#{password},
-			sysdate)
+			
+			select users.nickname
+ from wordbook,directory,users
+ where users.userno=directory.userno
+ and directory.directoryno=wordbook.wordbookno
+ and users.id = 'seo'			
 		]]>
-	</insert>
--->
+	</select>
+
 </mapper>

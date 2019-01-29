@@ -66,6 +66,10 @@ public class WordbookVo {
 		this.wordbookType = wordbookType;
 		this.directoryNo = directoryNo;
 	}
+	
+	public WordbookVo() {
+		super();
+	}
 
 	@Override
 	public String toString() {
