@@ -163,6 +163,7 @@ a.wordpad-link {
 
 .button-name {
 	padding-bottom: 20px;
+	padding-right: 15px;
 }
 
 .inner-header .tools {
@@ -260,6 +261,9 @@ i.fa-trash-o {
 	text-decoration: none;
 	height: 25px;
 	/* margin-bottom: 100px; */
+}
+.container{
+width: 840px;
 }
 </style>
 

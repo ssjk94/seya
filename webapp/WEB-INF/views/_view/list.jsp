@@ -170,6 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .button-name {
 	padding-bottom: 20px;
+	padding-right: 15px;
 }
 
 .btn-info {
@@ -184,6 +185,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .table>tbody>tr>td {
 	vertical-align: middle;
 }
+.container {
+    width: 830px;
+}
+.row {
+    margin-right: -10px;
+}
+
 </style>
 
 </head>
