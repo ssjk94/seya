@@ -249,6 +249,18 @@ i.fa-trash-o {
 .small-box:hover p {
 	color: #dd4b39
 }
+.add-footer{
+	position: static;
+	text-align: center;
+	padding: 3px 0;
+	color: #fff;
+	color: rgba(255, 255, 255, 0.8);
+	display: block;
+	z-index: 10;
+	text-decoration: none;
+	height: 25px;
+	/* margin-bottom: 100px; */
+}
 </style>
 
 </head>
@@ -335,7 +347,9 @@ desired effect
 												<div class="icon">
 													<i class="fa fa-plus"> </i>
 												</div>
-
+												<div class="add-footer bgcolor-default">
+												
+												</div>
 											</a>
 										</div>
 									</div>
@@ -374,71 +388,8 @@ desired effect
 										</div>
 									</div>
 
-									<!-- ./col -->
-									<div class="col-lg-4 col-xs-4">
-										<!-- small box -->
-										<div class="small-box">
-											<div class="inner-header">
-												<div class="tools">
-													<a href="#"><i class="fa fa-share"></i></a> <a
-														href="${pageContext.request.contextPath}/vocabularymodify"><i
-														class="fa fa-edit"></i></a> <a href="#"><i
-														class="fa fa-trash-o"></i></a>
-												</div>
-											</div>
-											<a href="${pageContext.request.contextPath}/flashcard"
-												class="inner-body">
-												<div class="inner">
-													<h3>단어장 2</h3>
-													<p>Seya</p>
-													<p>2019-01-02</p>
-													<p>
-														<span class="label label-warning">선택허용</span>
-													</p>
-												</div>
-												<div class="icon">
-													<i class="fa fa-file-text"> </i>
-												</div>
-												<div class="small-box-footer bgcolor-default">
-													공부하기 <i class="fa fa-arrow-circle-right"></i>
-												</div>
 
-											</a>
-										</div>
-									</div>
 
-									<!-- ./col -->
-									<div class="col-lg-4 col-xs-4">
-										<!-- small box -->
-										<div class="small-box">
-											<div class="inner-header">
-												<div class="tools">
-													<a href="#"><i class="fa fa-share"></i></a> <a
-														href="${pageContext.request.contextPath}/vocabularymodify"><i
-														class="fa fa-edit"></i></a> <a href="#"><i
-														class="fa fa-trash-o"></i></a>
-												</div>
-											</div>
-											<a href="${pageContext.request.contextPath}/flashcard"
-												class="inner-body">
-												<div class="inner">
-													<h3>단어장 3</h3>
-													<p>Seya</p>
-													<p>2019-01-03</p>
-													<p>
-														<span class="label label-success">공유가능</span>
-													</p>
-												</div>
-												<div class="icon">
-													<i class="fa fa-file-text"> </i>
-												</div>
-												<div class="small-box-footer bgcolor-default">
-													공부하기 <i class="fa fa-arrow-circle-right"></i>
-												</div>
-
-											</a>
-										</div>
-									</div>
 								</div>
 							</div>
 							<!-- /.box-body -->
