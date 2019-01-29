@@ -18,7 +18,7 @@ public class UsersService {
 		return usersDao.selectUsersList();
 	}
 
-	public int add(UsersVo usersVo) {
+	public int insertUser(UsersVo usersVo) {
 		return usersDao.insertUsers(usersVo);
 	}
 
