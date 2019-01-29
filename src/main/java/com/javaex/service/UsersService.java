@@ -21,4 +21,5 @@ public class UsersService {
 	public int add(UsersVo usersVo) {
 		return usersDao.insertUsers(usersVo);
 	}
+
 }

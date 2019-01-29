@@ -99,6 +99,10 @@ public class UsersVo {
 				+ userBirth + ", sex=" + sex + ", userAccess=" + userAccess + "]";
 	}
 
+	public UsersVo() {
+		super();
+	}
+
 	public UsersVo(int userNo, String id, String password, String userName, String email, String nickname,
 			String userImage, String userBirth, int sex, int userAccess) {
 		super();

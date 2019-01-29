@@ -5,23 +5,31 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.javaex.service.UsersService;
 import com.javaex.service.WordbookService;
+import com.javaex.vo.UsersVo;
 import com.javaex.vo.WordbookVo;
 
 @Controller
 public class WordbookController {
 
-//@Autowired
+	@Autowired
 	WordbookService wordbookService;
 
-	@RequestMapping(value = "mypage/gallery", method = RequestMethod.GET)
-	public String gallery() {
-		System.out.println("gallery");
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public String gallery(@PathVariable String id,Model md) {
+		System.out.println(id+"box");
+
+		//단어장 이름,만든날짜,타입 리스트
+		md.addAttribute("wordbooklist",wordbookService.getNameDataType());
+		//닉네임 리스트
+		md.addAttribute("nicknamelist",wordbookService.getNickname());
 		return "_view/gallery";
 	}
 

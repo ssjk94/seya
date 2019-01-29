@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.javaex.vo.UsersVo;
 import com.javaex.vo.WordbookVo;
 
 @Repository
@@ -13,12 +15,24 @@ public class WordbookDao {
 	@Autowired
 	public SqlSession sqlSession;
 
-	public List<WordbookVo> selectWordbookList() {
-		return sqlSession.selectList("wordbook.selectWordbookList");
+	
+	
+	
+	//{id} main
+	public List<WordbookVo> selectNameDataType() {
+		System.out.println("1");
+		List<WordbookVo> list = sqlSession.selectList("wordbook.selectNameDataTypeList");
+		System.out.println("2");
+		for (WordbookVo wordbookVo : list) {
+			System.out.println(wordbookVo.getWordbookName());
+		}
+		
+		return null;
+		//return sqlSession.selectList("wordbook.selectNameDataTypeList");
 	}
+	
 
-	public int insertWordbook(WordbookVo wordbookVo) {
-		return sqlSession.insert("wordbook.insertWordbook", wordbookVo);
+	public List<UsersVo> selectUserNickNameList(){
+		return sqlSession.selectList("users.selectUserNickNameList");
 	}
-
 }
