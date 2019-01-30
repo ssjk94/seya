@@ -53,17 +53,17 @@ b, strong {
 }
 
 .user-page {
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-bottom: 0px;
-    padding: 10px;
-    position: absolute;
-    margin-top: -495px;
-    width: 280px;
-    background-color: rgba(255, 255, 255, 0.7);
+	margin-left: 400px;
+	margin-right: 400px;
+	margin-bottom: 0px;
+	padding: 10px;
+	position: absolute;
+	margin-top: -495px;
+	width: 280px;
+	background-color: rgba(255, 255, 255, 0.7);
 }
 
-.content-wrapper{
+.content-wrapper {
 	background-color: rgb(10, 21, 23);
 }
 
@@ -72,14 +72,15 @@ b, strong {
 }
 
 .jumbotron {
-    opacity: 0.8;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 50px;
-    padding-bottom: 690px;
-    margin-bottom: 0px;
-    background-position: center;
-    background-image: url("${pageContext.request.contextPath}/dist/images/main1.png");
+	opacity: 0.8;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 50px;
+	padding-bottom: 690px;
+	margin-bottom: 0px;
+	background-position: center;
+	background-image:
+		url("${pageContext.request.contextPath}/dist/images/main1.png");
 }
 </style>
 
@@ -113,31 +114,34 @@ desired effect
 		<!-- /header -->
 
 		<div class="content-wrapper">
-			<div class="jumbotron">
-			</div>
+			<div class="jumbotron"></div>
 			<div class="user-page">
 				<!-- The user image in the menu -->
 				<div class="user-header">
 					<h2 class="text-center" style="color: #dd4b39">로그인</h2>
 				</div>
-				<div class="user-body">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디"
-							name="userId" maxlength="20">
+				<form action="userlogin.do">
+					<div class="user-body">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="아이디"
+								name="id" maxlength="20">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" placeholder="비밀번호"
+								name="password" maxlength="20">
+						</div>
+						<div>
+							<a href="${pageContext.request.contextPath}/mypage/gallery"
+								class="btn btn-block btn-danger form control"
+								style="width: 100%">로그인</a> <a
+								href="${pageContext.request.contextPath}/main2"
+								class="btn btn-block btn-danger form control"
+								style="width: 100%">회원가입</a> <a href="#"
+								class="btn btn-block btn-danger form control"
+								style="width: 100%">비밀번호 찾기</a>
+						</div>
 					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" placeholder="비밀번호"
-							name="userPassword" maxlength="20">
-					</div>
-					<div>
-						<a href="${pageContext.request.contextPath}/mypage/gallery"
-							class="btn btn-block btn-danger form control" style="width: 100%">로그인</a>
-						<a href="${pageContext.request.contextPath}/main2"
-							class="btn btn-block btn-danger form control" style="width: 100%">회원가입</a>
-						<a href="#" class="btn btn-block btn-danger form control"
-							style="width: 100%">비밀번호 찾기</a>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 		<!-- /.Content Wrapper -->

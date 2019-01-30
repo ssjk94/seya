@@ -21,5 +21,8 @@ public class UsersService {
 	public int insertUser(UsersVo usersVo) {
 		return usersDao.insertUsers(usersVo);
 	}
-
+	public List<UsersVo> userLogin(UsersVo usersVo) {
+		
+		return usersDao.userLogin();
+	}
 }

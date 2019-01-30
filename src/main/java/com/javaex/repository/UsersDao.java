@@ -22,5 +22,9 @@ public class UsersDao {
 	public int insertUsers(UsersVo usersVo) {
 		return sqlSession.insert("users.insertUsers", usersVo);
 	}
-	
+	public List<UsersVo> userLogin() {
+		
+		return sqlSession.selectList("users.selectUserLogin");
+	}
+
 }
