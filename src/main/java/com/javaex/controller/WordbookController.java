@@ -43,7 +43,6 @@ public class WordbookController {
 		md.addAttribute("URLid", urlid);
 		md.addAttribute("directoryName", directoryname);
 		md.addAttribute("wordbooklist",wordbookService.getWordbookList(path));
-
 		return "_view/gallery";
 	}
 	
