@@ -11,7 +11,16 @@
 			select * from users
 		]]>
 	</select>
-	
+
+	<!-- 유저 login 쿼리문 -->
+	<select id="selectUserLogin" resultType="com.javaex.vo.UsersVo">
+		<![CDATA[
+			select id, password from users where 
+			id=#{id} and 
+			password = #{password};
+		]]>
+	</select>
+
 	<!-- 유저 insert 쿼리문 -->
 	<insert id="insertUsers" parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
@@ -28,7 +37,7 @@
 			 3)
 		]]>
 	</insert>
-	
+
 
 	<select id="selectUserNickNameList"
 		resultType="com.javaex.vo.UsersVo">

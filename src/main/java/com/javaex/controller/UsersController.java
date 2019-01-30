@@ -3,6 +3,7 @@ package com.javaex.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -21,7 +22,7 @@ public class UsersController {
 
 	@Autowired
 	UsersService usersService;
-	
+
 //	@RequestMapping(value = "gbal/list", method = RequestMethod.GET)
 //	public String getList(Model md) {
 //		List<UsersVo> usersList = usersService.getList();
@@ -29,20 +30,30 @@ public class UsersController {
 //		System.out.println("users/list");
 //		return "guestbook/list-ajax";
 //	}
-	
-	//@ResponseBody
+
+	// @ResponseBody
 
 	@RequestMapping("/userinsert.do")
-	public String insertUser(@ModelAttribute UsersVo usersVo,HttpServletRequest req) {
+	public String insertUser(@ModelAttribute UsersVo usersVo, HttpServletRequest req) {
 		System.out.println("여기왔니 렛츠고");
-		
 		usersVo.toString();
-		
 		usersService.insertUser(usersVo);
-		
 		usersVo.toString();
 		return "main/index";
 
+	}
+
+	@RequestMapping("/userlogin.do")
+	public String userLogin(HttpSession session,HttpServletRequest req,UsersVo usersVo) {
+
+		usersService.userLogin(usersVo);
+		
+		
+		String id = req.getParameter("id");
+		session.setAttribute("id", id);
+		return "_view/gallery";
+		
+		
 	}
 
 }

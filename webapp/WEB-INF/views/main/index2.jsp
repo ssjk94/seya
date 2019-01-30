@@ -138,8 +138,7 @@ desired effect
 				<div class="user-header">
 					<h3 class="text-center">Seya World 계정 만들기</h3>
 				</div>
-				<form action="userinsert.do" name="f" method="get"
-					onsubmit="return sendIt();">
+				<form action="userinsert.do" name="f" method="get">
 					<div class="user-body">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="아이디" id="id"
@@ -162,9 +161,9 @@ desired effect
 							<input type="text" class="form-control" placeholder="닉네임"
 								id="nickname" maxlength="20" name="nickname">
 						</div>
-						
-							<input type="hidden" name="userimage" value="userimage">
-							
+
+						<input type="hidden" name="userimage" value="userimage">
+
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="생년월일"
 								id="userbirth" maxlength="20" name="userbirth">
@@ -175,7 +174,7 @@ desired effect
 							<label for="female">여자</label>
 						</div>
 						<input type="submit" class="btn btn-block btn-danger form control"
-							style="width: 100%" value="계정 생성" onclick="sendit()">
+							style="width: 100%" value="계정 생성">
 						<p class="signup-content text-center">하나의 계정으로 모든 SeyaWord
 							서비스를 이용할 수 있습니다.</p>
 					</div>
@@ -219,158 +218,285 @@ desired effect
      user experience. -->
 </body>
 <script type="text/javascript">
-    function sendIt() {
-        var emailvar = document.f.email.value;
-        var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-        var msg, ss, cc;
-    
-        //아이디 입력여부 검사
-        if (f.id.value == "") {
-            alert("아이디를 입력하지 않았습니다.")
-            f.id.focus()
-            return false;
-        }
-        //아이디 유효성 검사 (영문소문자, 숫자만 허용)
-        for (i = 0; i < document.f.id.value.length; i++) {
-            ch = document.f.id.value.charAt(i)
-            if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
-                alert("아이디는 대소문자, 숫자만 입력가능합니다.")
-                document.f.id.focus()
-                document.f.id.select()
-                return false;
-            }
-        }
-        //아이디에 공백 사용하지 않기
-        if (document.f.id.value.indexOf(" ") >= 0) {
-            alert("아이디에 공백을 사용할 수 없습니다.")
-            document.f.my_id.focus()
-            document.f.my_id.select()
-            return false;
-        }
-        //아이디 길이 체크 (4~12자)
-        if (document.f.id.value.length<4 || document.f.id.value.length>12) {
-            alert("아이디를 4~12자까지 입력해주세요.")
-            document.f.id.focus()
-            document.f.id.select()
-            return false;
-        }
-        //비밀번호 입력여부 체크
-        if (document.f.password.value == "") {
-            alert("비밀번호를 입력하지 않았습니다.")
-            document.f.password.focus()
-            return false;
-        }
-        if (f.password.value == f.id.value) {
-            alert("아이디와 비밀번호가 같습니다.")
-            document.f.password.focus()
-            return false;
-        }
-        //비밀번호 길이 체크(4~8자 까지 허용)
-        if (document.f.password.value.length<4 || document.f.password.value.length>12) {
-            alert("비밀번호를 4~12자까지 입력해주세요.")
-            document.f.password.focus()
-            document.f.password.select()
-            return false;
-        }
- 
-        //비밀번호와 비밀번호 확인 일치여부 체크
-        if (document.f.password.value != document.f.password.value) {
-            alert("비밀번호가 일치하지 않습니다")
-            document.f.password.value = ""
-            document.f.password.focus()
-            return false;
-        }
- 
-        if (document.f.email.value == "") {
-            alert("이메일을 입력하지 않았습니다.")
-            document.f.email.focus()
-            return false;
-        }
-        
- 
-        if (regex.test(emailvar) === false) {
-            alert("잘못된 이메일 형식입니다.");
-            document.f.email.value=""
-            document.f.email.focus()
-            return false;
-        }
-        if (document.f.username.value == "") {
-            alert("이름을 입력하지 않았습니다.")
-            document.f.username.focus()
-            return false;
-        }
-        if(document.f.username.value.length<2){
-            alert("이름을 2자 이상 입력해주십시오.")
-            document.f.username.focus()
-            return false;
-        }
+$('[name="f"]').on('submit', function(){
+	//밸류 함수
+	var id = $('#id').val();
+	var password = $('#password').val();
+	var email = $('#email').val();
+	var username = $('#username').val();
+	var nickname = $('#nickname').val();
+	var userbirth = $('#userbirth').val();
+	var sex = $('#sex').val();
+	
+	//email정규식
+	var reg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+	
+	
+	if(id == "" || id == null){
+		alert("아이디를 입력하지 않았습니다.")
+		$('#id').focus();
+		return false;
+	}
+	//아이디체크
+	
+	if(id.search(/\s/) != -1) { 
+		alert("아이디에 공백을 사용할 수 없습니다.");
+		$('#id').focus();
+		return false;
+	}
+	if ($('#id').val().length<4 || $('#id').val().length>12) {
+		alert("아이디를 4~12자까지 입력해주세요.")
+		$('#id').focus();
+		return false;
+	}
+	
+	//비밀번호 입력여부 체크
+	if (password == "" || password == null) {
+		console.log("비밀번호 입력안함")
+		alert("비밀번호를 입력하지 않았습니다.")
+		$('#password').focus();
+		return false;
+	}
+	
+	if (password == id) {
+		alert("아이디와 비밀번호가 같습니다.")
+		$('#password').focus();
+		return false;
+	}
+	//비밀번호 길이 체크(4~8자 까지 허용)
+	if ( $('#password').val().length<4 || $('#password').val().length>12) {
+		alert("비밀번호를 4~12자까지 입력해주세요.")
+		$('#password').focus();
+		return false;
+	}
+	if (username == "" || username == null) {
+		alert("이름을 입력하지 않았습니다.")
+		$('#username').focus();
+		return false;
+	}
+	if ($('#username').val().length < 2) {
+		alert("이름을 2자 이상 입력해주십시오.")
+		$('#username').focus();
+		return false;
+	}
 
-        if(document.f.nickname.value== ""){
-              alert("닉네임을 입력해주십시오.");
+	if (email == "") {
+		alert("이메일을 입력하지 않았습니다.")
+		$('#email').focus();
+		return false;
+	}
+
+	if (reg.test(email) === false) {
+		alert("잘못된 이메일 형식입니다.");
+		email = ""
+		$('#email').focus();
+		return false;
+	}
+	if (nickname == "") {
+		alert("닉네임을 입력해주십시오.");
+		document.f.nickname.focus()
+		return false;
+	}
+	if ($('#nickname').val().length > 20) {
+		alert("닉네임은 20자 이내입니다.");
+		$('#nickname').focus();
+		return false;
+	}
+	if (userbirth == "" || userbirth == null) {
+		alert("생년 월일을 입력해주세요");
+		$('#userbirth').focus();
+		return false;
+	}
+	if ($('#userbirth').val().length > 8||$('#userbirth').val().length < 8 ){
+		alert("생년 월일을 8자로 입력해주세요./n ex) YYYYMMDD")
+		return false;
+	}
+	if(!$("input[name='sex']:checked").val()) {
+	    alert('성별을 선택하세요.');
+	    return false;
+	}
+
+			
+		
+
+	
+	/* for (i = 0; i < $('#id').val().length; i++) {
+		console.log("대소문자확인")
+		ch = $('#id').val().charAt(i)
+		if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
+				&& !(ch >= 'A' && ch <= 'Z')) {
+			alert("아이디는 대소문자, 숫자만 입력가능합니다.")
+			$('#id').focus();
+			return false;
+		}
+	} */
+
+	//비밀번호
+	
+	/* if (document.f.id.value.indexOf(" ") >= 0) {
+		alert("아이디에 공백을 사용할 수 없습니다.")
+		document.f.my_id.focus()
+		document.f.my_id.select()
+		return false;
+	} */
+	
+	
+	
+	
+	/* if (document.f.id.value == "") {
+		console.log("==" + f.userbirth.value.length + "==");
+		alert("아이디를 입력하지 않았습니다.")
+		
+		f.id.focus()
+		return false;
+	}	 */
+});
+
+
+function sendIt() {
+		var emailvar = document.f.email.value;
+		var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		var msg, ss, cc;
+
+		
+		//아이디 입력여부 검사
+		if (document.f.id.value == "") {
+			console.log("==" + f.userbirth.value.length + "==");
+			alert("아이디를 입력하지 않았습니다.")
+			
+			f.id.focus()
+			return false;
+		}
+		//아이디 유효성 검사 (영문소문자, 숫자만 허용)
+		for (i = 0; i < document.f.id.value.length; i++) {
+			ch = document.f.id.value.charAt(i)
+			if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
+					&& !(ch >= 'A' && ch <= 'Z')) {
+				alert("아이디는 대소문자, 숫자만 입력가능합니다.")
+				document.f.id.focus()
+				document.f.id.select()
+				return false;
+			}
+		}
+		//아이디에 공백 사용하지 않기
+		if (document.f.id.value.indexOf(" ") >= 0) {
+			alert("아이디에 공백을 사용할 수 없습니다.")
+			document.f.my_id.focus()
+			document.f.my_id.select()
+			return false;
+		}
+		//아이디 길이 체크 (4~12자)
+		if (document.f.id.value.length<4 || document.f.id.value.length>12) {
+			alert("아이디를 4~12자까지 입력해주세요.")
+			document.f.id.focus()
+			document.f.id.select()
+			return false;
+		}
+		//비밀번호 입력여부 체크
+		if (document.f.password.value == "") {
+			alert("비밀번호를 입력하지 않았습니다.")
+			document.f.password.focus()
+			return false;
+		}
+		if (f.password.value == f.id.value) {
+			alert("아이디와 비밀번호가 같습니다.")
+			document.f.password.focus()
+			return false;
+		}
+		//비밀번호 길이 체크(4~8자 까지 허용)
+		if (document.f.password.value.length<4 || document.f.password.value.length>12) {
+			alert("비밀번호를 4~12자까지 입력해주세요.")
+			document.f.password.focus()
+			document.f.password.select()
+			return false;
+		}
+
+		//비밀번호와 비밀번호 확인 일치여부 체크
+		if (document.f.password.value != document.f.password.value) {
+			alert("비밀번호가 일치하지 않습니다")
+			document.f.password.value = ""
+			document.f.password.focus()
+			return false;
+		}
+
+		if (document.f.email.value == "") {
+			alert("이메일을 입력하지 않았습니다.")
+			document.f.email.focus()
+			return false;
+		}
+
+		if (regex.test(emailvar) === false) {
+			alert("잘못된 이메일 형식입니다.");
+			document.f.email.value = ""
+			document.f.email.focus()
+			return false;
+		}
+		if (document.f.username.value == "") {
+			alert("이름을 입력하지 않았습니다.")
+			document.f.username.focus()
+			return false;
+		}
+		if (document.f.username.value.length < 2) {
+			alert("이름을 2자 이상 입력해주십시오.")
+			document.f.username.focus()
+			return false;
+		}
+		if (document.f.nickname.value == "") {
+			alert("닉네임을 입력해주십시오.");
+			document.f.nickname.focus()
+			return false;
+		}
+		if (document.f.nickname.value.length > 20) {
+			alert("닉네임은 20자 이내입니다.");
+			document.f.nickname.focus()
+			return false;
+		}
+		if (document.f.userbirth.value == "") {
+			alert("aaa");
+			document.f.userbirth.focus()
+			/* alert("생년월일을 입력해주십시오.");
+			 */
+			return false;
+		}
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		/* if (f.userbirth.value == "") {
+			alert("생년월일을 입력해주십시오.");
+			document.f.nickname.focus()
+			return false;
+		}
+ */
+		/* if (f.userbirth.value.length > 8) {
+			alert("생년월일은 8자로 입력해 주십시오.")
+			f.userbirth.focus()
+			return false;
+		}
+
+		if (document.f.userbirth.value.length < 7) {
+			alert("생년월일은 8자로 입력해 주십시오.")
+			document.f.userbirth.focus()
+			return false;
+		} */
+		  if(document.f.sex.value== ""){
+              alert("성별을 선택해 주십시오."); 
               document.f.nickname.focus()
-              return false;
-        }
-        if(document.f.nickcname.value.length>20){
-              alert("닉네임은 20자 이내입니다.");
-              document.f.nickname.focus()
-              return false;
-        }
-        if (f.userbirth.value.length>8) {
-            alert("생년월일은8자로 입력해주십시오.")
-            f.userbirth.focus()
-            return false;       
-        }
-      
-        if (document.f.userbirth.value.length<7) {
-            alert("생년월일은 8자로 입력해주십시오.")
-            document.f.userbirth.focus()
             return false;
         }
-        if (f.sex.value == 0) {
-            alert("성별을 선택하지 않았습니다.")
-            document.f.sex.focus()
-            return false;
-        }
-       
-        return true;
-        
-        
-        /*   if(document.f.userbirth.value== ""){
-            alert("생년월일을 적어주세요 ex)19990101");
-            document.f.userbirth.focus()
-            return false;
-        }
-        if(document.f.userbirth.value== ""){
-            alert("생년월일을 적어주세요 ex)19990101");
-            document.f.userbirth.focus()
-            return false;
-        } */
-       
-       /*function isNumeric(s) { 
-          for (i=0; i<s.length; i++) { 
-            c = s.substr(i, 1); 
-            if (c < "0" || c > "9") return false; 
-          } 
-          return true; 
-        } */
-         
-     /*    function isSSN(s1, s2) {
-          n = 2;
-          sum = 0;
-          for (i=0; i<s1.length; i++)
-            sum += parseInt(s1.substr(i, 1)) * n++;
-          for (i=0; i<s2.length-1; i++) {
-            sum += parseInt(s2.substr(i, 1)) * n++;
-            if (n == 10) n = 2;
-          }
-          
-          c = 11 - sum % 11;
-          if (c == 11) c = 1;
-          if (c == 10) c = 0;
-          if (c != parseInt(s2.substr(6, 1))) return false;
-          else return true; 
-        }*/
-    }
-	</script>
+		
+		if (f.sex.value == 0) {
+			alert("성별을 선택하지 않았습니다.")
+			document.f.sex.focus()
+			return false;
+		}
+		
+	}
+</script>
 
 </html>
