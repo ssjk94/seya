@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.javaex.vo.WordEngVo;
+import com.javaex.vo.WordbookVo;
 
 @Repository
 public class WordEngDao {
@@ -14,6 +15,7 @@ public class WordEngDao {
 	public SqlSession sqlSession;
 
 	public List<WordEngVo> selectWordEngList() {
+		
 		return sqlSession.selectList("wordeng.selectWordEngList");
 	}
 

@@ -30,16 +30,4 @@
 	</insert>
 	
 
-	<select id="selectUserNickNameList"
-		resultType="com.javaex.vo.UsersVo">
-		<![CDATA[
-			
-			select users.nickname
- from wordbook,directory,users
- where users.userno=directory.userno
- and directory.directoryno=wordbook.wordbookno
- and users.id = 'seo'			
-		]]>
-	</select>
-
 </mapper>

@@ -1,12 +1,23 @@
 package com.javaex.vo;
 
+import java.sql.Date;
+
 public class WordbookVo {
 	private int wordbookNo;
 	private String wordbookName;
-	private String wordbookRegdate;
+	private Date wordbookRegdate;
 	private int wordbookAccess;
 	private int wordbookType;
 	private int directoryNo;
+	private String wordbookMaker;
+
+	public String getWordbookMaker() {
+		return wordbookMaker;
+	}
+
+	public void setWordbookMaker(String wordbookMaker) {
+		this.wordbookMaker = wordbookMaker;
+	}
 
 	public int getWordbookNo() {
 		return wordbookNo;
@@ -24,11 +35,11 @@ public class WordbookVo {
 		this.wordbookName = wordbookName;
 	}
 
-	public String getWordbookRegdate() {
+	public Date getWordbookRegdate() {
 		return wordbookRegdate;
 	}
 
-	public void setWordbookRegdate(String wordbookRegdate) {
+	public void setWordbookRegdate(Date wordbookRegdate) {
 		this.wordbookRegdate = wordbookRegdate;
 	}
 
@@ -56,7 +67,7 @@ public class WordbookVo {
 		this.directoryNo = directoryNo;
 	}
 
-	public WordbookVo(int wordbookNo, String wordbookName, String wordbookRegdate, int wordbookAccess, int wordbookType,
+	public WordbookVo(int wordbookNo, String wordbookName, Date wordbookRegdate, int wordbookAccess, int wordbookType,
 			int directoryNo) {
 		super();
 		this.wordbookNo = wordbookNo;

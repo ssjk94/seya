@@ -103,8 +103,8 @@ public class UsersVo {
 		super();
 	}
 
-	public UsersVo(int userNo, String id, String password, String userName, String email, String nickname,
-			String userImage, String userBirth, int sex, int userAccess) {
+	public UsersVo(int userNo, String id, String password, String username, String email, String nickname,
+			String userimage, String userbirth, int sex, int useraccess) {
 		super();
 		this.userNo = userNo;
 		this.id = id;

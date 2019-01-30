@@ -386,14 +386,14 @@ desired effect
 			
 			
 			<!-- 자바로 보내야함 -->
-			<form action="${pageContext.request.contextPath}/listtest">
+			<form action="${pageContext.request.contextPath}/${URLid}/vocabularylist" method="post">
 				<input type="text" class="wordpadname" name="wordbookname">
 				
 				<div class="vocabularycontainer">
 					<!-- section 1 -->
 					<!-- Text area 구역 -->
 					<div class="textboxsize">
-						<textarea name="wordarea" class="form-control" rows="18"
+						<textarea name="word" class="form-control" rows="18"
 							placeholder="단어1 엔터키로 한 단어를 구분합니다. &#13;&#10;단어2"></textarea>
 					</div>
 

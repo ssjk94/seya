@@ -246,10 +246,10 @@ desired effect
 
 					<div class="pull-right box-tools">
 						<a type="button" class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/mypage/list"><i
+							href="${pageContext.request.contextPath}/${URLid}/list"><i
 							class="fa fa-bars"></i></a> <a type="button"
 							class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/mypage/gallery"><i
+							href="${pageContext.request.contextPath}/${URLid}"><i
 							class="fa fa-th-large"></i></a>
 					</div>
 				</div>
@@ -267,27 +267,39 @@ desired effect
 										<tr>
 											<th class="col-xs-10">
 												<ul class="list-inline">
-													<li class="col-xs-2 table-list">단어장 이름</li>
-													<li class="col-xs-2 table-list">만든 이</li>
+													<li class="col-xs-3 table-list">단어장 이름</li>
+													<li class="col-xs-3 table-list">만든 이</li>
 													<li class="col-xs-2 table-list">만든 날짜</li>
 													<li class="col-xs-2 table-list">상태</li>
-													<li class="col-xs-4 table-list">설명</li>
 												</ul>
 											</th>
 											<th class="col-xs-2 table-list">링크</th>
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${requestScope.wordbooklist}" var="wordbookVo">
 										<tr>
 											<td class="col-xs-10">
 												<ul class="list-inline">
-													<a href="${pageContext.request.contextPath}/flashcard">
-														<li class="col-xs-2 table-list">단어장 1</li>
-														<li class="col-xs-2 table-list">Seya</li>
-														<li class="col-xs-2 table-list">2019-01-01</li>
-														<li class="col-xs-2 table-list"><span
-															class="label label-danger">공유불가</span></li>
-														<li class="col-xs-4 table-list">토익 단어장 chp.1</li>
+													<a href="${pageContext.request.contextPath}/${URLid}/${wordbookVo.wordbookName}/flashcard">
+														<li class="col-xs-3 table-list">${wordbookVo.wordbookName}</li>
+														<li class="col-xs-3 table-list">${wordbookVo.wordbookMaker}</li>
+														<li class="col-xs-2 table-list">${wordbookVo.wordbookRegdate}</li>
+														<c:choose>
+																<c:when test="${wordbookVo.wordbookAccess eq 0}">
+																<li class="col-xs-2 table-list">
+       																<span class="label label-success">공유 가능</span>
+       															</li>
+    															</c:when>
+    															
+																<c:otherwise>
+																<li class="col-xs-2 table-list">
+      																 <span class="label label-danger">공유 불가</span>
+      															</li>
+    															</c:otherwise>
+
+															</c:choose>
+														
 												</ul>
 											</td>
 											</a>
@@ -295,12 +307,12 @@ desired effect
 												href="${pageContext.request.contextPath}/listtest">수정&nbsp;&nbsp;</a><a
 												href="#">삭제</a></td>
 										</tr>
+									</c:forEach>
 										
-										
-										
+										<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
 										<tr>
 											<td align="center" colspan="2"><a
-												href=${pageContext.request.contextPath}/leech>새 단어장 추가</a></td>
+												href="${pageContext.request.contextPath}/${URLid}/addvocabulary">새 단어장 추가</a></td>
 										</tr>
 									</tbody>
 								</table>
