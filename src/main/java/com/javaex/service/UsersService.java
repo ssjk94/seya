@@ -21,8 +21,11 @@ public class UsersService {
 	public int insertUser(UsersVo usersVo) {
 		return usersDao.insertUsers(usersVo);
 	}
-	public List<UsersVo> userLogin(UsersVo usersVo) {
+	
+	public UsersVo userLogin(UsersVo usersVo) {
+		System.out.println("서비스왔음?");
+		System.out.println(usersVo.toString());
 		
-		return usersDao.userLogin();
+		return usersDao.userLogin(usersVo);
 	}
 }

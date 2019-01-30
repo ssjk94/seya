@@ -11,13 +11,13 @@
 			select * from users
 		]]>
 	</select>
-
+	
 	<!-- 유저 login 쿼리문 -->
 	<select id="selectUserLogin" resultType="com.javaex.vo.UsersVo">
 		<![CDATA[
 			select id, password from users where 
 			id=#{id} and 
-			password = #{password};
+			password = #{password}
 		]]>
 	</select>
 

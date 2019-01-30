@@ -22,9 +22,10 @@ public class UsersDao {
 	public int insertUsers(UsersVo usersVo) {
 		return sqlSession.insert("users.insertUsers", usersVo);
 	}
-	public List<UsersVo> userLogin() {
-		
-		return sqlSession.selectList("users.selectUserLogin");
+	public UsersVo userLogin(UsersVo usersVo) {
+		System.out.println("Dao왔음?");
+		System.out.println(usersVo.toString());
+		return sqlSession.selectOne("users.selectUserLogin", usersVo);
 	}
 
 }

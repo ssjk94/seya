@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.javaex.service.UsersService;
 import com.javaex.vo.UsersVo;
@@ -44,16 +45,30 @@ public class UsersController {
 	}
 
 	@RequestMapping("/userlogin.do")
-	public String userLogin(HttpSession session,HttpServletRequest req,UsersVo usersVo) {
+	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req) {
 
-		usersService.userLogin(usersVo);
-		
-		
-		String id = req.getParameter("id");
-		session.setAttribute("id", id);
-		return "_view/gallery";
-		
-		
+		System.out.println("여기는 왔을까 혹시");
+		System.out.println(usersVo.toString());
+		  if (usersService.userLogin(usersVo) == null) {
+			System.out.println("zzzzzzzzzzzzzzzzzzzzzz");
+			return "main/index";
+
+		} else {
+			usersService.userLogin(usersVo);
+			System.out.println("xml이후에 도착했니");
+			String id = req.getParameter("id");
+			String password = req.getParameter("password");
+			System.out.println("req id:" + id);
+			System.out.println("req pw:" + password);
+
+			if (usersVo.getId().equals(id) || usersVo.getPassword().equals(password)) {
+				System.out.println("sdasd");
+				session.setAttribute("id", id);
+				return "_view/gallery";
+			} else {
+				return "main/index";
+			}
+
+		}
 	}
-
 }

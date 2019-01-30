@@ -263,7 +263,7 @@ $('[name="f"]').on('submit', function(){
 		$('#password').focus();
 		return false;
 	}
-	//비밀번호 길이 체크(4~8자 까지 허용)
+	//비밀번호 길이 체크(4~12자 까지 허용)
 	if ( $('#password').val().length<4 || $('#password').val().length>12) {
 		alert("비밀번호를 4~12자까지 입력해주세요.")
 		$('#password').focus();

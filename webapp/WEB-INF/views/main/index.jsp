@@ -120,20 +120,19 @@ desired effect
 				<div class="user-header">
 					<h2 class="text-center" style="color: #dd4b39">로그인</h2>
 				</div>
-				<form action="userlogin.do">
+				<form action="userlogin.do" name="loginform" method="get">
 					<div class="user-body">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="아이디"
-								name="id" maxlength="20">
+								id="id" name="id" maxlength="20">
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control" placeholder="비밀번호"
-								name="password" maxlength="20">
+								id="password" name="password" maxlength="20">
 						</div>
 						<div>
-							<a href="${pageContext.request.contextPath}/mypage/gallery"
-								class="btn btn-block btn-danger form control"
-								style="width: 100%">로그인</a> <a
+							<input type="submit" class="btn btn-block btn-danger form control"
+								style="width: 100%" value="로그인"> <a
 								href="${pageContext.request.contextPath}/main2"
 								class="btn btn-block btn-danger form control"
 								style="width: 100%">회원가입</a> <a href="#"
@@ -180,4 +179,33 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
+<script type="text/javascript">
+ $('[name="loginform"]').on('submit', function(){
+	//밸류 함수
+	var id = $('#id').val();
+	var password = $('#password').val();
+	
+	// 아이디 체크
+	if(id == "" || id == null){
+		alert("아이디를 입력하지 않았습니다.")
+		$('#id').focus();
+		return false;
+	}
+	if(id.search(/\s/) != -1) { 
+		alert("아이디에 공백을 사용할 수 없습니다.");
+		$('#id').focus();
+		return false;
+	}
+	//아이디체크 끝
+	//비밀번호 입력여부 체크
+	if (password == "" || password == null) {
+		console.log("비밀번호 입력안함")
+		alert("비밀번호를 입력하지 않았습니다.")
+		$('#password').focus();
+		return false;
+	} 
+	 
+		
+	}); 
+</script>
 </html>
