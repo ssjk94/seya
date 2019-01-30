@@ -6,18 +6,25 @@
 
 	<!-- 쿼리문 작성 -->
 
-	<select id="selectNameDataTypeList" resultType="com.javaex.vo.WordbookVo">
+	<select id="selectWordbookList" resultType="com.javaex.vo.WordbookVo" parameterType="map">
 		<![CDATA[
 		
-			select wordbook.wordbookname,
-wordbook.wordbooktype 
+			select wordbook.wordbookname, 
+wordbook.wordbookaccess, 
+wordbook.wordbookmaker, 
+wordbook.wordbookregdate 
 from wordbook,directory,users 
 where users.userno=directory.userno 
 and directory.directoryno=wordbook.directoryno 
-and users.id = 'seo'
+and directory.directoryname = #{directoryname} 
+and users.id = #{urlid}
 
 		]]>
 	</select>
+	
+	<insert id="addwordbook" parameterType="java.lang.String">
+	
+	</insert>
 <!-- 
 	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">
 		<![CDATA[

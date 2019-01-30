@@ -299,7 +299,7 @@ desired effect
 		<!-- navigation -->
 		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
 		<!-- /navigation -->
-
+		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -318,10 +318,10 @@ desired effect
 
 					<div class="pull-right box-tools">
 						<a type="button" class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/mypage/list"><i
+							href="${pageContext.request.contextPath}/${URLid}/${directoryname}/list"><i
 							class="fa fa-bars"></i></a> <a type="button"
 							class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/mypage/gallery"><i
+							href="${pageContext.request.contextPath}/${URLid}/${directoryname}"><i
 							class="fa fa-th-large"></i></a>
 					</div>
 				</div>
@@ -334,13 +334,14 @@ desired effect
 						<div class="box">
 							<div class="box-body no-padding">
 								<div class="row">
+								<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
 										<div class="small-box">
 											<div class="inner-header">
 												<div class="tools"></div>
 											</div>
-											<a href="${pageContext.request.contextPath}/leech"
+											<a href="${pageContext.request.contextPath}/${URLid}/${directoryname}/addvocabulary"
 												class="inner-body">
 												<div class="inner">
 													<h3>단어장 만들기</h3>
@@ -358,9 +359,7 @@ desired effect
 										</div>
 									</div>
 									<!-- ./col -->
-<!--
 <c:forEach items="${requestScope.wordbooklist}" var="wordbookVo">
--->
 									<!-- ./col -->
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
@@ -376,11 +375,21 @@ desired effect
 											<a href="${pageContext.request.contextPath}/flashcard"
 												class="inner-body">
 												<div class="inner">
-													<h3>${wordbookVo.wordbookname}</h3>
-													<p>${nickname}</p>
-													<p>${wordbookVo.wordbookregdate}</p>
+													<h3>${wordbookVo.wordbookName}</h3>
+													<p>${wordbookVo.wordbookMaker}</p>
+													<p>${wordbookVo.wordbookRegdate}</p>
 													<p>
-														<span class="label label-danger">${wordbooktype}s</span>
+															<c:choose>
+
+																<c:when test="${wordbookVo.wordbookAccess eq 0}">
+       																<span class="label label-success">공유 가능</span>
+    															</c:when>
+    															
+																<c:otherwise>
+      																 <span class="label label-danger">공유 불가</span>
+    															</c:otherwise>
+
+															</c:choose>
 													</p>
 												</div>
 												<div class="icon">
@@ -393,9 +402,9 @@ desired effect
 											</a>
 										</div>
 									</div>
-<!--
+
 </c:forEach>
--->
+
 
 
 								</div>
@@ -435,6 +444,4 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
-
-<!-- 자바스크립트로 타입이 1이면 공유 가능 2면 공유 불가 이런식으로 레디로 만들어야함 -->
 </html>

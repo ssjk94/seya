@@ -1,6 +1,7 @@
 package com.javaex.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,12 @@ public class WordbookService {
 	@Autowired
 	WordbookDao wordbookDao;
 
-	public List<WordbookVo> getNameDataType() {
-		return wordbookDao.selectNameDataType();
+	public List<WordbookVo> getWordbookList(Map<String, String> path) {
+		
+		return wordbookDao.selectWordbookList(path);
 	}
 
-	public List<UsersVo> getNickname(){
-		return wordbookDao.selectUserNickNameList();
+	public void addwordbook(String id,String wordbookname) {
+		wordbookDao.addwordbook(id, wordbookname);
 	}
-
-	
 }
