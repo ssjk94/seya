@@ -24,7 +24,7 @@ public class UsersDao {
 	}
 	public UsersVo userLogin(UsersVo usersVo) {
 		System.out.println("Dao왔음?");
-		System.out.println(usersVo.toString());
+		System.out.println(usersVo.login());
 		return sqlSession.selectOne("users.selectUserLogin", usersVo);
 	}
 

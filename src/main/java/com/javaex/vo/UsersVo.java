@@ -134,7 +134,7 @@ public class UsersVo {
 				+ userbirth + ", sex=" + sex + ", useraccess=" + useraccess + ", usercontent=" + usercontent + "]";
 	}
 	
-	public String Login() {
+	public String login() {
 		return "Login [id = " + id + "password = " + password + "]";
 	}
 
