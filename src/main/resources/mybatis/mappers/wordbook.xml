@@ -5,8 +5,8 @@
 <mapper namespace="wordbook">
 
 	<!-- 쿼리문 작성 -->
-
-	<select id="selectWordbookList" resultType="com.javaex.vo.WordbookVo" parameterType="map">
+	<!-- 사용자+디렉토리 리스트 -->
+	<select id="selectWordbookDirectoryList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
 		<![CDATA[
 		
 			select wordbook.wordbookname, 
@@ -16,8 +16,23 @@ wordbook.wordbookregdate
 from wordbook,directory,users 
 where users.userno=directory.userno 
 and directory.directoryno=wordbook.directoryno 
-and directory.directoryname = #{directoryname} 
-and users.id = #{urlid}
+and directory.directoryname = #{directoryName} 
+and users.id = #{URLId}
+
+		]]>
+	</select>
+	<!-- 사용자 -->
+	<select id="selectWordbookAllList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+		<![CDATA[
+		
+			select wordbook.wordbookname, 
+wordbook.wordbookaccess, 
+wordbook.wordbookmaker, 
+wordbook.wordbookregdate 
+from wordbook,directory,users 
+where users.userno=directory.userno 
+and directory.directoryno=wordbook.directoryno 
+and users.id = #{URLId}
 
 		]]>
 	</select>

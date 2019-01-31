@@ -17,32 +17,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.javaex.service.UsersService;
 import com.javaex.service.WordbookService;
-import com.javaex.vo.UsersVo;
-import com.javaex.vo.WordbookVo;
+import com.javaex.vo.URLPathVo;
 
 @Controller
 public class WordbookController {
 
 	@Autowired
 	WordbookService wordbookService;
-//url로만 가는 맵핑 클래스 하나 만들어 주기
-	
-	
-	@RequestMapping(value = "{urlid}/{directoryname}", method = RequestMethod.GET)
-	public String gallery(@PathVariable Map<String, String> path,Model md) {
-		
-		String urlid = path.get("urlid");
-		String directoryname = path.get("directoryname");
 
-		System.out.println("urlid :"+urlid);
-		System.out.println("directoryName :"+directoryname);
-		System.out.println("db에 등록할 값 확인"+path);
+//사용자 아이디로 들어갔을때 리스트 출력	
+	@RequestMapping(value = "{URLId}", method = RequestMethod.GET)
+	public String wordbook(URLPathVo urlpath,Model md) {
+		
+		System.out.println("URLId :"+urlpath.getURLId());
+		System.out.println("db에 등록할 값 확인"+urlpath.toString());
+		
+		md.addAttribute("URLId", urlpath.getURLId());
+		md.addAttribute("wordbooklist",wordbookService.getWordbookAllList(urlpath));
+		return "_view/gallery";
+	}
+//사용자 아이디 + 디렉토리 리스트 출력
+	@RequestMapping(value = "{URLId}/{directoryName}", method = RequestMethod.GET)
+	public String gallery(URLPathVo urlpath,Model md) {
+		
+		System.out.println("URLId :"+urlpath.getURLId());
+		System.out.println("directoryName :"+urlpath.getDirectoryName());
+		System.out.println("db에 등록할 값 확인"+urlpath.toString());
 		//단어장 이름,만든날짜,타입,닉네임 리스트
-		md.addAttribute("URLid", urlid);
-		md.addAttribute("directoryName", directoryname);
-		md.addAttribute("wordbooklist",wordbookService.getWordbookList(path));
+		md.addAttribute("URLId", urlpath.getURLId());
+		md.addAttribute("directoryName", urlpath.getDirectoryName());
+		md.addAttribute("wordbooklist",wordbookService.getWordbookDirectoryList(urlpath));
 		return "_view/gallery";
 	}
 	
