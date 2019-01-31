@@ -4,24 +4,4 @@
 
 <mapper namespace="directory">
 
-	<!-- 쿼리문 작성 -->
-
-	<select id="selectDirectoryList" resultType="com.javaex.vo.DirectoryVo">
-		<![CDATA[
-			select * from directory
-		]]>
-	</select>
-
-<!-- 
-	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">
-		<![CDATA[
-			insert into guestbook
-			values (guestbook_seq.nextval,
-			#{name},
-			#{content},
-			#{password},
-			sysdate)
-		]]>
-	</insert>
--->
 </mapper>
