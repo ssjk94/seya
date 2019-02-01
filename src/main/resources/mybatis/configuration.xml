@@ -18,7 +18,9 @@
 		<mapper resource="mybatis/mappers/addvocabulary.xml" />
 		<mapper resource="mybatis/mappers/flashcard.xml" />
 		<mapper resource="mybatis/mappers/vocabularylist.xml" />
+		
 	</mappers>
+	
 	
 
     
