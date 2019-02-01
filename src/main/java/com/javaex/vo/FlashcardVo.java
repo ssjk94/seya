@@ -1,58 +1,38 @@
 package com.javaex.vo;
 
 public class FlashcardVo {
-	private int wordno;
-	private String wordname;
-	private int meanno;
-	private String meanname;
-	private int wordbookno;
+	private String wordName;
+	private String meanName;
+	private int wordbookNo;
 
-	public int getWordno() {
-		return wordno;
+	public String getWordName() {
+		return wordName;
 	}
 
-	public void setWordno(int wordno) {
-		this.wordno = wordno;
+	public void setWordName(String wordName) {
+		this.wordName = wordName;
 	}
 
-	public String getWordname() {
-		return wordname;
+	public String getMeanName() {
+		return meanName;
 	}
 
-	public void setWordname(String wordname) {
-		this.wordname = wordname;
+	public void setMeanName(String meanName) {
+		this.meanName = meanName;
 	}
 
-	public int getMeanno() {
-		return meanno;
+	public int getWordbookNo() {
+		return wordbookNo;
 	}
 
-	public void setMeanno(int meanno) {
-		this.meanno = meanno;
+	public void setWordbookNo(int wordbookNo) {
+		this.wordbookNo = wordbookNo;
 	}
 
-	public String getMeanname() {
-		return meanname;
-	}
-
-	public void setMeanname(String meanname) {
-		this.meanname = meanname;
-	}
-
-	public int getWordbookno() {
-		return wordbookno;
-	}
-
-	public void setWordbookno(int wordbookno) {
-		this.wordbookno = wordbookno;
-	}
-
-	public FlashcardVo(int wordno, String wordname, int meanno, String meanname, int wordbookno) {
-		this.wordno = wordno;
-		this.wordname = wordname;
-		this.meanno = meanno;
-		this.meanname = meanname;
-		this.wordbookno = wordbookno;
+	public FlashcardVo(String wordName, String meanName, int wordbookNo) {
+		this.wordName = wordName;
+		this.meanName = meanName;
+		this.wordbookNo = wordbookNo;
 	}
 
 	public FlashcardVo() {
@@ -60,8 +40,7 @@ public class FlashcardVo {
 
 	@Override
 	public String toString() {
-		return "FlashcardVo [wordno=" + wordno + ", wordname=" + wordname + ", meanno=" + meanno + ", meanname="
-				+ meanname + ", wordbookno=" + wordbookno + "]";
+		return "FlashcardVo [wordName=" + wordName + ", meanName=" + meanName + ", wordbookNo=" + wordbookNo + "]";
 	}
 
 }

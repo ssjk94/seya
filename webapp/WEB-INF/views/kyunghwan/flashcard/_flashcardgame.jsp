@@ -84,8 +84,22 @@
 	<div class="panel panel-default flashcardcontainer">
 		<!-- content box -->
 		<div id="wm-over" role="button" class="panel-body flashcardbox">
-			<c:import
-				url="/WEB-INF/views/kyunghwan/flashcard/flashcardcontent.jsp"></c:import>
+			<c:forEach items="${requestScope.selectFlashcardList}"
+				var="flashcardVo">
+				<div>
+					<!-- word -->
+					<div>
+						<p>${flashcardVo.wordName}</p>
+					</div>
+				</div>
+
+				<div>
+					<!-- mean -->
+					<div>
+						<span>${flashcardVo.meanName}</span>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
 		<!-- control box -->
 		<div class="panel-footer flashcontrolbox">

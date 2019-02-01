@@ -6,18 +6,16 @@
 
 	<!-- 쿼리문 작성 -->
 
-	<select id="selectFlashcardList" resultType="com.javaex.vo.FlashcardVo">
+	<select id="selectFlashcardList" resultType="com.javaex.vo.FlashcardVo" parameterType="com.javaex.vo.URLPathVo">
 		<![CDATA[
-			select e.wordno, e.wordname,
-				listagg(k.meanno, '<br>') within
-				group (order by k.meanno) as meanno,
-				listagg(k.meanname, '<br>') within
+			select e.wordname,
+				listagg(k.meanname, ', ') within
 				group (order by k.meanno) as meanname				
 				from wordbook w, word_eng e, mean_kor k
-				where w.wordbookno = #{wordbookno}
+				where w.wordbookno = #{wordbookNo}
 				and e.wordbookno = w.wordbookno
 				and k.wordno = e.wordno
-				group by e.wordno, e.wordname
+				group by e.wordname
 		]]>
 	</select>
 </mapper>

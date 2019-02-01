@@ -7,20 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.FlashcardVo;
+import com.javaex.vo.URLPathVo;
 
 @Repository
 public class FlashcardDao {
 
 	@Autowired
 	public SqlSession sqlSession;
-	FlashcardVo flashcardVo;
 
 	// {id} main
-	public List<FlashcardVo> selectFlashcardList() {
+	public List<FlashcardVo> selectFlashcardList(URLPathVo urlPathVo) {
+		
 		System.out.println("flashcardDao");
-		System.out.println(flashcardVo.toString());
 
-		return sqlSession.selectList("flashcard.selectFlashcardList");
+		return sqlSession.selectList("flashcard.selectFlashcardList", urlPathVo);
 	}
 
 }

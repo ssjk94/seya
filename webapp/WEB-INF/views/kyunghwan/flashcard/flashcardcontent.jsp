@@ -6,14 +6,14 @@
 	<div>
 		<!-- word -->
 		<div>
-			<span class="view-hidden">${flashcardVo.wordno}</span> <span>${flashcardVo.wordname}</span>
+			<p>${flashcardVo.wordName}</p>
 		</div>
 	</div>
 
 	<div>
 		<!-- mean -->
 		<div>
-			<span class="view-hidden">${flashcardVo.meanno}</span> <span>${flashcardVo.meanname}</span>
+			<span>${flashcardVo.meanName}</span>
 		</div>
 	</div>
 </c:forEach>
