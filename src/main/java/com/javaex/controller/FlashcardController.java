@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.FlashcardService;
 import com.javaex.vo.FlashcardVo;
 import com.javaex.vo.URLPathVo;
+import com.javaex.vo.WordbookVo;
 
 @Controller
 public class FlashcardController {
@@ -22,7 +25,6 @@ public class FlashcardController {
 	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
 	public String flashcard(URLPathVo urlPathVo, @ModelAttribute FlashcardVo flashcardVo, HttpServletRequest req) {
 		System.out.println("flashcard");
-		System.out.println(flashcardVo.toString());
 		flashcardService.getFlashcardList();
 		System.out.println(flashcardVo.toString());
 		return "_view/flashcard";
