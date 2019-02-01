@@ -1,19 +1,9 @@
 package com.javaex.vo;
 
 public class FlashcardVo {
-	private int wordno;
 	private String wordname;
-	private int meanno;
 	private String meanname;
 	private int wordbookno;
-
-	public int getWordno() {
-		return wordno;
-	}
-
-	public void setWordno(int wordno) {
-		this.wordno = wordno;
-	}
 
 	public String getWordname() {
 		return wordname;
@@ -21,14 +11,6 @@ public class FlashcardVo {
 
 	public void setWordname(String wordname) {
 		this.wordname = wordname;
-	}
-
-	public int getMeanno() {
-		return meanno;
-	}
-
-	public void setMeanno(int meanno) {
-		this.meanno = meanno;
 	}
 
 	public String getMeanname() {
@@ -47,10 +29,8 @@ public class FlashcardVo {
 		this.wordbookno = wordbookno;
 	}
 
-	public FlashcardVo(int wordno, String wordname, int meanno, String meanname, int wordbookno) {
-		this.wordno = wordno;
+	public FlashcardVo(String wordname, String meanname, int wordbookno) {
 		this.wordname = wordname;
-		this.meanno = meanno;
 		this.meanname = meanname;
 		this.wordbookno = wordbookno;
 	}
@@ -60,8 +40,7 @@ public class FlashcardVo {
 
 	@Override
 	public String toString() {
-		return "FlashcardVo [wordno=" + wordno + ", wordname=" + wordname + ", meanno=" + meanno + ", meanname="
-				+ meanname + ", wordbookno=" + wordbookno + "]";
+		return "FlashcardVo [wordname=" + wordname + ", meanname=" + meanname + ", wordbookno=" + wordbookno + "]";
 	}
 
 }

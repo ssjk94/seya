@@ -14,13 +14,8 @@ public class FlashcardService {
 	@Autowired
 	FlashcardDao flashcardDao;
 
-	public List<FlashcardVo> getFlashcardWordList() {
-		return flashcardDao.selectFlashcardWordList();
-
-	}
-
-	public List<FlashcardVo> getFlashcardMeanList() {
-		return flashcardDao.selectFlashcardWordList();
+	public List<FlashcardVo> getFlashcardList() {
+		return flashcardDao.selectFlashcardList();
 
 	}
 }

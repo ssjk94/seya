@@ -15,19 +15,12 @@ public class FlashcardDao {
 	public SqlSession sqlSession;
 
 	// {id} main
-	public List<FlashcardVo> selectFlashcardWordList() {
+	public List<FlashcardVo> selectFlashcardList() {
 		System.out.println("1");
-		sqlSession.selectList("flashcard.selectFlashcardWordList");
+		sqlSession.selectList("flashcard.selectFlashcardList");
 		System.out.println("2");
 
 		return null;
 	}
 
-	public List<FlashcardVo> selectFlashcardMeanList() {
-		System.out.println("1");
-		sqlSession.selectList("flashcard.selectFlashcardMeanList");
-		System.out.println("2");
-
-		return null;
-	}
 }
