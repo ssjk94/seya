@@ -24,9 +24,9 @@ public class FlashcardController {
 
 	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
 	public String flashcard(URLPathVo urlPathVo, @ModelAttribute FlashcardVo flashcardVo, HttpServletRequest req) {
-		System.out.println("flashcard");
-		flashcardService.getFlashcardList();
-		System.out.println(flashcardVo.toString());
+		
+		System.out.println(urlPathVo.toString());
+		
 		return "_view/flashcard";
 	}
 

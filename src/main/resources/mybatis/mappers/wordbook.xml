@@ -24,7 +24,8 @@
 					w.wordbookname,
 					w.wordbookregdate,
 					w.wordbookaccess,
-					w.wordbookmaker
+					w.wordbookmaker,
+					d.directoryno
 		from 	wordbook w, directory d, users u
 		where 	w.directoryno = d.directoryno
 		and 		d.userno = u.userno

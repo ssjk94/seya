@@ -392,8 +392,12 @@ desired effect
 												</div>
 											</div>
 											<!-- 여기에 버튼 형식  -->
+											 <form action="${pageContext.request.contextPath}/${URLId}/flashcard" method="get">
+												<input name="directoryNo" type="hidden" value="${wordbookVo.directoryNo}">
+												<input name="wordbookNo" type="hidden" value="${wordbookVo.wordbookNo}">
+												<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
 											<div class="inner-body">
-											 
+												
 												<div class="inner">
 													<h3>${wordbookVo.wordbookName}</h3>
 													<p>${wordbookVo.wordbookMaker}</p>
@@ -421,8 +425,9 @@ desired effect
 												<div class="small-box-footer bgcolor-default">
 													공부하기 <i class="fa fa-arrow-circle-right"></i>
 												</div>
-
 											</div>
+												</button>
+											</form>
 									
 									
 									
