@@ -6,27 +6,22 @@
 
 	<!-- 쿼리문 작성 -->
 
-	<select id="selectFlashcardWordList" resultType="com.javaex.vo.WordbookVo">
+	<select id="selectFlashcardWordList" resultType="com.javaex.vo.FlashcardVo">
 		<![CDATA[
-			select seyawordname
-			from seyaclass, seyaword_eng
-			where seyaclass.seyawordno = seyaword_eng.seyawordno
-			and seyaclass.seyawordbookno = 
-				(select seyawordbookno
-				from seyawordbook
-				where seyawordbookname = '내 단어장1')
+			select e.wordno, e.wordname
+				from word_eng e, wordbook w
+				where e.wordbookno = w.wordbookno
+				and w.wordbookno = #{wordbookno}
 		]]>
 	</select>
-<!-- 
-	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">
+	
+	<select id="selectFlashcardMeanList" resultType="com.javaex.vo.FlashcardVo">
 		<![CDATA[
-			insert into guestbook
-			values (guestbook_seq.nextval,
-			#{name},
-			#{content},
-			#{password},
-			sysdate)
+			select k.meanno, k.meanname
+				from word_eng e, mean_kor k, wordbook w
+				where e.wordno = k.wordno
+				and w.wordbookno = e.wordbookno
+				and w.wordbookno = #{wordbookno}
 		]]>
-	</insert>
--->
+	</select>
 </mapper>

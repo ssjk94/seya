@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.repository.FlashcardDao;
-import com.javaex.vo.UsersVo;
-import com.javaex.vo.WordbookVo;
+import com.javaex.vo.FlashcardVo;
 
 @Service
 public class FlashcardService {
@@ -15,13 +14,13 @@ public class FlashcardService {
 	@Autowired
 	FlashcardDao flashcardDao;
 
-	public List<WordbookVo> getFlashcardwordList() {
-		return flashcardDao.selectFlashcardwordList();
+	public List<FlashcardVo> getFlashcardWordList() {
+		return flashcardDao.selectFlashcardWordList();
+
 	}
 
-	public List<UsersVo> getNickname(){
-		return flashcardDao.selectUserNickNameList();
-	}
+	public List<FlashcardVo> getFlashcardMeanList() {
+		return flashcardDao.selectFlashcardWordList();
 
-	
+	}
 }
