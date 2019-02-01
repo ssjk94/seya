@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.FlashcardService;
 import com.javaex.vo.FlashcardVo;
+import com.javaex.vo.URLPathVo;
 
 @Controller
 public class FlashcardController {
@@ -19,7 +20,7 @@ public class FlashcardController {
 	FlashcardService flashcardService;
 
 	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
-	public String flashcard(@ModelAttribute FlashcardVo flashcardVo, HttpServletRequest req) {
+	public String flashcard(URLPathVo urlPathVo, @ModelAttribute FlashcardVo flashcardVo, HttpServletRequest req) {
 		System.out.println("flashcard");
 		System.out.println(flashcardVo.toString());
 		flashcardService.getFlashcardList();
