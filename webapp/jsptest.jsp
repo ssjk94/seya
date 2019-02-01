@@ -17,6 +17,7 @@
           var dd     = jumin1.substr(4,2);        // 일
           var genda  = jumin2.substr(0,1);        // 성별
           var msg, ss, cc;
+          
         //아이디 입력여부 검사
         if (f.my_id.value == "") {
             alert("아이디를 입력하지 않았습니다.")
