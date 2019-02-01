@@ -13,9 +13,11 @@ public class FlashcardService {
 
 	@Autowired
 	FlashcardDao flashcardDao;
+	
 
 	public List<FlashcardVo> getFlashcardList() {
+		System.out.println("FlashcardService");
+		
 		return flashcardDao.selectFlashcardList();
-
 	}
 }

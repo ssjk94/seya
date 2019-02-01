@@ -13,14 +13,14 @@ public class FlashcardDao {
 
 	@Autowired
 	public SqlSession sqlSession;
+	FlashcardVo flashcardVo;
 
 	// {id} main
 	public List<FlashcardVo> selectFlashcardList() {
-		System.out.println("1");
-		sqlSession.selectList("flashcard.selectFlashcardList");
-		System.out.println("2");
+		System.out.println("flashcardDao");
+		System.out.println(flashcardVo.toString());
 
-		return null;
+		return sqlSession.selectList("flashcard.selectFlashcardList");
 	}
 
 }

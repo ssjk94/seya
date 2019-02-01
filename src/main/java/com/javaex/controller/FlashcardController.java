@@ -18,11 +18,12 @@ public class FlashcardController {
 
 	FlashcardService flashcardService;
 
-	@RequestMapping(value = "/flashcard", method = RequestMethod.GET)
+	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
 	public String flashcard(@ModelAttribute FlashcardVo flashcardVo, HttpServletRequest req) {
 		System.out.println("flashcard");
+		System.out.println(flashcardVo.toString());
 		flashcardService.getFlashcardList();
-		flashcardVo.toString();
+		System.out.println(flashcardVo.toString());
 		return "_view/flashcard";
 	}
 

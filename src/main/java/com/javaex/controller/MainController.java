@@ -75,7 +75,7 @@ public class MainController {
 		System.out.println("signup");
 		return "kyunghwan/signup/signupform";
 	}
-
+/*
 	@RequestMapping(value = "/flashcard", method = RequestMethod.GET)
 	public String flashcard(Model md, HttpServletRequest req) {
 		System.out.println("flashcard");
@@ -141,6 +141,7 @@ public class MainController {
 		
 		return "_view/flashcard";
 	}
+	*/
 	@RequestMapping(value = "/leech", method = RequestMethod.GET)
 	public String modibreak() {
 		System.out.println("leech");
