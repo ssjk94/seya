@@ -180,9 +180,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	border-color: #ffffff;
 	border: 1px;
 	border-left: 1.5px solid #ff6666;
-	height: 30px;
+	height: 40px;
 	width: 350px;
 	font-size: 16px;
+	padding: 15px;
 }
 </style>
 
@@ -244,32 +245,26 @@ desired effect
 
 					</div>
 
-					<form action=usermodify.do method="post"
+					<form action="usermodify.do" method="post"
 						enctype="multipart/form-data">
-						<!-- <div class="lev1"
-							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
-							<span
-								style="width: 110px; height: auto; display: inline-block; font-size: 16px;">
-								사용자 이름 변수가 들어가야합니다. 이름
-							</span> <input type="text" id="username" name="username" class=inputmodi>
-						</div> -->
 						<div class="lev1"
 							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
 
 							<span
 								style="width: 110px; height: auto; display: inline-block; font-size: 16px;">
 								<!-- 사용자 이름 변수가 들어가야합니다. --> 닉네임
-							</span> <input type="text" id="nickname" name="nickname" class=inputmodi>
+							</span> <input type="text" id="nickname" name="nickname"
+								value="${usersVo.nickname}" class=inputmodi>
 						</div>
 						<div class="lev1"
 							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
 
 							<!-- 프로필 사진 -->
-<!-- 							<span
+							<!-- 							<span
 								style="width: 110px; height: auto; display: inline-block; font-size: 16px;">
-								프로필 사진 </span> -->프사
-								 <input type="file" id="userimage" name="file" class=inputmodi> 
+								프로필 사진 </span> -->
+							프사 <input type="file" id="userimage" name="file"
+								value="" class="inputmodi">
 						</div>
 						<div class="lev1"
 							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
@@ -278,7 +273,7 @@ desired effect
 								style="width: 110px; height: auto; display: inline-block; font-size: 16px;">
 								<!-- 사용자 이름 변수가 들어가야합니다. --> 프로필 내용
 							</span> <input type="text" id="usercontent" name="usercontent"
-								class=inputmodi>
+								value="${usersVo.usercontent}" class=inputmodi>
 						</div>
 						<div class="lev1"
 							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
@@ -289,33 +284,6 @@ desired effect
 						</div>
 
 					</form>
-					<%-- <div class="lev1"
-						style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
-						<!-- 프로필 사진 변경하는 칸 -->
-						<c:import
-							url="/WEB-INF/views/kyunghwan/profilemodify/profilepicture.jsp"></c:import>
-
-					</div> --%>
-
-					<div class="lev1"
-						style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
-						<!-- 프로필 별명 변경칸 -->
-						<c:import
-							url="/WEB-INF/views/kyunghwan/profilemodify/profilenickname.jsp"></c:import>
-
-
-					</div>
-
-					<div class=""
-						style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
-						<!--  프로필 내용 변경하는 칸 -->
-						<c:import
-							url="/WEB-INF/views/kyunghwan/profilemodify/profilecontent.jsp"></c:import>
-
-					</div>
 
 				</div>
 			</section>

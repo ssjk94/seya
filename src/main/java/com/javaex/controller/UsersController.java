@@ -39,7 +39,7 @@ public class UsersController {
 
 	}
 
-	@RequestMapping("/userlogin.do")
+	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req) {
 
 		System.out.println(usersVo.toString());
@@ -72,41 +72,45 @@ public class UsersController {
 	}
 
 	@RequestMapping("{id}/profilemodify")
-	public String updatePageForm(@PathVariable String id, Model model, UsersVo usersVo) {
+	public String updatePageForm(@PathVariable String id, Model model, UsersVo usersVo, HttpSession session) {
 		System.out.println("정보수정 페이지갈거임");
 		if (id == null) {
 			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
 		}
+		System.out.println("여기까지는 왔어요?");
 		
-		//로그인 사용자 정보 가져오기
-		usersService.selectOneUsers(usersVo);
-		
+		usersVo.setId(id);
 		System.out.println(usersVo.toString());
+		//로그인 사용자 정보 가져오기
 		
-		String username = usersVo.getUsername();
-		String userimage = usersVo.getUserimage();
-		String usercontent = usersVo.getUsercontent();
-		//로그인 사용자 정보 화면에 보내기
-		model.addAttribute("username", username);
-		model.addAttribute("userimage", userimage);
-		model.addAttribute("usercontent", usercontent);
+		
+		model.addAttribute("usersVo",usersService.selectOneUsers(usersVo));
+		System.out.println(usersVo.toString());
+		session.setAttribute("id", id);
+		/*
+		 * String nickname = usersVo.getNickname(); String userimage =
+		 * usersVo.getUserimage(); String usercontent = usersVo.getUsercontent(); //로그인
+		 * 사용자 정보 화면에 보내기 model.addAttribute("nickname2", nickname);
+		 * model.addAttribute("userimage2", userimage);
+		 * model.addAttribute("usercontent2", usercontent);
+		 */
 		
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
 
-	@RequestMapping(value = "{id}/usermodify.do", method = RequestMethod.POST)
-	public String updateForm(@PathVariable String id, Model model, UsersVo usersVo, MultipartFile file) {
+	@RequestMapping(value = "{URLId}/usermodify.do", method = RequestMethod.POST)
+	public String updateForm(Model model, UsersVo usersVo, MultipartFile file) {
 		System.out.println("수정버튼누름?");
 		System.out.println(usersVo.toString());
 		System.out.println(file.getOriginalFilename());
-		usersVo.setUserimage("profile/" + file.getOriginalFilename());
+		usersVo.setUserimage(file.getOriginalFilename());
 
-		if (id == null) {
-			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
-		}
+//		if (id == null) {
+//			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
+//		}
 		// 파일업로드
 		try {
-			String saveDir = "D:\\_seyaworld\\upload\\profile";
+			String saveDir = "D:/_seyaworld/upload/profile";
 			// 원파일이름
 			String orgName = file.getOriginalFilename();
 			System.out.println("orgName:" + orgName);
@@ -143,7 +147,7 @@ public class UsersController {
 			e.printStackTrace();
 		}
 		usersService.updateform(usersVo);
-		System.out.println("id: " + id);
+//		System.out.println("id: " + id);
 		// model.addAttribute("user", user);
 		//유저 이름보내기 확인용
 		String userimage = usersVo.getUserimage();
@@ -152,7 +156,7 @@ public class UsersController {
 		
 		model.addAttribute("userimage", userimage);
 		
-		return "redirect:"+""+"/profilemodify";
+		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
 
 	@RequestMapping(value = "/leemodi", method = RequestMethod.GET)
