@@ -28,10 +28,17 @@ public class WordbookController {
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
 		
+		
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList",directoryList);
 		md.addAttribute("wordbookList",wordbookList);
-
+		//디렉토리에 단어장이 없을때 디렉토리 토리토리
+		try {
+			md.addAttribute("directoryNo",wordbookList.get(0).getDirectoryNo());
+		}catch (Exception e) {
+			md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
+			return "_view/gallery";
+		}
 		return "_view/gallery";
 	}
 	//리스트 출력 컨트롤러

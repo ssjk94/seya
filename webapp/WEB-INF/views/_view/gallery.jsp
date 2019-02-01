@@ -349,8 +349,9 @@ desired effect
 											</div>
 											
 											<div id="addvocabulary" class="inner-body">
-											<%-- <a href="${pageContext.request.contextPath}/${URLid}/addvocabulary"
-												class="inner-body"> --%>
+											<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
+												<input name="directoryNo" type="hidden" value="${directoryNo}">
+												<button type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
 												<div class="inner" >
 													<h3>단어장 만들기</h3>
 													<p></p>
@@ -361,7 +362,8 @@ desired effect
 													<i class="fa fa-plus"> </i>
 												</div>
 												<div class="add-footer bgcolor-default"></div>
-											<!-- </a> -->
+											</button>
+											</form>
 											</div>
 										</div>
 									</div>
@@ -392,13 +394,13 @@ desired effect
 												</div>
 											</div>
 											<!-- 여기에 버튼 형식  -->
+											<div class="inner-body">
 											 <form action="${pageContext.request.contextPath}/${URLId}/flashcard" method="get">
 												<input name="directoryNo" type="hidden" value="${wordbookVo.directoryNo}">
 												<input name="wordbookNo" type="hidden" value="${wordbookVo.wordbookNo}">
-												<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
-											<div class="inner-body">
-												
+												<button type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
 												<div class="inner">
+											
 													<h3>${wordbookVo.wordbookName}</h3>
 													<p>${wordbookVo.wordbookMaker}</p>
 													<p>${wordbookVo.wordbookRegdate}</p>
@@ -425,9 +427,10 @@ desired effect
 												<div class="small-box-footer bgcolor-default">
 													공부하기 <i class="fa fa-arrow-circle-right"></i>
 												</div>
-											</div>
 												</button>
 											</form>
+											</div>
+												
 									
 									
 									

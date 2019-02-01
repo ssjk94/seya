@@ -376,9 +376,8 @@ desired effect
 				<div class="path-name">
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
-						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li><a href="#">Tables</a></li>
-						<li class="active">Simple</li>
+						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home</a></li>
+								<li>Make Vocabulary</li>
 					</ol>
 					<!--/단어장 경로 -->
 				</div>

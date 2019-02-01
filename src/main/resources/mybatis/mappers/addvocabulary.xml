@@ -4,5 +4,15 @@
 
 <mapper namespace="addvocabulary">
 
+	<select id="selectWordbookAlldirectoryList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+		select directoryno, directoryname
+			from 
+			(select d.directoryname,
+			     d.directoryno
+			from	directory d, users u
+			where u.id = #{URLId}
+			and u.userno = d.userno)
+		ORDER BY DIRECTORYNO ASC
+	</select>
 
 </mapper>
