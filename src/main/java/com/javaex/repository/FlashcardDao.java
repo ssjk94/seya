@@ -6,27 +6,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.javaex.vo.UsersVo;
-import com.javaex.vo.WordbookVo;
+import com.javaex.vo.FlashcardVo;
 
 @Repository
 public class FlashcardDao {
 
 	@Autowired
 	public SqlSession sqlSession;
-	
-	//{id} main
-	public List<WordbookVo> selectFlashcardwordList() {
-		System.out.println("1");
-		sqlSession.selectOne("flashcard.selectFlashcardWordList");
-		System.out.println("2");
-		
-		return null;
-		//return sqlSession.selectList("wordbook.selectNameDataTypeList");
-	}
-	
+	FlashcardVo flashcardVo;
 
-	public List<UsersVo> selectUserNickNameList(){
-		return sqlSession.selectList("users.selectUserNickNameList");
+	// {id} main
+	public List<FlashcardVo> selectFlashcardList() {
+		System.out.println("flashcardDao");
+		System.out.println(flashcardVo.toString());
+
+		return sqlSession.selectList("flashcard.selectFlashcardList");
 	}
+
 }

@@ -5,26 +5,54 @@
 <mapper namespace="wordbook">
 
 	<!-- 쿼리문 작성 -->
-
-	<select id="selectWordbookList" resultType="com.javaex.vo.WordbookVo" parameterType="map">
-		<![CDATA[
-		
-			select wordbook.wordbookname, 
-wordbook.wordbookaccess, 
-wordbook.wordbookmaker, 
-wordbook.wordbookregdate 
-from wordbook,directory,users 
-where users.userno=directory.userno 
-and directory.directoryno=wordbook.directoryno 
-and directory.directoryname = #{directoryname} 
-and users.id = #{urlid}
-
-		]]>
+	
+	<select id="selectWordbookAlldirectoryList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+		select directoryno, directoryname
+			from 
+			(select d.directoryname,
+			     d.directoryno
+			from	directory d, users u
+			where u.id = #{URLId}
+			and u.userno = d.userno)
+		ORDER BY DIRECTORYNO ASC
 	</select>
 	
-	<insert id="addwordbook" parameterType="java.lang.String">
+	<select id="selectdirectoryWordbookList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+	<![CDATA[
+		select   u.nickname,
+					w.wordbookno,
+					w.wordbookname,
+					w.wordbookregdate,
+					w.wordbookaccess,
+					w.wordbookmaker
+		from 	wordbook w, directory d, users u
+		where 	w.directoryno = d.directoryno
+		and 		d.userno = u.userno
+		and 		d.directoryno = #{directoryNo}
+	]]>
+	</select>
+
+	<select id="selectDefaultWordbookList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+	<![CDATA[
+		select   u.nickname,
+					w.wordbookno,
+					w.wordbookname,
+					w.wordbookregdate,
+					w.wordbookaccess,
+					w.wordbookmaker,
+					d.directoryno
+		from 	wordbook w, directory d, users u
+		where 	w.directoryno = d.directoryno
+		and 		d.userno = u.userno
+		and 		d.directoryno = 
+						(select 	d.directoryno
+						from 	users u,directory d
+						where 	u.id=#{URLId}
+						and 		u.userno = d.userno
+						and 		rownum=1)
+	]]>
+	</select>
 	
-	</insert>
 <!-- 
 	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">
 		<![CDATA[

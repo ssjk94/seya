@@ -32,6 +32,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/dist/css/skins/skin-red-light.css">
+	
+<!-- favinco오류 제거용 -->
+<link rel="shortcut icon" href="">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -263,7 +266,10 @@ i.fa-trash-o {
 	/* margin-bottom: 100px; */
 }
 .container{
-width: 840px;
+	width: 840px;
+}
+.submitdiv{
+	cursor: pointer;
 }
 </style>
 
@@ -307,9 +313,7 @@ desired effect
 				<div class="path-name">
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
-						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li><a href="#">Tables</a></li>
-						<li class="active">Simple</li>
+						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home </a></li>
 					</ol>
 					<!--/단어장 경로 -->
 				</div>
@@ -318,10 +322,10 @@ desired effect
 
 					<div class="pull-right box-tools">
 						<a type="button" class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/${URLid}/${directoryname}/list"><i
+							href="${pageContext.request.contextPath}/${URLId}/list"><i
 							class="fa fa-bars"></i></a> <a type="button"
 							class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/${URLid}/${directoryname}"><i
+							href="${pageContext.request.contextPath}/${URLId}"><i
 							class="fa fa-th-large"></i></a>
 					</div>
 				</div>
@@ -335,15 +339,19 @@ desired effect
 							<div class="box-body no-padding">
 								<div class="row">
 								<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
+								
+								
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
-										<div class="small-box">
+										<div id="addvocabulary" class="small-box submitdiv">
 											<div class="inner-header">
 												<div class="tools"></div>
 											</div>
-											<a href="${pageContext.request.contextPath}/${URLid}/${directoryname}/addvocabulary"
-												class="inner-body">
-												<div class="inner">
+											
+											<div id="addvocabulary" class="inner-body">
+											<%-- <a href="${pageContext.request.contextPath}/${URLid}/addvocabulary"
+												class="inner-body"> --%>
+												<div class="inner" >
 													<h3>단어장 만들기</h3>
 													<p></p>
 													<p></p>
@@ -352,28 +360,40 @@ desired effect
 												<div class="icon">
 													<i class="fa fa-plus"> </i>
 												</div>
-												<div class="add-footer bgcolor-default">
-												
-												</div>
-											</a>
+												<div class="add-footer bgcolor-default"></div>
+											<!-- </a> -->
+											</div>
 										</div>
 									</div>
+									
+									
 									<!-- ./col -->
-<c:forEach items="${requestScope.wordbooklist}" var="wordbookVo">
+<c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
 									<!-- ./col -->
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
 										<div class="small-box">
 											<div class="inner-header">
 												<div class="tools">
-													<a href="#"><i class="fa fa-share"></i></a> <a
-														href="${pageContext.request.contextPath}/listtest"><i
-														class="fa fa-edit"></i></a> <a href="#"><i
-														class="fa fa-trash-o"></i></a>
+												<!-- 공유 아이콘 -->
+													
+														<i class="fa fa-share"></i>
+													
+													<!-- 수정하러 들어가는 리스트 아이콘 -->
+													
+													<a href="${pageContext.request.contextPath}/${URLId}/vocabularylist">
+														<i class="fa fa-edit"></i>
+													</a> 
+													
+													<!-- 삭제 아이콘 -->
+													
+														<i class="fa fa-trash-o"></i>
+													
 												</div>
 											</div>
-											<a href="${pageContext.request.contextPath}/flashcard"
-												class="inner-body">
+											<!-- 여기에 버튼 형식  -->
+											<div class="inner-body">
+											 
 												<div class="inner">
 													<h3>${wordbookVo.wordbookName}</h3>
 													<p>${wordbookVo.wordbookMaker}</p>
@@ -392,6 +412,9 @@ desired effect
 															</c:choose>
 													</p>
 												</div>
+																							
+												
+												 
 												<div class="icon">
 													<i class="fa fa-file-text"> </i>
 												</div>
@@ -399,7 +422,10 @@ desired effect
 													공부하기 <i class="fa fa-arrow-circle-right"></i>
 												</div>
 
-											</a>
+											</div>
+									
+									
+									
 										</div>
 									</div>
 
@@ -444,4 +470,5 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
+
 </html>

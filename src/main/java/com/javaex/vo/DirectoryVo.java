@@ -36,6 +36,10 @@ public class DirectoryVo {
 		this.userNo = userNo;
 	}
 
+	public DirectoryVo() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		return "DirectoryVo [directoryNo=" + directoryNo + ", directoryName=" + directoryName + ", userNo=" + userNo

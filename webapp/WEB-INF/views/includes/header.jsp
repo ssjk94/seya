@@ -6,7 +6,7 @@
 
 	<!-- Logo -->
 	<!-- 로그인한 아이디로 가야함ㅎㅎ by Seo-->
-	<a href="${pageContext.request.contextPath}/${URLid}" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="${pageContext.request.contextPath}/${URLId}/gallery" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-lg"><b>Seya</b>Word</span>
 	</a>
 
@@ -19,13 +19,22 @@
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
+<<<<<<< HEAD
 						src="/dist/images/user.png" class="user-image"
+=======
+						src="${pageContext.request.contextPath}/dist/images/profile1.png" class="user-image"
+>>>>>>> refs/remotes/seya/master
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
 						<span class="hidden-xs">Seya</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
+<<<<<<< HEAD
 						<li class="user-header"><img src="/upload/profile/${userimage}" class="img-circle"
+=======
+						<li class="user-header"><img
+							src="${pageContext.request.contextPath}/dist/images/profile1.png" class="img-circle"
+>>>>>>> refs/remotes/seya/master
 							alt="User Image">
 
 							<p>
