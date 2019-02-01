@@ -385,7 +385,7 @@ desired effect
 			
 			
 			<!-- 자바로 보내야함 -->
-			<form action="${pageContext.request.contextPath}/${URLid}/vocabularylist" method="post">
+			<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
 				<input type="text" class="wordpadname" name="wordbookname">
 				
 				<div class="vocabularycontainer">
