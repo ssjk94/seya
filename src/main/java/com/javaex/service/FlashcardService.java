@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.repository.FlashcardDao;
 import com.javaex.vo.FlashcardVo;
+import com.javaex.vo.URLPathVo;
 
 @Service
 public class FlashcardService {
@@ -15,9 +16,10 @@ public class FlashcardService {
 	FlashcardDao flashcardDao;
 	
 
-	public List<FlashcardVo> getFlashcardList() {
+	public List<FlashcardVo> getFlashcardList(URLPathVo urlPathVo) {
+				
 		System.out.println("FlashcardService");
 		
-		return flashcardDao.selectFlashcardList();
+		return flashcardDao.selectFlashcardList(urlPathVo);
 	}
 }
