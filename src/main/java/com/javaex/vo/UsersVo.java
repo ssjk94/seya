@@ -12,7 +12,8 @@ public class UsersVo {
 	private int sex;
 	private int useraccess;
 	private String usercontent;
-
+	
+	
 	public int getUserNo() {
 		return userNo;
 	}

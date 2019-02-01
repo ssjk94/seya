@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
 import com.javaex.vo.UsersVo;
 
 @Repository
@@ -26,6 +27,16 @@ public class UsersDao {
 		System.out.println("Dao왔음?");
 		System.out.println(usersVo.login());
 		return sqlSession.selectOne("users.selectUserLogin", usersVo);
+	}
+
+	public void userUpdate(UsersVo usersVo) {
+		
+		sqlSession.update("users.updateUsers", usersVo);
+	}
+
+	public UsersVo selectOneUsers(UsersVo usersVo) {
+		 
+		return sqlSession.selectOne("users.selectOneUsers", usersVo); 
 	}
 
 }

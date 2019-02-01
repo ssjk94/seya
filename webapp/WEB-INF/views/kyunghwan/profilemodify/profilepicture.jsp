@@ -20,11 +20,11 @@
 		</span>
 
 
-	<!-- 모달 변경창 -->
+ <!-- 모달 변경창 -->
 	<div class="modal" id="profilepictureModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<!-- 모달 헤더 들어갈값 -->
+				모달 헤더 들어갈값
 				<div class="modal-body">
 					<h3>프로필 사진변경</h3>
 				</div>
@@ -41,4 +41,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 

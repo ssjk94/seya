@@ -19,7 +19,8 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="com.javaex">
+	<context:component-scan
+		base-package="com.javaex">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation"
@@ -32,9 +33,10 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<bean id="oracleDatasource"
 		class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
-		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-		<property name="user" value="scott"/>
-		<property name="password" value="tiger"/>
+		<property name="URL"
+			value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="user" value="scott" />
+		<property name="password" value="tiger" />
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="main-db" />
 
@@ -42,14 +44,23 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<!-- MyBatis SqlSessionFactoryBean 설정 -->
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="oracleDatasource" />
-		<property name="configLocation"	value="classpath:mybatis/configuration.xml" />
+		<property name="configLocation"
+			value="classpath:mybatis/configuration.xml" />
 	</bean>
 
 	<!-- MyBatis SqlSessionTemplate 설정 -->
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
+
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg
+			value="D:/upload/"></constructor-arg>
+	</bean>
+
 </beans>
