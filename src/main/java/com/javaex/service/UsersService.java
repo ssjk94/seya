@@ -13,6 +13,11 @@ public class UsersService {
 
 	@Autowired
 	UsersDao usersDao;
+	public UsersVo selectOneUsers(UsersVo usersVo) {
+		
+		
+		return usersDao.selectOneUsers(usersVo);
+	}
 
 	public List<UsersVo> getList() {
 		return usersDao.selectUsersList();
@@ -27,5 +32,10 @@ public class UsersService {
 		System.out.println(usersVo.toString());
 		
 		return usersDao.userLogin(usersVo);
+	}
+
+	public void updateform(UsersVo usersVo) {
+		
+	 usersDao.userUpdate(usersVo);
 	}
 }

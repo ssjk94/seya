@@ -12,6 +12,14 @@
 		]]>
 	</select>
 	
+	<!-- 유저 한명 찾기 쿼리 -->
+	<select id="selectOneUsers">
+		<![CDATA[
+			select * from users where id = #{id}
+		]]>
+	
+	</select>
+	
 	<!-- 유저 login 쿼리문 -->
 	<select id="selectUserLogin" resultType="com.javaex.vo.UsersVo">
 		<![CDATA[
@@ -37,6 +45,16 @@
 			 3)
 		]]>
 	</insert>
-
+	
+	<update id="updateUsers">
+		<![CDATA[
+			update users set
+			nickname = #{nickname},
+			userimage = #{userimage},
+			usercontent = #{usercontent}
+			where id = #{id}
+				
+		]]>
+	</update>
 
 </mapper>
