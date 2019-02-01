@@ -27,7 +27,7 @@ p.side-cont {
 		</div>
 
 		<div class="sidebar-content">
-			<h3 class="gaeyeya">NickName</h3>
+			<h3 class="gaeyeya">${URLId}</h3>
 			<div class="profile-content">
 				<p class="side-cont">여기에 자기소개를 적어주세요</p>
 
@@ -48,16 +48,32 @@ p.side-cont {
 		<!-- /.search form -->
 
 		<!-- Sidebar Menu -->
-		<c:forEach items="${requestScope.director}" var="Vo">
+		<c:forEach items="${requestScope.directoryList}" var="wordbookVo">
 		<ul class="sidebar-menu" data-widget="tree">
-			<li class="header"><span>${Vo.directoryName}</span></li>
-			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="${pageContext.request.contextPath}/flashcard"><i class="fa fa-fw fa-book"></i>
-					<span>단어장 1</span></a></li>
-					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>단어장 2</span></a></li>
-					<li><a href="#"><i class="fa fa-fw fa-book"></i> <span>단어장 3</span></a></li>
+			<li class="header">
+				<!-- 디렉토리 번호를 넘기려고함 -->
+				<c:choose>
+				<c:when test="${listview eq 0}">
+				<form action="${pageContext.request.contextPath}/${URLId}/list" method="get">
+					<input name="directoryNo" type="hidden" value="${wordbookVo.directoryNo}">
+					<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
+						<span>${wordbookVo.directoryName}</span>
+					</button>
+				</form>
+				</c:when>
+				<c:otherwise>
+				<form action="${pageContext.request.contextPath}/${URLId}" method="get">
+					<input name="directoryNo" type="hidden" value="${wordbookVo.directoryNo}">
+					<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
+						<span>${wordbookVo.directoryName}</span>
+					</button>
+				</form>
+				</c:otherwise>
+				</c:choose>
+			</li>
 		</ul>
 		</c:forEach>
+		
 			<!-- 	<li class="treeview"><a href="#"><i class="fa fa-fw fa-book"></i>
 							<span>Multilevel</span> <span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>

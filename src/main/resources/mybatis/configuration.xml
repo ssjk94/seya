@@ -15,7 +15,7 @@
 		<mapper resource="mybatis/mappers/meankor.xml" />
 		<mapper resource="mybatis/mappers/wordeng.xml" />
 		<mapper resource="mybatis/mappers/wordbook.xml" />
-		<mapper resource="mybatis/mappers/directory.xml" />
+		<mapper resource="mybatis/mappers/addvocabulary.xml" />
 	</mappers>
 	
 
