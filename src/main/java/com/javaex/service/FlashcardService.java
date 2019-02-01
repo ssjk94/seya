@@ -6,22 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.repository.FlashcardDao;
-import com.javaex.vo.UsersVo;
-import com.javaex.vo.WordbookVo;
+import com.javaex.vo.FlashcardVo;
 
 @Service
 public class FlashcardService {
 
 	@Autowired
 	FlashcardDao flashcardDao;
-
-	public List<WordbookVo> getFlashcardwordList() {
-		return flashcardDao.selectFlashcardwordList();
-	}
-
-	public List<UsersVo> getNickname(){
-		return flashcardDao.selectUserNickNameList();
-	}
-
 	
+
+	public List<FlashcardVo> getFlashcardList() {
+		System.out.println("FlashcardService");
+		
+		return flashcardDao.selectFlashcardList();
+	}
 }
