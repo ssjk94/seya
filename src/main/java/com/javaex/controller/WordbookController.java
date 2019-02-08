@@ -23,11 +23,8 @@ public class WordbookController {
 	@RequestMapping(value = "{URLId}", method = RequestMethod.GET)
 	public String wordbook(URLPathVo urlPathVo,Model md) {
 		
-		System.out.println("URLId :"+urlPathVo.toString());
-		
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
-		
 		
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList",directoryList);

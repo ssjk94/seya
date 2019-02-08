@@ -383,9 +383,15 @@ desired effect
 													
 													<!-- 수정하러 들어가는 리스트 아이콘 -->
 													
-													<a href="${pageContext.request.contextPath}/${URLId}/vocabularylist">
+													
+												<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
+													<input name="wordbookNo" type="hidden" value="${wordbookVo.wordbookNo}">
+													<input name="wordbookName" type="hidden" value="${wordbookVo.wordbookName}">
+													<button type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
 														<i class="fa fa-edit"></i>
-													</a> 
+													</button>
+												</form>
+												
 													
 													<!-- 삭제 아이콘 -->
 													

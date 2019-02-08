@@ -3,5 +3,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="vocabularylist">
+	<!-- 단어장 만들기 -->
+	<!-- 닉네임인가? -->
+	<insert id="insertWordbook" parameterType="com.javaex.vo.URLPathVo">
+		insert into wordbook (wordbookno,wordbookname,wordbookregdate,wordbookaccess
+										,wordbooktype,wordbookmaker,directoryno)
+		values(wordbook_seq.nextval,#{wordbookName},sysdate,0,1,#{URLId},#{directoryNo})
+	</insert>
+	<!-- 만든 단어장의 no값 리턴받기 -->
+	<select id="selectWordbookNo" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.URLPathVo">
+
+		select w.wordbookno
+		from wordbook w,directory d
+		where w.directoryno = d.directoryno
+		and d.directoryno = ${directoryNo}
+		and rownum = 1
+		order by w.wordbookno desc
+
+	</select>
+	
+	<!-- Word insert문 -->
+	<insert id="insertword" parameterType="com.javaex.vo.VocabularyListVo">
+		insert into word(wordno, wordname, wordbookno) 
+		values		(word_seq.nextval,'${wordName}',${wordbookNo})
+	</insert>
+	
+	<!-- 입력한 단어를 가져오는 Select문 -->
+	<select id="selectword" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.VocabularyListVo">
+		select 	w.wordname, wb.wordbookno,w.wordno 
+		from 	word w,wordbook wb
+		where 	w.wordbookno = wb.wordbookno
+		and 		wb.wordbookno =#{wordbookNo}
+	</select>
+	
+	<!-- 단어장 단어와 mean 추출 -->
+	<select id="selectWordAndMean" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.VocabularyListVo">
+
+		select 		se.seyawordname, listagg(sk.seyameanname,', ') within
+		group 		(order by se.seyawordname) as seyameanName
+		from 		seyamean_kor sk, seyaword_eng se
+		where 		se.seyawordname = any
+		<foreach collection="wordArr" item="a" open="(" close=")" separator=",">
+         	#{a}
+        </foreach>
+		and 			sk.seyawordno = se.seyawordno
+		group by 	se.seyawordname
+	</select>
+	
+	<update id="updatewordandmean" parameterType="com.javaex.vo.VocabularyListVo">
+	
+		update word
+		set		meanname = #{meanName}
+		where 	wordbookno = #{wordbookNo}
+		and 		wordname = #{wordName}
+		and 		meanname is null
+	
+	</update>
+	
+	<select id="selectallword" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.VocabularyListVo">
+		select 	w.wordname, w.meanname,w.wordno,wb.wordbookno
+		from 	word w,wordbook wb
+		where 	w.wordbookno = wb.wordbookno
+		and 		wb.wordbookno =#{wordbookNo}
+	</select>
 
 </mapper>
