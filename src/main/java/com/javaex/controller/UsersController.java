@@ -39,8 +39,8 @@ public class UsersController {
 
 	}
 
-	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req) {
+	@RequestMapping(value ="{id}", method = RequestMethod.POST)
+	public String userLogin(@PathVariable String id, @ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req) {
 
 		System.out.println(usersVo.toString());
 		if (usersService.userLogin(usersVo) == null) {
@@ -48,7 +48,7 @@ public class UsersController {
 
 		} else {
 			usersService.userLogin(usersVo);
-			String id = req.getParameter("id");
+			id = req.getParameter("id");
 			String password = req.getParameter("password");
 			System.out.println("req id:" + id);
 			System.out.println("req pw:" + password);
