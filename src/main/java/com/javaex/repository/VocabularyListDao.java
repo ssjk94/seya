@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.URLPathVo;
+import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
 
 @Repository
@@ -15,8 +16,42 @@ public class VocabularyListDao {
 	@Autowired
 	public SqlSession sqlSession;
 	
+	
+	
+	
+	//단어장 만들기
+	public void insertWordbook(URLPathVo urlPathVo){
+		sqlSession.insert("vocabularylist.insertWordbook",urlPathVo);
+	}
+	//만든 단어장 no값 리턴받기
+	public VocabularyListVo selectWordbookNo(URLPathVo urlPathVo) {
+		return sqlSession.selectOne("vocabularylist.selectWordbookNo",urlPathVo);
+	}
+	//워드삽입
+	public void insertWord(VocabularyListVo vocabularyListVo) {
+		sqlSession.insert("vocabularylist.insertword",vocabularyListVo);
+	}
+	//워드와 워드 번호 가져오기
+	public List<VocabularyListVo> selectWord(VocabularyListVo vocabularyListVo){
+		return sqlSession.selectList("vocabularylist.selectword",vocabularyListVo);
+	}
+	//단어장 단어와 mean 추출
+	public List<VocabularyListVo> selectWordAndMean(VocabularyListVo vocabularyListVo){
+		return sqlSession.selectList("vocabularylist.selectWordAndMean",vocabularyListVo);
+	}
+	//업데이트
+	public void updateWordAndMean(VocabularyListVo vocabularyListVo) {
+		sqlSession.update("vocabularylist.updatewordandmean", vocabularyListVo);
+	}
+	//마지막 빼오기
+	public List<VocabularyListVo> selectAllWord(VocabularyListVo vocabularyListVo){
+		return sqlSession.selectList("vocabularylist.selectallword",vocabularyListVo);
+	}
+	
+	
 	//디렉토리 리스트
-		public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){
-			return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
-		}
+	public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){
+		return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
+			
+	}
 }

@@ -383,16 +383,24 @@ desired effect
 				</div>
 			</section>
 			
-			
 			<!-- 자바로 보내야함 -->
 			<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
-				<input type="text" class="wordpadname" name="wordbookname">
+				<input type="hidden" name="directoryNo" value="${directoryNo}">
+				<c:choose>
 				
+					<c:when test="${wordbookName eq null}">
+						<input type="text" class="wordpadname" name="wordbookName" value="">
+					</c:when>
+					<c:otherwise>
+						<input type="text" class="wordpadname" name="wordbookName" value="${wordbookName}">
+					</c:otherwise>
+				
+				</c:choose>
 				<div class="vocabularycontainer">
 					<!-- section 1 -->
 					<!-- Text area 구역 -->
 					<div class="textboxsize">
-						<textarea name="word" class="form-control" rows="18"
+						<textarea name="wordName" class="form-control" rows="18"
 							placeholder="단어1 엔터키로 한 단어를 구분합니다. &#13;&#10;단어2"></textarea>
 					</div>
 
@@ -400,6 +408,7 @@ desired effect
 					<!-- 리스트 추가하기 -->
 					<!-- 단어 리스트 추가할 버튼  style="margin-top: 50px;margin-left: 20%;margin-right: 20%;" -->
 					<div class="listaddline">
+						
 						
 							<button type="submit"
 								class="btn btn-danger btn-block btn-lg vocamodifybtn">
