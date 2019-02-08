@@ -41,16 +41,26 @@ public class UsersController {
 
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value = "/userlogin.do", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model) {
+=======
+	@RequestMapping(value ="{id}", method = RequestMethod.POST)
+	public String userLogin(@PathVariable String id, @ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req) {
+>>>>>>> refs/remotes/seya/master
 
 		System.out.println(usersVo.toString());
 		if (usersService.userLogin(usersVo) == null) {
 			return "main/index";
 
 		} else {
+<<<<<<< HEAD
 //			usersService.userLogin(usersVo);
 			String id = req.getParameter("id");
+=======
+			usersService.userLogin(usersVo);
+			id = req.getParameter("id");
+>>>>>>> refs/remotes/seya/master
 			String password = req.getParameter("password");
 			
 			if (usersVo.getId().equals(id) && usersVo.getPassword().equals(password)) {

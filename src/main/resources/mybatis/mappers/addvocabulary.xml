@@ -4,8 +4,12 @@
 
 <mapper namespace="addvocabulary">
 
+<<<<<<< HEAD
 	<select id="selectWordbookAlldirectoryList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
 			<![CDATA[
+=======
+	<select id="select" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+>>>>>>> refs/remotes/seya/master
 		select directoryno, directoryname
 			from 
 			(select d.directoryname,

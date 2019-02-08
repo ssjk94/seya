@@ -8,14 +8,17 @@
 
 	<select id="selectFlashcardList" resultType="com.javaex.vo.FlashcardVo" parameterType="com.javaex.vo.URLPathVo">
 		<![CDATA[
-			select e.wordname,
-				listagg(k.meanname, ', ') within
-				group (order by k.meanno) as meanname				
-				from wordbook w, word_eng e, mean_kor k
-				where w.wordbookno = #{wordbookNo}
-				and e.wordbookno = w.wordbookno
-				and k.wordno = e.wordno
-				group by e.wordname
+			select wordname, meanname
+			from
+				(select e.wordname,
+					listagg(k.meanname, ', ') within
+					group (order by k.meanno) as meanname				
+					from wordbook w, word_eng e, mean_kor k
+					where w.wordbookno = #{wordbookNo}
+					and e.wordbookno = w.wordbookno
+					and k.wordno = e.wordno
+					group by e.wordno, e.wordname)
+			order by rownum asc
 		]]>
 	</select>
 </mapper>

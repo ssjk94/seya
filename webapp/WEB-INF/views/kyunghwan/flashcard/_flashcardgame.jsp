@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/dist/jquery/jquery-1.12.4.js"></script>
 <title>Insert title here</title>
 
 <style type="text/css">
@@ -74,55 +76,115 @@
 #rightbtn.img-circle-btn:hover {
 	background-color: #e7ff09;
 }
+
+#mean {
+	font-size: 30px;
+}
 </style>
 
 <!-- 테두리 마지막에 없애야함 -->
+
 </head>
+<script type="text/javascript">
+	var wordList = new Array();
+	var meanList = new Array();
+	var i = 0;
+	var j = 0;
+</script>
+<c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
+	<script type="text/javascript">
+		wordList[i] = '${flashcardVo.wordName}';
+		meanList[i] = '${flashcardVo.meanName}';
+		i++;
+	</script>
+</c:forEach>
+<script type="text/javascript">
+	$(document).ready(function() {
+		i = 0;
+		j = 0;
+		if (j % 2 == 0) {
+			$("#word").text(wordList[i]);
+		} else {
+			$("#mean").text(meanList[i]);
+		}
+
+		$(function() {
+			$("#rightbtn").click(function() {
+				i++;
+				if (j % 2 == 0) {
+					$("#word").text(wordList[i]);
+				} else {
+					$("#mean").text(meanList[i]);
+				}
+			});
+			$("#leftbtn").click(function() {
+				i--;
+				if (j % 2 == 0) {
+					$("#word").text(wordList[i]);
+				} else {
+					$("#mean").text(meanList[i]);
+				}
+			});
+
+		});
+	});
+</script>
 <body>
 
 	<!-- width 790px height 450-->
 	<div class="panel panel-default flashcardcontainer">
 		<!-- content box -->
 		<div id="wm-over" role="button" class="panel-body flashcardbox">
-			<c:forEach items="${requestScope.selectFlashcardList}"
-				var="flashcardVo">
-				<div>
-					<!-- word -->
-					<div>
-						<p>${flashcardVo.wordName}</p>
-					</div>
-				</div>
 
+			<div>
+				<!-- word -->
 				<div>
-					<!-- mean -->
-					<div>
-						<span>${flashcardVo.meanName}</span>
-					</div>
+					<p id="word"></p>
 				</div>
-			</c:forEach>
+			</div>
+
+			<div>
+				<!-- mean -->
+				<div>
+					<span id="mean"></span>
+				</div>
+			</div>
+
 		</div>
 		<!-- control box -->
 		<div class="panel-footer flashcontrolbox">
 
 			<!-- Left button -->
-			<c:import url="/WEB-INF/views/kyunghwan/flashcard/leftbtn.jsp"></c:import>
+			<div id="leftbtn" class="img-circle-btn flashcardattach"
+				role="button">
+				<span class="glyphicon glyphicon-chevron-left gly-size"
+					aria-hidden="true"></span>
+			</div>
 
 			<!-- Check and Modify -->
 			<div class="flashcardattach modiandchk">
 				<!-- Check -->
-				<c:import url="/WEB-INF/views/kyunghwan/flashcard/chkbtn.jsp"></c:import>
+				<div>
+					<input class="chkbox-size" type="checkbox" id="chkbox"> <label
+						for="chkbox"><span></span></label>
+				</div>
 				<!-- Modify -->
-				<c:import url="/WEB-INF/views/kyunghwan/flashcard/modifybtn.jsp"></c:import>
+				<div class="chkbox-size">
+					<span class="glyphicon glyphicon glyphicon-pencil"
+						aria-hidden="true"></span>
+				</div>
 			</div>
 			<!-- Right button -->
-			<c:import url="/WEB-INF/views/kyunghwan/flashcard/rightbtn.jsp"></c:import>
-
+			<div id="rightbtn" class="img-circle-btn flashcardattach flashbtn">
+				<span class="glyphicon glyphicon-chevron-right gly-size"
+					aria-hidden="true"></span>
+			</div>
 
 			<!-- float 제거용 -->
 			<div class="flashcardclear"></div>
 
-
 		</div>
 	</div>
 </body>
+
 </html>

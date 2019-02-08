@@ -23,8 +23,10 @@ public class AddVocabularyController {
 	public String wordbook(URLPathVo urlPathVo,Model md) {
 		
 		List<WordbookVo> directoryList = addVocabularyService.getWordbookAlldirectoryList(urlPathVo);
-		System.out.println(urlPathVo.toString());
 		
+		
+		md.addAttribute("wordbookName", urlPathVo.getWordbookName());
+		md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList", directoryList);
 		

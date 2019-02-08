@@ -13,10 +13,10 @@ import com.javaex.vo.WordbookVo;
 public class AddVocabularyDao {
 
 	@Autowired
-	public SqlSession sqlSession;
-	
-	//디렉토리 리스트
-	public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){
-		return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
-	}
+	SqlSession sqlSession;
+
+	//디렉토리 보여주는 리스트
+		public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){
+			return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
+		}
 }
