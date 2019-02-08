@@ -23,7 +23,6 @@ public class VocabularyListController {
 	public String wordbook(URLPathVo urlPathVo,VocabularyListVo vocabularyListVo,Model md) {
 		
 		
-		
 		//입력한것이 사전이랑 동일한 단어가 있을때 뜻과 의미가 입력되서 나온다
 		List<VocabularyListVo> vocaList=vocabularyListService.getWordAndMean(vocabularyListVo,urlPathVo);
 		//디렉토리
