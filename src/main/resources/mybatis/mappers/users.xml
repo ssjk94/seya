@@ -13,20 +13,31 @@
 	</select>
 	
 	<!-- 유저 프로필 변경  한명 찾기 쿼리 -->
-	<select id="selectOneUsers" resultType="com.javaex.vo.UsersVo">
+	<select id="selectOneUsers" resultType="com.javaex.vo.UsersVo" parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
-			select * from users where id = #{id}
+			select id, nickname, userimage, usercontent from users where id = #{id}
 		]]>
 	
 	</select>
 	
 	<!-- 유저 login 쿼리문 -->
-	<select id="selectUserLogin" resultType="com.javaex.vo.UsersVo">
+	<select id="selectUserLogin" resultType="com.javaex.vo.UsersVo" parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
-			select id, password from users where 
+			select id, password, nickname, userimage, usercontent from users where 
 			id=#{id} and 
 			password = #{password}
 		]]>
+	</select>
+	
+	<!--  유저 session 받을 쿼리문 -->
+	<select id="selectSession" resultType="com.javaex.vo.UsersVo" >
+		<![CDATA[
+			select id, password from users where 
+			id=#{id}
+			
+		]]>
+	
+	
 	</select>
 
 	<!-- 유저 insert 쿼리문 -->
@@ -56,5 +67,7 @@
 				
 		]]>
 	</update>
+	
+	
 
 </mapper>
