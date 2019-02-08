@@ -4,7 +4,7 @@
 
 <mapper namespace="addvocabulary">
 
-	<select id="selectWordbookAlldirectoryList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+	<select id="select" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
 		select directoryno, directoryname
 			from 
 			(select d.directoryname,

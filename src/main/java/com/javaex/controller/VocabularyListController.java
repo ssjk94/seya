@@ -29,7 +29,6 @@ public class VocabularyListController {
 		//디렉토리
 		List<WordbookVo> directoryList = vocabularyListService.getWordbookAlldirectoryList(urlPathVo);
 		
-		
 		md.addAttribute("wordbookNo", vocabularyListVo.getWordbookNo());
 		md.addAttribute("wordbookName", vocabularyListVo.getWordbookName());
 		md.addAttribute("URLId", urlPathVo.getURLId());
