@@ -5,13 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,44 +38,33 @@ public class UsersController {
 
 	}
 
-<<<<<<< HEAD
-	@RequestMapping(value = "/userlogin.do", method = RequestMethod.POST)
+	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model) {
-=======
-	@RequestMapping(value ="{id}", method = RequestMethod.POST)
-	public String userLogin(@PathVariable String id, @ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req) {
->>>>>>> refs/remotes/seya/master
-
 		System.out.println(usersVo.toString());
 		if (usersService.userLogin(usersVo) == null) {
 			return "main/index";
 
 		} else {
-<<<<<<< HEAD
-//			usersService.userLogin(usersVo);
-			String id = req.getParameter("id");
-=======
 			usersService.userLogin(usersVo);
-			id = req.getParameter("id");
->>>>>>> refs/remotes/seya/master
+			String id = req.getParameter("id");
 			String password = req.getParameter("password");
-			
+
 			if (usersVo.getId().equals(id) && usersVo.getPassword().equals(password)) {
 				/*
 				 * System.out.println("index에서 로그인시에 vo toString, selectoneusers이전"+usersVo.
 				 * toString());
 				 * 
 				 * usersVo.setId(id); System.out.println("usersVo.setId(id) "+ id);
-				 */		
-				usersVo=usersService.selectOneUsers(usersVo);
-				System.out.println("index에서 로그인시에 vo toString"+usersVo.toString());
+				 */
+				usersVo = usersService.selectOneUsers(usersVo);
+				System.out.println("index에서 로그인시에 vo toString" + usersVo.toString());
 				session.setAttribute("id", id);
 				session.setAttribute("nickname", usersVo.getNickname());
 				session.setAttribute("userimage", usersVo.getUserimage());
 				session.setAttribute("usercontent", usersVo.getUsercontent());
 				System.out.println("index에서 로그인시에 아이디값" + id);
-				
-				return "redirect:"+id;
+
+				return "redirect:" + id;
 			} else {
 				return "main/index";
 			}
@@ -89,8 +75,8 @@ public class UsersController {
 	@RequestMapping("/logout.do")
 	public String userLogOut(HttpSession session, HttpServletRequest req) {
 		session.invalidate();
-		
-	 return "redirect:" + req.getHeader("Referer");
+
+		return "redirect:" + req.getHeader("Referer");
 	}
 
 	@RequestMapping("{id}/profilemodify")
@@ -172,14 +158,11 @@ public class UsersController {
 		String userimagecheck = usersVo.getUserimage();
 		System.out.println("이미지이름 제대로 뱉는거 맞지?" + userimagecheck.toString());
 
-		usersVo=usersService.selectOneUsers(usersVo);
+		usersVo = usersService.selectOneUsers(usersVo);
 		session.setAttribute("id", usersVo.getId());
 		session.setAttribute("nickname", usersVo.getNickname());
 		session.setAttribute("usercontent", usersVo.getUsercontent());
 		session.setAttribute("userimage", usersVo.getUserimage());
-		
-		
-
 
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
@@ -193,12 +176,10 @@ public class UsersController {
 	@RequestMapping(value = "/headerlogin.do", method = RequestMethod.POST)
 	public String headerLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model,
 			RedirectAttributes redirectAttributes) {
-		
-		 System.out.println(usersVo.toString() + "    " + req.getRequestURI());
-		 System.out.println("req.getHeader(\"Referer\")   " +
-		  req.getHeader("Referer"));
-		 
-		 
+
+		System.out.println(usersVo.toString() + "    " + req.getRequestURI());
+		System.out.println("req.getHeader(\"Referer\")   " + req.getHeader("Referer"));
+
 		System.out.println(req.getRequestURI());
 		if (usersService.userLogin(usersVo) == null) {
 			return "main/index";
@@ -212,17 +193,17 @@ public class UsersController {
 
 			if (usersVo.getId().equals(id) || usersVo.getPassword().equals(password)) {
 				System.out.println("아이디 비번 확인");
-				//model.addAttribute("usersVo", usersService.selectOneUsers(usersVo));
-				//세션 넣고 확인할것임
-				usersVo=usersService.selectOneUsers(usersVo);
-				System.out.println("세션에 저장될 이름들은" +usersVo.toString());
+				// model.addAttribute("usersVo", usersService.selectOneUsers(usersVo));
+				// 세션 넣고 확인할것임
+				usersVo = usersService.selectOneUsers(usersVo);
+				System.out.println("세션에 저장될 이름들은" + usersVo.toString());
 				session.setAttribute("id", usersVo.getId());
 				session.setAttribute("nickname", usersVo.getNickname());
 				session.setAttribute("usercontent", usersVo.getUsercontent());
 				session.setAttribute("userimage", usersVo.getUserimage());
-				
+
 //				redirectAttributes.addFlashAttribute("usersVo", usersService.selectOneUsers(usersVo));
-				 return "redirect:" + req.getHeader("Referer");
+				return "redirect:" + req.getHeader("Referer");
 			} else {
 				return "main/index";
 			}
