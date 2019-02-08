@@ -12,8 +12,8 @@
 		]]>
 	</select>
 	
-	<!-- 유저 한명 찾기 쿼리 -->
-	<select id="selectOneUsers">
+	<!-- 유저 프로필 변경  한명 찾기 쿼리 -->
+	<select id="selectOneUsers" resultType="com.javaex.vo.UsersVo">
 		<![CDATA[
 			select * from users where id = #{id}
 		]]>

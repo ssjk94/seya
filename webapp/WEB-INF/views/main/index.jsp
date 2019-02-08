@@ -120,7 +120,7 @@ desired effect
 				<div class="user-header">
 					<h2 class="text-center" style="color: #dd4b39">로그인</h2>
 				</div>
-				<form action="userlogin.do" name="loginform" method="get">
+				<form action="userlogin.do" name="loginform" method="post">
 					<div class="user-body">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="아이디"

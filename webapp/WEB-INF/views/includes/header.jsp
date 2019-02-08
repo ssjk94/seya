@@ -6,7 +6,7 @@
 
 	<!-- Logo -->
 	<!-- 로그인한 아이디로 가야함ㅎㅎ by Seo-->
-	<a href="${pageContext.request.contextPath}/${URLId}/gallery"
+	<a href="${pageContext.request.contextPath}/${sessionScope.id}"
 		class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
 		class="logo-lg"><b>Seya</b>Word</span>
 	</a>
