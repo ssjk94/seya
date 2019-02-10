@@ -102,27 +102,38 @@
 	$(document).ready(function() {
 		i = 0;
 		j = 0;
-		if (j % 2 == 0) {
+		if (j == 0) {
 			$("#word").text(wordList[i]);
 		} else {
 			$("#mean").text(meanList[i]);
 		}
 
 		$(function() {
-			$("#rightbtn").click(function() {
-				i++;
-				if (j % 2 == 0) {
+			$("#wm-over").click(function() {
+				if (j != 0) {
+					j = 0;
 					$("#word").text(wordList[i]);
+					$("#mean").text('');
 				} else {
+					j = 1;
 					$("#mean").text(meanList[i]);
+					$("#word").text('');
+				}
+			});
+			$("#rightbtn").click(function() {
+				if (i != wordList.length - 1) {
+					i++;
+					j = 0;
+					$("#word").text(wordList[i]);
+					$("#mean").text('');
 				}
 			});
 			$("#leftbtn").click(function() {
-				i--;
-				if (j % 2 == 0) {
+				if (i != 0) {
+					i--;
+					j = 0;
 					$("#word").text(wordList[i]);
-				} else {
-					$("#mean").text(meanList[i]);
+					$("#mean").text('');
 				}
 			});
 
