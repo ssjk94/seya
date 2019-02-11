@@ -174,6 +174,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .lev1 {
 	border-bottom: 2px solid #ff6666;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	clear: both;
 }
 
 .inputmodi {
@@ -184,6 +187,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	width: 350px;
 	font-size: 16px;
 	padding: 15px;
+}
+.profileblock{
+	width: 110px;
+	height: auto;
+	display: inline-block;
+	font-size: 16px;
+	float: left;
+	padding-left: 10px;
+    padding-top: 8px;
+}
+
+#imgpreview{
+	margin-top : 10px;
+	max-width : 200px;
+	max-height : 200px;
+	margin-bottom : 10px;
+	
 }
 </style>
 
@@ -236,8 +256,7 @@ desired effect
 					style="width: 800px; max-width: none !important; margin-top: 35px;">
 					<!-- 컨테이너 -->
 
-					<div class="lev1"
-						style="padding-top: 15px; padding-bottom: 15px; clear: both;">
+					<div class="lev1">
 
 						<!-- 프로필 공지사항 변경칸 -->
 						<c:import
@@ -247,37 +266,29 @@ desired effect
 
 					<form action="usermodify.do" method="post"
 						enctype="multipart/form-data">
-						<div class="lev1"
-							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
-							<span
-								style="width: 110px; height: auto; display: inline-block; font-size: 16px;">
-								<!-- 사용자 이름 변수가 들어가야합니다. --> 닉네임
-							</span> <input type="text" id="nickname" name="nickname"
+							<!-- 닉네임 -->
+						<div class="lev1">
+							<div class="profileblock">닉네임</div>
+							 <input type="text" id="nickname" name="nickname"
 								value="${usersVo.nickname}" class=inputmodi>
 						</div>
-						<div class="lev1"
-							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
+							<!-- 닉네임 -->
 							<!-- 프로필 사진 -->
-							<!-- 							<span
-								style="width: 110px; height: auto; display: inline-block; font-size: 16px;">
-								프로필 사진 </span> -->
-							프사 <input type="file" id="userimage" name="file"
-								value="" class="inputmodi">
+						<div class="lev1">
+							<div class="profileblock">프로필 사진</div>
+							 <input type="file" id="userimage" name="file"
+								class="inputmodi">
+							 <img id="imgpreview" src="/upload/profile/${usersVo.userimage}" alt="your image" />	
 						</div>
-						<div class="lev1"
-							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
-							<span
-								style="width: 110px; height: auto; display: inline-block; font-size: 16px;">
-								<!-- 사용자 이름 변수가 들어가야합니다. --> 프로필 내용
-							</span> <input type="text" id="usercontent" name="usercontent"
+							<!-- 프로필 사진 -->
+							<!-- 프로필 내용 -->
+						<div class="lev1">
+							<div class="profileblock">프로필 내용</div>
+							 <input type="text" id="usercontent" name="usercontent"
 								value="${usersVo.usercontent}" class=inputmodi>
 						</div>
-						<div class="lev1"
-							style="padding-top: 15px; padding-bottom: 15px; clear: both;">
-
+							<!-- 프로필 내용 -->
+						<div class="lev1">
 							<input type="submit"
 								class="btn btn-block btn-danger form control"
 								style="width: 100%" value="확인">
@@ -296,7 +307,7 @@ desired effect
 	</div>
 	<!-- ./wrapper -->
 
-
+	
 
 	<!-- REQUIRED JS SCRIPTS -->
 
@@ -314,4 +325,25 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
+	<script type="text/javascript">
+	function readURL(input) {
+		 
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	 
+	        reader.onload = function (e) {
+	            $('#imgpreview').attr('src', e.target.result);
+	        }
+	 
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	 
+	$("#userimage").change(function(){
+	    readURL(this);
+	});
+	
+	
+	</script>
+
 </html>

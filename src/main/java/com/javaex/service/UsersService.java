@@ -38,4 +38,9 @@ public class UsersService {
 		
 	 usersDao.userUpdate(usersVo);
 	}
+	public UsersVo selectSession(UsersVo usersVo) {
+		
+		return usersDao.selectSession(usersVo);
+	}
+
 }

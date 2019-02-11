@@ -4,7 +4,8 @@
 
 <mapper namespace="addvocabulary">
 
-	<select id="select" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+	<select id="selectWordbookAlldirectoryList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+			<![CDATA[
 		select directoryno, directoryname
 			from 
 			(select d.directoryname,
@@ -13,6 +14,6 @@
 			where u.id = #{URLId}
 			and u.userno = d.userno)
 		ORDER BY DIRECTORYNO ASC
+		]]>
 	</select>
-
 </mapper>

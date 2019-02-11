@@ -5,10 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaex.service.UsersService;
 import com.javaex.vo.UsersVo;
@@ -40,8 +39,7 @@ public class UsersController {
 	}
 
 	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req) {
-
+	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model) {
 		System.out.println(usersVo.toString());
 		if (usersService.userLogin(usersVo) == null) {
 			return "main/index";
@@ -50,13 +48,23 @@ public class UsersController {
 			usersService.userLogin(usersVo);
 			String id = req.getParameter("id");
 			String password = req.getParameter("password");
-			System.out.println("req id:" + id);
-			System.out.println("req pw:" + password);
 
-			if (usersVo.getId().equals(id) || usersVo.getPassword().equals(password)) {
-				System.out.println("sdasd");
+			if (usersVo.getId().equals(id) && usersVo.getPassword().equals(password)) {
+				/*
+				 * System.out.println("index에서 로그인시에 vo toString, selectoneusers이전"+usersVo.
+				 * toString());
+				 * 
+				 * usersVo.setId(id); System.out.println("usersVo.setId(id) "+ id);
+				 */
+				usersVo = usersService.selectOneUsers(usersVo);
+				System.out.println("index에서 로그인시에 vo toString" + usersVo.toString());
 				session.setAttribute("id", id);
-				return "_view/leegallery";
+				session.setAttribute("nickname", usersVo.getNickname());
+				session.setAttribute("userimage", usersVo.getUserimage());
+				session.setAttribute("usercontent", usersVo.getUsercontent());
+				System.out.println("index에서 로그인시에 아이디값" + id);
+
+				return "redirect:" + id;
 			} else {
 				return "main/index";
 			}
@@ -65,10 +73,10 @@ public class UsersController {
 	}
 
 	@RequestMapping("/logout.do")
-	public String userLogOut(HttpSession session) {
-		session.removeAttribute("id");
-		return "_view/leegallery";
+	public String userLogOut(HttpSession session, HttpServletRequest req) {
+		session.invalidate();
 
+		return "redirect:" + req.getHeader("Referer");
 	}
 
 	@RequestMapping("{id}/profilemodify")
@@ -78,13 +86,12 @@ public class UsersController {
 			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
 		}
 		System.out.println("여기까지는 왔어요?");
-		
+
 		usersVo.setId(id);
 		System.out.println(usersVo.toString());
-		//로그인 사용자 정보 가져오기
-		
-		
-		model.addAttribute("usersVo",usersService.selectOneUsers(usersVo));
+		// 로그인 사용자 정보 가져오기
+
+		model.addAttribute("usersVo", usersService.selectOneUsers(usersVo));
 		System.out.println(usersVo.toString());
 		session.setAttribute("id", id);
 		/*
@@ -94,12 +101,12 @@ public class UsersController {
 		 * model.addAttribute("userimage2", userimage);
 		 * model.addAttribute("usercontent2", usercontent);
 		 */
-		
+
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
 
-	@RequestMapping(value = "{URLId}/usermodify.do", method = RequestMethod.POST)
-	public String updateForm(Model model, UsersVo usersVo, MultipartFile file) {
+	@RequestMapping(value = "{id}/usermodify.do", method = RequestMethod.POST)
+	public String updateForm(Model model, UsersVo usersVo, MultipartFile file, HttpSession session) {
 		System.out.println("수정버튼누름?");
 		System.out.println(usersVo.toString());
 		System.out.println(file.getOriginalFilename());
@@ -132,13 +139,13 @@ public class UsersController {
 			System.out.println("fileSize:" + fileSize);
 
 			byte[] fileData = file.getBytes();
-			OutputStream out = new FileOutputStream(saveDir + "/" + saveName); //saveDir + 잠깐지움 
+			OutputStream out = new FileOutputStream(saveDir + "/" + saveName); // saveDir + 잠깐지움
 			BufferedOutputStream bout = new BufferedOutputStream(out);
 
 			bout.write(fileData);
 
 			System.out.println(file.getOriginalFilename());
-			usersVo.setUserimage(saveName); //"upload/"+filepath였던곳 잠깐 바꿈
+			usersVo.setUserimage(saveName); // "upload/"+filepath였던곳 잠깐 바꿈
 
 			if (bout != null) {
 				bout.close();
@@ -147,15 +154,16 @@ public class UsersController {
 			e.printStackTrace();
 		}
 		usersService.updateform(usersVo);
-//		System.out.println("id: " + id);
-		// model.addAttribute("user", user);
-		//유저 이름보내기 확인용
-		String userimage = usersVo.getUserimage();
-		System.out.println("이미지이름 제대로 뱉는거 맞지?"+ userimage.toString());
-		
-		
-		model.addAttribute("userimage", userimage);
-		
+		// 유저 이름보내기 확인용
+		String userimagecheck = usersVo.getUserimage();
+		System.out.println("이미지이름 제대로 뱉는거 맞지?" + userimagecheck.toString());
+
+		usersVo = usersService.selectOneUsers(usersVo);
+		session.setAttribute("id", usersVo.getId());
+		session.setAttribute("nickname", usersVo.getNickname());
+		session.setAttribute("usercontent", usersVo.getUsercontent());
+		session.setAttribute("userimage", usersVo.getUserimage());
+
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
 
@@ -163,6 +171,43 @@ public class UsersController {
 	public String leemodi() {
 		System.out.println("leemodi");
 		return "kyunghwan/profilemodify/_leeprofilemodify";
+	}
+
+	@RequestMapping(value = "/headerlogin.do", method = RequestMethod.POST)
+	public String headerLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model,
+			RedirectAttributes redirectAttributes) {
+
+		System.out.println(usersVo.toString() + "    " + req.getRequestURI());
+		System.out.println("req.getHeader(\"Referer\")   " + req.getHeader("Referer"));
+
+		System.out.println(req.getRequestURI());
+		if (usersService.userLogin(usersVo) == null) {
+			return "main/index";
+
+		} else {
+			usersService.userLogin(usersVo);
+			String id = req.getParameter("id");
+			String password = req.getParameter("password");
+			System.out.println("req id:" + id);
+			System.out.println("req pw:" + password);
+
+			if (usersVo.getId().equals(id) || usersVo.getPassword().equals(password)) {
+				System.out.println("아이디 비번 확인");
+				// model.addAttribute("usersVo", usersService.selectOneUsers(usersVo));
+				// 세션 넣고 확인할것임
+				usersVo = usersService.selectOneUsers(usersVo);
+				System.out.println("세션에 저장될 이름들은" + usersVo.toString());
+				session.setAttribute("id", usersVo.getId());
+				session.setAttribute("nickname", usersVo.getNickname());
+				session.setAttribute("usercontent", usersVo.getUsercontent());
+				session.setAttribute("userimage", usersVo.getUserimage());
+
+//				redirectAttributes.addFlashAttribute("usersVo", usersService.selectOneUsers(usersVo));
+				return "redirect:" + req.getHeader("Referer");
+			} else {
+				return "main/index";
+			}
+		}
 	}
 
 }

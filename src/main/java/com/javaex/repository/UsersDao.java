@@ -24,8 +24,7 @@ public class UsersDao {
 		return sqlSession.insert("users.insertUsers", usersVo);
 	}
 	public UsersVo userLogin(UsersVo usersVo) {
-		System.out.println("Dao왔음?");
-		System.out.println(usersVo.login());
+	
 		return sqlSession.selectOne("users.selectUserLogin", usersVo);
 	}
 
@@ -35,8 +34,14 @@ public class UsersDao {
 	}
 
 	public UsersVo selectOneUsers(UsersVo usersVo) {
-		 
+		
+		System.out.println("에오"+sqlSession.selectOne("users.selectOneUsers", usersVo).toString());
 		return sqlSession.selectOne("users.selectOneUsers", usersVo); 
+	}
+	
+	public UsersVo selectSession(UsersVo usersVo) {
+		
+		return sqlSession.selectOne("users.selectSession", usersVo);
 	}
 
 }
