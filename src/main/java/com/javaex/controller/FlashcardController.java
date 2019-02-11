@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.FlashcardService;
 import com.javaex.vo.FlashcardVo;
@@ -21,7 +22,7 @@ public class FlashcardController {
 	FlashcardService flashcardService;
 
 	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
-	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, HttpServletRequest req,Model md) {
+	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, Model md) {
 		
 		System.out.println(flashcardVo.toString());
 		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
@@ -30,4 +31,10 @@ public class FlashcardController {
 		return "_view/flashcard";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "flashcard/update", method = RequestMethod.POST)
+	public void flashcardUpdate(FlashcardVo flashcardVo, Model md) {
+		System.out.println(flashcardVo.toString());
+		flashcardService.updateFlashcard(flashcardVo);
+	}
 }

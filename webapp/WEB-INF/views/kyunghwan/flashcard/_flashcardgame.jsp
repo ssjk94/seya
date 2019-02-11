@@ -80,6 +80,10 @@
 #mean {
 	font-size: 30px;
 }
+
+.glyphicon-pencil:hover {
+	color: #fff;
+}
 </style>
 
 <!-- 테두리 마지막에 없애야함 -->
@@ -88,11 +92,14 @@
 <script type="text/javascript">
 	var wordList = new Array();
 	var meanList = new Array();
+	var noList = new Array();
+	var wordbookNo = '${flashcardVo.wordbookNo}';
 	var i = 0;
 	var j = 0;
 </script>
 <c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
 	<script type="text/javascript">
+		noList[i] = '${flashcardVo.wordNo}';
 		wordList[i] = '${flashcardVo.wordName}';
 		meanList[i] = '${flashcardVo.meanName}';
 		i++;
@@ -136,7 +143,25 @@
 					$("#mean").text('');
 				}
 			});
-
+			$(".glyphicon-pencil").click(function() {
+				if (j == 0) {
+					var reword = prompt("단어를 수정합니다.", "");
+					if (reword) {
+						wordList[i] = reword;
+						$("#word").text(wordList[i]);
+						$("#mean").text('');
+						updateFlashcard(noList[i], wordList[i], meanList[i], wordbookNo);
+					}
+				} else {
+					var remean = prompt("의미를 수정합니다.", "");
+					if (remean) {
+						meanList[i] = remean;
+						$("#mean").text(meanList[i]);
+						$("#word").text('');
+						updateFlashcard(noList[i], wordList[i], meanList[i], wordbookNo);
+					}
+				}
+			});
 		});
 	});
 </script>
@@ -180,7 +205,7 @@
 						for="chkbox"><span></span></label>
 				</div>
 				<!-- Modify -->
-				<div class="chkbox-size">
+				<div class="chkbox-size" type="checkbox" id="chkbox">
 					<span class="glyphicon glyphicon glyphicon-pencil"
 						aria-hidden="true"></span>
 				</div>
@@ -197,5 +222,26 @@
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+
+	function updateFlashcard(wordNo, wordName, meanName, wordbookNo) {
+		console.log(wordNo + ", " + wordName + ", " + meanName + ", " +wordbookNo);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/flashcard/update",
+			type : "post",
+			data : {wordNo: noList[i], wordName: wordList[i], meanName: meanList[i], wordbookNo: wordbookNo},
+			dataType : "html",
+			success : function(){
+			/*성공시 처리해야될 코드 작성*/
+//				alert('삭제되었습니다');
+			},
+			error : function(XHR, status, error) {
+			console.error(status+" : "+error);
+			}
+		});
+	};
+
+</script>
 
 </html>

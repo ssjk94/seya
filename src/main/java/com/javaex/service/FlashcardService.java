@@ -22,4 +22,8 @@ public class FlashcardService {
 		
 		return flashcardDao.selectFlashcardList(urlPathVo);
 	}
+	
+	public void updateFlashcard(FlashcardVo flashcardVo) {
+		flashcardDao.updateFlashcard(flashcardVo);
+	}
 }
