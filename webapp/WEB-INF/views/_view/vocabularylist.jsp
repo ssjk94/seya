@@ -382,10 +382,12 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-				<form action="${pageContext.request.contextPath}/mypage/gallery">
+				<form action="${pageContext.request.contextPath}/${URLId}/wordmodify">
+				<input type="hidden" name="wordbookNo" value="${wordbookNo}">
+				<input type="hidden" name="wordbookName" value="${wordbookName}">
+				
 					<!-- 단어장 리스트 가장 바깥 상자 -->
 					<div class="vocalistbox">
-					
 					<c:forEach items="${requestScope.vocaList}" var="vocaList">
 						<!-- 복사를 해야하는 div -->
 						<div class="vocaborder">
@@ -420,7 +422,7 @@ desired effect
 
 					<button type="submit"
 						class="btn btn-danger btn-block btn-sm vocamodi-btn">확인</button>
-				</form>
+					</form>
 			</section>
 			<!-- /.content -->
 		</div>
@@ -451,4 +453,8 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
+
+<script type="text/javascript"></script>
+
+
 </html>

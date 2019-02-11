@@ -339,7 +339,7 @@ desired effect
 							<div class="box-body no-padding">
 								<div class="row">
 								<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
-								
+				
 								
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
@@ -377,12 +377,19 @@ desired effect
 										<div class="small-box">
 											<div class="inner-header">
 												<div class="tools">
-												<!-- 공유 아이콘 -->
+												
 													
-														<i class="fa fa-share"></i>
 													
+														<!-- 삭제 아이콘 -->
+													
+													
+													<button class="Btn-delete" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
+													onclick="deleteWordbook(${wordbookVo.wordbookNo});">
+														<i class="fa fa-trash-o"></i>
+													</button>
+													
+														
 													<!-- 수정하러 들어가는 리스트 아이콘 -->
-													
 													
 												<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
 													<input name="wordbookNo" type="hidden" value="${wordbookVo.wordbookNo}">
@@ -392,10 +399,11 @@ desired effect
 													</button>
 												</form>
 												
+													<!-- 공유 아이콘 -->
+													<i class="fa fa-share"></i>
 													
-													<!-- 삭제 아이콘 -->
 													
-														<i class="fa fa-trash-o"></i>
+														
 													
 												</div>
 											</div>
@@ -484,5 +492,33 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
+
+<script type="text/javascript">
+//새로고침
+function refreshMemList(){
+	location.reload();
+}
+
+	function deleteWordbook(wordbookNo) {
+		console.log(wordbookNo);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${URLId}/delete",
+			type : "post",
+// 			contentType : "application/json",
+			data : {wordbookNo: wordbookNo},
+			dataType : "html",
+			success : function(){
+			/*성공시 처리해야될 코드 작성*/
+//				alert('삭제되었습니다');
+				refreshMemList();
+			},
+			error : function(XHR, status, error) {
+			console.error(status+" : "+error);
+			}
+		});
+	};
+
+</script>
+
 
 </html>

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.WordbookService;
 import com.javaex.vo.URLPathVo;
@@ -45,11 +46,22 @@ public class WordbookController {
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
 		
+		System.out.println();
+		
 		md.addAttribute("listview", 0);
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList",directoryList);
 		md.addAttribute("wordbookList",wordbookList);
 		return "_view/list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "{URLId}/delete", method = RequestMethod.POST)
+	public void wordbookDelete(URLPathVo urlPathVo,Model md) {
+		System.out.println("삭제");
+		System.out.println("워드북 엔오"+urlPathVo.getWordbookNo());
+		wordbookService.deleteWordbook(urlPathVo);
+		
 	}
 	
 }

@@ -306,12 +306,11 @@ desired effect
 												href="#">삭제</a></td>
 										</tr>
 									</c:forEach>
-										
 										<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
 										<tr>
 											<td align="center" colspan="2">
 												<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
-													<input name="directoryNo" type="hidden" value="${wordbookVo.directoryNo}">
+													<input name="directoryNo" type="hidden" value="${directoryNo}">
 													<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
 														새 단어장 추가
 													</button>

@@ -26,9 +26,17 @@ public class WordbookDao {
 			return sqlSession.selectList("wordbook.selectdirectoryWordbookList",urlPathVo);
 		}
 	
+		public void deleteWordbook(URLPathVo urlPathVo) {
+			sqlSession.delete("wordbook.deleteWordbook", urlPathVo);
+		}
+		public void deleteWord(URLPathVo urlPathVo) {
+			sqlSession.delete("wordbook.deleteWord", urlPathVo);
+		}
+		
 		//디렉토리 보여주는 리스트
 		public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){
 			return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
 		}
-	
+		
+		
 }

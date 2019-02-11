@@ -53,6 +53,26 @@
 						and 		rownum=1)
 	]]>
 	</select>
+	<delete id="deleteWordbook" parameterType="com.javaex.vo.URLPathVo">
+	
+		<![CDATA[
+		
+		delete from 	wordbook 
+		where 			wordbookno = #{wordbookNo}
+		
+		]]>
+	
+	</delete>
+	<delete id="deleteWord" parameterType="com.javaex.vo.URLPathVo">
+	
+		<![CDATA[
+		
+		delete from 	word 
+		where 			wordbookno = #{wordbookNo}
+		
+		]]>
+	
+	</delete>
 	
 <!-- 
 	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">

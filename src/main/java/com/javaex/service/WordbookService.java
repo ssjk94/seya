@@ -34,5 +34,10 @@ public class WordbookService {
 	public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){
 		return wordbookDao.selectWordbookAlldirectoryList(urlPathVo);
 	}
+	// 단어장 삭제
+	public void deleteWordbook(URLPathVo urlPathVo) {
+		wordbookDao.deleteWord(urlPathVo);
+		wordbookDao.deleteWordbook(urlPathVo);
+	}
 
 }

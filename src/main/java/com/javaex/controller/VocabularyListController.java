@@ -35,5 +35,14 @@ public class VocabularyListController {
 		md.addAttribute("vocaList", vocaList);
 		return "_view/vocabularylist";
 	}
-	
+	@RequestMapping(value = "{URLId}/wordmodify", method = RequestMethod.GET)
+	public String modify(URLPathVo urlPathVo,VocabularyListVo vocabularyListVo,Model md) {
+		
+		System.out.println("워드북 엔오"+urlPathVo.getWordbookNo());
+		System.out.println("워드북 네임"+urlPathVo.getWordbookName());
+		
+		System.out.println("워드네임"+vocabularyListVo.getWordName());
+		System.out.println("민 네임"+vocabularyListVo.getMeanName());
+		return "_view/gallery";
+	}
 }
