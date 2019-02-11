@@ -155,10 +155,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	position: static;
 }
 
-a.wordpad-link {
-	color: #000000
-}
-
 .breadcrumb {
 	background-color: #ffffff;
 	margin-top: -35px;
