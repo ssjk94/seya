@@ -380,6 +380,12 @@ desired effect
 												
 													
 													
+													<!-- 공유 아이콘 -->
+													<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
+													onclick="shareWordbook(${wordbookVo.wordbookNo});">
+													<i class="fa fa-share"></i>
+													</button>
+													
 														<!-- 삭제 아이콘 -->
 													
 													
@@ -399,8 +405,7 @@ desired effect
 													</button>
 												</form>
 												
-													<!-- 공유 아이콘 -->
-													<i class="fa fa-share"></i>
+													
 													
 													
 														
@@ -509,7 +514,26 @@ function refreshMemList(){
 			dataType : "html",
 			success : function(){
 			/*성공시 처리해야될 코드 작성*/
-//				alert('삭제되었습니다');
+				alert('삭제되었습니다');
+				refreshMemList();
+			},
+			error : function(XHR, status, error) {
+			console.error(status+" : "+error);
+			}
+		});
+	};
+	
+	function shareWordbook(wordbookNo) {
+		console.log(wordbookNo);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${URLId}/share",
+			type : "post",
+// 			contentType : "application/json",
+			data : {wordbookNo: wordbookNo},
+			dataType : "html",
+			success : function(){
+			/*성공시 처리해야될 코드 작성*/
+				alert('가져갔어요');
 				refreshMemList();
 			},
 			error : function(XHR, status, error) {

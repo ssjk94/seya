@@ -64,4 +64,12 @@ public class WordbookController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "{URLId}/share", method = RequestMethod.POST)
+	public void wordbookShare(URLPathVo urlPathVo,Model md) {
+		System.out.println("공유");
+		System.out.println("워드북 엔오"+urlPathVo.getWordbookNo());
+		
+	}
+	
 }
