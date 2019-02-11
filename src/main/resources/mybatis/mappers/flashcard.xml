@@ -10,9 +10,13 @@
 		<![CDATA[
 			select wordno, wordname, meanname, wordbookno
 			from
-				(select wordno, wordname, meanname, wordbookno
-					from word
-					where wordbookno = #{wordbookNo})
+				(select w.wordno, w.wordname, w.meanname, w.wordbookno
+					from word w, wordbook wb, directory d, users u
+					where w.wordbookno = #{wordbookNo}
+					and u.id=#{URLId}
+					and u.userno = d.userno
+					and d.directoryno = wb.directoryno
+					and w.wordbookno = wb.wordbookno)
 			order by rownum asc
 		]]>
 	</select>

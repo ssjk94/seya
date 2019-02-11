@@ -13,7 +13,7 @@
 <style type="text/css">
 .flashcardcontainer {
 	width: 790px;
-	height: 450px;
+	height: 370px;
 	margin-left: 15px;
 }
 
@@ -84,6 +84,18 @@
 .glyphicon-pencil:hover {
 	color: #fff;
 }
+
+.flashquiz-container {
+	padding-top: 10px;
+	margin-top: 20px;
+	height: 350px;
+}
+
+.flashquiz-box {
+	margin-top: 20px;
+	height: 100px;
+	border: 1px solid black;
+}
 </style>
 
 <!-- 테두리 마지막에 없애야함 -->
@@ -95,7 +107,6 @@
 	var noList = new Array();
 	var wordbookNo = '${flashcardVo.wordbookNo}';
 	var i = 0;
-	var j = 0;
 </script>
 <c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
 	<script type="text/javascript">
@@ -107,141 +118,27 @@
 </c:forEach>
 <script type="text/javascript">
 	$(document).ready(function() {
-		i = 0;
-		j = 0;
-		if (j == 0) {
-			$("#word").text(wordList[i]);
-		} else {
-			$("#mean").text(meanList[i]);
-		}
-
-		$(function() {
-			$("#wm-over").click(function() {
-				if (j != 0) {
-					j = 0;
-					$("#word").text(wordList[i]);
-					$("#mean").text('');
-				} else {
-					j = 1;
-					$("#mean").text(meanList[i]);
-					$("#word").text('');
-				}
-			});
-			$("#rightbtn").click(function() {
-				if (i != wordList.length - 1) {
-					i++;
-					j = 0;
-					$("#word").text(wordList[i]);
-					$("#mean").text('');
-				}
-			});
-			$("#leftbtn").click(function() {
-				if (i != 0) {
-					i--;
-					j = 0;
-					$("#word").text(wordList[i]);
-					$("#mean").text('');
-				}
-			});
-			$(".glyphicon-pencil").click(function() {
-				if (j == 0) {
-					var reword = prompt("단어를 수정합니다.", "");
-					if (reword) {
-						wordList[i] = reword;
-						$("#word").text(wordList[i]);
-						$("#mean").text('');
-						updateFlashcard(noList[i], wordList[i], meanList[i], wordbookNo);
-					}
-				} else {
-					var remean = prompt("의미를 수정합니다.", "");
-					if (remean) {
-						meanList[i] = remean;
-						$("#mean").text(meanList[i]);
-						$("#word").text('');
-						updateFlashcard(noList[i], wordList[i], meanList[i], wordbookNo);
-					}
-				}
-			});
-		});
+		console.log(wordList.length);
 	});
 </script>
 <body>
-
 	<!-- width 790px height 450-->
 	<div class="panel panel-default flashcardcontainer">
 		<!-- content box -->
 		<div id="wm-over" role="button" class="panel-body flashcardbox">
-
+			<!-- mean -->
 			<div>
+				<span hidden="mean"></span>
+			</div>
+		</div>
+		<form action="#" class="flashquiz-container">
+			<div class="flashquiz-box">
 				<!-- word -->
 				<div>
 					<p id="word"></p>
 				</div>
 			</div>
-
-			<div>
-				<!-- mean -->
-				<div>
-					<span id="mean"></span>
-				</div>
-			</div>
-
-		</div>
-		<!-- control box -->
-		<div class="panel-footer flashcontrolbox">
-
-			<!-- Left button -->
-			<div id="leftbtn" class="img-circle-btn flashcardattach"
-				role="button">
-				<span class="glyphicon glyphicon-chevron-left gly-size"
-					aria-hidden="true"></span>
-			</div>
-
-			<!-- Check and Modify -->
-			<div class="flashcardattach modiandchk">
-				<!-- Check -->
-				<div>
-					<input class="chkbox-size" type="checkbox" id="chkbox"> <label
-						for="chkbox"><span></span></label>
-				</div>
-				<!-- Modify -->
-				<div class="chkbox-size" type="checkbox" id="chkbox">
-					<span class="glyphicon glyphicon glyphicon-pencil"
-						aria-hidden="true"></span>
-				</div>
-			</div>
-			<!-- Right button -->
-			<div id="rightbtn" class="img-circle-btn flashcardattach flashbtn">
-				<span class="glyphicon glyphicon-chevron-right gly-size"
-					aria-hidden="true"></span>
-			</div>
-
-			<!-- float 제거용 -->
-			<div class="flashcardclear"></div>
-
-		</div>
+		</form>
 	</div>
 </body>
-
-<script type="text/javascript">
-
-	function updateFlashcard(wordNo, wordName, meanName, wordbookNo) {
-		console.log(wordNo + ", " + wordName + ", " + meanName + ", " +wordbookNo);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/flashcard/update",
-			type : "post",
-			data : {wordNo: noList[i], wordName: wordList[i], meanName: meanList[i], wordbookNo: wordbookNo},
-			dataType : "html",
-			success : function(){
-			/*성공시 처리해야될 코드 작성*/
-//				alert('삭제되었습니다');
-			},
-			error : function(XHR, status, error) {
-			console.error(status+" : "+error);
-			}
-		});
-	};
-
-</script>
-
 </html>

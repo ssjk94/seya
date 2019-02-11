@@ -156,7 +156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .panel-primary {
 	border-color: #000000;
-	margin-top:35px;
+	margin-top: 35px;
 }
 
 .content-header>.breadcrumb {
@@ -211,21 +211,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	margin-top: 110px;
 }
 
-p.flashcard-font{
+p.flashcard-font {
 	font-size: 80px;
 	margin-top: -18px;
-	
 }
-.gamerow{
+
+.gamerow {
 	margin-top: 50px;
 }
 
 .breadcrumb {
-    background-color: #ffffff;
-    margin-top:-35px;
+	background-color: #ffffff;
+	margin-top: -35px;
 }
-
-
 </style>
 
 </head>
@@ -280,33 +278,9 @@ desired effect
 			<!-- Main content -->
 			<section class="content container">
 
-		<c:import url="/WEB-INF/views/kyunghwan/flashcard/_flashcard.jsp"></c:import>
+				<c:import
+					url="/WEB-INF/views/kyunghwan/flashcard/_flashcardgame.jsp"></c:import>
 
-
-					<!--게임링크-->
-					<div class="gamerow text-center">
-						<div class="col-xs-4 col-md-4">
-
-							<a href="${pageContext.request.contextPath}/{URLId}/flashcardgame"><img
-								class="flashcard-image" src="dist/images/flashcards1.jpg"
-								alt="플래시 카드"> </a>
-							<p class=text-center>플래시 카드</p>
-
-						</div>
-
-						<div class="col-xs-4 col-md-4">
-
-							<a href="#"><img class="flashcard-image"
-								src="dist/images/wordmatch.png" alt="짝 맞추기"> </a>
-							<p class=text-center>짝 맞추기</p>
-						</div>
-						<div class="col-xs-4 col-md-4">
-
-							<a href="#"><img src="dist/images/question_mark.png"
-								alt="랜덤 퀴즈"> </a>
-							<p class=text-center>랜덤 퀴즈</p>
-						</div>
-					</div>
 			</section>
 			<!-- /.content -->
 		</div>
