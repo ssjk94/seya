@@ -29,6 +29,10 @@ public class WordbookService {
 		}
 		return list;
 	}
+	
+	public URLPathVo getNickName(URLPathVo urlPathVo) {
+		return wordbookDao.selectOneNickName(urlPathVo);
+	}
 
 	//디렉토리 목록 보여주는 리스트
 	public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){

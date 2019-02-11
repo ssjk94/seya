@@ -32,6 +32,10 @@ public class WordbookDao {
 		public void deleteWord(URLPathVo urlPathVo) {
 			sqlSession.delete("wordbook.deleteWord", urlPathVo);
 		}
+		//닉네임 조회 셀렉트
+		public URLPathVo selectOneNickName(URLPathVo urlPathVo) {
+			return sqlSession.selectOne("wordbook.selectOneNickName", urlPathVo);
+		}
 		
 		//디렉토리 보여주는 리스트
 		public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){

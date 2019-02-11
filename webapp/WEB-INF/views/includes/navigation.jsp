@@ -22,14 +22,14 @@ p.side-cont {
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel">
 			<img
-				src="${pageContext.request.contextPath}/dist/images/profile1.png"
+				src="/upload/profile/${urlPathVo.userImage}"
 				class="img-circle" alt="User Image">
 		</div>
 
 		<div class="sidebar-content">
-			<h3 class="gaeyeya">${URLId}</h3>
+			<h3 class="gaeyeya">${urlPathVo.nickName}</h3>
 			<div class="profile-content">
-				<p class="side-cont">여기에 자기소개를 적어주세요</p>
+				<p class="side-cont">${urlPathVo.userContent}</p>
 
 			</div>
 		</div>
