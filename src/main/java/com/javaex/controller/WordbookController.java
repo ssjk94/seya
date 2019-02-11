@@ -45,7 +45,7 @@ public class WordbookController {
 		
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
-		
+		 
 		System.out.println();
 		
 		md.addAttribute("listview", 0);
