@@ -26,10 +26,10 @@ public class WordbookController {
 		
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
-		
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList",directoryList);
-		md.addAttribute("wordbookList",wordbookList);
+		md.addAttribute("wordbookList",wordbookList);		
+		md.addAttribute("urlPathVo", wordbookService.getNickName(urlPathVo));
 		//디렉토리에 단어장이 없을때 디렉토리 토리토리
 		try {
 			md.addAttribute("directoryNo",wordbookList.get(0).getDirectoryNo());

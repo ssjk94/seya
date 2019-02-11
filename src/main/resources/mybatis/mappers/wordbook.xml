@@ -73,7 +73,14 @@
 		]]>
 	
 	</delete>
+	<select id="selectOneNickName" resultType="com.javaex.vo.URLPathVo" parameterType="com.javaex.vo.URLPathVo">
 	
+		select 	nickname,userimage,usercontent
+		 from 	users 
+		 where 	userno = (select userno 
+		 				  from users 
+		 				  where id = #{URLId})
+	</select>
 <!-- 
 	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">
 		<![CDATA[
