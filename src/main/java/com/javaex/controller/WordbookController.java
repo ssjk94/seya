@@ -69,7 +69,7 @@ public class WordbookController {
 	public void wordbookShare(URLPathVo urlPathVo,Model md) {
 		System.out.println("공유");
 		System.out.println("워드북 엔오"+urlPathVo.getWordbookNo());
-		
+		//세션 아이디도 필요하고, 
 	}
 	
 }
