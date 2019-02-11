@@ -22,7 +22,6 @@ public class VocabularyListService {
 		List<VocabularyListVo> wordList = new ArrayList<VocabularyListVo>();
 		
 		
-		
 		if(urlPathVo.getWordbookNo()==0) {
 			//입력받은 단어가 배열에 들어가게끔 만드는 구문	
 			String wordArr[]=vocabularyListVo.getWordName().split("\\n");
@@ -34,6 +33,8 @@ public class VocabularyListService {
 			
 			//단어장 만들기문
 			vocabularyListDao.insertWordbook(urlPathVo);
+			
+			
 			
 			//단어장을 새로 만들때 가장 끝에있는 단어장 번호 가져오기
 			int num=vocabularyListDao.selectWordbookNo(urlPathVo).getWordbookNo();

@@ -9,7 +9,15 @@
 		insert into wordbook (wordbookno,wordbookname,wordbookregdate,wordbookaccess
 										,wordbooktype,wordbookmaker,directoryno)
 		values(wordbook_seq.nextval,#{wordbookName},sysdate,0,1,(select nickname from users where id = #{URLId}),#{directoryNo})
+		
+		<selectKey keyProperty="wordbookNo" resultType="int">
+
+			select wordbook_seq.currval as wordbookno from dual
+
+		</selectKey>
+
 	</insert>
+	
 	<!-- 만든 단어장의 no값 리턴받기 -->
 	<select id="selectWordbookNo" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.URLPathVo">
 
