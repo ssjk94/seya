@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.URLPathVo;
+import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
 
 
@@ -41,6 +42,33 @@ public class WordbookDao {
 		public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){
 			return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
 		}
+		// 단어장 관련된것을 가져오는 객체
+		public WordbookVo selectWordbookInfo(URLPathVo urlPathVo) {
+			return sqlSession.selectOne("wordbook.selectWordbookInfo", urlPathVo);
+		}
+		//session id로 자기의 첫번째 디렉토리 번호를 찾는것
+		public WordbookVo selectDirectoryNoInfo(String id) {
+			return sqlSession.selectOne("wordbook.selectDirectoryNoInfo", id);
+		}
+		//wordbookno로 단어테이블을 젠부 복사한다
+		public List<VocabularyListVo> selectVocabularyInfo(URLPathVo urlPathVo){
+			return sqlSession.selectList("wordbook.selectVocabularyInfo", urlPathVo);
+		}
 		
-		
+		//가져온 단어장을 자기 아이디에 만든다 
+		public void insertWordbook(WordbookVo wordbookVo) {
+//			sqlSession.insert("wordbook.insertWordbook", wordbookVo);
+		}
+		//가져온 단어를 단어장 번호로 만든다
+		public void insertWord(URLPathVo urlPathVo) {
+//			sqlSession.insert("wordbook.insertWord", urlPathVo);
+		}
+		//공유기능을 변경문 공유가능으로 변경
+		public void updateWordbookAccess0(WordbookVo wordbookvo) {
+			sqlSession.update("wordbook.updateWordbookAccess0", wordbookvo);
+		}
+		//공유기능을 변경문 공유불가로 변경
+		public void updateWordbookAccess1(WordbookVo wordbookvo) {
+			sqlSession.update("wordbook.updateWordbookAccess1", wordbookvo);
+		}
 }

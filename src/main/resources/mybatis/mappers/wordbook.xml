@@ -81,16 +81,52 @@
 		 				  from users 
 		 				  where id = #{URLId})
 	</select>
-<!-- 
-	<insert id="insertGB" parameterType="com.javaex.vo.GuestBookVo">
-		<![CDATA[
-			insert into guestbook
-			values (guestbook_seq.nextval,
-			#{name},
-			#{content},
-			#{password},
-			sysdate)
-		]]>
-	</insert>
--->
+	
+	<!-- 공유하는 구문 -->
+	<select id="selectWordbookInfo" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
+		select wordbookname,wordbookregdate,wordbookaccess,wordbookmaker 
+		from wordbook 
+		where wordbookno=#{wordbookNo}
+	</select>
+	<select id="selectDirectoryNoInfo" resultType="com.javaex.vo.WordbookVo" parameterType="java.lang.String">
+		select 	* 
+		from 	 (select 		d.directoryno 
+					  from 			directory d, users u
+					  where 		u.id = #{id}
+					  and  			d.userno = u.userno
+					  order by 		d.directoryno asc)
+		where 	rownum=1
+	</select>
+	<select id="selectVocabularyInfo" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.URLPathVo">
+		
+		select 	wordname,meanname 
+		from 	word 
+		where 	word.wordbookno = #{wordbookNo}
+	
+	</select>
+
+
+<!-- <selectKey keyProperty="wordbookNo" resultType="int">
+
+			select wordbook_seq.currval as wordbookno from dual
+
+		</selectKey> -->
+		<!-- 공유기능 변경을 위한 쿼리문 작성칸 (공유가능으로) -->
+		<update id="updateWordbookAccess0" parameterType="com.javaex.vo.URLPathVo">
+		
+			update  wordbook 
+			set 		wordbookaccess = 0 
+			where wordbookno = #{wordbookNo}
+		
+		</update>
+		
+		<!-- 공유기능 변경을 위한 쿼리문 작성칸 (공유 불가로)-->
+		<update id="updateWordbookAccess1" parameterType="com.javaex.vo.URLPathVo">
+		
+			update  wordbook 
+			set 		wordbookaccess = 1 
+			where wordbookno = #{wordbookNo}
+		
+		</update>
+
 </mapper>

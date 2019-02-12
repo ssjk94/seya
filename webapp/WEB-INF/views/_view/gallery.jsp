@@ -363,34 +363,37 @@ desired effect
 											</div>
 										</div>
 									</div>
-									
-									
+									${sessionScope.id}
+									${URLId}
 									<!-- ./col -->
 <c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
 									<!-- ./col -->
+									
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
 										<div class="small-box">
 											<div class="inner-header">
 												<div class="tools">
 												
+												<c:choose>
+												
+												<c:when test="${sessionScope.id eq URLId}">
+													<!-- 내가 이용하는 공간 -->
 													
+													<!-- 공유 변경 아이콘 -->
 													
-													<!-- 공유 아이콘 -->
-													<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-													onclick="shareWordbook(${wordbookVo.wordbookNo});">
-													<i class="fa fa-share"></i>
+													<button class="Btn-change" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
+													onclick="changeWordbook(${wordbookVo.wordbookNo},${wordbookVo.wordbookAccess});">
+														<i class="fa fa-share"></i>
 													</button>
 													
-														<!-- 삭제 아이콘 -->
-													
+													<!-- 삭제 아이콘 -->
 													
 													<button class="Btn-delete" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
 													onclick="deleteWordbook(${wordbookVo.wordbookNo});">
 														<i class="fa fa-trash-o"></i>
 													</button>
 													
-														
 													<!-- 수정하러 들어가는 리스트 아이콘 -->
 													
 												<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
@@ -400,6 +403,30 @@ desired effect
 														<i class="fa fa-edit"></i>
 													</button>
 												</form>
+													
+												</c:when>
+												
+												<c:when test="${sessionScope.id eq null }">
+													여긴 비회원
+												</c:when>
+												
+												<c:otherwise>
+													<!-- 서로 다른 회원끼리 이용하는 곳 -->
+													
+													<!-- 공유 기능 -->
+													<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
+													onclick="shareWordbook(${wordbookVo.wordbookNo});">
+													<i class="fa fa-share"></i>
+													</button>
+													
+												</c:otherwise>
+												
+												</c:choose>
+													
+														
+													
+														
+													
 												
 													
 													
@@ -530,6 +557,25 @@ function refreshMemList(){
 			success : function(){
 			/*성공시 처리해야될 코드 작성*/
 				alert('가져갔어요');
+				refreshMemList();
+			},
+			error : function(XHR, status, error) {
+			console.error(status+" : "+error);
+			}
+		});
+	};
+	
+	function changeWordbook(wordbookNo,wordbookAccess) {
+		console.log(wordbookNo,wordbookAccess);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${URLId}/change",
+			type : "post",
+// 			contentType : "application/json",
+			data : {wordbookNo: wordbookNo, wordbookAccess: wordbookAccess},
+			dataType : "html",
+			success : function(){
+			/*성공시 처리해야될 코드 작성*/
+				alert('공유 기능이 변경되었습니다.');
 				refreshMemList();
 			},
 			error : function(XHR, status, error) {

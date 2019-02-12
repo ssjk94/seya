@@ -27,6 +27,8 @@ public class VocabularyListController {
 		List<VocabularyListVo> vocaList=vocabularyListService.getWordAndMean(vocabularyListVo,urlPathVo);
 		//디렉토리
 		List<WordbookVo> directoryList = vocabularyListService.getWordbookAlldirectoryList(urlPathVo);
+		//현재 셀렉키 썻음 새로 고쳐야할 필요가 있음 서비스에서는 나오지않음 여기서만 나옴
+		System.out.println("wordbookno가 반환되는지 본다"+urlPathVo.getWordbookNo());
 		
 		md.addAttribute("wordbookNo", vocabularyListVo.getWordbookNo());
 		md.addAttribute("wordbookName", vocabularyListVo.getWordbookName());
