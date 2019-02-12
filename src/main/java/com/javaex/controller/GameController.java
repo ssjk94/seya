@@ -16,25 +16,18 @@ import com.javaex.vo.FlashcardVo;
 import com.javaex.vo.URLPathVo;
 
 @Controller
-public class FlashcardController {
+public class GameController {
 
 	@Autowired
 	FlashcardService flashcardService;
 
-	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
-	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, Model md) {
+	@RequestMapping(value = "{URLId}/flashcardgame", method = RequestMethod.GET)
+	public String flashcardgame(URLPathVo urlPathVo, FlashcardVo flashcardVo, Model md) {
 		
 		System.out.println(flashcardVo.toString());
 		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
 		System.out.println("fuck"+list.toString());
 		md.addAttribute("selectFlashcardList",list);
-		return "_view/flashcard";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "flashcard/update", method = RequestMethod.POST)
-	public void flashcardUpdate(FlashcardVo flashcardVo, Model md) {
-		System.out.println(flashcardVo.toString());
-		flashcardService.updateFlashcard(flashcardVo);
+		return "_view/flashcardgame";
 	}
 }

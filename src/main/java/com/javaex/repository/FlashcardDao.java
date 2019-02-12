@@ -22,5 +22,9 @@ public class FlashcardDao {
 
 		return sqlSession.selectList("flashcard.selectFlashcardList", urlPathVo);
 	}
+	
+	public void updateFlashcard(FlashcardVo flashcardVo) {
+		sqlSession.update("flashcard.updateFlashcard", flashcardVo);
+	}
 
 }
