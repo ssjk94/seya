@@ -118,7 +118,17 @@
 </c:forEach>
 <script type="text/javascript">
 	$(document).ready(function() {
-		console.log(wordList.length);
+		// 난수 생성
+		i = Math.floor(Math.random() * meanList.length);
+		console.log(meanList[i]);
+		$("#mean").text(meanList[i]);
+		$(function() {
+			$("#wm-over").click(function() {
+				meanList.splice(i, 1);
+				i = Math.floor(Math.random() * meanList.length);
+				$("#mean").text(meanList[i]);
+			});
+		});
 	});
 </script>
 <body>
@@ -128,14 +138,14 @@
 		<div id="wm-over" role="button" class="panel-body flashcardbox">
 			<!-- mean -->
 			<div>
-				<span hidden="mean"></span>
+				<span id="mean"></span>
 			</div>
 		</div>
 		<form action="#" class="flashquiz-container">
 			<div class="flashquiz-box">
 				<!-- word -->
 				<div>
-					<p id="word"></p>
+					<p hidden="word"></p>
 				</div>
 			</div>
 		</form>
