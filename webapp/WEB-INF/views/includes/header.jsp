@@ -31,7 +31,124 @@
 .gebyung {
 	text-align: center;
 }
+
+.searchbar {
+	width: 300px;
+	height: 45px;
+	background-color: #dd4b39;
+	border: none;
+	border-bottom: solid 1px #ffffff;
+	padding: 10px;
+	color: #ffffff;
+	float: left;
+}
+
+.searchform {
+	display: inline-block;
+}
+
+::-webkit-input-placeholder { /* 크롬 4–56 */
+	color: #ffffff;
+}
+
+:-moz-placeholder { /* 파이어폭스 4–18 */
+	color: #ffffff;
+	opacity: 1;
+}
+
+::-moz-placeholder { /* 파이어폭스 19–50 */
+	color: #ffffff;
+	opacity: 1;
+}
+
+:-ms-input-placeholder { /* 인터넷 익스플로러 10+ */
+	color: #ffffff;
+}
+
+::placeholder { /* 파이어폭스 51+, 크롬 57+ */
+	color: #ffffff;
+	opacity: 1;
+}
+
+.searchbar {
+	width: 450px;
+	height: 45px;
+	background-color: #ffffff;
+	border: none;
+	border-bottom: solid 1px #ffffff;
+	padding: 10px;
+	color: #ffffff;
+}
+
+.formcontroll {input [type="submit"] { font-family:FontAwesome;
+	background-color: rgba(255, 255, 255, 0.7);
+	font-size: 27px;
+	outline: none;
+}
+
+}
+.input-group .form-control {
+	position: relative;
+	z-index: 2;
+	float: right;
+	width: 85%;
+	margin-bottom: 0;
+}
+
+#search-select {
+	height: 35px;
+	width: 65px;
+	float: left;
+	border-radius: 2px;
+	border:none;
+}
+.searchdiv{
+	width:500px;
+	float:left;
+}
+.skin-red-light .sidebar-form {
+    border-radius: 3px;
+    margin: 6px 10px;
+    border : 0px;
 </style>
+<script
+	src="${pageContext.request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/dist/jquery-ui/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	
+     // 자동으로 /ajax/auato 주소로 term 이란 파라미터가 전송된다.
+
+     // 응답은 [{label:~~~,value:~~~},{label:~~~,value:~~~}] 형태가 된다.
+
+<%--    $('#term').autocomplete({"source":"<%=cp%>/ajax/auto"}); --%>
+
+     $('#searchajax').autocomplete
+     		({"source":function(request,response){
+
+            $.getJSON("${pageContext.request.contextPath}/searchajax",{"term":request.term},
+
+                    function(result) {
+
+                           return response($.map(result, function(item){
+
+                                   var l = item.label.replace(request.term,
+
+                                                  "<span style='color:red'>"+request.term+"</span>");
+
+                                   return {label:l, value:item.value};
+
+                           }));
+
+            });
+
+     }});
+	
+
+	
+</script>
+
 
 <header class="main-header">
 
@@ -44,6 +161,24 @@
 
 	<!-- Header Navbar -->
 	<nav class="navbar navbar-static-top" role="navigation">
+
+		<!-- Search -->
+		<div class="searchdiv">
+			<form action="selectsearch.do" method="get" class="sidebar-form">
+				<div class="input-group">
+					<select name="searchCondition" id="search-select">
+						<option value="findwordname">단어장</option>
+						<option value="findnickname">닉네임</option>
+					</select> <input type="text" name="q" class="form-control"
+						placeholder="Search..."> <span class="input-group-btn">
+						<button type="submit" name="search" id="search-btn"
+							class="btn btn-flat">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
 		<!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
@@ -61,7 +196,8 @@
 						<!--세션있을때 -->
 						<c:if test="${not empty sessionScope.id}">
 							<li class="user-header"><img
-								src="/upload/profile/${sessionScope.userimage}" class="img-circle">
+								src="/upload/profile/${sessionScope.userimage}"
+								class="img-circle">
 
 								<p>
 									${sessionScope.nickname} <small>${sessionScope.usercontent}</small>
@@ -85,7 +221,7 @@
 								</div>
 								<div class="user-footer">
 									<div class="pull-left thismargin">
-										<input type="submit" value="로그인" 
+										<input type="submit" value="로그인"
 											class="btn btn-default btn-flat btnmargin">
 									</div>
 									<div class="pull-left thismargin">

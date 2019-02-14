@@ -28,8 +28,6 @@ public class UsersService {
 	}
 	
 	public UsersVo userLogin(UsersVo usersVo) {
-		System.out.println("서비스왔음?");
-		System.out.println(usersVo.toString());
 		
 		return usersDao.userLogin(usersVo);
 	}
@@ -41,6 +39,16 @@ public class UsersService {
 	public UsersVo selectSession(UsersVo usersVo) {
 		
 		return usersDao.selectSession(usersVo);
+	}
+
+	/*
+	 * public List<UsersVo> selectSearchAjax(UsersVo usersVo, String result) {
+	 * 
+	 * return usersDao.selectSearchAjax(usersVo, result); }
+	 */
+	public List<UsersVo> selectSearchAjax(String nickname) {
+		
+		return usersDao.selectSearchAjax(nickname);
 	}
 
 }
