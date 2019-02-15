@@ -13,9 +13,9 @@ public class UsersService {
 
 	@Autowired
 	UsersDao usersDao;
+
 	public UsersVo selectOneUsers(UsersVo usersVo) {
-		
-		
+
 		return usersDao.selectOneUsers(usersVo);
 	}
 
@@ -26,18 +26,19 @@ public class UsersService {
 	public int insertUser(UsersVo usersVo) {
 		return usersDao.insertUsers(usersVo);
 	}
-	
+
 	public UsersVo userLogin(UsersVo usersVo) {
-		
+
 		return usersDao.userLogin(usersVo);
 	}
 
 	public void updateform(UsersVo usersVo) {
-		
-	 usersDao.userUpdate(usersVo);
+
+		usersDao.userUpdate(usersVo);
 	}
+
 	public UsersVo selectSession(UsersVo usersVo) {
-		
+
 		return usersDao.selectSession(usersVo);
 	}
 
@@ -47,8 +48,23 @@ public class UsersService {
 	 * return usersDao.selectSearchAjax(usersVo, result); }
 	 */
 	public List<UsersVo> selectSearchAjax(String nickname) {
-		
+
 		return usersDao.selectSearchAjax(nickname);
+	}
+
+	public int idCheck(String id) {
+		// TODO Auto-generated method stub
+		return usersDao.selectIdCheck(id);
+	}
+
+	public int emailCheck(String email) {
+		// TODO Auto-generated method stub
+		return usersDao.selectEmailCheck(email);
+	}
+
+	public int nicknameCheck(String nickname) {
+		// TODO Auto-generated method stub
+		return usersDao.selectNicknameCheck(nickname);
 	}
 
 }

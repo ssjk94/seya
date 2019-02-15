@@ -49,4 +49,20 @@ public class UsersDao {
 		return sqlSession.selectList("users.selectSearchAjax", nickname);
 	}
 
+	public int selectIdCheck(String id) {
+	
+		return sqlSession.selectOne("users.idCheck", id);
+		
+	}
+
+	public int selectEmailCheck(String email) {
+		
+		return sqlSession.selectOne("users.emailCheck", email);
+	}
+
+	public int selectNicknameCheck(String nickname) {
+		
+		return sqlSession.selectOne("users.nicknameCheck", nickname);
+	}
+
 }
