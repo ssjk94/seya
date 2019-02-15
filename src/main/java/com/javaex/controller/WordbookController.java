@@ -35,6 +35,7 @@ public class WordbookController {
 		md.addAttribute("wordbookList",wordbookList);		
 		md.addAttribute("urlPathVo", wordbookService.getNickName(urlPathVo));
 		//디렉토리에 단어장이 없을때 디렉토리 토리토리
+		
 		try {
 			md.addAttribute("directoryNo",wordbookList.get(0).getDirectoryNo());
 		}catch (Exception e) {
