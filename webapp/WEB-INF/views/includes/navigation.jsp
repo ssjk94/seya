@@ -46,11 +46,35 @@ p.side-cont {
 					</div>
 				</form> -->
 		<!-- /.search form -->
-
+		
+		<!-- 전체 단어장 보여줄꺼 -->
+		<ul class="sidebar-menu" data-widget="tree">
+			<li class="header">
+				<c:choose>
+				<c:when test="${listview eq 0}">
+				<form action="${pageContext.request.contextPath}/${URLId}/list" method="get">
+					<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
+						<span>전체 단어장</span>
+					</button>
+				</form>
+				</c:when>
+				<c:otherwise>
+				<form action="${pageContext.request.contextPath}/${URLId}" method="get">
+					<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
+						<span>전체 단어장</span>
+					</button>
+				</form>
+				</c:otherwise>
+				</c:choose>
+			</li>
+		</ul>
+		
+		
 		<!-- Sidebar Menu -->
 		<c:forEach items="${requestScope.directoryList}" var="wordbookVo">
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">
+			
 				<!-- 디렉토리 번호를 넘기려고함 -->
 				<c:choose>
 				<c:when test="${listview eq 0}">

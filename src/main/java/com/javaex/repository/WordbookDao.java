@@ -57,11 +57,11 @@ public class WordbookDao {
 		
 		//가져온 단어장을 자기 아이디에 만든다 
 		public void insertWordbook(WordbookVo wordbookVo) {
-//			sqlSession.insert("wordbook.insertWordbook", wordbookVo);
+		sqlSession.insert("wordbook.insertWordbook", wordbookVo);
 		}
 		//가져온 단어를 단어장 번호로 만든다
-		public void insertWord(URLPathVo urlPathVo) {
-//			sqlSession.insert("wordbook.insertWord", urlPathVo);
+		public void insertWord(VocabularyListVo vocabularyListVo) {
+			sqlSession.insert("wordbook.insertWord", vocabularyListVo);
 		}
 		//공유기능을 변경문 공유가능으로 변경
 		public void updateWordbookAccess0(WordbookVo wordbookvo) {

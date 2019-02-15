@@ -28,6 +28,11 @@ public class WordbookController {
 	@RequestMapping(value = "{URLId}", method = RequestMethod.GET)
 	public String wordbook(URLPathVo urlPathVo,Model md) {
 		
+		
+		
+		//기본은 전체 디렉토리
+		//디렉토리는 가는데
+		
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
 		md.addAttribute("URLId", urlPathVo.getURLId());
@@ -35,13 +40,8 @@ public class WordbookController {
 		md.addAttribute("wordbookList",wordbookList);		
 		md.addAttribute("urlPathVo", wordbookService.getNickName(urlPathVo));
 		//디렉토리에 단어장이 없을때 디렉토리 토리토리
-		
-		try {
-			md.addAttribute("directoryNo",wordbookList.get(0).getDirectoryNo());
-		}catch (Exception e) {
-			md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
-			return "_view/gallery";
-		}
+		md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
+
 		return "_view/gallery";
 	}
 	//리스트 출력 컨트롤러
@@ -50,20 +50,16 @@ public class WordbookController {
 		
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
-		 
-		System.out.println();
 		
 		md.addAttribute("listview", 0);
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList",directoryList);
 		md.addAttribute("wordbookList",wordbookList);
+		md.addAttribute("urlPathVo", wordbookService.getNickName(urlPathVo));
 		//디렉토리에 단어장이 없을때 디렉토리 토리토리
-		try {
-			md.addAttribute("directoryNo",wordbookList.get(0).getDirectoryNo());
-		}catch (Exception e) {
-			md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
-			return "_view/list";
-		}
+		md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
+		
+		
 		return "_view/list";
 	}
 	
@@ -96,16 +92,16 @@ public class WordbookController {
 		//단어장에 있는 리스트 형으로 단어 다 가져오기
 		List<VocabularyListVo> vocaShare = wordbookService.getVocabularyInfo(urlPathVo);
 		
+		//단어장 만들기
+		wordbookService.setWordbook(wordbookVo);
+		
+		//반환된 단어장 no를 세팅
 		for(VocabularyListVo a:vocaShare) {
-			System.out.println(a.toString());
+			a.setWordbookNo(wordbookVo.getWordbookNo());
 		}
 		
-		//단어장 만들기
-//		wordbookService.setWordbook(wordbookVo);
 		//만든후 no값에 리스트 넣어서 ㄱㄱ
-//		wordbookService.setWord(urlPathVo);
-		
-//		System.out.println(wordbookVo.toString());
+		wordbookService.setWord(vocaShare);
 		
 		//다시한번 워드 테이블 전체를 가져가서 
 		//session.id와 일치하는 사람에게 생성한다

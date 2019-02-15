@@ -35,22 +35,18 @@
 
 	<select id="selectDefaultWordbookList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
 	<![CDATA[
-		select   u.nickname,
-					w.wordbookno,
-					w.wordbookname,
-					w.wordbookregdate,
-					w.wordbookaccess,
-					w.wordbookmaker,
-					d.directoryno
-		from 	wordbook w, directory d, users u
-		where 	w.directoryno = d.directoryno
-		and 		d.userno = u.userno
-		and 		d.directoryno = 
-						(select 	d.directoryno
-						from 	users u,directory d
-						where 	u.id=#{URLId}
-						and 		u.userno = d.userno
-						and 		rownum=1)
+		select 		u.nickname,
+						w.wordbookno,
+						w.wordbookname,
+						w.wordbookregdate,
+						w.wordbookaccess,
+						w.wordbookmaker,
+						d.directoryno
+		from 		wordbook w, directory d, users u
+		where 		u.id = #{URLId}
+		and 			w.directoryno = d.directoryno
+		and 			d.userno = u.userno
+		order by 	w.wordbookno asc
 	]]>
 	</select>
 	<delete id="deleteWordbook" parameterType="com.javaex.vo.URLPathVo">
@@ -128,5 +124,33 @@
 			where wordbookno = #{wordbookNo}
 		
 		</update>
+		<!-- 단어장만들기 -->
+		<insert id="insertWordbook" parameterType="com.javaex.vo.WordbookVo">
+			insert into wordbook (	wordbookno,
+											 	wordbookname,
+											 	wordbookregdate,
+												wordbookaccess,
+												wordbooktype,
+												wordbookmaker,
+												directoryno) 
+			values	(	wordbook_seq.nextval,
+							#{wordbookName},
+							#{wordbookRegdate},
+							#{wordbookAccess},
+							1,
+							#{wordbookMaker},
+							#{directoryNo})
+							
+			<selectKey keyProperty="wordbookNo" resultType="int">
+
+			select wordbook_seq.currval as wordbookno from dual
+
+			</selectKey>
+		</insert>
+		<!-- 단어만들기 -->
+		<insert id="insertWord" parameterType="com.javaex.vo.VocabularyListVo">
+			insert into word 	(wordno,wordname,meanname,wordbookno)
+			values					(word_seq.nextval,#{wordName},#{meanName},#{wordbookNo})
+		</insert>
 
 </mapper>

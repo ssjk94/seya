@@ -25,11 +25,21 @@ public class VocabularyListService {
 	
 	public void createWordService(VocabularyListVo vocabularyListVo) {
 		
-		//입력받은 단어가 배열에 들어가게끔 만드는 구문	
-		String wordArr[]=vocabularyListVo.getWordName().split("\\n");
+		//입력받은 단어가 배열에 들어가게끔 만드는 구문
+		String arr[] = vocabularyListVo.getWordName().split("\\n");
+		List<String> arrList = new ArrayList<String>();
+		
+		for(int i =0;i<arr.length;i++) {
+			if(!arr[i].isEmpty()) {
+				arrList.add(arr[i]);
+			}
+			System.out.println("배열"+arr[i]);
+		}
+		
+		String wordArr[] = new String[arrList.size()];
 		
 		for(int i =0;i<wordArr.length;i++) {
-			wordArr[i]=wordArr[i].trim();
+			wordArr[i] = arrList.get(i);
 		}
 		vocabularyListVo.setWordArr(wordArr);
 		
@@ -40,7 +50,7 @@ public class VocabularyListService {
 		
 		System.out.println("세야 후 워드북 엔오"+vocabularyListVo.getWordbookNo());
 		//배열 길이만큼 워드네임 삽입
-		for(int i =0;i<vocabularyListVo.getWordArr().length;i++) {
+		for(int i =0;i<wordArr.length;i++) {
 			vocabularyListVo.setWordName(wordArr[i]);
 			for(int j=0;j<seyaList.size();j++) {
 				if(vocabularyListVo.getWordName().equals(seyaList.get(j).getSeyaWordName())) {

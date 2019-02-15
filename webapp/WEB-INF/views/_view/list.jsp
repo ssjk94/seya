@@ -366,7 +366,7 @@ desired effect
 										</tr>
 									</c:forEach>
 										
-										<c:if test="${sessionScope.id eq URLId}">
+										<c:if test="${sessionScope.id eq URLId && directoryNo ne 0}">
 										<tr>
 											<td align="center" colspan="2">
 												<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">

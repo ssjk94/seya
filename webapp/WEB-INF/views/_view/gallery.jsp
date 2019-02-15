@@ -335,8 +335,7 @@ desired effect
 							<div class="box-body no-padding">
 								<div class="row">
 								<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
-								
-								<c:if test="${sessionScope.id eq URLId}">
+								<c:if test="${sessionScope.id eq URLId && directoryNo ne 0}">
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
 										<div id="addvocabulary" class="small-box submitdiv">
