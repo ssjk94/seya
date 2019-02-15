@@ -6,8 +6,7 @@ public class URLPathVo {
 	private int userNo;
 	private int directoryNo;
 	private int wordbookNo;
-	private int wordEngNo;
-	private int meanKorNo;
+	private int wordNo;
 	//users 테이블
 	private String nickName;
 	private String userImage;
@@ -18,28 +17,21 @@ public class URLPathVo {
 	public URLPathVo() {
 		super();
 	}
-	
-	
 
-	public URLPathVo(String uRLId, String wordbookName, int userNo, int directoryNo, int wordbookNo, int wordEngNo,
-			int meanKorNo, String nickName, String userImage, String userContent) {
+	public URLPathVo(String uRLId, String wordbookName, int userNo, int directoryNo, int wordbookNo, int wordNo,
+			String nickName, String userImage, String userContent) {
 		super();
 		URLId = uRLId;
 		this.wordbookName = wordbookName;
 		this.userNo = userNo;
 		this.directoryNo = directoryNo;
 		this.wordbookNo = wordbookNo;
-		this.wordEngNo = wordEngNo;
-		this.meanKorNo = meanKorNo;
+		this.wordNo = wordNo;
 		this.nickName = nickName;
 		this.userImage = userImage;
 		this.userContent = userContent;
 	}
 
-
-
-	//세터와 게터
-	
 	public String getURLId() {
 		return URLId;
 	}
@@ -80,20 +72,12 @@ public class URLPathVo {
 		this.wordbookNo = wordbookNo;
 	}
 
-	public int getWordEngNo() {
-		return wordEngNo;
+	public int getWordNo() {
+		return wordNo;
 	}
 
-	public void setWordEngNo(int wordEngNo) {
-		this.wordEngNo = wordEngNo;
-	}
-
-	public int getMeanKorNo() {
-		return meanKorNo;
-	}
-
-	public void setMeanKorNo(int meanKorNo) {
-		this.meanKorNo = meanKorNo;
+	public void setWordNo(int wordNo) {
+		this.wordNo = wordNo;
 	}
 
 	public String getNickName() {
@@ -123,12 +107,8 @@ public class URLPathVo {
 	@Override
 	public String toString() {
 		return "URLPathVo [URLId=" + URLId + ", wordbookName=" + wordbookName + ", userNo=" + userNo + ", directoryNo="
-				+ directoryNo + ", wordbookNo=" + wordbookNo + ", wordEngNo=" + wordEngNo + ", meanKorNo=" + meanKorNo
-				+ ", nickName=" + nickName + ", userImage=" + userImage + ", userContent=" + userContent + "]";
+				+ directoryNo + ", wordbookNo=" + wordbookNo + ", wordNo=" + wordNo + ", nickName=" + nickName
+				+ ", userImage=" + userImage + ", userContent=" + userContent + "]";
 	}
-
-	
-
-	
 	
 }

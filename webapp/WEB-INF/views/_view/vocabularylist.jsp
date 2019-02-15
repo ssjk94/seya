@@ -239,7 +239,13 @@ p.flashcard-font {
 	clear: both;
 }
 
-.voca-textbox {
+.word-textbox {
+	border: 1px solid #ffffff;
+	border-bottom: 2px solid lavender;
+	width: 100%;
+	text-align: center;
+}
+.mean-textbox {
 	border: 1px solid #ffffff;
 	border-bottom: 2px solid lavender;
 	width: 100%;
@@ -313,6 +319,13 @@ input:disabled {
 .btn-padding{
 	padding-right: 5px;
 }
+.deleteWord{
+	
+}
+.deleteWord:hover{
+	font-size: 25px;
+	visibility: visible;
+}
 </style>
 
 </head>
@@ -360,19 +373,17 @@ desired effect
 						<li><a href="#">Tables</a></li>
 						<li class="active">Simple</li>
 					</ol>
+					
+					<form name="header" action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
 					<!--/단어장 경로 -->
 					<input type="text" class="wordpadname" name="wordbookName"
 						value="${wordbookName}">
 						
-					<button type="submit"
-						class="btn btn-danger btn-block btn-sm vocamodi-btn">확인</button>
-						
-						
-						
-				
-					<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
+					<button type="button"
+						class="btn btn-danger btn-block btn-sm vocamodi-btn" onclick="updateSubmit();">확인</button>
+					
 					<input name="wordbookNo" type="hidden" value="${wordbookNo}">
-					<input name="wordbookName" type="hidden" value="${wordbookName}">
+
 						<button type="submit" class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
 							추가</button>
 					</form>
@@ -382,12 +393,13 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-				<form action="${pageContext.request.contextPath}/${URLId}/wordmodify">
+				<form name="updateWM" action="${pageContext.request.contextPath}/${URLId}/wordmodify">
 				<input type="hidden" name="wordbookNo" value="${wordbookNo}">
-				<input type="hidden" name="wordbookName" value="${wordbookName}">
+				<input type="hidden" name="wordName" value="">
+				<input type="hidden" name="wordbookName" value="">
 				
 					<!-- 단어장 리스트 가장 바깥 상자 -->
-					<div class="vocalistbox">
+					<div id="vocalistbox">
 					<c:forEach items="${requestScope.vocaList}" var="vocaList">
 						<!-- 복사를 해야하는 div -->
 						<div class="vocaborder">
@@ -399,7 +411,8 @@ desired effect
 								</div>
 								<!-- 텍스트박스 -->
 								<div class="vocafloat textgapbox">
-									<input type="text" class="voca-textbox" value="${vocaList.wordName}">
+									<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}"
+									onblur="focusout(${vocaList.wordNo}, 0, this.value);">
 								</div>
 							</div>
 							<!-- mean -->
@@ -410,18 +423,22 @@ desired effect
 								</div>
 								<!-- 텍스트박스 -->
 								<div class="vocafloat textgapbox">
-									<input type="text" class="voca-textbox" value="${vocaList.meanName}">
+									<input type="text" name="meanAName" class="mean-textbox" value="${vocaList.meanName}"
+									onblur="focusout(${vocaList.wordNo}, 1, this.value);">
 								</div>
 							</div>
+							<!-- 삭제 아이콘이 들어가야할 곳 -->
+							<button type="button" class="deleteWord">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="deleteWord(${vocaList.wordNo})"></span>
+							</button>
 						</div>
 						<!-- 복사를 해야하는 div -->
 					</c:forEach>
 
 
 					</div>
-
-					<button type="submit"
-						class="btn btn-danger btn-block btn-sm vocamodi-btn">확인</button>
+					<button type="button"
+						class="btn btn-danger btn-block btn-sm vocamodi-btn" onclick="updateSubmit();">확인</button>
 					</form>
 			</section>
 			<!-- /.content -->
@@ -454,7 +471,60 @@ desired effect
      user experience. -->
 </body>
 
-<script type="text/javascript"></script>
+<script type="text/javascript">
+//새로고침
+
+var wordAndMean="";
+
+function refreshMemList(){
+
+	location.reload();
+};
+
+	function updateSubmit() {
+		//제목 밸류 받고
+		//컨텐츠 밸류 받고
+		//섭밋 실행문 실행
+		if(wordAndMean != ""){
+			//워드와 민의 일정한 값
+			document.updateWM.wordName.value = wordAndMean;
+			//바뀐 제목의 값이 히든값으로 저장하는 문장
+			document.updateWM.wordbookName.value = document.header.wordbookName.value;
+			document.updateWM.submit();
+		}else{
+			location.href = "/${URLId}";
+		}
+	}
+		function focusout(wordNo,seperator,word) {
+	
+			var arr = wordNo+" "+seperator+" "+word+"\n";
+			
+			wordAndMean = wordAndMean + arr;
+			console.log(arr);
+			console.log(wordAndMean)
+			
+			
+		}
+
+	function deleteWord(wordNo) {
+		console.log(wordNo);
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${URLId}/deleteWord",
+			type : "post",
+ //			contentType : "application/json",
+			data : {wordNo: wordNo},
+			dataType : "html",
+			success : function(){
+			/*성공시 처리해야될 코드 작성*/
+				refreshMemList();
+			},
+			error : function(XHR, status, error) {
+			console.error(status+" : "+error);
+			}
+		});
+	};
+</script>
 
 
 </html>

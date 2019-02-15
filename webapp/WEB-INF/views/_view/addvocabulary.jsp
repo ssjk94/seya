@@ -384,8 +384,9 @@ desired effect
 			</section>
 			
 			<!-- 자바로 보내야함 -->
-			<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
+			<form name="addvoca" action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
 				<input type="hidden" name="directoryNo" value="${directoryNo}">
+				<input type="hidden" name="wordbookNo" value="">
 				<c:choose>
 				
 					<c:when test="${wordbookName eq null}">
@@ -410,8 +411,9 @@ desired effect
 					<div class="listaddline">
 						
 						
-							<button type="submit"
-								class="btn btn-danger btn-block btn-lg vocamodifybtn">
+							<button type="button"
+								class="btn btn-danger btn-block btn-lg vocamodifybtn" 
+								onclick="insertWord(${wordbookNo},${directoryNo})">
 								저장하기</button>
 						
 					</div>
@@ -443,5 +445,35 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+     
+     <script type="text/javascript">
+     //wordpadname 추가해야함
+     
+     function insertWord(wordbookNo,directoryNo) {
+ 		console.log(wordbookNo);
+ 		console.log(directoryNo);
+ 		var wordName = $("[name=wordName]").val();
+ 		var wordbookName = $("[name=wordbookName]").val();
+ 		console.log(wordName);
+ 		
+ 		$.ajax({
+ 			url : "${pageContext.request.contextPath}/${URLId}/insertWord",
+ 			type : "post",
+ // 			contentType : "application/json",
+ 			data : {wordbookNo: wordbookNo, directoryNo: directoryNo,wordName: wordName,wordbookName: wordbookName},
+ 			dataType : "html",
+ 			success : function(wordbookNo){
+ 			/*성공시 처리해야될 코드 작성*/
+ 				
+ 				document.addvoca.wordbookNo.value = wordbookNo
+ 				document.addvoca.submit();
+ 			},
+ 			error : function(XHR, status, error) {
+ 				console.error(status+" : "+error);
+ 			}
+ 		});
+ 	};
+     
+     </script>
 
 </html>

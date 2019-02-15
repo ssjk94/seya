@@ -19,7 +19,7 @@
 	</insert>
 	
 	<!-- 만든 단어장의 no값 리턴받기 -->
-	<select id="selectWordbookNo" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.URLPathVo">
+	<!-- <select id="selectWordbookNo" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.URLPathVo">
 
 		select w.wordbookno
 		from wordbook w,directory d
@@ -28,7 +28,7 @@
 		and rownum = 1
 		order by w.wordbookno desc
 
-	</select>
+	</select> -->
 	
 	<!-- Word insert문 -->
 	<insert id="insertword" parameterType="com.javaex.vo.VocabularyListVo">
@@ -57,7 +57,7 @@
 		and 			sk.seyawordno = se.seyawordno
 		group by 	se.seyawordname
 	</select>
-	
+	<!--  
 	<update id="updatewordandmean" parameterType="com.javaex.vo.VocabularyListVo">
 	
 		update word
@@ -67,12 +67,37 @@
 		and 		meanname is null
 	
 	</update>
-	
+	-->
 	<select id="selectallword" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.VocabularyListVo">
 		select 	w.wordname, w.meanname,w.wordno,wb.wordbookno
 		from 	word w,wordbook wb
 		where 	w.wordbookno = wb.wordbookno
 		and 		wb.wordbookno =#{wordbookNo}
 	</select>
+	
+	<insert id="insertMoreWord" parameterType="com.javaex.vo.VocabularyListVo">
+		insert into word(wordno, wordname, meanName, wordbookno) 
+		values		(word_seq.nextval,'${wordName}','${meanName}',${wordbookNo})
+	</insert>
+	
+	<delete id="deleteWord" parameterType="com.javaex.vo.URLPathVo">
+		delete from 	word 
+		where 			word.wordno=#{wordNo}
+	</delete>
+	<update id="updateWordbookName" parameterType="com.javaex.vo.URLPathVo">
+		update 	wordbook
+		set 		wordbookname = #{wordbookName}
+		where 	wordbookno = #{wordbookNo}
+	</update>
+	<update id="updateWordName" parameterType="com.javaex.vo.VocabularyListVo">
+		update 	word
+		set 		wordname = #{wordName}
+		where 	wordno = #{wordNo}
+	</update>
+	<update id="updateMeanName" parameterType="com.javaex.vo.VocabularyListVo">
+		update 	word
+		set 		meanname = #{meanName}
+		where 	wordno = #{wordNo}
+	</update>	
 
 </mapper>

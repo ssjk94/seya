@@ -39,6 +39,17 @@
 	
 	
 	</select>
+	
+	<!-- 헤더 Search 쿼리문 -->
+	
+	<select id="selectSearchAjax" resultType="com.javaex.vo.UsersVo" parameterType="string">
+		<![CDATA[
+			select nickname from users where 
+			nickname like '%'#{value}'%'
+			
+		]]>
+	</select>
+	
 
 	<!-- 유저 insert 쿼리문 -->
 	<insert id="insertUsers" parameterType="com.javaex.vo.UsersVo">
@@ -53,7 +64,8 @@
 			#{userimage},
 			#{userbirth},
 			#{sex},
-			 3)
+			 3,
+			#{usercontent})
 		]]>
 	</insert>
 	
@@ -67,6 +79,16 @@
 				
 		]]>
 	</update>
+	<select id="qweqwers">
+		<![CDATA[
+			select users 
+			
+			
+			roomname = #{usercontent}
+			where filename = #{filename}
+			
+		]]>
+	</select>
 	
 	
 

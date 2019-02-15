@@ -66,8 +66,12 @@ public class WordbookService {
 		wordbookDao.insertWordbook(wordbookVo);
 	}
 	//가져온 단어를 자기 아이디에 만들어야함
-	public void setWord(URLPathVo urlPathVo) {
-		wordbookDao.insertWord(urlPathVo);
+	public void setWord(List<VocabularyListVo> vocaShare) {
+		
+		for(int i =0 ; i<vocaShare.size(); i++) {
+			wordbookDao.insertWord(vocaShare.get(i));
+			System.out.println("voca서비스 toString"+vocaShare.get(i).toString());
+		}
 	}
 	//공유기능을 변경하기 위한
 	public void setWordbookAccess(WordbookVo wordbookvo) {

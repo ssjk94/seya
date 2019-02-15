@@ -44,4 +44,9 @@ public class UsersDao {
 		return sqlSession.selectOne("users.selectSession", usersVo);
 	}
 
+	public List<UsersVo> selectSearchAjax(String nickname) {
+		
+		return sqlSession.selectList("users.selectSearchAjax", nickname);
+	}
+
 }
