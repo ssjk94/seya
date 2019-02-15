@@ -335,8 +335,8 @@ desired effect
 							<div class="box-body no-padding">
 								<div class="row">
 								<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
-				
 								
+								<c:if test="${sessionScope.id eq URLId}">
 									<div class="col-lg-4 col-xs-4">
 										<!-- small box -->
 										<div id="addvocabulary" class="small-box submitdiv">
@@ -363,8 +363,8 @@ desired effect
 											</div>
 										</div>
 									</div>
-									${sessionScope.id}
-									${URLId}
+								</c:if>
+									
 									<!-- ./col -->
 <c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
 									<!-- ./col -->
@@ -412,12 +412,22 @@ desired effect
 												
 												<c:otherwise>
 													<!-- 서로 다른 회원끼리 이용하는 곳 -->
+													<c:choose>
+														<c:when test="${wordbookVo.wordbookAccess eq 0}">
+															<!-- 공유 기능 -->
+															<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
+															onclick="shareWordbook(${wordbookVo.wordbookNo});">
+															<i class="fa fa-share"></i>
+															</button>
+														</c:when>
 													
-													<!-- 공유 기능 -->
-													<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-													onclick="shareWordbook(${wordbookVo.wordbookNo});">
-													<i class="fa fa-share"></i>
-													</button>
+														<c:otherwise>
+															<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
+															onclick="doNotShare();">
+															<i class="fa fa-share"></i>
+															</button>
+														</c:otherwise>
+													</c:choose>
 													
 												</c:otherwise>
 												
@@ -583,7 +593,9 @@ function refreshMemList(){
 			}
 		});
 	};
-
+	function doNotShare(){
+		alert('가져갈 수 없는 단어장 입니다.');
+	}
 </script>
 
 

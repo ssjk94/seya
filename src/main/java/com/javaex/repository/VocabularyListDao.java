@@ -25,7 +25,8 @@ public class VocabularyListDao {
 	}
 	//만든 단어장 no값 리턴받기
 	public VocabularyListVo selectWordbookNo(URLPathVo urlPathVo) {
-		return sqlSession.selectOne("vocabularylist.selectWordbookNo",urlPathVo);
+		return null;
+		//sqlSession.selectOne("vocabularylist.selectWordbookNo",urlPathVo);
 	}
 	//워드삽입
 	public void insertWord(VocabularyListVo vocabularyListVo) {
@@ -40,18 +41,37 @@ public class VocabularyListDao {
 		return sqlSession.selectList("vocabularylist.selectWordAndMean",vocabularyListVo);
 	}
 	//업데이트
-	public void updateWordAndMean(VocabularyListVo vocabularyListVo) {
-		sqlSession.update("vocabularylist.updatewordandmean", vocabularyListVo);
-	}
+//	public void updateWordAndMean(VocabularyListVo vocabularyListVo) {
+//		sqlSession.update("vocabularylist.updatewordandmean", vocabularyListVo);
+//	}
 	//마지막 빼오기
 	public List<VocabularyListVo> selectAllWord(VocabularyListVo vocabularyListVo){
 		return sqlSession.selectList("vocabularylist.selectallword",vocabularyListVo);
 	}
-	
-	
+	//사리추가 느낌의 단어추가
+	public void insertMoreWord(VocabularyListVo vocabularyListVo) {
+		sqlSession.insert("vocabularylist.insertMoreWord", vocabularyListVo);
+	}
+	//단어삭제
+	public void deleteWord(URLPathVo urlPathVo) {
+		sqlSession.delete("vocabularylist.deleteWord", urlPathVo);
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////
+	//단어장네임 업데이트
+	public void updateWordbookName(URLPathVo urlPathVo) {
+		sqlSession.update("vocabularylist.updateWordbookName", urlPathVo);
+	}
+	//단어 업데이트
+	public void updateWordName(VocabularyListVo vocabularyListVo) {
+		sqlSession.update("vocabularylist.updateWordName", vocabularyListVo);
+	}
+	//뜻 업데이트
+	public void updateMeanName(VocabularyListVo vocabularyListVo) {
+		sqlSession.update("vocabularylist.updateMeanName", vocabularyListVo);
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////
 	//디렉토리 리스트
 	public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){
 		return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
-			
 	}
 }

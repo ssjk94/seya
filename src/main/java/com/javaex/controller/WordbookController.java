@@ -56,6 +56,13 @@ public class WordbookController {
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList",directoryList);
 		md.addAttribute("wordbookList",wordbookList);
+		//디렉토리에 단어장이 없을때 디렉토리 토리토리
+		try {
+			md.addAttribute("directoryNo",wordbookList.get(0).getDirectoryNo());
+		}catch (Exception e) {
+			md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
+			return "_view/list";
+		}
 		return "_view/list";
 	}
 	
@@ -93,9 +100,9 @@ public class WordbookController {
 		}
 		
 		//단어장 만들기
-		wordbookService.setWordbook(wordbookVo);
+//		wordbookService.setWordbook(wordbookVo);
 		//만든후 no값에 리스트 넣어서 ㄱㄱ
-		wordbookService.setWord(urlPathVo);
+//		wordbookService.setWord(urlPathVo);
 		
 //		System.out.println(wordbookVo.toString());
 		

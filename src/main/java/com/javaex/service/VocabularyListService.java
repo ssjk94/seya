@@ -17,64 +17,85 @@ public class VocabularyListService {
 	@Autowired
 	VocabularyListDao vocabularyListDao;
 	
-	//사전에서 단어를 가져온다 뜻과 함께 입력한것을
-	public List<VocabularyListVo> getWordAndMean(VocabularyListVo vocabularyListVo,URLPathVo urlPathVo){
-		List<VocabularyListVo> wordList = new ArrayList<VocabularyListVo>();
-		
-		
+	public void createWordbookService(URLPathVo urlPathVo) {
 		if(urlPathVo.getWordbookNo()==0) {
-			//입력받은 단어가 배열에 들어가게끔 만드는 구문	
-			String wordArr[]=vocabularyListVo.getWordName().split("\\n");
-			
-			for(int i =0;i<wordArr.length;i++) {
-				wordArr[i]=wordArr[i].trim();
-			}
-			vocabularyListVo.setWordArr(wordArr);
-			
-			//단어장 만들기문
 			vocabularyListDao.insertWordbook(urlPathVo);
-			
-			
-			
-			//단어장을 새로 만들때 가장 끝에있는 단어장 번호 가져오기
-			int num=vocabularyListDao.selectWordbookNo(urlPathVo).getWordbookNo();
-			vocabularyListVo.setWordbookNo(num);
-	
-			//단어 삽입문
-			for(int i =0;i<vocabularyListVo.getWordArr().length;i++) {
-				vocabularyListVo.setWordName(wordArr[i]);
-				vocabularyListDao.insertWord(vocabularyListVo);
-			}
-			
-			//단어 가져오기
-			wordList = vocabularyListDao.selectWord(vocabularyListVo);
-			
-//			for(VocabularyListVo a:wordList) {
-//				System.out.println("여기23"+a.toString());
-//			}
-			
-			//입력한것중 사전 가져오기
-			List<VocabularyListVo> seyaList =	vocabularyListDao.selectWordAndMean(vocabularyListVo);
-			for(int i=0;i<wordList.size();i++) {
-				for(int j=0;j<seyaList.size();j++) {
-					if(wordList.get(i).getWordName().equals(seyaList.get(j).getSeyaWordName())) {
-						wordList.get(i).setMeanName(seyaList.get(j).getSeyaMeanName());
-						break;
-					}
-				}
-			}
-			//wordList로 업데이트 시작해야함
-			for(int i=0;i<wordList.size();i++) {
-				vocabularyListDao.updateWordAndMean(wordList.get(i));				
-			}
-			//마지막으로 모든 컬럼 뽑아낸다
-			return vocabularyListDao.selectAllWord(vocabularyListVo);
-		}
-		else {
-			return vocabularyListDao.selectAllWord(vocabularyListVo);
 		}
 	}
 	
+	public void createWordService(VocabularyListVo vocabularyListVo) {
+		
+		//입력받은 단어가 배열에 들어가게끔 만드는 구문	
+		String wordArr[]=vocabularyListVo.getWordName().split("\\n");
+		
+		for(int i =0;i<wordArr.length;i++) {
+			wordArr[i]=wordArr[i].trim();
+		}
+		vocabularyListVo.setWordArr(wordArr);
+		
+		//여기까지는 가능가능///////////////////////////////////////////////////////여기까지
+		
+		//입력한것중 사전 가져오기
+		List<VocabularyListVo> seyaList =	vocabularyListDao.selectWordAndMean(vocabularyListVo);
+		
+		System.out.println("세야 후 워드북 엔오"+vocabularyListVo.getWordbookNo());
+		//배열 길이만큼 워드네임 삽입
+		for(int i =0;i<vocabularyListVo.getWordArr().length;i++) {
+			vocabularyListVo.setWordName(wordArr[i]);
+			for(int j=0;j<seyaList.size();j++) {
+				if(vocabularyListVo.getWordName().equals(seyaList.get(j).getSeyaWordName())) {
+					vocabularyListVo.setMeanName(seyaList.get(j).getSeyaMeanName());
+					break;
+				}
+			}
+			//배열 길이만큼 inset문 실행하면 끝
+			vocabularyListDao.insertMoreWord(vocabularyListVo);
+
+			//민네임 초기화
+			vocabularyListVo.setMeanName(null);
+		}
+	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public List<VocabularyListVo> getWordAndMean1(VocabularyListVo vocabularyListVo){
+		return vocabularyListDao.selectAllWord(vocabularyListVo);
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+	//단어장 이름 수정
+	public void wordbookNameModify(URLPathVo urlPathVo) {
+		vocabularyListDao.updateWordbookName(urlPathVo);
+	}
+	//단어장 수정
+	public void wordModify(VocabularyListVo vocabularyListVo) {
+		
+		//배열에 넣음
+		String[] wordArr = vocabularyListVo.getWordName().split("\\r?\\n");
+		
+		for(int i=0 ; i<wordArr.length; i++) {
+			
+			String[] wordOrMean = wordArr[i].split(" ");
+			//word update
+			if(Integer.parseInt(wordOrMean[1]) == 0) {
+				vocabularyListVo.setWordNo(Integer.parseInt(wordOrMean[0]));
+				vocabularyListVo.setWordName(wordOrMean[2]);
+				vocabularyListDao.updateWordName(vocabularyListVo);
+			//mean update
+			}else {
+				vocabularyListVo.setWordNo(Integer.parseInt(wordOrMean[0]));
+				vocabularyListVo.setMeanName(wordOrMean[2]);
+				vocabularyListDao.updateMeanName(vocabularyListVo);
+			}
+		}
+	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	//단어 삭제하는 서비스
+	public void deleteSetWord(URLPathVo urlPathVo) {
+		vocabularyListDao.deleteWord(urlPathVo);
+	}
 	
 	//디렉토리 목록 보여주는 리스트
 	public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){
