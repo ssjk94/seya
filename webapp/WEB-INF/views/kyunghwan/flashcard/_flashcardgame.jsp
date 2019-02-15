@@ -94,6 +94,10 @@
 	width: -webkit-fill-available;
 	font-size: 30px;
 }
+
+#flashSubmit {
+	font-size: 30px;
+}
 </style>
 
 <!-- 테두리 마지막에 없애야함 -->
@@ -184,7 +188,7 @@
 		}
 		$(function() {
 			$("#wm-over").click(function() {
-				if (i < quizList.length-1) {
+				if (i < quizList.length - 1) {
 					quiz()
 				}
 			});
@@ -193,11 +197,11 @@
 			$(document).on("keyup", function(e) {
 				switch (e.keyCode) {
 				case 13:
-					if (i < quizList.length-1) {
+					if (i < quizList.length - 1) {
 						quiz()
 						console.log(quizList.length)
 						console.log(i)
-					} 
+					}
 					break;
 				}
 			});
@@ -214,11 +218,11 @@
 			<p id="quiz"></p>
 
 		</div>
-		<form action="#" class="flashquiz-container">
-			<input class="flashquiz-box text-center" type="text" id="flashSubmit">
-			<!-- word -->
-			<input type="hidden" id="answer">
-		</form>
+		<!-- 		<form action="#" class="flashquiz-container"> -->
+		<textarea class="flashquiz-box text-center" id="flashSubmit"></textarea>
+		<!-- word -->
+		<input type="hidden" id="answer">
+		<!-- 		</form> -->
 	</div>
 </body>
 </html>
