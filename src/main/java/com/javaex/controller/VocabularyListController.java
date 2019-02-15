@@ -61,6 +61,7 @@ public class VocabularyListController {
 			System.out.println("단어장 이름 수정");
 			vocabularyListService.wordbookNameModify(urlPathVo);
 		}
+		
 		//단어 수정
 		if(vocabularyListVo.getWordName()!="") {
 			System.out.println("단어 수정");
