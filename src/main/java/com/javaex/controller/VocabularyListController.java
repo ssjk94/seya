@@ -52,15 +52,20 @@ public class VocabularyListController {
 	@RequestMapping(value = "{URLId}/wordmodify", method = RequestMethod.GET)
 	public String modify(URLPathVo urlPathVo,VocabularyListVo vocabularyListVo,Model md) {
 		
-//		System.out.println("워드북 엔오"+urlPathVo.getWordbookNo());
-//		System.out.println("워드북 네임"+urlPathVo.getWordbookName());
-//		System.out.println("워드네임"+vocabularyListVo.getWordName());
+		System.out.println("워드북 엔오"+urlPathVo.getWordbookNo());
+		System.out.println("워드북 네임"+urlPathVo.getWordbookName());
+		System.out.println("워드네임"+vocabularyListVo.getWordName());
 		
 		//단어장 이름 수정
-		vocabularyListService.wordbookNameModify(urlPathVo);
+		if(urlPathVo.getWordbookName()!="") {
+			System.out.println("단어장 이름 수정");
+			vocabularyListService.wordbookNameModify(urlPathVo);
+		}
 		//단어 수정
-		vocabularyListService.wordModify(vocabularyListVo);
-		
+		if(vocabularyListVo.getWordName()!="") {
+			System.out.println("단어 수정");
+			vocabularyListService.wordModify(vocabularyListVo);
+		}
 		return "redirect:"+"/{URLId}";
 	}
 	

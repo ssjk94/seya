@@ -485,7 +485,7 @@ function refreshMemList(){
 		//제목 밸류 받고
 		//컨텐츠 밸류 받고
 		//섭밋 실행문 실행
-		if(wordAndMean != ""){
+		if(wordAndMean != "" || document.header.wordbookName.value != ""){
 			//워드와 민의 일정한 값
 			document.updateWM.wordName.value = wordAndMean;
 			//바뀐 제목의 값이 히든값으로 저장하는 문장
