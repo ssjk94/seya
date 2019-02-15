@@ -25,7 +25,6 @@
 	border-style: ridge;
 	font-size: 72px;
 	text-align: center;
-	padding-top: 150px;
 }
 
 .flashcontrolbox {
@@ -77,12 +76,31 @@
 	background-color: #e7ff09;
 }
 
+#word {
+	margin-top: 150px;
+}
+
 #mean {
 	font-size: 30px;
+	margin-top: 180px;
 }
 
 .glyphicon-pencil:hover {
 	color: #fff;
+}
+
+#flashWord {
+	height: 370px;
+	box-shadow: 1px 1px 1px 1px #ddd;
+	border: 2px solid rgba(221, 221, 221, 0.2);
+	border-style: ridge;
+}
+
+#flashMean {
+	height: 370px;
+	box-shadow: 1px 1px 1px 1px #ddd;
+	border: 2px solid rgba(221, 221, 221, 0.2);
+	border-style: ridge;
 }
 </style>
 
@@ -110,62 +128,121 @@
 			function() {
 				i = 0;
 				j = 0;
-				if (j == 0) {
-					$("#word").text(wordList[i]);
-				} else {
-					$("#mean").text(meanList[i]);
+				$("#word").text(wordList[i]);
+				$("#mean").text(meanList[i]);
+				$("#mean").hide();
+
+				function clickWm() {
+					if (j == 0) {
+						j = 1;
+						$("#flashShow").fadeOut(100, "swing", function() {
+							$("#word").hide();
+							$("#mean").show();
+							$("#flashShow").fadeIn(100, "swing")
+						});
+					} else {
+						j = 0;
+						$("#flashShow").fadeOut(100, "swing", function() {
+							$("#mean").hide();
+							$("#word").show();
+							$("#flashShow").fadeIn(100, "swing")
+						});
+					}
 				}
+				function btnRight() {
+					if (i != wordList.length - 1) {
+						i++;
+						$("#flashShow").fadeOut(100, "swing", function() {
+							if (j != 0) {
+								j = 0;
+								$("#mean").hide();
+								$("#word").show();
+							}
+							$("#word").text(wordList[i]);
+							$("#mean").text(meanList[i]);
+							$("#flashShow").fadeIn(100, "swing");
+						});
+					}
+				}
+				function btnLeft() {
+					if (i != 0) {
+						i--;
+						$("#flashShow").fadeOut(100, "swing", function() {
+							if (j != 0) {
+								j = 0;
+								$("#mean").hide();
+								$("#word").show();
+							}
+							$("#word").text(wordList[i]);
+							$("#mean").text(meanList[i]);
+							$("#flashShow").fadeIn(100, "swing");
+						});
+					}
+				}
+				function flashcardModify() {
+					if (j == 0) {
+						var reword = prompt("단어를 수정합니다.", "");
+						if (reword) {
+							wordList[i] = reword;
+							$("#word").text(wordList[i]);
+							updateFlashcard(noList[i], wordList[i],
+									meanList[i], wordbookNo);
+						}
+					} else {
+						var remean = prompt("의미를 수정합니다.", "");
+						if (remean) {
+							meanList[i] = remean;
+							$("#mean").text(meanList[i]);
+							updateFlashcard(noList[i], wordList[i],
+									meanList[i], wordbookNo);
+						}
+					}
+				}
+				$(function() {
+					$(document).on("keyup", function(e) {
+						console.log(e);
+						switch (e.keyCode) {
+						case 9:
+							console.log("tab");
+							flashcardModify();
+							break;
+						case 13:
+						case 38:
+						case 40:
+							console.log("wm");
+							clickWm();
+							break;
+						case 37:
+							console.log("left");
+							btnLeft();
+							break;
+						case 39:
+							console.log("right");
+							btnRight();
+							break;
+						}
+					});
+				});
 
 				$(function() {
 					$("#wm-over").click(function() {
-						if (j != 0) {
-							j = 0;
-							$("#word").text(wordList[i]);
-							$("#mean").text('');
-						} else {
-							j = 1;
-							$("#mean").text(meanList[i]);
-							$("#word").text('');
-						}
+						clickWm()
 					});
+				});
+				$(function() {
 					$("#rightbtn").click(function() {
-						if (i != wordList.length - 1) {
-							i++;
-							j = 0;
-							$("#word").text(wordList[i]);
-							$("#mean").text('');
-						}
+						btnRight()
 					});
+				});
+				$(function() {
 					$("#leftbtn").click(function() {
-						if (i != 0) {
-							i--;
-							j = 0;
-							$("#word").text(wordList[i]);
-							$("#mean").text('');
-						}
+						btnLeft()
 					});
-					$(".glyphicon-pencil").click(
-							function() {
-								if (j == 0) {
-									var reword = prompt("단어를 수정합니다.", "");
-									if (reword) {
-										wordList[i] = reword;
-										$("#word").text(wordList[i]);
-										$("#mean").text('');
-										updateFlashcard(noList[i], wordList[i],
-												meanList[i], wordbookNo);
-									}
-								} else {
-									var remean = prompt("의미를 수정합니다.", "");
-									if (remean) {
-										meanList[i] = remean;
-										$("#mean").text(meanList[i]);
-										$("#word").text('');
-										updateFlashcard(noList[i], wordList[i],
-												meanList[i], wordbookNo);
-									}
-								}
-							});
+				});
+				$(function() {
+					$(".glyphicon-pencil").click(function() {
+						flashcardModify()
+					});
 				});
 			});
 </script>
@@ -174,22 +251,12 @@
 	<!-- width 790px height 450-->
 	<div class="panel panel-default flashcardcontainer">
 		<!-- content box -->
-		<div id="wm-over" role="button" class="panel-body flashcardbox">
-
-			<div>
-				<!-- word -->
-				<div>
-					<p id="word"></p>
-				</div>
+		<div id="wm-over" class="flashcardbox">
+			<!-- word -->
+			<div id="flashShow">
+				<p id="word"></p>
+				<p id="mean"></p>
 			</div>
-
-			<div>
-				<!-- mean -->
-				<div>
-					<span id="mean"></span>
-				</div>
-			</div>
-
 		</div>
 		<!-- control box -->
 		<c:import

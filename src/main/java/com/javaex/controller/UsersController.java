@@ -4,10 +4,16 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,10 +38,12 @@ public class UsersController {
 	@RequestMapping("/userinsert.do")
 	public String insertUser(@ModelAttribute UsersVo usersVo, HttpServletRequest req) {
 		usersVo.toString();
+		usersVo.setUserimage("default.png");
+		usersVo.setUsercontent("안녕하세요");
 		usersService.insertUser(usersVo);
 		usersVo.toString();
-		return "main/index";
-
+		return "redirect:main1";
+		
 	}
 
 	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
@@ -75,7 +83,7 @@ public class UsersController {
 	@RequestMapping("/logout.do")
 	public String userLogOut(HttpSession session, HttpServletRequest req) {
 		session.invalidate();
-
+		
 		return "redirect:" + req.getHeader("Referer");
 	}
 
@@ -94,23 +102,14 @@ public class UsersController {
 		model.addAttribute("usersVo", usersService.selectOneUsers(usersVo));
 		System.out.println(usersVo.toString());
 		session.setAttribute("id", id);
-		/*
-		 * String nickname = usersVo.getNickname(); String userimage =
-		 * usersVo.getUserimage(); String usercontent = usersVo.getUsercontent(); //로그인
-		 * 사용자 정보 화면에 보내기 model.addAttribute("nickname2", nickname);
-		 * model.addAttribute("userimage2", userimage);
-		 * model.addAttribute("usercontent2", usercontent);
-		 */
+		
 
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
 
 	@RequestMapping(value = "{id}/usermodify.do", method = RequestMethod.POST)
 	public String updateForm(Model model, UsersVo usersVo, MultipartFile file, HttpSession session) {
-		System.out.println("수정버튼누름?");
-		System.out.println(usersVo.toString());
-		System.out.println(file.getOriginalFilename());
-		usersVo.setUserimage(file.getOriginalFilename());
+		
 
 //		if (id == null) {
 //			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
@@ -154,10 +153,7 @@ public class UsersController {
 			e.printStackTrace();
 		}
 		usersService.updateform(usersVo);
-		// 유저 이름보내기 확인용
-		String userimagecheck = usersVo.getUserimage();
-		System.out.println("이미지이름 제대로 뱉는거 맞지?" + userimagecheck.toString());
-
+	
 		usersVo = usersService.selectOneUsers(usersVo);
 		session.setAttribute("id", usersVo.getId());
 		session.setAttribute("nickname", usersVo.getNickname());
@@ -209,5 +205,52 @@ public class UsersController {
 			}
 		}
 	}
-
+	
+	/*
+	 * @RequestMapping(value = "/searchajax", method = RequestMethod.GET) public
+	 * void searchAjax(HttpServletRequest req, HttpServletResponse resp, UsersVo
+	 * usersVo) throws IOException {
+	 * 
+	 * String result = req.getParameter("term");
+	 * 
+	 * List list = usersService.selectSearchAjax(usersVo, result);
+	 * 
+	 * 
+	 * 
+	 * //return ; }
+	 */
+	@RequestMapping(value = "/searchajax", method = RequestMethod.GET)
+	public void searchAjax(HttpServletResponse response, UsersVo usersVo,String term) throws IOException {
+		
+		List<UsersVo> list = usersService.selectSearchAjax(term);		
+		System.out.println("list사이즈  " + list.size());
+		//응답하는 열만들기
+		
+		JSONObject obj = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		for(UsersVo vo : list) {
+			obj = new JSONObject();
+			obj.put("label", vo.getNickname());
+			obj.put("value", vo.getNickname());
+			array.add(obj);
+			
+		}
+		
+	}
+	
+	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
+	public String returnMainPage() {
+		
+		return "main/mainpage";
+	}
+		
+	@RequestMapping(value ="/searchform", method = RequestMethod.GET)
+	public String searchForm() {
+		
+		return "main/searchform";
+	}
+	
+	
+	
 }

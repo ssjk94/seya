@@ -26,9 +26,20 @@ public class FlashcardController {
 		
 		System.out.println(flashcardVo.toString());
 		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
-		System.out.println("fuck"+list.toString());
+		System.out.println("flashcard"+list.toString());
 		md.addAttribute("selectFlashcardList",list);
+		md.addAttribute("URLId", urlPathVo.getURLId());
 		return "_view/flashcard";
+	}
+	
+	@RequestMapping(value = "{URLId}/flashcardgame", method = RequestMethod.GET)
+	public String flashcardgame(URLPathVo urlPathVo, FlashcardVo flashcardVo, Model md) {
+		System.out.println(flashcardVo.toString());
+		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
+		System.out.println("flashcardgame"+list.toString());
+		md.addAttribute("selectFlashcardList",list);
+		md.addAttribute("URLId", urlPathVo.getURLId());
+		return "_view/flashcardgame";
 	}
 
 	@ResponseBody
