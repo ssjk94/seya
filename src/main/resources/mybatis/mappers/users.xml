@@ -11,45 +11,48 @@
 			select * from users
 		]]>
 	</select>
-	
-	<!-- 유저 프로필 변경  한명 찾기 쿼리 -->
-	<select id="selectOneUsers" resultType="com.javaex.vo.UsersVo" parameterType="com.javaex.vo.UsersVo">
+
+	<!-- 유저 프로필 변경 한명 찾기 쿼리 -->
+	<select id="selectOneUsers" resultType="com.javaex.vo.UsersVo"
+		parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
 			select id, nickname, userimage, usercontent from users where id = #{id}
 		]]>
-	
+
 	</select>
-	
+
 	<!-- 유저 login 쿼리문 -->
-	<select id="selectUserLogin" resultType="com.javaex.vo.UsersVo" parameterType="com.javaex.vo.UsersVo">
+	<select id="selectUserLogin" resultType="com.javaex.vo.UsersVo"
+		parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
 			select id, password, nickname, userimage, usercontent from users where 
 			id=#{id} and 
 			password = #{password}
 		]]>
 	</select>
-	
-	<!--  유저 session 받을 쿼리문 -->
-	<select id="selectSession" resultType="com.javaex.vo.UsersVo" >
+
+	<!-- 유저 session 받을 쿼리문 -->
+	<select id="selectSession" resultType="com.javaex.vo.UsersVo">
 		<![CDATA[
 			select id, password from users where 
 			id=#{id}
 			
 		]]>
-	
-	
+
+
 	</select>
-	
+
 	<!-- 헤더 Search 쿼리문 -->
-	
-	<select id="selectSearchAjax" resultType="com.javaex.vo.UsersVo" parameterType="string">
+
+	<select id="selectSearchAjax" resultType="com.javaex.vo.UsersVo"
+		parameterType="string">
 		<![CDATA[
 			select nickname from users where 
 			nickname like '%'#{value}'%'
 			
 		]]>
 	</select>
-	
+
 
 	<!-- 유저 insert 쿼리문 -->
 	<insert id="insertUsers" parameterType="com.javaex.vo.UsersVo">
@@ -68,7 +71,7 @@
 			#{usercontent})
 		]]>
 	</insert>
-	
+
 	<update id="updateUsers">
 		<![CDATA[
 			update users set
@@ -79,17 +82,26 @@
 				
 		]]>
 	</update>
-	<select id="qweqwers">
-		<![CDATA[
-			select users 
-			
-			
-			roomname = #{usercontent}
-			where filename = #{filename}
-			
-		]]>
+	<!-- 아이디 체크 쿼리 -->
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM users
+		where id = #{id}
+	</select>
+	<!--  이메일 체크 쿼리 -->
+	<select id="emailCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM users
+		where email = #{email}
+	</select>
+	<!-- 닉네임 체크 쿼리 -->
+	<select id="nicknameCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM users
+		where nickname = #{nickname}
 	</select>
 	
-	
+
+
 
 </mapper>

@@ -97,6 +97,14 @@ p.signup-content.text-center {
 	border-color: #d2d6de;
 	color: #666;
 }
+
+.has-error {
+	border: 2px solid red;
+}
+
+.has-success {
+	border: 2px solid green;
+}
 </style>
 
 </head>
@@ -218,285 +226,250 @@ desired effect
      user experience. -->
 </body>
 <script type="text/javascript">
-$('[name="f"]').on('submit', function(){
-	//밸류 함수
-	var id = $('#id').val();
-	var password = $('#password').val();
-	var email = $('#email').val();
-	var username = $('#username').val();
-	var nickname = $('#nickname').val();
-	var userbirth = $('#userbirth').val();
-	var sex = $('#sex').val();
-	
-	//email정규식
-	var reg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-	
-	
-	if(id == "" || id == null){
-		alert("아이디를 입력하지 않았습니다.")
-		$('#id').focus();
-		return false;
-	}
-	//아이디체크
-	
-	if(id.search(/\s/) != -1) { 
-		alert("아이디에 공백을 사용할 수 없습니다.");
-		$('#id').focus();
-		return false;
-	}
-	if ($('#id').val().length<4 || $('#id').val().length>12) {
-		alert("아이디를 4~12자까지 입력해주세요.")
-		$('#id').focus();
-		return false;
-	}
-	
-	//비밀번호 입력여부 체크
-	if (password == "" || password == null) {
-		console.log("비밀번호 입력안함")
-		alert("비밀번호를 입력하지 않았습니다.")
-		$('#password').focus();
-		return false;
-	}
-	
-	if (password == id) {
-		alert("아이디와 비밀번호가 같습니다.")
-		$('#password').focus();
-		return false;
-	}
-	//비밀번호 길이 체크(4~12자 까지 허용)
-	if ( $('#password').val().length<4 || $('#password').val().length>12) {
-		alert("비밀번호를 4~12자까지 입력해주세요.")
-		$('#password').focus();
-		return false;
-	}
-	if (username == "" || username == null) {
-		alert("이름을 입력하지 않았습니다.")
-		$('#username').focus();
-		return false;
-	}
-	if ($('#username').val().length < 2) {
-		alert("이름을 2자 이상 입력해주십시오.")
-		$('#username').focus();
-		return false;
-	}
+	$(document).ready(function() {
+		var checkAjaxSetTimeout;
 
-	if (email == "") {
-		alert("이메일을 입력하지 않았습니다.")
-		$('#email').focus();
-		return false;
-	}
+		$('#id').keyup(function() {
+			clearTimeout(checkAjaxSetTimeout);
+			checkAjaxSetTimeout = setTimeout(function() {
 
-	if (reg.test(email) === false) {
-		alert("잘못된 이메일 형식입니다.");
-		email = ""
-		$('#email').focus();
-		return false;
-	}
-	if (nickname == "") {
-		alert("닉네임을 입력해주십시오.");
-		document.f.nickname.focus()
-		return false;
-	}
-	if ($('#nickname').val().length > 20) {
-		alert("닉네임은 20자 이내입니다.");
-		$('#nickname').focus();
-		return false;
-	}
-	if (userbirth == "" || userbirth == null) {
-		alert("생년 월일을 입력해주세요");
-		$('#userbirth').focus();
-		return false;
-	}
-	if ($('#userbirth').val().length > 8||$('#userbirth').val().length < 8 ){
-		alert("생년 월일을 8자로 입력해주세요./n ex) YYYYMMDD")
-		return false;
-	}
-	if(!$("input[name='sex']:checked").val()) {
-	    alert('성별을 선택하세요.');
-	    return false;
-	}
+				var idck = 0;
+				var id = $('#id').val();
+				if(id != ""){
+				$.ajax({
+					type : 'POST',
+					data : {
+						id : id
+					},
+					url : "idcheck.do",
+					dataType : "json",
+					success : function(data) {
+						
+						console.log(data.cnt);
+						if (data.cnt > 0) {
+							alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+							document.f.id.value = "";
+							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+							$("#id").addClass("has-error")
+							$("#id").removeClass("has-success")
+							$("#id").focus();
 
-			
-		
+						} else {
+							alert("사용가능한 아이디입니다.");
+							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+							$("#id").addClass("has-success")
+							$("#id").removeClass("has-error")
+							$("#password").focus();
+							//아이디가 중복하지 않으면  idck = 1 
+							idck = 1;
 
+						}
+						console.log("성공");
+					},
+					error : function(error) {
+
+						alert("error : " + error);
+					}
+				});}; //ajax문 끝
+			}, 1000); //setTimeout 끝
+		}); // 키업 x
+	});
+	$(document).ready(function() {
+		var checkAjaxSetTimeout;
+
+		$('#email').keyup(function() {
+			clearTimeout(checkAjaxSetTimeout);
+			checkAjaxSetTimeout = setTimeout(function() {
+
+				var idck = 0;
+				var email = $('#email').val();
+				if(email != ""){
+				$.ajax({
+					type : 'POST',
+					data : {
+						email : email
+					},
+					url : "emailcheck.do",
+					dataType : "json",
+					success : function(data) {
+						console.log(data.cnt)
+						if (data.cnt > 0) {
+							alert("이메일이 존재합니다. 다른 이메일을 입력해주세요.");
+							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+							document.f.email.value = "";
+							$("#email").addClass("has-error")
+							$("#email").removeClass("has-success")
+							$("#email").focus();
+
+						} else {
+							alert("사용가능한 이메일입니다.");
+							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+							$("#email").addClass("has-success")
+							$("#email").removeClass("has-error")
+							$("#nickname").focus();
+							//아이디가 중복하지 않으면  idck = 1 
+							idck = 1;
+
+						}
+						console.log("성공");
+					},
+					error : function(error) {
+
+						alert("error : " + error);
+					}
+				});}; //ajax문 끝
+			}, 1000); //setTimeout 끝
+		}); // 키업 x
+	});
+	$(document).ready(function() {
+		var checkAjaxSetTimeout;
+
+		$('#nickname').keyup(function() {
+			clearTimeout(checkAjaxSetTimeout);
+			checkAjaxSetTimeout = setTimeout(function() {
+
+				var idck = 0;
+				var nickname = $('#nickname').val();
+				console.log(id);
+				if(nickname != ""){
+				$.ajax({
+					type : 'POST',
+					data : {
+						nickname : nickname
+					},
+					url : "nicknamecheck.do",
+					dataType : "json",
+					success : function(data) {
+						console.log(data.cnt)
+						if (data.cnt > 0) {
+							alert("닉네임이 존재합니다. 다른 닉네임를 입력해주세요.");
+							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+							document.f.nickname.value = "";
+							$("#nickname").addClass("has-error")
+							$("#nickname").removeClass("has-success")
+							$("#nickname").focus();
+
+						} else {
+							alert("사용가능한 닉네임입니다.");
+							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+							$("#nickname").addClass("has-success")
+							$("#nickname").removeClass("has-error")
+							$("#userbirth").focus();
+							//아이디가 중복하지 않으면  idck = 1 
+							idck = 1;
+
+						}
+						console.log("성공");
+					},
+					error : function(error) {
+
+						alert("error : " + error);
+					}
+				});}; //ajax문 끝
+			}, 1000); //setTimeout 끝
+		}); // 키업 x
+	});
 	
-	/* for (i = 0; i < $('#id').val().length; i++) {
-		console.log("대소문자확인")
-		ch = $('#id').val().charAt(i)
-		if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
-				&& !(ch >= 'A' && ch <= 'Z')) {
-			alert("아이디는 대소문자, 숫자만 입력가능합니다.")
-			$('#id').focus();
-			return false;
-		}
-	} */
+	$('[name="f"]').on('submit',function() {
+						//밸류 함수
+						var id = $('#id').val();
+						var password = $('#password').val();
+						var email = $('#email').val();
+						var username = $('#username').val();
+						var nickname = $('#nickname').val();
+						var userbirth = $('#userbirth').val();
+						var sex = $('#sex').val();
 
-	//비밀번호
-	
-	/* if (document.f.id.value.indexOf(" ") >= 0) {
-		alert("아이디에 공백을 사용할 수 없습니다.")
-		document.f.my_id.focus()
-		document.f.my_id.select()
-		return false;
-	} */
-	
-	
-	
-	
-	/* if (document.f.id.value == "") {
-		console.log("==" + f.userbirth.value.length + "==");
-		alert("아이디를 입력하지 않았습니다.")
-		
-		f.id.focus()
-		return false;
-	}	 */
-});
+						//email정규식
+						var reg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 
+						if (id == "" || id == null) {
+							alert("아이디를 입력하지 않았습니다2222.")
+							$('#id').focus();
+							return false;
+						}
+						//아이디체크
 
-function sendIt() {
-		var emailvar = document.f.email.value;
-		var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-		var msg, ss, cc;
+						if (id.search(/\s/) != -1) {
+							alert("아이디에 공백을 사용할 수 없습니다.");
+							$('#id').focus();
+							return false;
+						}
+						if ($('#id').val().length < 4
+								|| $('#id').val().length > 12) {
+							alert("아이디를 4~12자까지 입력해주세요.")
+							$('#id').focus();
+							return false;
+						}
 
-		
-		//아이디 입력여부 검사
-		if (document.f.id.value == "") {
-			console.log("==" + f.userbirth.value.length + "==");
-			alert("아이디를 입력하지 않았습니다.")
-			
-			f.id.focus()
-			return false;
-		}
-		//아이디 유효성 검사 (영문소문자, 숫자만 허용)
-		for (i = 0; i < document.f.id.value.length; i++) {
-			ch = document.f.id.value.charAt(i)
-			if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')
-					&& !(ch >= 'A' && ch <= 'Z')) {
-				alert("아이디는 대소문자, 숫자만 입력가능합니다.")
-				document.f.id.focus()
-				document.f.id.select()
-				return false;
-			}
-		}
-		//아이디에 공백 사용하지 않기
-		if (document.f.id.value.indexOf(" ") >= 0) {
-			alert("아이디에 공백을 사용할 수 없습니다.")
-			document.f.my_id.focus()
-			document.f.my_id.select()
-			return false;
-		}
-		//아이디 길이 체크 (4~12자)
-		if (document.f.id.value.length<4 || document.f.id.value.length>12) {
-			alert("아이디를 4~12자까지 입력해주세요.")
-			document.f.id.focus()
-			document.f.id.select()
-			return false;
-		}
-		//비밀번호 입력여부 체크
-		if (document.f.password.value == "") {
-			alert("비밀번호를 입력하지 않았습니다.")
-			document.f.password.focus()
-			return false;
-		}
-		if (f.password.value == f.id.value) {
-			alert("아이디와 비밀번호가 같습니다.")
-			document.f.password.focus()
-			return false;
-		}
-		//비밀번호 길이 체크(4~8자 까지 허용)
-		if (document.f.password.value.length<4 || document.f.password.value.length>12) {
-			alert("비밀번호를 4~12자까지 입력해주세요.")
-			document.f.password.focus()
-			document.f.password.select()
-			return false;
-		}
+						//비밀번호 입력여부 체크
+						if (password == "" || password == null) {
+							console.log("비밀번호 입력안함")
+							alert("비밀번호를 입력하지 않았습니다.")
+							$('#password').focus();
+							return false;
+						}
 
-		//비밀번호와 비밀번호 확인 일치여부 체크
-		if (document.f.password.value != document.f.password.value) {
-			alert("비밀번호가 일치하지 않습니다")
-			document.f.password.value = ""
-			document.f.password.focus()
-			return false;
-		}
+						if (password == id) {
+							alert("아이디와 비밀번호가 같습니다.")
+							$('#password').focus();
+							return false;
+						}
+						//비밀번호 길이 체크(4~12자 까지 허용)
+						if ($('#password').val().length < 4
+								|| $('#password').val().length > 12) {
+							alert("비밀번호를 4~12자까지 입력해주세요.")
+							$('#password').focus();
+							return false;
+						}
+						if (username == "" || username == null) {
+							alert("이름을 입력하지 않았습니다.")
+							$('#username').focus();
+							return false;
+						}
+						if ($('#username').val().length < 2) {
+							alert("이름을 2자 이상 입력해주십시오.")
+							$('#username').focus();
+							return false;
+						}
 
-		if (document.f.email.value == "") {
-			alert("이메일을 입력하지 않았습니다.")
-			document.f.email.focus()
-			return false;
-		}
+						if (email == "") {
+							alert("이메일을 입력하지 않았습니다.")
+							$('#email').focus();
+							return false;
+						}
 
-		if (regex.test(emailvar) === false) {
-			alert("잘못된 이메일 형식입니다.");
-			document.f.email.value = ""
-			document.f.email.focus()
-			return false;
-		}
-		if (document.f.username.value == "") {
-			alert("이름을 입력하지 않았습니다.")
-			document.f.username.focus()
-			return false;
-		}
-		if (document.f.username.value.length < 2) {
-			alert("이름을 2자 이상 입력해주십시오.")
-			document.f.username.focus()
-			return false;
-		}
-		if (document.f.nickname.value == "") {
-			alert("닉네임을 입력해주십시오.");
-			document.f.nickname.focus()
-			return false;
-		}
-		if (document.f.nickname.value.length > 20) {
-			alert("닉네임은 20자 이내입니다.");
-			document.f.nickname.focus()
-			return false;
-		}
-		if (document.f.userbirth.value == "") {
-			alert("aaa");
-			document.f.userbirth.focus()
-			/* alert("생년월일을 입력해주십시오.");
-			 */
-			return false;
-		}
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		/* if (f.userbirth.value == "") {
-			alert("생년월일을 입력해주십시오.");
-			document.f.nickname.focus()
-			return false;
-		}
- */
-		/* if (f.userbirth.value.length > 8) {
-			alert("생년월일은 8자로 입력해 주십시오.")
-			f.userbirth.focus()
-			return false;
-		}
+						if (reg.test(email) === false) {
+							alert("잘못된 이메일 형식입니다.");
+							email = ""
+							$('#email').focus();
+							return false;
+						}
+						if (nickname == "") {
+							alert("닉네임을 입력해주십시오.");
+							document.f.nickname.focus()
+							return false;
+						}
+						if ($('#nickname').val().length > 20) {
+							alert("닉네임은 20자 이내입니다.");
+							$('#nickname').focus();
+							return false;
+						}
+						if (userbirth == "" || userbirth == null) {
+							alert("생년 월일을 입력해주세요");
+							$('#userbirth').focus();
+							return false;
+						}
+						if (userbirth.length > 8 || userbirth.length < 8) {
+							alert("생년 월일을 8자로 입력해주세요./n ex) YYYYMMDD")
+							return false;
+						}
+						if (!$("input[name='sex']:checked").val()) {
+							alert('성별을 선택하세요.');
+							return false;
+						}
 
-		if (document.f.userbirth.value.length < 7) {
-			alert("생년월일은 8자로 입력해 주십시오.")
-			document.f.userbirth.focus()
-			return false;
-		} */
-		  if(document.f.sex.value== ""){
-              alert("성별을 선택해 주십시오."); 
-              document.f.nickname.focus()
-            return false;
-        }
-		
-		if (f.sex.value == 0) {
-			alert("성별을 선택하지 않았습니다.")
-			document.f.sex.focus()
-			return false;
-		}
-		
-	}
+					});
 </script>
 
 </html>

@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +20,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,11 +40,12 @@ public class UsersController {
 
 	@RequestMapping("/userinsert.do")
 	public String insertUser(@ModelAttribute UsersVo usersVo, HttpServletRequest req) {
-		usersVo.toString();
+	
+	 
 		usersVo.setUserimage("default.png");
 		usersVo.setUsercontent("안녕하세요");
 		usersService.insertUser(usersVo);
-		usersVo.toString();
+		
 		return "redirect:main1";
 		
 	}
@@ -65,12 +69,12 @@ public class UsersController {
 				 * usersVo.setId(id); System.out.println("usersVo.setId(id) "+ id);
 				 */
 				usersVo = usersService.selectOneUsers(usersVo);
-				System.out.println("index에서 로그인시에 vo toString" + usersVo.toString());
+				
 				session.setAttribute("id", id);
 				session.setAttribute("nickname", usersVo.getNickname());
 				session.setAttribute("userimage", usersVo.getUserimage());
 				session.setAttribute("usercontent", usersVo.getUsercontent());
-				System.out.println("index에서 로그인시에 아이디값" + id);
+	
 
 				return "redirect:" + id;
 			} else {
@@ -238,19 +242,53 @@ public class UsersController {
 		}
 		
 	}
-	
+	//메인페이지
 	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
 	public String returnMainPage() {
 		
 		return "main/mainpage";
 	}
-		
+	//검색	
 	@RequestMapping(value ="/searchform", method = RequestMethod.GET)
 	public String searchForm() {
 		
 		return "main/searchform";
 	}
-	
-	
+	//아이디 중복체크
+	@RequestMapping(value = "/idcheck.do", method = RequestMethod.POST)
+	@ResponseBody
+    public Map<Object, Object> idcheck(String id) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		count = usersService.idCheck(id);
+		map.put("cnt", count);
+		return map;
+	}
+	// 이메일 중복체크
+	@RequestMapping(value = "/emailcheck.do", method = RequestMethod.POST)
+	@ResponseBody
+    public Map<Object, Object> emailcheck(String email) {
+		System.out.println("id넘어옴? : "  +email);
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		count = usersService.emailCheck(email);
+		System.out.println("count 확인 1 :" + count);
+		map.put("cnt", count);
+		return map;
+	}
+	// 닉네임 중복체크
+		@RequestMapping(value = "/nicknamecheck.do", method = RequestMethod.POST)
+		@ResponseBody
+	    public Map<Object, Object> nicknamecheck(String nickname) {
+			System.out.println("id넘어옴? : "  +nickname);
+			int count = 0;
+			Map<Object, Object> map = new HashMap<Object, Object>();
+			
+			count = usersService.nicknameCheck(nickname);
+			System.out.println("count 확인 1 :" + count);
+			map.put("cnt", count);
+			return map;
+		}
 	
 }
