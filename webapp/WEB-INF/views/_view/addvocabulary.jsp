@@ -459,7 +459,7 @@ desired effect
  		if(doubleSubmitCheck()){ 
  			return;
  		}
- 			
+ 			console.log(wordbookName);
  		$.ajax({
  			url : "${pageContext.request.contextPath}/${URLId}/insertWord",
  			type : "post",

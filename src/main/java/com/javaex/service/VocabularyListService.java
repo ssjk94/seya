@@ -20,6 +20,8 @@ public class VocabularyListService {
 	public void createWordbookService(URLPathVo urlPathVo) {
 		if(urlPathVo.getWordbookNo()==0) {
 			vocabularyListDao.insertWordbook(urlPathVo);
+		}else {
+			vocabularyListDao.updateWordbookName(urlPathVo);
 		}
 	}
 	
