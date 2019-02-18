@@ -74,7 +74,14 @@ public class VocabularyListService {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public List<VocabularyListVo> getWordAndMean1(VocabularyListVo vocabularyListVo){
-		return vocabularyListDao.selectAllWord(vocabularyListVo);
+		
+		List<VocabularyListVo> list = vocabularyListDao.selectAllWord(vocabularyListVo);
+		
+		for(VocabularyListVo a :list) {
+			System.out.println("리스트 서비스 toString"+a.toString());
+		}
+		
+		return list;
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 	//단어장 이름 수정

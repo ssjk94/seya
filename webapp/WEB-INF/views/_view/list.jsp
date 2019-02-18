@@ -191,7 +191,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .row {
     margin-right: -10px;
 }
-
+/*
+아웃라인을 없애면 버튼같은 푸른색 테두리 없앤다
+*/
+*:focus{
+	outline: none;
+}
 </style>
 
 </head>
@@ -277,9 +282,13 @@ desired effect
 									<tbody>
 									<c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
 										<tr>
+											<form action="${pageContext.request.contextPath}/${URLId}/flashcard" 
+											method="get">
+												<input type="hidden" name="wordbookNo" value="${wordbookVo.wordbookNo}">
 											<td class="col-xs-10">
+												<button class="col-xs-12" type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
 												<ul class="list-inline">
-													<a href="${pageContext.request.contextPath}/${URLId}">
+																										
 														<li class="col-xs-3 table-list">${wordbookVo.wordbookName}</li>
 														<li class="col-xs-3 table-list">${wordbookVo.wordbookMaker}</li>
 														<li class="col-xs-2 table-list">${wordbookVo.wordbookRegdate}</li>
@@ -298,10 +307,10 @@ desired effect
 
 															</c:choose>
 														
-												</a>
-											</ul>
-											</td>
-											
+													</ul>
+												</button>
+												</td>
+											</form>
 											
 											
 											<td class="col-xs-2 table-list">
@@ -481,6 +490,9 @@ function refreshMemList(){
 	};
 	function doNotShare(){
 		alert('가져갈 수 없는 단어장 입니다.');
+	}
+	function moveFlashcard(){
+		document.moveflashcard.submit();
 	}
 
 </script>

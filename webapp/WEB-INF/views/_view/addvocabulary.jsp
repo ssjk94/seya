@@ -331,7 +331,12 @@ input:disabled {
 .breadcrumb {
 	background-color: #ffffff;
 }
-
+/*
+아웃라인을 없애면 버튼같은 푸른색 테두리 없앤다
+*/
+*:focus{
+	outline: none;
+}
 </style>
 
 

@@ -228,7 +228,7 @@ p.flashcard-font {
 	border-top: 5px double darkgray;
 	width: 790px;
 	border-bottom: 5px double darkgray;
-	margin-left:15px;
+	margin-left: 15px;
 }
 
 .vocafloat {
@@ -245,6 +245,7 @@ p.flashcard-font {
 	width: 100%;
 	text-align: center;
 }
+
 .mean-textbox {
 	border: 1px solid #ffffff;
 	border-bottom: 2px solid lavender;
@@ -316,15 +317,23 @@ input:disabled {
 	margin-top: 50px;
 }
 
-.btn-padding{
+.btn-padding {
 	padding-right: 5px;
 }
-.deleteWord{
+
+.deleteWord {
 	
 }
-.deleteWord:hover{
+
+.deleteWord:hover {
 	font-size: 25px;
 	visibility: visible;
+}
+/*
+아웃라인을 없애면 버튼같은 푸른색 테두리 없앤다
+*/
+*:focus {
+	outline: none;
 }
 </style>
 
@@ -373,23 +382,27 @@ desired effect
 						<li><a href="#">Tables</a></li>
 						<li class="active">Simple</li>
 					</ol>
-					
+
 					<c:choose>
 						<c:when test="${URLId eq sessionScope.id}">
-							<form name="header" action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
-							<!--/단어장 경로 -->
+							<form name="header"
+								action="${pageContext.request.contextPath}/${URLId}/addvocabulary"
+								method="get">
+								<!--/단어장 경로 -->
 								<input type="text" class="wordpadname" name="wordbookName"
-								value="${wordbookName}">
+									value="${wordbookName}">
 								<button type="button"
-								class="btn btn-danger btn-block btn-sm vocamodi-btn" onclick="updateSubmit();">확인</button>
+									class="btn btn-danger btn-block btn-sm vocamodi-btn"
+									onclick="updateSubmit();">확인</button>
 								<input name="wordbookNo" type="hidden" value="${wordbookNo}">
-								<button type="submit" class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
-								추가</button>
+								<button type="submit"
+									class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
+									추가</button>
 							</form>
 						</c:when>
 						<c:otherwise>
 							<input type="text" class="wordpadname" name="wordbookName"
-							value="${wordbookName}" readonly="readonly">
+								value="${wordbookName}" readonly="readonly">
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -397,18 +410,25 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-				<form name="updateWM" action="${pageContext.request.contextPath}/${URLId}/wordmodify">
-				<input type="hidden" name="wordbookNo" value="${wordbookNo}">
-				<input type="hidden" name="wordName" value="">
-				<input type="hidden" name="wordbookName" value="">
-				
-				
+				<form name="updateWM"
+					action="${pageContext.request.contextPath}/${URLId}/wordmodify">
+					<input type="hidden" name="wordbookNo" value="${wordbookNo}">
+					<input type="hidden" name="wordName" value=""> <input
+						type="hidden" name="wordbookName" value="">
+
+
 					<!-- 단어장 리스트 가장 바깥 상자 -->
 					<div id="vocalistbox">
 						<c:choose>
+							<c:when test="${empty vocaList}">
+								<div class="vocaborder">
+									<p align="center">"단어장이 비어있습니다."</p>
+								</div>
+							</c:when>
+						
 							<c:when test="${URLId eq sessionScope.id}">
 								<c:forEach items="${requestScope.vocaList}" var="vocaList">
-								<!-- 복사를 해야하는 div -->
+									<!-- 복사를 해야하는 div -->
 									<div class="vocaborder">
 										<!-- word -->
 										<div class="vocafloat vocawordsection">
@@ -418,34 +438,37 @@ desired effect
 											</div>
 											<!-- 텍스트박스 -->
 											<div class="vocafloat textgapbox">
-												<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}"
-												onblur="focusout(${vocaList.wordNo}, 0, this.value);">
+												<input type="text" name="wordAName" class="word-textbox"
+													value="${vocaList.wordName}"
+													onblur="focusout(${vocaList.wordNo}, 0, this.value);">
 											</div>
 										</div>
 										<!-- mean -->
 										<div class="vocafloat wordgapmean vocawordsection">
-										<!-- 뜻 -->
+											<!-- 뜻 -->
 											<div class="vocafloat">
 												<p>뜻 :</p>
 											</div>
 											<!-- 텍스트박스 -->
 											<div class="vocafloat textgapbox">
-												<input type="text" name="meanAName" class="mean-textbox" value="${vocaList.meanName}"
-												onblur="focusout(${vocaList.wordNo}, 1, this.value);">
+												<input type="text" name="meanAName" class="mean-textbox"
+													value="${vocaList.meanName}"
+													onblur="focusout(${vocaList.wordNo}, 1, this.value);">
 											</div>
 										</div>
 										<!-- 삭제 아이콘이 들어가야할 곳 -->
 										<button type="button" class="deleteWord">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="deleteWord(${vocaList.wordNo})"></span>
+											<span class="glyphicon glyphicon-remove" aria-hidden="true"
+												onclick="deleteWord(${vocaList.wordNo})"></span>
 										</button>
 									</div>
-								<!-- 복사를 해야하는 div -->
+									<!-- 복사를 해야하는 div -->
 								</c:forEach>
 							</c:when>
-							
+
 							<c:otherwise>
 								<c:forEach items="${requestScope.vocaList}" var="vocaList">
-								<!-- 복사를 해야하는 div -->
+									<!-- 복사를 해야하는 div -->
 									<div class="vocaborder">
 										<!-- word -->
 										<div class="vocafloat vocawordsection">
@@ -455,35 +478,39 @@ desired effect
 											</div>
 											<!-- 텍스트박스 -->
 											<div class="vocafloat textgapbox">
-												<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}"
-												onblur="focusout(${vocaList.wordNo}, 0, this.value);" readonly="readonly">
+												<input type="text" name="wordAName" class="word-textbox"
+													value="${vocaList.wordName}"
+													onblur="focusout(${vocaList.wordNo}, 0, this.value);"
+													readonly="readonly">
 											</div>
 										</div>
 										<!-- mean -->
 										<div class="vocafloat wordgapmean vocawordsection">
-										<!-- 뜻 -->
+											<!-- 뜻 -->
 											<div class="vocafloat">
 												<p>뜻 :</p>
 											</div>
 											<!-- 텍스트박스 -->
 											<div class="vocafloat textgapbox">
-												<input type="text" name="meanAName" class="mean-textbox" value="${vocaList.meanName}"
-												onblur="focusout(${vocaList.wordNo}, 1, this.value);" readonly="readonly">
+												<input type="text" name="meanAName" class="mean-textbox"
+													value="${vocaList.meanName}"
+													onblur="focusout(${vocaList.wordNo}, 1, this.value);"
+													readonly="readonly">
 											</div>
 										</div>
 									</div>
-								<!-- 복사를 해야하는 div -->
+									<!-- 복사를 해야하는 div -->
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 
-
 					</div>
 					<c:if test="${URLId eq sessionScope.id}">
-					<button type="button"
-						class="btn btn-danger btn-block btn-sm vocamodi-btn" onclick="updateSubmit();">확인</button>
+						<button type="button"
+							class="btn btn-danger btn-block btn-sm vocamodi-btn"
+							onclick="updateSubmit();">확인</button>
 					</c:if>
-					</form>
+				</form>
 			</section>
 			<!-- /.content -->
 		</div>
