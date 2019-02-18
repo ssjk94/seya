@@ -238,12 +238,12 @@ p.flashcard-font {
 }
 
 p.gameScore {
-	margin: 20px;
+	margin: 10px;
 	font-size: 18px;
 }
 
 h4.gameName {
-	margin: 20px;
+	margin: 10px;
 	font-size: 18px;
 }
 
@@ -267,11 +267,6 @@ h4.gameName {
 .panel-no-border {
     border-color: #fff;
 }
-
-.time-bar {
-	margin-top: 5px;
-}
-
 </style>
 
 </head>

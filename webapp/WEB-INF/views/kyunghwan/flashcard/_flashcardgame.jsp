@@ -13,7 +13,7 @@
 <style type="text/css">
 .flashcardcontainer {
 	width: 790px;
-	height: 370px;
+	min-height: 940px;
 	margin-left: 15px;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .flashquiz-box {
-	margin-top: 120px;
+	margin-top: 90px;
 	height: 100px;
 	border: 1px solid black;
 	width: -webkit-fill-available;
