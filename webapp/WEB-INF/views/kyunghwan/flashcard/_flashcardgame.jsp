@@ -98,6 +98,11 @@
 #flashSubmit {
 	font-size: 30px;
 }
+
+#wm-over {
+	margin-top: 155px;
+}
+
 </style>
 
 <!-- 테두리 마지막에 없애야함 -->
@@ -218,8 +223,6 @@
 	});
 </script>
 <body>
-	<!-- width 790px height 450-->
-	<div class="panel panel-default flashcardcontainer">
 		<!-- content box -->
 		<div id="wm-over" role="button" class="panel-body flashcardbox">
 			<!-- mean -->
@@ -232,6 +235,5 @@
 		<!-- word -->
 		<input type="hidden" id="answer">
 		<!-- 		</form> -->
-	</div>
 </body>
 </html>

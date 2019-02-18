@@ -249,19 +249,29 @@ h4.gameName {
 
 .time-bar {
 	border: 1px solid #dd4b39;
-	margin-left: 15px;
-	margin-right: 15px;
 	width: 100%;
+	float: left;
 }
 
 .progress {
 	margin-top: 20px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 .game-wrapper {
 	width: 100%;
 	float: left;
 }
+
+.panel-no-border {
+    border-color: #fff;
+}
+
+.time-bar {
+	margin-top: 5px;
+}
+
 </style>
 
 </head>
@@ -315,30 +325,31 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-				<div class="col-xs-12">
-					<div class="gameName-bar col-xs-5 col-lg-5">
-						<h4 class="gameName">
-							게임이름 : <span class="game-item">Flashcard Game</span>
-						</h4>
-					</div>
-					<div class="col-xs-4 col-lg-4"></div>
-					<div class="gameScore-bar col-xs-3 col-lg-3">
-						<p class="gameScore">
-							점수 : <span class="scoreBoard"></span>
-						</p>
-					</div>
-				</div>
-				<div class="col-xs-12">
-					<div class="time-bar progress">
-						<div
-							class="progress-bar progress-bar-primary progress-bar-striped"
-							role="progressbar" aria-valuenow="100" aria-valuemin="0"
-							aria-valuemax="100" style="width: 100%">
-							<span class="sr-only">40% Complete (success)</span>
+				<!-- width 790px height 450-->
+				<div class="panel panel-no-border flashcardcontainer">
+					<div class="col-xs-12">
+						<div class="gameName-bar col-xs-5 col-lg-5">
+							<h4 class="gameName">
+								게임이름 : <span class="game-item">Flashcard Game</span>
+							</h4>
+						</div>
+						<div class="col-xs-4 col-lg-4"></div>
+						<div class="gameScore-bar col-xs-3 col-lg-3">
+							<p class="gameScore">
+								점수 : <span class="scoreBoard"></span>
+							</p>
 						</div>
 					</div>
-				</div>
-				<div class="game-wrapper">
+					<div class="time-bar">
+						<div class="progress">
+							<div
+								class="progress-bar progress-bar-primary progress-bar-striped"
+								role="progressbar" aria-valuenow="100" aria-valuemin="0"
+								aria-valuemax="100" style="width: 100%">
+								<span class="sr-only">40% Complete (success)</span>
+							</div>
+						</div>
+					</div>
 					<c:import
 						url="/WEB-INF/views/kyunghwan/flashcard/_flashcardgame.jsp"></c:import>
 				</div>
