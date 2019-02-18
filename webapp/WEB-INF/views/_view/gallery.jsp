@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/dist/css/skins/skin-red-light.css">
-	
+
 <!-- favinco오류 제거용 -->
 <link rel="shortcut icon" href="">
 
@@ -136,17 +136,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	top: 10px;
 }
 
-.small-box .icon {
-	top: 78px;
-	right: 40px;
-	font-size: 60px
-}
-
-.small-box:hover {
-	text-decoration: none;
-	color: #dd4b39 !important
-}
-
 .fixed .content-wrapper, .fixed .right-side {
 	padding-top: 85px;
 }
@@ -163,16 +152,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .button-name {
 	padding-bottom: 20px;
 	padding-right: 15px;
-}
-
-.inner-header .tools {
-	display: none;
-	float: right;
-	padding: 10px
-}
-
-.small-box:hover .tools {
-	display: inline-block
 }
 
 .btn-info {
@@ -194,47 +173,39 @@ i.fa-trash-o {
 	font-size: 30px;
 }
 
-.inner-body>.inner {
-	padding: 15px;
-	height: 175px;
-	color: #000000
+i.fa-plus {
+	font-size: 80px;
 }
 
-.inner-body>.small-box-footer {
-	position: static;
-	text-align: center;
-	padding: 3px 0;
-	color: #fff;
-	color: rgba(255, 255, 255, 0.8);
-	display: block;
-	z-index: 10;
-	background: rgba(0, 0, 0, 0.1);
-	text-decoration: none;
-	/* margin-bottom: 100px; */
+i.fa-file-text {
+	font-size: 80px;
 }
 
-.inner-body h3 {
-	font-size: 20px;
-	margin: 20px 0 20px 0
+.icon {
+	top: -25px;
+	height: 100px;
 }
 
-.inner-body p {
-	font-size: 13px;
-	margin: 0 0 5px 10px;
+.small-box .file-icon {
+	-webkit-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+	position: absolute;
+	top: -25px;
+	right: 10px;
+	z-index: 0;
+	font-size: 90px;
+	color: rgba(0, 0, 0, 0.15);
 }
 
-.small-box:hover .icon {
-	font-size: 60px;
-	color: #dd4b39
+.inner-body:hover i.fa-file-text, .inner-body:hover i.fa-plus,
+	.Btn-delete:hover i.fa-trash-o, .Btn-change:hover i.fa-edit, .Btn-share:hover i.fa-share,
+	.inner-body:hover h3, .inner-body:hover p {
+	color: #dd4b39;
 }
 
-.small-box:hover .small-box-footer {
-	background: #dd4b39
-}
-
-.small-box {
-	margin-top: 10px;
-	border-top: 1px solid rgba(0, 0, 0, 0.1)
+.small-box:hover .inner-header, .small-box:hover .inner-body {
+	color: black;
 }
 
 .row {
@@ -242,14 +213,7 @@ i.fa-trash-o {
 	padding-right: 10px;
 }
 
-.small-box:hover h3 {
-	color: #dd4b39
-}
-
-.small-box:hover p {
-	color: #dd4b39
-}
-.add-footer{
+.add-footer {
 	position: static;
 	text-align: center;
 	padding: 3px 0;
@@ -261,11 +225,70 @@ i.fa-trash-o {
 	height: 25px;
 	/* margin-bottom: 100px; */
 }
-.container{
+
+.container {
 	width: 840px;
 }
-.submitdiv{
-	cursor: pointer;
+
+.small-box {
+	border: 1px solid #fff;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.inner-header {
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+	color: #ffffff;
+}
+
+.inner-body {
+	height: 170px;
+}
+
+.small-box h3 {
+	height: 34px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.Btn-submit {
+	background-color: transparent;
+	border: 0px transparent solid;
+	outline:none;
+}
+
+h3.create-wordbook-name {
+	width: 100%;
+	font-size: 30px;
+}
+
+h3.wordbook-name {
+	text-align: left;
+	padding-top: 10px;
+	width: 100%;
+	font-size: 20px;
+}
+
+.wordbook-maker {
+	height: 20px;
+	width: 100%;
+}
+
+.wordbook-regdate {
+	height: 20px;
+	width: 100%;
+}
+
+.wordbook-access {
+	height: 20px;
+	width: 100%;
+}
+
+.wordbook-inner {
+	height: 100px;
+	width: 100%
 }
 </style>
 
@@ -301,7 +324,7 @@ desired effect
 		<!-- navigation -->
 		<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
 		<!-- /navigation -->
-		
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -309,7 +332,8 @@ desired effect
 				<div class="path-name">
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
-						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home </a></li>
+						<li><a href="${pageContext.request.contextPath}/${URLId}"><i
+								class="fa fa-dashboard"></i> Home </a></li>
 					</ol>
 					<!--/단어장 경로 -->
 				</div>
@@ -334,161 +358,169 @@ desired effect
 						<div class="box">
 							<div class="box-body no-padding">
 								<div class="row">
-								<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
-								<c:if test="${sessionScope.id eq URLId && directoryNo ne 0}">
-									<div class="col-lg-4 col-xs-4">
-										<!-- small box -->
-										<div id="addvocabulary" class="small-box submitdiv">
-											<div class="inner-header">
-												<div class="tools"></div>
-											</div>
-											
-											<div id="addvocabulary" class="inner-body">
-											<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
-												<input name="directoryNo" type="hidden" value="${directoryNo}">
-												<button type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
-												<div class="inner" >
-													<h3>단어장 만들기</h3>
-													<p></p>
-													<p></p>
-													<p></p>
-												</div>
-												<div class="icon">
-													<i class="fa fa-plus"> </i>
-												</div>
-												<div class="add-footer bgcolor-default"></div>
-											</button>
-											</form>
-											</div>
-										</div>
-									</div>
-								</c:if>
-									
-									<!-- ./col -->
-<c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
-									<!-- ./col -->
-									
-									<div class="col-lg-4 col-xs-4">
-										<!-- small box -->
-										<div class="small-box">
-											<div class="inner-header">
-												<div class="tools">
-												
-												<c:choose>
-												
-												<c:when test="${sessionScope.id eq URLId}">
-													<!-- 내가 이용하는 공간 -->
-													
-													<!-- 공유 변경 아이콘 -->
-													
-													<button class="Btn-change" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-													onclick="changeWordbook(${wordbookVo.wordbookNo},${wordbookVo.wordbookAccess});">
-														<i class="fa fa-share"></i>
-													</button>
-													
-													<!-- 삭제 아이콘 -->
-													
-													<button class="Btn-delete" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-													onclick="deleteWordbook(${wordbookVo.wordbookNo});">
-														<i class="fa fa-trash-o"></i>
-													</button>
-													
-													<!-- 수정하러 들어가는 리스트 아이콘 -->
-													
-												<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
-													<input name="wordbookNo" type="hidden" value="${wordbookVo.wordbookNo}">
-													<input name="wordbookName" type="hidden" value="${wordbookVo.wordbookName}">
-													<button type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
-														<i class="fa fa-edit"></i>
+									<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
+									<c:if test="${sessionScope.id eq URLId && directoryNo ne 0}">
+										<div class="col-lg-4 col-xs-4">
+											<!-- small box -->
+											<div id="addvocabulary" class="small-box">
+												<div class="inner-header"></div>
+												<form class="inner-body"
+													action="${pageContext.request.contextPath}/${URLId}/addvocabulary"
+													method="get">
+													<input name="directoryNo" type="hidden"
+														value="${directoryNo}">
+													<button type="submit" class="Btn-submit col-xs-12">
+														<h3 class="create-wordbook-name">단어장 만들기</h3>
+														<div class="wordbook-inner">
+															<div class="col-lg-6 col-xs-6">
+																<p class="wordbook-maker"></p>
+																<p class="wordbook-regdate"></p>
+																<p class="wordbook-access"></p>
+															</div>
+															<div class="col-lg-6 col-xs-6">
+																<div class="icon">
+																	<i class="fa fa-plus"> </i>
+																</div>
+															</div>
+														</div>
 													</button>
 												</form>
-													
-												</c:when>
-												
-												<c:when test="${sessionScope.id eq null }">
-													여긴 비회원
-												</c:when>
-												
-												<c:otherwise>
-													<!-- 서로 다른 회원끼리 이용하는 곳 -->
-													<c:choose>
-														<c:when test="${wordbookVo.wordbookAccess eq 0}">
-															<!-- 공유 기능 -->
-															<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-															onclick="shareWordbook(${wordbookVo.wordbookNo});">
-															<i class="fa fa-share"></i>
-															</button>
-														</c:when>
-													
-														<c:otherwise>
-															<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-															onclick="doNotShare();">
-															<i class="fa fa-share"></i>
-															</button>
-														</c:otherwise>
-													</c:choose>
-													
-												</c:otherwise>
-												
-												</c:choose>
-													
-														
-													
-														
-													
-												
-													
-													
-													
-														
-													
-												</div>
 											</div>
-											<!-- 여기에 버튼 형식  -->
-											<div class="inner-body">
-											 <form action="${pageContext.request.contextPath}/${URLId}/flashcard" method="get">
-												<input name="directoryNo" type="hidden" value="${wordbookVo.directoryNo}">
-												<input name="wordbookNo" type="hidden" value="${wordbookVo.wordbookNo}">
-												<button type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
-												<div class="inner">
-											
-													<h3>${wordbookVo.wordbookName}</h3>
-													<p>${wordbookVo.wordbookMaker}</p>
-													<p>${wordbookVo.wordbookRegdate}</p>
-													<p>
-															<c:choose>
-
-																<c:when test="${wordbookVo.wordbookAccess eq 0}">
-       																<span class="label label-success">공유 가능</span>
-    															</c:when>
-    															
-																<c:otherwise>
-      																 <span class="label label-danger">공유 불가</span>
-    															</c:otherwise>
-
-															</c:choose>
-													</p>
-												</div>
-																							
-												
-												 
-												<div class="icon">
-													<i class="fa fa-file-text"> </i>
-												</div>
-												<div class="small-box-footer bgcolor-default">
-													공부하기 <i class="fa fa-arrow-circle-right"></i>
-												</div>
-												</button>
-											</form>
-											</div>
-												
-									
-									
-									
 										</div>
-									</div>
+									</c:if>
 
-</c:forEach>
+									<!-- ./col -->
+									<c:forEach items="${requestScope.wordbookList}"
+										var="wordbookVo">
+										<!-- ./col -->
+
+										<div class="col-lg-4 col-xs-4">
+											<!-- small box -->
+											<div class="small-box">
+												<div class="inner-header">
+													<div class="col-xs-12">
+														<div class="col-lg-3 col-xs-3"></div>
+														<c:choose>
+															<c:when test="${sessionScope.id eq URLId}">
+																<!-- 내가 이용하는 공간 -->
+
+																<!-- 공유 변경 아이콘 -->
+																<div class="col-lg-3 col-xs-3">
+																	<button class="Btn-share" type="submit"
+																		style="background-color: transparent; border: 0px transparent solid; outline:none;"
+																		onclick="changeWordbook(${wordbookVo.wordbookNo},${wordbookVo.wordbookAccess});">
+																		<i class="fa fa-share"></i>
+																	</button>
+																</div>
+																<!-- 수정하러 들어가는 리스트 아이콘 -->
+																<div class="col-lg-3 col-xs-3">
+																	<form class="Btn-change" style="display: inline"
+																		action="${pageContext.request.contextPath}/${URLId}/vocabularylist"
+																		method="get">
+																		<input name="wordbookNo" type="hidden"
+																			value="${wordbookVo.wordbookNo}"> <input
+																			name="wordbookName" type="hidden"
+																			value="${wordbookVo.wordbookName}">
+																		<button type="submit"
+																			style="background-color: transparent; border: 0px transparent solid; outline:none;">
+																			<i class="fa fa-edit"></i>
+																		</button>
+																	</form>
+																</div>
+																<!-- 삭제 아이콘 -->
+																<div class="col-lg-3 col-xs-3">
+																	<button class="Btn-delete" type="submit"
+																		style="background-color: transparent; border: 0px transparent solid; outline:none;"
+																		onclick="deleteWordbook(${wordbookVo.wordbookNo});">
+																		<i class="fa fa-trash-o"></i>
+																	</button>
+																</div>
+															</c:when>
+
+															<c:when test="${sessionScope.id eq null}">
+
+															</c:when>
+
+															<c:otherwise>
+																<!-- 서로 다른 회원끼리 이용하는 곳 -->
+																<c:choose>
+																	<c:when test="${wordbookVo.wordbookAccess eq 0}">
+																		<!-- 공유 기능 -->
+																		<div class="col-xs-12">
+																			<div class="col-lg-9 col-xs-9"></div>
+																			<div class="col-lg-3 col-xs-3">
+																				<button class="Btn-share" type="submit"
+																					style="background-color: transparent; border: 0px transparent solid; outline:none;"
+																					onclick="shareWordbook(${wordbookVo.wordbookNo});">
+																					<i class="fa fa-share"></i>
+																				</button>
+																			</div>
+																		</div>
+																	</c:when>
+
+																	<c:otherwise>
+																		<div class="col-xs-12">
+																			<div class="col-lg-9 col-xs-9"></div>
+																			<div class="col-lg-3 col-xs-3">
+																				<button class="Btn-share" type="submit"
+																					style="background-color: transparent; border: 0px transparent solid; outline:none;"
+																					onclick="doNotShare();">
+																					<i class="fa fa-share"></i>
+																				</button>
+																			</div>
+																		</div>
+																	</c:otherwise>
+																</c:choose>
+															</c:otherwise>
+														</c:choose>
+													</div>
+												</div>
+												<!-- 여기에 버튼 형식  -->
+												<div class="inner-body">
+													<form
+														action="${pageContext.request.contextPath}/${URLId}/flashcard"
+														method="get">
+														<input name="directoryNo" type="hidden"
+															value="${wordbookVo.directoryNo}"> <input
+															name="wordbookNo" type="hidden"
+															value="${wordbookVo.wordbookNo}">
+														<button type="submit" class="Btn-submit col-xs-12">
+															<h3 class="wordbook-name">${wordbookVo.wordbookName}</h3>
+															<div class="wordbook-inner">
+																<div class="col-lg-6 col-xs-6">
+																	<p class="wordbook-maker">${wordbookVo.wordbookMaker}</p>
+																	<p class="wordbook-regdate">${wordbookVo.wordbookRegdate}</p>
+																	<p class="wordbook-access">
+																		<c:choose>
+
+																			<c:when test="${wordbookVo.wordbookAccess eq 0}">
+																				<span class="label label-success">공유 가능</span>
+																			</c:when>
+
+																			<c:otherwise>
+																				<span class="label label-danger">공유 불가</span>
+																			</c:otherwise>
+
+																		</c:choose>
+																	</p>
+																</div>
+																<div class="col-lg-6 col-xs-6">
+																	<div class="file-icon">
+																		<i class="fa fa-file-text"> </i>
+																	</div>
+
+																</div>
+															</div>
+														</button>
+													</form>
+												</div>
+
+
+
+
+											</div>
+										</div>
+									</c:forEach>
 
 
 
