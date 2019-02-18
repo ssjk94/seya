@@ -456,6 +456,10 @@ desired effect
  		var wordbookName = $("[name=wordbookName]").val();
  		console.log(wordName);
  		
+ 		if(doubleSubmitCheck()){ 
+ 			return;
+ 		}
+ 			
  		$.ajax({
  			url : "${pageContext.request.contextPath}/${URLId}/insertWord",
  			type : "post",
@@ -464,16 +468,30 @@ desired effect
  			dataType : "html",
  			success : function(wordbookNo){
  			/*성공시 처리해야될 코드 작성*/
- 				
- 				document.addvoca.wordbookNo.value = wordbookNo
- 				document.addvoca.submit();
+ 				if(wordbookNo == 0){
+ 					alert("단어장 이름을 입력해주세요");
+ 					location.reload();
+ 				}else{
+ 					document.addvoca.wordbookNo.value = wordbookNo
+ 					document.addvoca.submit();
+ 				}
  			},
  			error : function(XHR, status, error) {
  				console.error(status+" : "+error);
  			}
  		});
  	};
-     
+ 	
+ 	//중복 submit 방지
+ 	var doubleSubmitFlag = false;
+ 	function doubleSubmitCheck(){
+ 	    if(doubleSubmitFlag){
+ 	        return doubleSubmitFlag;
+ 	    }else{
+ 	        doubleSubmitFlag = true;
+ 	        return false;
+ 	    }
+ 	}
      </script>
 
 </html>

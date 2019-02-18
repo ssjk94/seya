@@ -374,20 +374,24 @@ desired effect
 						<li class="active">Simple</li>
 					</ol>
 					
-					<form name="header" action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
-					<!--/단어장 경로 -->
-					<input type="text" class="wordpadname" name="wordbookName"
-						value="${wordbookName}">
-						
-					<button type="button"
-						class="btn btn-danger btn-block btn-sm vocamodi-btn" onclick="updateSubmit();">확인</button>
-					
-					<input name="wordbookNo" type="hidden" value="${wordbookNo}">
-
-						<button type="submit" class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
-							추가</button>
-					</form>
-
+					<c:choose>
+						<c:when test="${URLId eq sessionScope.id}">
+							<form name="header" action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
+							<!--/단어장 경로 -->
+								<input type="text" class="wordpadname" name="wordbookName"
+								value="${wordbookName}">
+								<button type="button"
+								class="btn btn-danger btn-block btn-sm vocamodi-btn" onclick="updateSubmit();">확인</button>
+								<input name="wordbookNo" type="hidden" value="${wordbookNo}">
+								<button type="submit" class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
+								추가</button>
+							</form>
+						</c:when>
+						<c:otherwise>
+							<input type="text" class="wordpadname" name="wordbookName"
+							value="${wordbookName}" readonly="readonly">
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</section>
 
@@ -398,47 +402,87 @@ desired effect
 				<input type="hidden" name="wordName" value="">
 				<input type="hidden" name="wordbookName" value="">
 				
+				
 					<!-- 단어장 리스트 가장 바깥 상자 -->
 					<div id="vocalistbox">
-					<c:forEach items="${requestScope.vocaList}" var="vocaList">
-						<!-- 복사를 해야하는 div -->
-						<div class="vocaborder">
-							<!-- word -->
-							<div class="vocafloat vocawordsection">
-								<!-- 단어 -->
-								<div class="vocafloat">
-									<p>단어 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}"
-									onblur="focusout(${vocaList.wordNo}, 0, this.value);">
-								</div>
-							</div>
-							<!-- mean -->
-							<div class="vocafloat wordgapmean vocawordsection">
-								<!-- 뜻 -->
-								<div class="vocafloat">
-									<p>뜻 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="meanAName" class="mean-textbox" value="${vocaList.meanName}"
-									onblur="focusout(${vocaList.wordNo}, 1, this.value);">
-								</div>
-							</div>
-							<!-- 삭제 아이콘이 들어가야할 곳 -->
-							<button type="button" class="deleteWord">
-								<span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="deleteWord(${vocaList.wordNo})"></span>
-							</button>
-						</div>
-						<!-- 복사를 해야하는 div -->
-					</c:forEach>
+						<c:choose>
+							<c:when test="${URLId eq sessionScope.id}">
+								<c:forEach items="${requestScope.vocaList}" var="vocaList">
+								<!-- 복사를 해야하는 div -->
+									<div class="vocaborder">
+										<!-- word -->
+										<div class="vocafloat vocawordsection">
+											<!-- 단어 -->
+											<div class="vocafloat">
+												<p>단어 :</p>
+											</div>
+											<!-- 텍스트박스 -->
+											<div class="vocafloat textgapbox">
+												<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}"
+												onblur="focusout(${vocaList.wordNo}, 0, this.value);">
+											</div>
+										</div>
+										<!-- mean -->
+										<div class="vocafloat wordgapmean vocawordsection">
+										<!-- 뜻 -->
+											<div class="vocafloat">
+												<p>뜻 :</p>
+											</div>
+											<!-- 텍스트박스 -->
+											<div class="vocafloat textgapbox">
+												<input type="text" name="meanAName" class="mean-textbox" value="${vocaList.meanName}"
+												onblur="focusout(${vocaList.wordNo}, 1, this.value);">
+											</div>
+										</div>
+										<!-- 삭제 아이콘이 들어가야할 곳 -->
+										<button type="button" class="deleteWord">
+											<span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="deleteWord(${vocaList.wordNo})"></span>
+										</button>
+									</div>
+								<!-- 복사를 해야하는 div -->
+								</c:forEach>
+							</c:when>
+							
+							<c:otherwise>
+								<c:forEach items="${requestScope.vocaList}" var="vocaList">
+								<!-- 복사를 해야하는 div -->
+									<div class="vocaborder">
+										<!-- word -->
+										<div class="vocafloat vocawordsection">
+											<!-- 단어 -->
+											<div class="vocafloat">
+												<p>단어 :</p>
+											</div>
+											<!-- 텍스트박스 -->
+											<div class="vocafloat textgapbox">
+												<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}"
+												onblur="focusout(${vocaList.wordNo}, 0, this.value);" readonly="readonly">
+											</div>
+										</div>
+										<!-- mean -->
+										<div class="vocafloat wordgapmean vocawordsection">
+										<!-- 뜻 -->
+											<div class="vocafloat">
+												<p>뜻 :</p>
+											</div>
+											<!-- 텍스트박스 -->
+											<div class="vocafloat textgapbox">
+												<input type="text" name="meanAName" class="mean-textbox" value="${vocaList.meanName}"
+												onblur="focusout(${vocaList.wordNo}, 1, this.value);" readonly="readonly">
+											</div>
+										</div>
+									</div>
+								<!-- 복사를 해야하는 div -->
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 
 
 					</div>
+					<c:if test="${URLId eq sessionScope.id}">
 					<button type="button"
 						class="btn btn-danger btn-block btn-sm vocamodi-btn" onclick="updateSubmit();">확인</button>
+					</c:if>
 					</form>
 			</section>
 			<!-- /.content -->

@@ -3,6 +3,7 @@ package com.javaex.vo;
 public class URLPathVo {
 	private String URLId;
 	private String wordbookName;
+	private String directoryName;
 	private int userNo;
 	private int directoryNo;
 	private int wordbookNo;
@@ -18,11 +19,12 @@ public class URLPathVo {
 		super();
 	}
 
-	public URLPathVo(String uRLId, String wordbookName, int userNo, int directoryNo, int wordbookNo, int wordNo,
-			String nickName, String userImage, String userContent) {
+	public URLPathVo(String uRLId, String wordbookName, String directoryName, int userNo, int directoryNo,
+			int wordbookNo, int wordNo, String nickName, String userImage, String userContent) {
 		super();
 		URLId = uRLId;
 		this.wordbookName = wordbookName;
+		this.directoryName = directoryName;
 		this.userNo = userNo;
 		this.directoryNo = directoryNo;
 		this.wordbookNo = wordbookNo;
@@ -31,6 +33,8 @@ public class URLPathVo {
 		this.userImage = userImage;
 		this.userContent = userContent;
 	}
+
+
 
 	public String getURLId() {
 		return URLId;
@@ -102,13 +106,22 @@ public class URLPathVo {
 
 	public void setUserContent(String userContent) {
 		this.userContent = userContent;
+
+	}
+	
+	public String getDirectoryName() {
+		return directoryName;
+	}
+
+	public void setDirectoryName(String directoryName) {
+		this.directoryName = directoryName;
 	}
 
 	@Override
 	public String toString() {
-		return "URLPathVo [URLId=" + URLId + ", wordbookName=" + wordbookName + ", userNo=" + userNo + ", directoryNo="
-				+ directoryNo + ", wordbookNo=" + wordbookNo + ", wordNo=" + wordNo + ", nickName=" + nickName
-				+ ", userImage=" + userImage + ", userContent=" + userContent + "]";
+		return "URLPathVo [URLId=" + URLId + ", wordbookName=" + wordbookName + ", directoryName=" + directoryName
+				+ ", userNo=" + userNo + ", directoryNo=" + directoryNo + ", wordbookNo=" + wordbookNo + ", wordNo="
+				+ wordNo + ", nickName=" + nickName + ", userImage=" + userImage + ", userContent=" + userContent + "]";
 	}
 	
 }

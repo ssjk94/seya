@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="navigation">
+
+	<!-- 쿼리문 작성 -->
+	<insert id="insertdirectory" parameterType="com.javaex.vo.URLPathVo">
+		insert into directory 
+										(directoryno,directoryname,userno)
+		values 						(directory_seq.nextval,#{directoryName},
+											(select userno from users where id =#{URLId})
+										)
+	</insert>
+	
+	<update id="updatedirectory" parameterType="com.javaex.vo.URLPathVo">
+		update  directory 
+		set 		directoryname = #{directoryName} 
+		where 	directoryno = #{directoryNo}
+	</update>
+	
+	<delete id="deletedirectory" parameterType="com.javaex.vo.URLPathVo">
+		delete from 	directory 
+		where 			directoryno = #{directoryNo}
+	</delete>
+
+</mapper>

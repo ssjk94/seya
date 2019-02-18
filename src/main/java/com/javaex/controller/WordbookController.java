@@ -113,4 +113,6 @@ public class WordbookController {
 		System.out.println("공유기능 변경");
 		wordbookService.setWordbookAccess(wordbookvo);
 	}
+	
+	
 }

@@ -47,14 +47,17 @@ public class VocabularyListService {
 		
 		//입력한것중 사전 가져오기
 		List<VocabularyListVo> seyaList =	vocabularyListDao.selectWordAndMean(vocabularyListVo);
-		
-		System.out.println("세야 후 워드북 엔오"+vocabularyListVo.getWordbookNo());
+
 		//배열 길이만큼 워드네임 삽입
 		for(int i =0;i<wordArr.length;i++) {
 			vocabularyListVo.setWordName(wordArr[i]);
 			for(int j=0;j<seyaList.size();j++) {
-				if(vocabularyListVo.getWordName().equals(seyaList.get(j).getSeyaWordName())) {
+				// 대소문자 맞추기
+				if(vocabularyListVo.getWordName().toLowerCase().equals
+						(seyaList.get(j).getSeyaWordName().toLowerCase())) {
+					
 					vocabularyListVo.setMeanName(seyaList.get(j).getSeyaMeanName());
+					
 					break;
 				}
 			}

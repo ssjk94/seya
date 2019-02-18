@@ -82,15 +82,21 @@ public class VocabularyListController {
 	public int wordInsert(URLPathVo urlPathVo, VocabularyListVo vocabularyListVo,Model md) {
 		//워드 네임은 보카브에  엔오들은 url에
 		System.out.println("ajax 단어장 만들기");
+		
+		//단어장 이름 적지않으면 처음페이지로 리턴
+		if(urlPathVo.getWordbookName() == "") {
+			return 0;
+		}
 		//단어장이 없을 경우 생성후 워드북 no들이 반환됨	
 		vocabularyListService.createWordbookService(urlPathVo);
 		//셀렉트키로 뽑은 wordbookNo값을 써야하는 리스트에 삽입
 		vocabularyListVo.setWordbookNo(urlPathVo.getWordbookNo());
 		//단어장 생성까지는 됨 나머지 처음부터 다 다시 뜯어봐야함
-		vocabularyListService.createWordService(vocabularyListVo);
+		if(vocabularyListVo.getWordName()!= "") {
+			vocabularyListService.createWordService(vocabularyListVo);
+		}
 		
 		//wordbookNo값 리턴해줘야함
-//		vocabularyListService.getWordAndMean(vocabularyListVo,urlPathVo);
 		return vocabularyListVo.getWordbookNo();
 	}
 	

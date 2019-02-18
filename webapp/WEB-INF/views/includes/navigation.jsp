@@ -11,6 +11,12 @@ p.side-cont {
     padding: 10px;
     text-align: center
 }
+
+.direcIcon {
+	color: #fff;
+	font-size: 20px;
+}
+
 </style>
 
 <!-- Left side column. contains the logo and sidebar -->
@@ -47,6 +53,88 @@ p.side-cont {
 				</form> -->
 		<!-- /.search form -->
 		
+		<script type="text/javascript">
+		
+			function refreshMemList(){
+
+				location.reload();
+			};
+		
+			function directoryInsert(sessionId) {
+				console.log(sessionId);	
+				
+				var directoryName = prompt("폴더이름을 설정해주세요","")
+				
+				//프롬프트 확인 눌렀을때
+				if(directoryName!=null){
+					
+					$.ajax({
+						url : "${pageContext.request.contextPath}/${URLId}/directoryinsert",
+						type : "post",
+			 //			contentType : "application/json",
+						data : {URLId: sessionId,directoryName: directoryName},
+						dataType : "html",
+						success : function(){
+						/*성공시 처리해야될 코드 작성*/
+							refreshMemList();
+						},
+						error : function(XHR, status, error) {
+						console.error(status+" : "+error);
+						}
+					});
+					
+				}
+				
+			}
+			
+			function directoryDelete(directoryNo) {
+				console.log(directoryNo);
+				
+				$.ajax({
+					url : "${pageContext.request.contextPath}/${URLId}/directorydelete",
+					type : "post",
+		 //			contentType : "application/json",
+					data : {directoryNo: directoryNo},
+					dataType : "html",
+					success : function(){
+					/*성공시 처리해야될 코드 작성*/
+						refreshMemList();
+					},
+					error : function(XHR, status, error) {
+					console.error(status+" : "+error);
+					}
+				});
+				
+			}
+			
+			function directoryUpdate(directoryNo,beforeDirectoryName) {
+				console.log(directoryNo,beforeDirectoryName);
+				var directoryName = prompt("수정할 폴더명을 입력해주세요",beforeDirectoryName);
+				
+				//프롬프트 확인 눌렀을때
+				if(directoryName!=null){
+					
+					$.ajax({
+						url : "${pageContext.request.contextPath}/${URLId}/directoryupdate",
+						type : "post",
+			 //			contentType : "application/json",
+						data : {directoryNo: directoryNo,directoryName: directoryName},
+						dataType : "html",
+						success : function(){
+						/*성공시 처리해야될 코드 작성*/
+							refreshMemList();
+						},
+						error : function(XHR, status, error) {
+						console.error(status+" : "+error);
+						}
+					});
+					
+				}
+				
+			}
+		
+		</script>
+		
 		<!-- 전체 단어장 보여줄꺼 -->
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">
@@ -56,6 +144,17 @@ p.side-cont {
 					<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
 						<span>전체 단어장</span>
 					</button>
+				
+				
+				<span class="glyphicon glyphicon-plus direcIcon" aria-hidden="true" 
+				onclick="directoryInsert('${sessionScope.id}')"></span>
+				
+				<span class="glyphicon glyphicon-remove direcIcon" aria-hidden="true" 
+				onclick="directoryDelete(55)"></span>
+				
+				<span class="glyphicon glyphicon-pencil direcIcon" aria-hidden="true" 
+				onclick="directoryUpdate(55,'수정전 디렉')"></span>
+				
 				</form>
 				</c:when>
 				<c:otherwise>
