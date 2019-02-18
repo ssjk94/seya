@@ -185,17 +185,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .table>tbody>tr>td {
 	vertical-align: middle;
 }
+
 .container {
-    width: 830px;
+	width: 830px;
 }
+
 .row {
-    margin-right: -10px;
+	margin-right: -10px;
 }
 /*
 아웃라인을 없애면 버튼같은 푸른색 테두리 없앤다
 */
-*:focus{
+*:focus {
 	outline: none;
+}
+
+button.btn-size {
+	width: 100%;
+	padding: 0px;
+}
+
+.table-hover>tbody>tr:hover {
+	color: black !important;
+}
+
+.table-hover>tbody>tr>td.flashcard-link:hover, .table-hover>tbody>tr>td.tools-link>div>form>button.Btn-change:hover,
+	.table-hover>tbody>tr>td.tools-link>div>button.Btn-delete:hover,
+	.table-hover>tbody>tr>td.tools-link>div>button.Btn-share:hover {
+	color: #dd4b39 !important;
 }
 </style>
 
@@ -240,7 +257,9 @@ desired effect
 				<div class="path-name">
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
-						<li><a href="${pageContext.request.contextPath}/${URLId}/list"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/${URLId}/list"><i
+								class="fa fa-dashboard"></i> Home</a></li>
 					</ol>
 					<!--/단어장 경로 -->
 				</div>
@@ -258,7 +277,6 @@ desired effect
 				</div>
 				<!--/갤러리, 리스트 버튼 -->
 			</section>
-
 			<!-- Main content -->
 			<section class="content container">
 				<div class="row">
@@ -268,124 +286,123 @@ desired effect
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th class="col-xs-10">
+											<th class="col-xs-9">
 												<ul class="list-inline">
 													<li class="col-xs-3 table-list">단어장 이름</li>
 													<li class="col-xs-3 table-list">만든 이</li>
-													<li class="col-xs-2 table-list">만든 날짜</li>
-													<li class="col-xs-2 table-list">상태</li>
+													<li class="col-xs-3 table-list">만든 날짜</li>
+													<li class="col-xs-3 table-list">상태</li>
 												</ul>
 											</th>
-											<th class="col-xs-2 table-list">링크</th>
+											<th class="col-xs-3 table-list">링크</th>
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
-										<tr>
-											<form action="${pageContext.request.contextPath}/${URLId}/flashcard" 
-											method="get">
-												<input type="hidden" name="wordbookNo" value="${wordbookVo.wordbookNo}">
-											<td class="col-xs-10">
-												<button class="col-xs-12" type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
-												<ul class="list-inline">
-																										
-														<li class="col-xs-3 table-list">${wordbookVo.wordbookName}</li>
-														<li class="col-xs-3 table-list">${wordbookVo.wordbookMaker}</li>
-														<li class="col-xs-2 table-list">${wordbookVo.wordbookRegdate}</li>
+										<c:forEach items="${requestScope.wordbookList}"
+											var="wordbookVo">
+											<tr>
+												<form
+													action="${pageContext.request.contextPath}/${URLId}/flashcard"
+													method="get">
+													<input type="hidden" name="wordbookNo"
+														value="${wordbookVo.wordbookNo}">
+													<td class="flashcard-link col-xs-9">
+														<button class="btn-size" type="submit"
+															style="background-color: transparent; border: 0px transparent solid; padding-left: 0px; padding-right: 0px;">
+															<ul class="list-inline">
+																<li class="col-xs-3 table-list">${wordbookVo.wordbookName}</li>
+																<li class="col-xs-3 table-list">${wordbookVo.wordbookMaker}</li>
+																<li class="col-xs-3 table-list">${wordbookVo.wordbookRegdate}</li>
+																<c:choose>
+																	<c:when test="${wordbookVo.wordbookAccess eq 0}">
+																		<li class="col-xs-3 table-list"><span
+																			class="label label-success">공유 가능</span></li>
+																	</c:when>
+																	<c:otherwise>
+																		<li class="col-xs-3 table-list"><span
+																			class="label label-danger">공유 불가</span></li>
+																	</c:otherwise>
+																</c:choose>
+															</ul>
+														</button>
+													</td>
+												</form>
+												<td class="tools-link col-xs-3 table-list">
+													<div class="col-xs-12">
 														<c:choose>
-																<c:when test="${wordbookVo.wordbookAccess eq 0}">
-																	<li class="col-xs-2 table-list">
-       																	<span class="label label-success">공유 가능</span>
-       																</li>
-    															</c:when>
-    															
-																<c:otherwise>
-																	<li class="col-xs-2 table-list">
-      																 	<span class="label label-danger">공유 불가</span>
-      																</li>
-    															</c:otherwise>
+															<c:when test="${sessionScope.id eq URLId}">
+																<!-- 내가 이용하는 공간 -->
+																<!-- 공유 변경 아이콘 -->
 
-															</c:choose>
-														
-													</ul>
-												</button>
+																<button class="Btn-share col-xs-4 col-lg-4"
+																	type="submit"
+																	style="background-color: transparent; border: 0px transparent solid; padding-left: 0px; padding-right: 0px;"
+																	onclick="changeWordbook(${wordbookVo.wordbookNo},${wordbookVo.wordbookAccess});">
+																	공유</button>
+
+																<!-- 삭제 아이콘 -->
+
+																<button class="Btn-delete col-xs-4 col-lg-4"
+																	type="submit"
+																	style="background-color: transparent; border: 0px transparent solid; padding-left: 0px; padding-right: 0px;"
+																	onclick="deleteWordbook(${wordbookVo.wordbookNo});">
+																	삭제</button>
+
+																<!-- 수정하러 들어가는 리스트 아이콘 -->
+
+																<form
+																	action="${pageContext.request.contextPath}/${URLId}/vocabularylist"
+																	method="get">
+																	<input name="wordbookNo" type="hidden"
+																		value="${wordbookVo.wordbookNo}"> <input
+																		name="wordbookName" type="hidden"
+																		value="${wordbookVo.wordbookName}">
+																	<button class="Btn-change col-xs-4 col-lg-4"
+																		type="submit"
+																		style="background-color: transparent; border: 0px transparent solid; padding-left: 0px; padding-right: 0px;">수정</button>
+																</form>
+															</c:when>
+
+															<c:when test="${sessionScope.id eq null }">
+															</c:when>
+															<c:otherwise>
+																<!-- 서로 다른 회원끼리 이용하는 곳 -->
+																<c:choose>
+																	<c:when test="${wordbookVo.wordbookAccess eq 0}">
+																		<!-- 공유 기능 -->
+																		<button class="Btn-share col-xs-4 col-lg-4"
+																			type="submit"
+																			style="background-color: transparent; border: 0px transparent solid; padding-left: 0px; padding-right: 0px;"
+																			onclick="shareWordbook(${wordbookVo.wordbookNo});">
+																			공유</button>
+																	</c:when>
+																	<c:otherwise>
+																		<button class="Btn-share col-xs-4 col-lg-4"
+																			type="submit"
+																			style="background-color: transparent; border: 0px transparent solid; padding-left: 0px; padding-right: 0px;"
+																			onclick="doNotShare();">공유</button>
+																	</c:otherwise>
+																</c:choose>
+															</c:otherwise>
+														</c:choose>
+													</div>
 												</td>
-											</form>
-											
-											
-											<td class="col-xs-2 table-list">
-											<c:choose>
-												
-												<c:when test="${sessionScope.id eq URLId}">
-													<!-- 내가 이용하는 공간 -->
-													
-													<!-- 공유 변경 아이콘 -->
-													
-													<button class="Btn-change" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-													onclick="changeWordbook(${wordbookVo.wordbookNo},${wordbookVo.wordbookAccess});">
-														공유&nbsp;&nbsp;
-													</button>
-													
-													<!-- 삭제 아이콘 -->
-													
-													<button class="Btn-delete" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-													onclick="deleteWordbook(${wordbookVo.wordbookNo});">
-														삭제
-													</button>
-													
-													<!-- 수정하러 들어가는 리스트 아이콘 -->
-													
-												<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
-													<input name="wordbookNo" type="hidden" value="${wordbookVo.wordbookNo}">
-													<input name="wordbookName" type="hidden" value="${wordbookVo.wordbookName}">
-													<button type="submit" style="background-color:transparent;  border:0px transparent solid ; ">
-														수정&nbsp;&nbsp;
-													</button>
-												</form>
-													
-												</c:when>
-												
-												<c:when test="${sessionScope.id eq null }">
-													여긴 비회원
-												</c:when>
-												
-												<c:otherwise>
-													<!-- 서로 다른 회원끼리 이용하는 곳 -->
-													<c:choose>
-														<c:when test="${wordbookVo.wordbookAccess eq 0}">
-															<!-- 공유 기능 -->
-															<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-															onclick="shareWordbook(${wordbookVo.wordbookNo});">
-																공유&nbsp;&nbsp;
-															</button>
-														</c:when>
-													
-														<c:otherwise>
-															<button class="Btn-share" type="submit" style="background-color:transparent;  border:0px transparent solid ;" 
-															onclick="doNotShare();">
-																공유&nbsp;&nbsp;
-															</button>
-														</c:otherwise>
-													</c:choose>
-													
-												</c:otherwise>
-												
-												</c:choose>
-											</td>
-										</tr>
-									</c:forEach>
-										
+											</tr>
+										</c:forEach>
 										<c:if test="${sessionScope.id eq URLId && directoryNo ne 0}">
-										<tr>
-											<td align="center" colspan="2">
-												<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary" method="get">
-													<input name="directoryNo" type="hidden" value="${directoryNo}">
-													<button type="submit" style="background-color:transparent;  border:0px transparent solid ">
-														새 단어장 추가
-													</button>
-												</form>
-											</td>
-										</tr>
+											<tr>
+												<td align="center" colspan="2">
+													<form
+														action="${pageContext.request.contextPath}/${URLId}/addvocabulary"
+														method="get">
+														<input name="directoryNo" type="hidden"
+															value="${directoryNo}">
+														<button class="Btn-add" type="submit"
+															style="background-color: transparent; border: 0px transparent solid; padding-left: 0px; padding-right: 0px;">
+															새 단어장 추가</button>
+													</form>
+												</td>
+											</tr>
 										</c:if>
 									</tbody>
 								</table>
