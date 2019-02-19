@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,12 @@
 	.clearBox{
 		clear: both;
 	}
+	.black{
+		background-color: black;
+	}
+	.white{
+		background-color: white;
+	}
 </style>
 
 </head>
@@ -39,13 +46,20 @@
 		<div class="pairSetGameBox" style="background-color: #fff; margin-left: 30px;">
 			
 			<div class="clearBox">
-				<div class="pairSetGameWordBox" onclick="word($(this).text())">aa</div>
-				<div class="pairSetGameMeanBox" onclick="mean($(this).text())">11</div>
+				<div id="word1" class="pairSetGameWordBox">aa</div>
+				<div id="mean1" class="pairSetGameMeanBox">11</div>
 			</div>
 			
 			<div class="clearBox">
-				<div class="pairSetGameWordBox" onclick="word($(this).text())">bb</div>
-				<div class="pairSetGameMeanBox" onclick="mean($(this).text())">22</div>
+				<div id="word2" class="pairSetGameWordBox">bb</div>
+				<div id="mean2"  class="pairSetGameMeanBox">22</div>
+			</div>
+			
+			<div class="clearBox">
+				<div id="word3" class="pairSetGameWordBox">
+					cc
+				</div>
+				<div id="mean3"  class="pairSetGameMeanBox">33</div>
 			</div>
 			
 		</div>
@@ -53,27 +67,91 @@
 </body>
 
 	<script>
-		function game(){
-			var word;
-			var mean;
+	var gameList = new Array();
+	var wordNo = new Array();
+	var wordName =	new Array();
+	var meanName =	new Array();
+	
+	
+	<c:forEach items="${gameList}" var = "info">
+	
+		var PairSetGameVo = new Object();
+		PairSetGameVo.wordNo = "${info.wordNo}";
+		PairSetGameVo.wordName = "${info.wordName}";
+		PairSetGameVo.meanName = "${info.meanName}";
+		gameList.push(PairSetGameVo);
+	</c:forEach>
+		
+		console.log(gameList[0].wordNo);
+		console.log(gameList[0].wordName);
+		console.log(gameList[0].meanName);
+		
+		console.log(gameList[1].wordNo);
+		console.log(gameList[1].wordName);
+		console.log(gameList[1].meanName);
+		
+		console.log(gameList[2].wordNo);
+		console.log(gameList[2].wordName);
+		console.log(gameList[2].meanName);
+		
+		console.log(gameList.length);
+	
+	
+	$(".clearBox").on("click","div",function(){
+		
+		$(this).toggleClass("black");
+		
+		var a =$(this).text();
+		var id = $(this).attr("id");
+		
+		console.log(id);
+		
+		array.push(a);
+		
+		if(array.length == 2){
+			console.log(array);
 			
-			console.log(word);
-			console.log(mean);
+			var str1=array.shift();
+			var str2=array.shift();
+			
+			console.log(str1);
+			console.log(str2);
 			
 			
+			//배열 초기화
+			array = new Array();
+			//배열 초기화
+			
+			
+			
+			//지정했던 클래스 삭제
+			setTimeout(
+					function() { 
+						$("div").removeClass("black")
+					}, 100
+				);
+			//지정했던 클래스 삭제
 			
 		}
 		
-		function word (a) {
-			//console.log(a);
-			word = a
-		}
+	});
+	
+
 		
-		function mean (a) {
-			//console.log(a);
-			mean = a
-		}
 		
+/* 		
+		function hov(){
+			
+			
+			if(boo == true){
+				$("div").removeClass("white").addClass("black");
+				boo = false;
+			}else{
+				$("div").removeClass("black").addClass("white");
+				boo = true;
+			}
+		}
+*/
 	</script>
 
 </html>
