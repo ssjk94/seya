@@ -269,6 +269,10 @@ h4.gameName {
 }
 </style>
 
+<script type="text/javascript">
+	var time;
+	var i;
+</script>
 </head>
 
 <!--
