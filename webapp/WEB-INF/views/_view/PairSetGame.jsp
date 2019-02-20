@@ -37,6 +37,9 @@
 	.white{
 		background-color: white;
 	}
+	.hidden{
+		visibility: hidden;
+	}
 </style>
 
 </head>
@@ -89,7 +92,7 @@
 		gameList.push(PairSetGameVo);
 	</c:forEach>
 		
-	var rnum = 1;//정답 횟수를 추측하여 다시 리셋 시키게 하는 전역변수
+	var rnum = 0;//정답 횟수를 추측하여 다시 리셋 시키게 하는 전역변수
 	
 	var num = 1; //클릭을 몇번 했는지 나타내는 전역변수
 	var a1; // 1번째 워드 or mean값
@@ -105,57 +108,53 @@
 	
 	$(document).ready(function() {
 		console.log("준비완료");
+		
+		
+		
 		startGame();
+		
 	});
 	
 	function startGame(){
 		console.log("시작");
 		
-	for(var i =1 ; i<4 ; i++){
+		for(var i =0 ; i<3 ; i++){
 			
-		if(gameList.length<3 && i == gameList.length){
-			console.log("3개이하 탈출");
-			break;
+			if(gameList.length<3 && i == gameList.length){
+				console.log("3개이하 탈출");
+				break;
+			};
+			
+			var index = gameList.indexOf(random(gameList));
+			success = new Array();
+			wordName.push(gameList[index].wordName);
+			meanName.push(gameList[index].meanName);
+			
+			success.push(gameList[index].wordName);
+			success.push(gameList[index].meanName);
+			gameList.splice(index,1);
 		};
 		
-		
-
-		var index = gameList.indexOf(random(gameList));
-		
-		wordName.push(gameList[index].wordName);
-		meanName.push(gameList[index].meanName);
-		
-		success.push(gameList[index].wordName);
-		success.push(gameList[index].meanName);
-		gameList.splice(index,1);
-	};
+		//현재 배열중 랜덤으로 뽑은 3개
+		console.log(wordName);
+		console.log(meanName);
+		console.log(success);
+		//현재 배열중 랜덤으로 뽑은 3개	
 	
-	//현재 배열중 랜덤으로 뽑은 3개
-	console.log(wordName);
-	console.log(meanName);
-	console.log(success);
-	//현재 배열중 랜덤으로 뽑은 3개	
-	
-	//랜덤 뽑은 3개로 랜덤하게 위치하게끔 뿌림
-	gameLength =wordName.length;
+		//랜덤 뽑은 3개로 랜덤하게 위치하게끔 뿌림
+		gameLength =wordName.length;
 		
-	for(var i=1 ; i<=gameLength ; i++){
-			
-		wordIndex = wordName.indexOf(random(wordName));
-		meanIndex = meanName.indexOf(random(meanName));
-		$("#word"+i).find("span").text(wordName[wordIndex]);
-		$("#mean"+i).find("span").text(meanName[meanIndex]);
-		wordName.splice(wordIndex,1);
-		meanName.splice(meanIndex,1);
-			
-	}
-
-	
-	
-	
+		for(var i=1 ; i<=gameLength ; i++){
+				
+			wordIndex = wordName.indexOf(random(wordName));
+			meanIndex = meanName.indexOf(random(meanName));
+			$("#word"+i).find("span").text(wordName[wordIndex]);
+			$("#mean"+i).find("span").text(meanName[meanIndex]);
+			wordName.splice(wordIndex,1);
+			meanName.splice(meanIndex,1);
+				
+		}
 		
-		
-
 	}
 	
 	//클릭 이벤트 펑션 시작	
@@ -185,12 +184,29 @@
 			
 			console.log(success.indexOf(a1));
 			console.log(success.indexOf(a2));
+			//word부터 시작하는지 mean부터 시작하는지 알기위해
+			//if(id1.startsWith( 'w' )){
+			//	console.log("워드 시작");
+			//}else{
+			//	console.log("mean 시작");
+			//}
 			
+			
+			//word시작이면 왼쪽에 +1 mean 시작이면 오른쪽에 +1 이 정답
 			//정답 체크하는 문장이 들어가야함
 			if(success.indexOf(a1)+1==success.indexOf(a2)){
 				console.log("정답");
-			}else if(wordName.indexOf(a1)==meanName.indexOf(a2)+2){
 				
+				$("#"+id1).addClass("hidden");
+				$("#"+id2).addClass("hidden");
+				rnum++;//정답 횟수를 체크하는 전역변수
+			}else {
+				console.log("오답")
+			}
+			
+			if(rnum == 3){
+				startGame();
+				rnum = 0;
 			}
 		}
 		
