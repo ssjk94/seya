@@ -129,12 +129,13 @@ public class UsersController {
 	}
 	// 정보수정페이지
 	@RequestMapping(value = "{id}/usermodify.do", method = RequestMethod.POST)
-	public String updateForm(Model model, UsersVo usersVo, MultipartFile file, HttpSession session) {
+	public String updateForm(Model model, UsersVo usersVo, MultipartFile file, HttpSession session, URLPathVo urlPathVo, HttpServletRequest req) {
 		
-
+		
 //		if (id == null) {
 //			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
 //		}
+		
 		// 파일업로드
 		try {
 			String saveDir = "D:/_seyaworld/upload/profile";
@@ -180,7 +181,9 @@ public class UsersController {
 		session.setAttribute("nickName", usersVo.getNickName());
 		session.setAttribute("userContent", usersVo.getUserContent());
 		session.setAttribute("userImage", usersVo.getUserImage());
-
+		
+		model.addAttribute("urlPathVo", usersService.getNickName2(usersVo));
+		
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
 	

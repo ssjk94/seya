@@ -37,7 +37,6 @@ public class UsersDao {
 
 	public UsersVo selectOneUsers(UsersVo usersVo) {
 		
-		System.out.println("에오"+sqlSession.selectOne("users.selectOneUsers", usersVo).toString());
 		return sqlSession.selectOne("users.selectOneUsers", usersVo); 
 	}
 	
@@ -90,6 +89,11 @@ public class UsersDao {
 	public URLPathVo selectOneNickName2(UsersVo usersVo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("wordbook.selectOneNickName2", usersVo);
+	}
+
+	public URLPathVo selectOneNickName(URLPathVo urlPathVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("wordbook.selectOneNickName", urlPathVo);
 	}
 
 

@@ -94,6 +94,8 @@ public class UsersService {
 	public URLPathVo getNickName2(UsersVo usersVo) {
         return usersDao.selectOneNickName2(usersVo);
     }
-	
 
+	public URLPathVo getNickName(URLPathVo urlPathVo) {
+        return usersDao.selectOneNickName(urlPathVo);
+    }
 }
