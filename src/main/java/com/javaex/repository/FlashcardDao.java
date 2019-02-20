@@ -33,4 +33,8 @@ public class FlashcardDao {
 		return sqlSession.selectList("wordbook.selectWordbookAlldirectoryList",urlPathVo);
 	}
 
+	public URLPathVo selectOneNickName(URLPathVo urlPathVo) {
+        return sqlSession.selectOne("wordbook.selectOneNickName", urlPathVo);
+    }
+
 }

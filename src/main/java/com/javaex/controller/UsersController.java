@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaex.service.UsersService;
+import com.javaex.vo.URLPathVo;
 import com.javaex.vo.UsersVo;
 import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
@@ -38,6 +40,13 @@ public class UsersController {
 	@Autowired
 	UsersService usersService;
 
+	//자기아이디 아닐때 or 게스트로 페이지를 봤을때
+	/*
+	 * @RequestMapping("/{URLId}") public String urlCheck(HttpServletRequest req,
+	 * HttpSession session, UsersVo usersVo) {
+	 * 
+	 * return ""; }
+	 */
 	
 	//회원가입
 	@RequestMapping("/userinsert.do")
@@ -53,7 +62,7 @@ public class UsersController {
 	
 		return "redirect:main1";
 		
-	}
+	}	
 	// 로그인
 	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model) {
@@ -76,9 +85,9 @@ public class UsersController {
 				usersVo = usersService.selectOneUsers(usersVo);
 				
 				session.setAttribute("id", id);
-				session.setAttribute("nickname", usersVo.getNickName());
-				session.setAttribute("userimage", usersVo.getUserImage());
-				session.setAttribute("usercontent", usersVo.getUserContent());
+				session.setAttribute("nickName", usersVo.getNickName());
+				session.setAttribute("userImage", usersVo.getUserImage());
+				session.setAttribute("userContent", usersVo.getUserContent());
 	
 
 				return "redirect:" + id;
@@ -97,7 +106,7 @@ public class UsersController {
 	}
 	//정보수정 페이지로 넘기는 맵핑
 	@RequestMapping("{id}/profilemodify")
-	public String updatePageForm(@PathVariable String id, Model model, UsersVo usersVo, HttpSession session) {
+	public String updatePageForm(@PathVariable String id, Model model, UsersVo usersVo, HttpSession session, URLPathVo urlPathVo) {
 		System.out.println("정보수정 페이지갈거임");
 		if (id == null) {
 			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
@@ -112,6 +121,9 @@ public class UsersController {
 		System.out.println(usersVo.toString());
 		session.setAttribute("id", id);
 		
+		//urlpathvo
+		usersVo.setId(id);
+		model.addAttribute("urlPathVo", usersService.getNickName2(usersVo));
 
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
@@ -165,9 +177,9 @@ public class UsersController {
 	
 		usersVo = usersService.selectOneUsers(usersVo);
 		session.setAttribute("id", usersVo.getId());
-		session.setAttribute("nickname", usersVo.getNickName());
-		session.setAttribute("usercontent", usersVo.getUserContent());
-		session.setAttribute("userimage", usersVo.getUserImage());
+		session.setAttribute("nickName", usersVo.getNickName());
+		session.setAttribute("userContent", usersVo.getUserContent());
+		session.setAttribute("userImage", usersVo.getUserImage());
 
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
@@ -205,9 +217,9 @@ public class UsersController {
 				usersVo = usersService.selectOneUsers(usersVo);
 				System.out.println("세션에 저장될 이름들은" + usersVo.toString());
 				session.setAttribute("id", usersVo.getId());
-				session.setAttribute("nickname", usersVo.getNickName());
-				session.setAttribute("usercontent", usersVo.getUserContent());
-				session.setAttribute("userimage", usersVo.getUserImage());
+				session.setAttribute("nickName", usersVo.getNickName());
+				session.setAttribute("userContent", usersVo.getUserContent());
+				session.setAttribute("userImage", usersVo.getUserImage());
 
 //				redirectAttributes.addFlashAttribute("usersVo", usersService.selectOneUsers(usersVo));
 				return "redirect:" + req.getHeader("Referer");

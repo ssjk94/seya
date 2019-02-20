@@ -113,9 +113,9 @@
 </style>
 <script
 	src="${pageContext.request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
-<script
+<%-- <script
 	src="${pageContext.request.contextPath}/dist/jquery-ui/jquery-ui.js"></script>
-
+ --%>
 <script type="text/javascript">
 	
      // 자동으로 /ajax/auato 주소로 term 이란 파라미터가 전송된다.
@@ -169,8 +169,9 @@
 		<!-- Search -->
 		<div class="searchdiv">
 			<form action="/selectsearch.do" method="get" class="sidebar-form">
-				<div class="input-group"><input type="text" name="wordbookName" class="form-control"
-						placeholder="단어장 검색.."> <span class="input-group-btn">
+				<div class="input-group">
+<!-- 				<input type="text" name="wordbookName" class="form-control" placeholder="단어장 검색.."> -->
+				<span class="input-group-btn">
 						<button type="submit" id="search-btn"
 							class="btn btn-flat">
 							<i class="fa fa-search"></i>
@@ -186,9 +187,9 @@
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-						src="/upload/profile/${sessionScope.userimage}" class="user-image"
+						src="/upload/profile/${sessionScope.userImage}" class="user-image"
 						alt="User Image"> <!--/dist/images/user.png  --> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">${sessionScope.nickname}</span>
+						<span class="hidden-xs">${sessionScope.nickName}</span>
 				</a>
 
 					<ul class="dropdown-menu gebyung">
@@ -196,11 +197,11 @@
 						<!--세션있을때 -->
 						<c:if test="${not empty sessionScope.id}">
 							<li class="user-header"><img
-								src="/upload/profile/${sessionScope.userimage}"
+								src="/upload/profile/${sessionScope.userImage}"
 								class="img-circle">
 
 								<p>
-									${sessionScope.nickname} <small>${sessionScope.usercontent}</small>
+									${sessionScope.nickName} <small>${sessionScope.userContent}</small>
 								</p></li>
 						</c:if>
 						<!-- 세션을 가지지 않은 상태 -->
@@ -249,7 +250,7 @@
 									class="btn btn-default btn-flat">로그아웃</a>
 							</div>
 							<div class="pull-center">
-								<a href="${pageContext.request.contextPath}/mypage/gallery"
+								<a href="${pageContext.request.contextPath}/${sessionScope.id}"
 									class="btn btn-default btn-flat">내 단어장</a>
 							</div>
 						</c:if>

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
+import com.javaex.vo.URLPathVo;
 import com.javaex.vo.UsersVo;
 import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
@@ -85,6 +85,11 @@ public class UsersDao {
 	public List<VocabularyListVo> selectWordMeanList(int wordbookNo) {
 		
 		return sqlSession.selectList("users.searchWordMeanList", wordbookNo);
+	}
+
+	public URLPathVo selectOneNickName2(UsersVo usersVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("wordbook.selectOneNickName2", usersVo);
 	}
 
 

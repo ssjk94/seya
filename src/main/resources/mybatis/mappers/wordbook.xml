@@ -69,6 +69,7 @@
 		]]>
 	
 	</delete>
+	
 	<select id="selectOneNickName" resultType="com.javaex.vo.URLPathVo" parameterType="com.javaex.vo.URLPathVo">
 	
 		select 	nickname,userimage,usercontent
@@ -78,12 +79,22 @@
 		 				  where id = #{URLId})
 	</select>
 	
+	<select id="selectOneNickName2" resultType="com.javaex.vo.URLPathVo" parameterType="com.javaex.vo.UsersVo">
+	
+		select 	nickname,userimage,usercontent
+		 from 	users 
+		 where 	userno = (select userno 
+		 				  from users 
+		 				  where id = #{id})
+	</select>
+	
 	<!-- 공유하는 구문 -->
 	<select id="selectWordbookInfo" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
 		select wordbookname,wordbookregdate,wordbookaccess,wordbookmaker 
 		from wordbook 
 		where wordbookno=#{wordbookNo}
 	</select>
+	
 	<select id="selectDirectoryNoInfo" resultType="com.javaex.vo.WordbookVo" parameterType="java.lang.String">
 		select 	* 
 		from 	 (select 		d.directoryno 

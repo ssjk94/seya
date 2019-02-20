@@ -17,6 +17,13 @@ p.side-cont {
 	font-size: 20px;
 }
 
+.user-panel>.img-circle {
+    vertical-align: middle;
+    margin: 0, auto;
+    border: 1px solid black;
+    width: 170px;
+    height: 150px;
+}
 </style>
 
 <!-- Left side column. contains the logo and sidebar -->
