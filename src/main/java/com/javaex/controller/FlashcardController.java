@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.javaex.service.FlashcardService;
 import com.javaex.vo.FlashcardVo;
 import com.javaex.vo.URLPathVo;
+import com.javaex.vo.WordbookVo;
 
 @Controller
 public class FlashcardController {
@@ -29,6 +30,11 @@ public class FlashcardController {
 		System.out.println("flashcard"+list.toString());
 		md.addAttribute("selectFlashcardList",list);
 		md.addAttribute("URLId", urlPathVo.getURLId());
+		
+		//경환
+		List<WordbookVo> directoryList = flashcardService.getWordbookAlldirectoryList(urlPathVo);
+		md.addAttribute("directoryList",directoryList);
+		
 		return "_view/flashcard";
 	}
 	

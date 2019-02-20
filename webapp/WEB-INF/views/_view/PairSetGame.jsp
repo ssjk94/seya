@@ -56,9 +56,7 @@
 			</div>
 			
 			<div class="clearBox">
-				<div id="word3" class="pairSetGameWordBox">
-					cc
-				</div>
+				<div id="word3" class="pairSetGameWordBox">cc</div>
 				<div id="mean3"  class="pairSetGameMeanBox">33</div>
 			</div>
 			
@@ -67,10 +65,10 @@
 </body>
 
 	<script>
-	var gameList = new Array();
-	var wordNo = new Array();
-	var wordName =	new Array();
-	var meanName =	new Array();
+	var gameList = new Array();	//게임 리스트를 받는 배열
+	var wordNo = new Array();		//게임 워드 번호받는 배열
+	var wordName =	new Array();//게임 워드 받는 배열
+	var meanName =	new Array();//게임 뜻 받는 배열
 	
 	
 	<c:forEach items="${gameList}" var = "info">
@@ -81,47 +79,78 @@
 		PairSetGameVo.meanName = "${info.meanName}";
 		gameList.push(PairSetGameVo);
 	</c:forEach>
+
 		
-		console.log(gameList[0].wordNo);
-		console.log(gameList[0].wordName);
-		console.log(gameList[0].meanName);
+		//배열 사이즈 함수
+		var length = gameList.length
 		
-		console.log(gameList[1].wordNo);
-		console.log(gameList[1].wordName);
-		console.log(gameList[1].meanName);
+		//펑션으로 계속 준비시키는 문장
+		for(var i =0 ; i<3 ; i++){
+			
+			if(gameList.length<3 && i == gameList.length){
+				break;
+			};
+			
+			//console.log(gameList.splice(gameList.indexOf(random(gameList)),1));
+			var index = gameList.indexOf(random(gameList));
+			wordNo.push(gameList[index].wordNo);
+			wordName.push(gameList[index].wordName);
+			meanName.push(gameList[index].meanName);
+			gameList.splice(index,1);
+		};
 		
-		console.log(gameList[2].wordNo);
-		console.log(gameList[2].wordName);
-		console.log(gameList[2].meanName);
+		console.log(wordName);
+		console.log(meanName);
+		console.log(wordNo);
 		
-		console.log(gameList.length);
+		console.log(random(wordName));
+		console.log(random(meanName));
+		
+		
+		
+	var rnum = 1;//정답 횟수를 추측하여 다시 리셋 시키게 하는 전역변수
 	
+	var num = 1; //클릭을 몇번 했는지 나타내는 전역변수
+	var a1; // 1번째 워드 or mean값
+	var a2;	// 2번째 워드 or mean값
+	var id1; // 1번째 워드 or mean값 에 div아이디
+	var id2;// 2번째 워드 or mean값 에 div아이디
 	
+	//클릭 이벤트 펑션 시작	
 	$(".clearBox").on("click","div",function(){
+		
+		
 		
 		$(this).toggleClass("black");
 		
-		var a =$(this).text();
-		var id = $(this).attr("id");
+		if(num == 1){
+			a1 = $(this).text();
+			id1 = $(this).attr("id");
+			
+			//console.log("선택했던 태그안 텍스트1"+a1);
+			//console.log("선택했던 div 아이디1"+id1);
+		}
 		
-		console.log(id);
+		if(num == 2){
+			a2 = $(this).text();
+			id2 = $(this).attr("id");
+			
+			//console.log("선택했던 태그안 텍스트2"+a2);
+			//console.log("선택했던 div 아이디2"+id2);
+			console.log(a1);
+			console.log(a2);
+			console.log(id1);
+			console.log(id2);
+			//정답 체크하는 문장이 들어가야함
+			
+		}
 		
-		array.push(a);
-		
-		if(array.length == 2){
-			console.log(array);
-			
-			var str1=array.shift();
-			var str2=array.shift();
-			
-			console.log(str1);
-			console.log(str2);
-			
-			
-			//배열 초기화
-			array = new Array();
-			//배열 초기화
-			
+		//전역변수 초기화 문장
+		if(num == 1){
+			num++;
+		}else{
+			num =1;
+		}
 			
 			
 			//지정했던 클래스 삭제
@@ -132,10 +161,9 @@
 				);
 			//지정했던 클래스 삭제
 			
-		}
 		
 	});
-	
+	//클릭 이벤트 펑션 끝나는곳
 
 		
 		
@@ -152,6 +180,12 @@
 			}
 		}
 */
+
+//랜덤 함수
+	function random(a) {
+	  return a[Math.floor(Math.random() * a.length)];
+	}
+
 	</script>
 
 </html>
