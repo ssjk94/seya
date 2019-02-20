@@ -47,7 +47,7 @@
 	<!-- 단어장 단어와 mean 추출 -->
 	<select id="selectWordAndMean" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.VocabularyListVo">
 
-		select 		lower(se.seyawordname), listagg(sk.seyameanname,', ') within
+		select 		lower(se.seyawordname) as seyawordname, listagg(sk.seyameanname,', ') within
 		group 		(order by se.seyawordname) as seyameanName
 		from 		seyamean_kor sk, seyaword_eng se
 		where 		lower(se.seyawordname) = any

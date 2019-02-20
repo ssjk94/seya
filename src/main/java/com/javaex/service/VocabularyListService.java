@@ -55,8 +55,10 @@ public class VocabularyListService {
 			vocabularyListVo.setWordName(wordArr[i]);
 			for(int j=0;j<seyaList.size();j++) {
 				// 대소문자 맞추기
-				System.out.println(vocabularyListVo.getWordName().toLowerCase());
-				if(vocabularyListVo.getWordName().equals
+
+				System.out.println((vocabularyListVo.getWordName()).toLowerCase());
+				
+				if((vocabularyListVo.getWordName()).toLowerCase().equals
 						(seyaList.get(j).getSeyaWordName())) {
 					vocabularyListVo.setMeanName(seyaList.get(j).getSeyaMeanName());
 					
