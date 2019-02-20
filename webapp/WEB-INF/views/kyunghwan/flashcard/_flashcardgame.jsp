@@ -13,7 +13,7 @@
 <style type="text/css">
 .flashcardcontainer {
 	width: 790px;
-	height: 370px;
+	min-height: 940px;
 	margin-left: 15px;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .flashquiz-box {
-	margin-top: 20px;
+	margin-top: 90px;
 	height: 100px;
 	border: 1px solid black;
 	width: -webkit-fill-available;
@@ -98,6 +98,11 @@
 #flashSubmit {
 	font-size: 30px;
 }
+
+#wm-over {
+	margin-top: 155px;
+}
+
 </style>
 
 <!-- 테두리 마지막에 없애야함 -->
@@ -112,6 +117,7 @@
 	var wordbookNo = '${flashcardVo.wordbookNo}';
 	var i = 0;
 	var j = 0;
+	var count = 0;
 </script>
 <c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
 	<script type="text/javascript">
@@ -186,17 +192,24 @@
 			console.log(quizList[i]);
 			console.log(answerList[i]);
 		}
-		$(function() {
-			$("#wm-over").click(function() {
-				if (i < quizList.length - 1) {
-					quiz()
-				}
-			});
-		});
+
+		function answerCheck() {
+			if ($("#flashSubmit").val() == answerList[i]) {
+				console.log($("#flashSubmit").val());
+				alert("정답입니다.")
+				return true;
+			} else {
+				console.log($("#flashSubmit").val());
+				alert("오답입니다.")
+				return false;
+			}
+
+		}
 		$(function() {
 			$(document).on("keyup", function(e) {
 				switch (e.keyCode) {
 				case 13:
+					answerCheck();
 					if (i < quizList.length - 1) {
 						quiz()
 						console.log(quizList.length)
@@ -206,11 +219,10 @@
 				}
 			});
 		});
+
 	});
 </script>
 <body>
-	<!-- width 790px height 450-->
-	<div class="panel panel-default flashcardcontainer">
 		<!-- content box -->
 		<div id="wm-over" role="button" class="panel-body flashcardbox">
 			<!-- mean -->
@@ -219,10 +231,9 @@
 
 		</div>
 		<!-- 		<form action="#" class="flashquiz-container"> -->
-		<textarea class="flashquiz-box text-center" id="flashSubmit"></textarea>
+		<input class="flashquiz-box text-center" type="text" id="flashSubmit" autocomplete="off">
 		<!-- word -->
 		<input type="hidden" id="answer">
 		<!-- 		</form> -->
-	</div>
 </body>
 </html>

@@ -4,139 +4,100 @@ public class UsersVo {
 	private int userNo;
 	private String id;
 	private String password;
-	private String username;
+	private String userName;
 	private String email;
-	private String nickname;
-	private String userimage;
-	private String userbirth;
+	private String nickName;
+	private String userImage;
+	private String userBirth;
 	private int sex;
-	private int useraccess;
-	private String usercontent;
+	private int userAccess;
+	private String userContent;
+	private int directoryNo;
 	
 	
 	public int getUserNo() {
 		return userNo;
 	}
-
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getNickname() {
-		return nickname;
+	public String getNickName() {
+		return nickName;
 	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
-
+	public String getUserImage() {
+		return userImage;
+	}
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
+	public String getUserBirth() {
+		return userBirth;
+	}
+	public void setUserBirth(String userBirth) {
+		this.userBirth = userBirth;
+	}
 	public int getSex() {
 		return sex;
 	}
-
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
-
-	public String getUsername() {
-		return username;
+	public int getUserAccess() {
+		return userAccess;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserAccess(int userAccess) {
+		this.userAccess = userAccess;
 	}
-
-	public String getUserimage() {
-		return userimage;
+	public String getUserContent() {
+		return userContent;
 	}
-
-	public void setUserimage(String userimage) {
-		this.userimage = userimage;
+	public void setUserContent(String userContent) {
+		this.userContent = userContent;
 	}
-
-	public String getUserbirth() {
-		return userbirth;
+	public int getDirectoryNo() {
+		return directoryNo;
 	}
-
-	public void setUserbirth(String userbirth) {
-		this.userbirth = userbirth;
+	public void setDirectoryNo(int directoryNo) {
+		this.directoryNo = directoryNo;
 	}
-
-	public int getUseraccess() {
-		return useraccess;
+	@Override
+	public String toString() {
+		return "UsersVo [userNo=" + userNo + ", id=" + id + ", password=" + password + ", userName=" + userName
+				+ ", email=" + email + ", nickName=" + nickName + ", userImage=" + userImage + ", userBirth="
+				+ userBirth + ", sex=" + sex + ", userAccess=" + userAccess + ", userContent=" + userContent
+				+ ", directoryNo=" + directoryNo + "]";
 	}
-
-	public void setUseraccess(int useraccess) {
-		this.useraccess = useraccess;
-	}
-
-	public String getUsercontent() {
-		return usercontent;
-	}
-
-	public void setUsercontent(String usercontent) {
-		this.usercontent = usercontent;
-	}
-
-	public UsersVo(int userNo, String id, String password, String username, String email, String nickname,
-			String userimage, String userbirth, int sex, int useraccess, String usercontent) {
-		super();
-		this.userNo = userNo;
-		this.id = id;
-		this.password = password;
-		this.username = username;
-		this.email = email;
-		this.nickname = nickname;
-		this.userimage = userimage;
-		this.userbirth = userbirth;
-		this.sex = sex;
-		this.useraccess = useraccess;
-		this.usercontent = usercontent;
-	}
-
 	public UsersVo() {
 		super();
 	}
-
-	public UsersVo(String id, String password) {
-		super();
-		this.id = id;
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "UsersVo [userNo=" + userNo + ", id=" + id + ", password=" + password + ", username=" + username
-				+ ", email=" + email + ", nickname=" + nickname + ", userimage=" + userimage + ", userbirth="
-				+ userbirth + ", sex=" + sex + ", useraccess=" + useraccess + ", usercontent=" + usercontent + "]";
-	}
 	
-	public String login() {
-		return "Login [id = " + id + "password = " + password + "]";
-	}
-
+	
+	
 }

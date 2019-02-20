@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 import com.javaex.vo.UsersVo;
+import com.javaex.vo.VocabularyListVo;
+import com.javaex.vo.WordbookVo;
 
 @Repository
 public class UsersDao {
@@ -64,5 +66,26 @@ public class UsersDao {
 		
 		return sqlSession.selectOne("users.nicknameCheck", nickname);
 	}
+
+	public int insertDirectory(UsersVo usersVo) {
+		
+		return sqlSession.insert("users.insertDirectory", usersVo);
+	}
+
+	public int insertWordBook(UsersVo usersVo) {
+		
+		return sqlSession.insert("users.insertWordBook", usersVo);
+	}
+
+	public List<WordbookVo> selectSearch(WordbookVo wordbookVo) {
+		
+		return sqlSession.selectList("users.selectSearch", wordbookVo);
+	}
+
+	public List<VocabularyListVo> selectWordMeanList(int wordbookNo) {
+		
+		return sqlSession.selectList("users.searchWordMeanList", wordbookNo);
+	}
+
 
 }

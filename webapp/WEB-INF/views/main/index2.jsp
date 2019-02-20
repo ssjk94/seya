@@ -103,7 +103,7 @@ p.signup-content.text-center {
 }
 
 .has-success {
-	border: 2px solid green;
+	border: 2px solid palegreen;
 }
 </style>
 
@@ -158,7 +158,7 @@ desired effect
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="이름"
-								id="username" maxlength="20" name="username">
+								id="username" maxlength="20" name="userName">
 						</div>
 
 						<div class="form-group">
@@ -167,14 +167,14 @@ desired effect
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="닉네임"
-								id="nickname" maxlength="20" name="nickname">
+								id="nickname" maxlength="20" name="nickName">
 						</div>
 
-						<input type="hidden" name="userimage" value="userimage">
+						<input type="hidden" name="userImage" value="userImage">
 
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="생년월일"
-								id="userbirth" maxlength="20" name="userbirth">
+								id="userbirth" maxlength="20" name="userBirth">
 						</div>
 						<div class="sexcheck">
 							성별 <input type="radio" name="sex" value=1> <label
@@ -246,20 +246,18 @@ desired effect
 					success : function(data) {
 						
 						console.log(data.cnt);
-						if (data.cnt > 0) {
-							alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+						if (data.cnt > 0) {							
 							document.f.id.value = "";
 							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
 							$("#id").addClass("has-error")
 							$("#id").removeClass("has-success")
-							$("#id").focus();
+							
 
 						} else {
-							alert("사용가능한 아이디입니다.");
 							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
 							$("#id").addClass("has-success")
 							$("#id").removeClass("has-error")
-							$("#password").focus();
+							
 							//아이디가 중복하지 않으면  idck = 1 
 							idck = 1;
 
@@ -294,19 +292,19 @@ desired effect
 					success : function(data) {
 						console.log(data.cnt)
 						if (data.cnt > 0) {
-							alert("이메일이 존재합니다. 다른 이메일을 입력해주세요.");
+							
 							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
 							document.f.email.value = "";
 							$("#email").addClass("has-error")
 							$("#email").removeClass("has-success")
-							$("#email").focus();
+						
 
 						} else {
-							alert("사용가능한 이메일입니다.");
+
 							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
 							$("#email").addClass("has-success")
 							$("#email").removeClass("has-error")
-							$("#nickname").focus();
+
 							//아이디가 중복하지 않으면  idck = 1 
 							idck = 1;
 
@@ -342,19 +340,15 @@ desired effect
 					success : function(data) {
 						console.log(data.cnt)
 						if (data.cnt > 0) {
-							alert("닉네임이 존재합니다. 다른 닉네임를 입력해주세요.");
 							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
 							document.f.nickname.value = "";
 							$("#nickname").addClass("has-error")
 							$("#nickname").removeClass("has-success")
-							$("#nickname").focus();
 
 						} else {
-							alert("사용가능한 닉네임입니다.");
 							//아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
 							$("#nickname").addClass("has-success")
 							$("#nickname").removeClass("has-error")
-							$("#userbirth").focus();
 							//아이디가 중복하지 않으면  idck = 1 
 							idck = 1;
 

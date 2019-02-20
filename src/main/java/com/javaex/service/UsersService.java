@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.repository.UsersDao;
 import com.javaex.vo.UsersVo;
+import com.javaex.vo.VocabularyListVo;
+import com.javaex.vo.WordbookVo;
 
 @Service
 public class UsersService {
@@ -53,18 +55,39 @@ public class UsersService {
 	}
 
 	public int idCheck(String id) {
-		// TODO Auto-generated method stub
+		
 		return usersDao.selectIdCheck(id);
 	}
 
 	public int emailCheck(String email) {
-		// TODO Auto-generated method stub
+		
 		return usersDao.selectEmailCheck(email);
 	}
 
 	public int nicknameCheck(String nickname) {
-		// TODO Auto-generated method stub
+		
 		return usersDao.selectNicknameCheck(nickname);
+	}
+
+	public int insertDirectory(UsersVo usersVo) {
+		
+		return usersDao.insertDirectory(usersVo);
+	}
+
+	public int insertWordBook(UsersVo usersVo) {
+		
+		return usersDao.insertWordBook(usersVo);
+	}
+
+	public List<WordbookVo> selectSearch(WordbookVo wordbookVo) {
+		// TODO Auto-generated method stub
+		return  usersDao.selectSearch(wordbookVo);
+	}
+
+
+	public List<VocabularyListVo> searchWordMeanList(int wordbookNo) {
+		// TODO Auto-generated method stub
+		return usersDao.selectWordMeanList(wordbookNo);
 	}
 
 }

@@ -16,7 +16,7 @@
 	<select id="selectOneUsers" resultType="com.javaex.vo.UsersVo"
 		parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
-			select id, nickname, userimage, usercontent from users where id = #{id}
+			select id, nickName, userImage, userContent from users where id = #{id}
 		]]>
 
 	</select>
@@ -43,12 +43,42 @@
 	</select>
 
 	<!-- 헤더 Search 쿼리문 -->
-
-	<select id="selectSearchAjax" resultType="com.javaex.vo.UsersVo"
-		parameterType="string">
+	<select id="selectSearch" resultType="com.javaex.vo.WordbookVo"
+		parameterType="com.javaex.vo.WordbookVo">
 		<![CDATA[
-			select nickname from users where 
-			nickname like '%'#{value}'%'
+		select u.nickname, wb.wordbookname, u.userimage, wb.wordbookno from users u, directory d, wordbook wb, word w
+			where u.userno = any(select u.userno from users u, directory d, wordbook w
+			where w.wordbookno = any(select wordbookno from wordbook where wordbookname like '%'||#{wordbookName}||'%' 
+									and WORDBOOKACCESS = 0)
+								and w.directoryno = d.directoryno
+								and d.userno = u.userno)
+								and d.userno = u.userno
+								and d.directoryno = wb.directoryno
+								and wb.wordbookno = w.wordno
+								and wb.wordbookname = any(select wordbookname from wordbook w, directory d, users u
+								where wordbookname like '%'||#{wordbookName}||'%'
+								and WORDBOOKACCESS = 0
+			and w.wordbookno = any(select wordbookno from wordbook where wordbookname like '%'||#{wordbookName}||'%'
+									 and WORDBOOKACCESS = 0)
+								and d.userno = u.userno
+								and d.directoryno = w.directoryno)
+			
+		]]>
+	</select>
+	<!-- 써치후 단어 리스트 쿼리문 -->
+	<select id ="searchWordMeanList" parameterType="int" resultType="com.javaex.vo.VocabularyListVo">
+		<![CDATA[
+			
+			select wordname, meanname, wordbookno from word where wordbookno = #{wordbookNo} and rownum <5
+		]]>
+	
+	</select>
+
+	<select id="selectSearchUserno"
+		resultType="com.javaex.vo.WordbookVo"
+		parameterType="com.javaex.vo.WordbookVo">
+		<![CDATA[
+			select * from users where userno=(select userno from directory where #{directoryNo})
 			
 		]]>
 	</select>
@@ -61,46 +91,91 @@
 			values (usersNo_seq.nextval,
 			#{id},
 			#{password},
-			#{username},
+			#{userName},
 			#{email},
-			#{nickname},	
-			#{userimage},
-			#{userbirth},
+			#{nickName},	
+			#{userImage},
+			#{userBirth},
 			#{sex},
 			 3,
-			#{usercontent})
+			#{userContent})
+		]]>
+
+		<selectKey keyProperty="userNo" resultType="int">
+
+			select
+			usersno_seq.currval as userno from dual
+
+		</selectKey>
+
+	</insert>
+
+	<!-- 유저 디렉토리 만들기 쿼리문 -->
+	<insert id="insertDirectory"
+		parameterType="com.javaex.vo.UsersVo">
+		<![CDATA[
+			insert into directory
+			values (directory_seq.nextval,
+					'Seya 디렉토리',
+					#{userNo})
+		]]>
+
+		<selectKey keyProperty="directoryNo" resultType="int">
+
+			select
+			directory_seq.currval as directoryNo from dual
+
+		</selectKey>
+
+	</insert>
+	<!-- 유저 단어장 만들기 쿼리문 -->
+	<insert id="insertWordBook"
+		parameterType="com.javaex.vo.UsersVo">
+		<![CDATA[
+			insert into wordbook
+			values (wordbook_seq.nextval,
+					'Seya 단어장',
+					sysdate,
+					2,
+					0,
+					#{directoryNo},
+					'Seya')
 		]]>
 	</insert>
+
 
 	<update id="updateUsers">
 		<![CDATA[
 			update users set
-			nickname = #{nickname},
-			userimage = #{userimage},
-			usercontent = #{usercontent}
+			nickname = #{nickName},
+			userimage = #{userImage},
+			usercontent = #{userContent}
 			where id = #{id}
 				
 		]]>
 	</update>
 	<!-- 아이디 체크 쿼리 -->
 	<select id="idCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) 
+		SELECT
+		COUNT(*)
 		FROM users
 		where id = #{id}
 	</select>
-	<!--  이메일 체크 쿼리 -->
-	<select id="emailCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) 
+	<!-- 이메일 체크 쿼리 -->
+	<select id="emailCheck" parameterType="String"
+		resultType="Integer">
+		SELECT COUNT(*)
 		FROM users
 		where email = #{email}
 	</select>
 	<!-- 닉네임 체크 쿼리 -->
-	<select id="nicknameCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) 
+	<select id="nicknameCheck" parameterType="String"
+		resultType="Integer">
+		SELECT COUNT(*)
 		FROM users
-		where nickname = #{nickname}
+		where nickname = #{nickName}
 	</select>
-	
+
 
 
 
