@@ -162,16 +162,16 @@
 	<!-- Header Navbar -->
 	<nav class="navbar navbar-static-top" role="navigation">
 
+				<!-- 일단 단어장으로만 검색 먼저 할것	<select name="searchCondition" id="search-select">
+						<option value="findwordname">단어장</option>
+						<option value="findnickname">닉네임</option> 
+					</select>  -->
 		<!-- Search -->
 		<div class="searchdiv">
-			<form action="selectsearch.do" method="get" class="sidebar-form">
-				<div class="input-group">
-					<select name="searchCondition" id="search-select">
-						<option value="findwordname">단어장</option>
-						<option value="findnickname">닉네임</option>
-					</select> <input type="text" name="q" class="form-control"
-						placeholder="Search..."> <span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn"
+			<form action="/selectsearch.do" method="get" class="sidebar-form">
+				<div class="input-group"><input type="text" name="wordbookName" class="form-control"
+						placeholder="단어장 검색.."> <span class="input-group-btn">
+						<button type="submit" id="search-btn"
 							class="btn btn-flat">
 							<i class="fa fa-search"></i>
 						</button>
@@ -205,7 +205,7 @@
 						</c:if>
 						<!-- 세션을 가지지 않은 상태 -->
 						<c:if test="${empty sessionScope.id }">
-							<form action="headerlogin.do" name="loginform" method="post">
+							<form action="/headerlogin.do" name="loginform" method="post">
 								<%-- <input type="hidden" name="refPage" value="<?php echo $_SERVER['HTTP_REFERER']; ?>"> --%>
 								<div class="headerlogindiv">
 									<span class="headerlogo">SeyaWord</span>

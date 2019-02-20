@@ -29,6 +29,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaex.service.UsersService;
 import com.javaex.vo.UsersVo;
+import com.javaex.vo.VocabularyListVo;
+import com.javaex.vo.WordbookVo;
 
 @Controller
 public class UsersController {
@@ -36,20 +38,23 @@ public class UsersController {
 	@Autowired
 	UsersService usersService;
 
-	// @ResponseBody
-
+	
+	//회원가입
 	@RequestMapping("/userinsert.do")
 	public String insertUser(@ModelAttribute UsersVo usersVo, HttpServletRequest req) {
 	
 	 
-		usersVo.setUserimage("default.png");
-		usersVo.setUsercontent("안녕하세요");
+		usersVo.setUserImage("default.png");
+		usersVo.setUserContent("안녕하세요");
 		usersService.insertUser(usersVo);
-		
+		usersService.insertDirectory(usersVo);
+		usersService.insertWordBook(usersVo);
+
+	
 		return "redirect:main1";
 		
 	}
-
+	// 로그인
 	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model) {
 		System.out.println(usersVo.toString());
@@ -71,9 +76,9 @@ public class UsersController {
 				usersVo = usersService.selectOneUsers(usersVo);
 				
 				session.setAttribute("id", id);
-				session.setAttribute("nickname", usersVo.getNickname());
-				session.setAttribute("userimage", usersVo.getUserimage());
-				session.setAttribute("usercontent", usersVo.getUsercontent());
+				session.setAttribute("nickname", usersVo.getNickName());
+				session.setAttribute("userimage", usersVo.getUserImage());
+				session.setAttribute("usercontent", usersVo.getUserContent());
 	
 
 				return "redirect:" + id;
@@ -83,14 +88,14 @@ public class UsersController {
 
 		}
 	}
-
+	// 로그아웃 
 	@RequestMapping("/logout.do")
 	public String userLogOut(HttpSession session, HttpServletRequest req) {
 		session.invalidate();
 		
 		return "redirect:" + req.getHeader("Referer");
 	}
-
+	//정보수정 페이지로 넘기는 맵핑
 	@RequestMapping("{id}/profilemodify")
 	public String updatePageForm(@PathVariable String id, Model model, UsersVo usersVo, HttpSession session) {
 		System.out.println("정보수정 페이지갈거임");
@@ -110,7 +115,7 @@ public class UsersController {
 
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
-
+	// 정보수정페이지
 	@RequestMapping(value = "{id}/usermodify.do", method = RequestMethod.POST)
 	public String updateForm(Model model, UsersVo usersVo, MultipartFile file, HttpSession session) {
 		
@@ -148,7 +153,7 @@ public class UsersController {
 			bout.write(fileData);
 
 			System.out.println(file.getOriginalFilename());
-			usersVo.setUserimage(saveName); // "upload/"+filepath였던곳 잠깐 바꿈
+			usersVo.setUserImage(saveName); // "upload/"+filepath였던곳 잠깐 바꿈
 
 			if (bout != null) {
 				bout.close();
@@ -160,19 +165,21 @@ public class UsersController {
 	
 		usersVo = usersService.selectOneUsers(usersVo);
 		session.setAttribute("id", usersVo.getId());
-		session.setAttribute("nickname", usersVo.getNickname());
-		session.setAttribute("usercontent", usersVo.getUsercontent());
-		session.setAttribute("userimage", usersVo.getUserimage());
+		session.setAttribute("nickname", usersVo.getNickName());
+		session.setAttribute("usercontent", usersVo.getUserContent());
+		session.setAttribute("userimage", usersVo.getUserImage());
 
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
-
+	
 	@RequestMapping(value = "/leemodi", method = RequestMethod.GET)
 	public String leemodi() {
 		System.out.println("leemodi");
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
-
+	
+	
+	//헤더 네비게이션 로그인
 	@RequestMapping(value = "/headerlogin.do", method = RequestMethod.POST)
 	public String headerLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model,
 			RedirectAttributes redirectAttributes) {
@@ -198,9 +205,9 @@ public class UsersController {
 				usersVo = usersService.selectOneUsers(usersVo);
 				System.out.println("세션에 저장될 이름들은" + usersVo.toString());
 				session.setAttribute("id", usersVo.getId());
-				session.setAttribute("nickname", usersVo.getNickname());
-				session.setAttribute("usercontent", usersVo.getUsercontent());
-				session.setAttribute("userimage", usersVo.getUserimage());
+				session.setAttribute("nickname", usersVo.getNickName());
+				session.setAttribute("usercontent", usersVo.getUserContent());
+				session.setAttribute("userimage", usersVo.getUserImage());
 
 //				redirectAttributes.addFlashAttribute("usersVo", usersService.selectOneUsers(usersVo));
 				return "redirect:" + req.getHeader("Referer");
@@ -210,38 +217,47 @@ public class UsersController {
 		}
 	}
 	
-	/*
-	 * @RequestMapping(value = "/searchajax", method = RequestMethod.GET) public
-	 * void searchAjax(HttpServletRequest req, HttpServletResponse resp, UsersVo
-	 * usersVo) throws IOException {
-	 * 
-	 * String result = req.getParameter("term");
-	 * 
-	 * List list = usersService.selectSearchAjax(usersVo, result);
-	 * 
-	 * 
-	 * 
-	 * //return ; }
-	 */
-	@RequestMapping(value = "/searchajax", method = RequestMethod.GET)
-	public void searchAjax(HttpServletResponse response, UsersVo usersVo,String term) throws IOException {
+	
+	//헤더 써치
+	@RequestMapping(value="/selectsearch.do")
+	public String searchPage(WordbookVo wordbookVo,HttpServletRequest req, Model model,HttpSession session, VocabularyListVo vocabularyListVo) {
 		
-		List<UsersVo> list = usersService.selectSearchAjax(term);		
-		System.out.println("list사이즈  " + list.size());
-		//응답하는 열만들기
 		
-		JSONObject obj = new JSONObject();
-		JSONArray array = new JSONArray();
 		
-		for(UsersVo vo : list) {
-			obj = new JSONObject();
-			obj.put("label", vo.getNickname());
-			obj.put("value", vo.getNickname());
-			array.add(obj);
+		
+		
+		List<WordbookVo> list = usersService.selectSearch(wordbookVo);
+		
+		for(WordbookVo a: list) {
+			System.out.println("toString"+a.toString());
+			System.out.println("워드북no : "+a.getWordbookNo());
+			int wordbookNo = a.getWordbookNo();
+			vocabularyListVo.setWordbookNo(wordbookNo);
 			
+			
+			List<VocabularyListVo> list2 = usersService.searchWordMeanList(wordbookNo); 
+			System.out.println("워드 민,kor :"+vocabularyListVo.toString());
+				
+			String[] wordArr = new String[4];
+			String[] meanArr = new String[4];
+			
+			for(int i =0;i<list2.size();i++) {
+				wordArr[i] = list2.get(i).getWordName();
+				meanArr[i] = list2.get(i).getMeanName();
+			}
+			
+			for(String b: wordArr) {
+				System.out.println("워드 배열"+b);
+			}
+			for(String b: meanArr) {
+				System.out.println("뜻 배열"+b);
+			}
 		}
 		
+			
+		return "redirect:"+session.getAttribute("id");
 	}
+	
 	//메인페이지
 	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
 	public String returnMainPage() {
