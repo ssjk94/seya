@@ -40,15 +40,19 @@ public class VocabularyListService {
 		
 		String wordArr[] = new String[arrList.size()];
 		
+		List<VocabularyListVo> seyaList = new ArrayList<VocabularyListVo>();
+		
 		for(int i =0;i<wordArr.length;i++) {
 			wordArr[i] = arrList.get(i);
+			vocabularyListVo.setWordName(wordArr[i]);		
+			seyaList.add(vocabularyListDao.selectWordAndMean(vocabularyListVo));
 		}
-		vocabularyListVo.setWordArr(wordArr);
 		
-		//여기까지는 가능가능///////////////////////////////////////////////////////여기까지
+		
+
 		
 		//입력한것중 사전 가져오기
-		List<VocabularyListVo> seyaList =	vocabularyListDao.selectWordAndMean(vocabularyListVo);
+			
 
 		//배열 길이만큼 워드네임 삽입
 		for(int i =0;i<wordArr.length;i++) {

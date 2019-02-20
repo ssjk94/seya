@@ -37,8 +37,8 @@ public class VocabularyListDao {
 		return sqlSession.selectList("vocabularylist.selectword",vocabularyListVo);
 	}
 	//단어장 단어와 mean 추출
-	public List<VocabularyListVo> selectWordAndMean(VocabularyListVo vocabularyListVo){
-		return sqlSession.selectList("vocabularylist.selectWordAndMean",vocabularyListVo);
+	public VocabularyListVo selectWordAndMean(VocabularyListVo vocabularyListVo){
+		return sqlSession.selectOne("vocabularylist.selectWordAndMean",vocabularyListVo);
 	}
 	//업데이트
 //	public void updateWordAndMean(VocabularyListVo vocabularyListVo) {

@@ -50,10 +50,10 @@
 		select 		lower(se.seyawordname) as seyawordname, listagg(sk.seyameanname,', ') within
 		group 		(order by se.seyawordname) as seyameanName
 		from 		seyamean_kor sk, seyaword_eng se
-		where 		lower(se.seyawordname) = any
-		<foreach collection="wordArr" item="a" open="(" close=")" separator=",">
-         	lower(#{a})
-        </foreach>
+		where 		lower(se.seyawordname) = lower(#{wordName})
+        <![CDATA[
+        and rownum<=3
+        ]]>
 		and 			sk.seyawordno = se.seyawordno
 		group by 	se.seyawordname
 	</select>
