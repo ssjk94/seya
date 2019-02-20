@@ -31,6 +31,9 @@ public class FlashcardController {
 		md.addAttribute("selectFlashcardList",list);
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		
+		//승
+		md.addAttribute("urlPathVo", flashcardService.getNickName(urlPathVo));
+		
 		//경환
 		List<WordbookVo> directoryList = flashcardService.getWordbookAlldirectoryList(urlPathVo);
 		md.addAttribute("directoryList",directoryList);

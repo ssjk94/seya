@@ -30,4 +30,10 @@ public class FlashcardService {
 	public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){
 		return flashcardDao.selectWordbookAlldirectoryList(urlPathVo);
 	}
+
+	public URLPathVo getNickName(URLPathVo urlPathVo) {
+		
+        return flashcardDao.selectOneNickName(urlPathVo);
+    }
+	
 }

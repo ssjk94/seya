@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.repository.UsersDao;
+import com.javaex.vo.URLPathVo;
 import com.javaex.vo.UsersVo;
 import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
@@ -89,5 +90,10 @@ public class UsersService {
 		// TODO Auto-generated method stub
 		return usersDao.selectWordMeanList(wordbookNo);
 	}
+
+	public URLPathVo getNickName2(UsersVo usersVo) {
+        return usersDao.selectOneNickName2(usersVo);
+    }
+	
 
 }
