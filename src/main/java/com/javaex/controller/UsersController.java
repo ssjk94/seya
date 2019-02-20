@@ -129,12 +129,13 @@ public class UsersController {
 	}
 	// 정보수정페이지
 	@RequestMapping(value = "{id}/usermodify.do", method = RequestMethod.POST)
-	public String updateForm(Model model, UsersVo usersVo, MultipartFile file, HttpSession session) {
+	public String updateForm(Model model, UsersVo usersVo, MultipartFile file, HttpSession session, URLPathVo urlPathVo, HttpServletRequest req) {
 		
-
+		
 //		if (id == null) {
 //			throw new IllegalArgumentException("사용자 아이디가 필요합니다.");
 //		}
+		
 		// 파일업로드
 		try {
 			String saveDir = "D:/_seyaworld/upload/profile";
@@ -180,7 +181,9 @@ public class UsersController {
 		session.setAttribute("nickName", usersVo.getNickName());
 		session.setAttribute("userContent", usersVo.getUserContent());
 		session.setAttribute("userImage", usersVo.getUserImage());
-
+		
+		model.addAttribute("urlPathVo", usersService.getNickName2(usersVo));
+		
 		return "kyunghwan/profilemodify/_leeprofilemodify";
 	}
 	
@@ -229,47 +232,38 @@ public class UsersController {
 		}
 	}
 	
-	
-	//헤더 써치
-	@RequestMapping(value="/selectsearch.do")
-	public String searchPage(WordbookVo wordbookVo,HttpServletRequest req, Model model,HttpSession session, VocabularyListVo vocabularyListVo) {
-		
-		
-		
-		
-		
-		List<WordbookVo> list = usersService.selectSearch(wordbookVo);
-		
-		for(WordbookVo a: list) {
-			System.out.println("toString"+a.toString());
-			System.out.println("워드북no : "+a.getWordbookNo());
-			int wordbookNo = a.getWordbookNo();
-			vocabularyListVo.setWordbookNo(wordbookNo);
-			
-			
-			List<VocabularyListVo> list2 = usersService.searchWordMeanList(wordbookNo); 
-			System.out.println("워드 민,kor :"+vocabularyListVo.toString());
-				
-			String[] wordArr = new String[4];
-			String[] meanArr = new String[4];
-			
-			for(int i =0;i<list2.size();i++) {
-				wordArr[i] = list2.get(i).getWordName();
-				meanArr[i] = list2.get(i).getMeanName();
-			}
-			
-			for(String b: wordArr) {
-				System.out.println("워드 배열"+b);
-			}
-			for(String b: meanArr) {
-				System.out.println("뜻 배열"+b);
-			}
-		}
-		
-			
-		return "redirect:"+session.getAttribute("id");
-	}
-	
+	/*
+	 * //헤더 써치
+	 * 
+	 * @RequestMapping(value="/selectsearch.do") public String searchPage(WordbookVo
+	 * wordbookVo,HttpServletRequest req, Model model,HttpSession session,
+	 * VocabularyListVo vocabularyListVo) {
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * List<WordbookVo> list = usersService.selectSearch(wordbookVo);
+	 * 
+	 * for(WordbookVo a: list) { System.out.println("toString"+a.toString());
+	 * System.out.println("워드북no : "+a.getWordbookNo()); int wordbookNo =
+	 * a.getWordbookNo(); vocabularyListVo.setWordbookNo(wordbookNo);
+	 * 
+	 * 
+	 * List<VocabularyListVo> list2 = usersService.searchWordMeanList(wordbookNo);
+	 * System.out.println("워드 민,kor :"+vocabularyListVo.toString());
+	 * 
+	 * String[] wordArr = new String[4]; String[] meanArr = new String[4];
+	 * 
+	 * for(int i =0;i<list2.size();i++) { wordArr[i] = list2.get(i).getWordName();
+	 * meanArr[i] = list2.get(i).getMeanName(); }
+	 * 
+	 * for(String b: wordArr) { System.out.println("워드 배열"+b); } for(String b:
+	 * meanArr) { System.out.println("뜻 배열"+b); } }
+	 * 
+	 * 
+	 * return "redirect:"+session.getAttribute("id"); }
+	 */
 	//메인페이지
 	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
 	public String returnMainPage() {
