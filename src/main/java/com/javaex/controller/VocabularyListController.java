@@ -45,6 +45,7 @@ public class VocabularyListController {
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList", directoryList);
 		md.addAttribute("vocaList", vocaList1);
+		md.addAttribute("urlPathVo", vocabularyListService.getNickName(urlPathVo));
 		return "_view/vocabularylist";
 	}
 	

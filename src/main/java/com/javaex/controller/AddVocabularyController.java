@@ -31,6 +31,8 @@ public class AddVocabularyController {
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList", directoryList);
 		
+		md.addAttribute("urlPathVo", addVocabularyService.getNickName(urlPathVo));
+		
 		return "_view/addvocabulary";
 	}
 }

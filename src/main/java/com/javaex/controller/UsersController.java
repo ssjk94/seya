@@ -229,47 +229,38 @@ public class UsersController {
 		}
 	}
 	
-	
-	//헤더 써치
-	@RequestMapping(value="/selectsearch.do")
-	public String searchPage(WordbookVo wordbookVo,HttpServletRequest req, Model model,HttpSession session, VocabularyListVo vocabularyListVo) {
-		
-		
-		
-		
-		
-		List<WordbookVo> list = usersService.selectSearch(wordbookVo);
-		
-		for(WordbookVo a: list) {
-			System.out.println("toString"+a.toString());
-			System.out.println("워드북no : "+a.getWordbookNo());
-			int wordbookNo = a.getWordbookNo();
-			vocabularyListVo.setWordbookNo(wordbookNo);
-			
-			
-			List<VocabularyListVo> list2 = usersService.searchWordMeanList(wordbookNo); 
-			System.out.println("워드 민,kor :"+vocabularyListVo.toString());
-				
-			String[] wordArr = new String[4];
-			String[] meanArr = new String[4];
-			
-			for(int i =0;i<list2.size();i++) {
-				wordArr[i] = list2.get(i).getWordName();
-				meanArr[i] = list2.get(i).getMeanName();
-			}
-			
-			for(String b: wordArr) {
-				System.out.println("워드 배열"+b);
-			}
-			for(String b: meanArr) {
-				System.out.println("뜻 배열"+b);
-			}
-		}
-		
-			
-		return "redirect:"+session.getAttribute("id");
-	}
-	
+	/*
+	 * //헤더 써치
+	 * 
+	 * @RequestMapping(value="/selectsearch.do") public String searchPage(WordbookVo
+	 * wordbookVo,HttpServletRequest req, Model model,HttpSession session,
+	 * VocabularyListVo vocabularyListVo) {
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * List<WordbookVo> list = usersService.selectSearch(wordbookVo);
+	 * 
+	 * for(WordbookVo a: list) { System.out.println("toString"+a.toString());
+	 * System.out.println("워드북no : "+a.getWordbookNo()); int wordbookNo =
+	 * a.getWordbookNo(); vocabularyListVo.setWordbookNo(wordbookNo);
+	 * 
+	 * 
+	 * List<VocabularyListVo> list2 = usersService.searchWordMeanList(wordbookNo);
+	 * System.out.println("워드 민,kor :"+vocabularyListVo.toString());
+	 * 
+	 * String[] wordArr = new String[4]; String[] meanArr = new String[4];
+	 * 
+	 * for(int i =0;i<list2.size();i++) { wordArr[i] = list2.get(i).getWordName();
+	 * meanArr[i] = list2.get(i).getMeanName(); }
+	 * 
+	 * for(String b: wordArr) { System.out.println("워드 배열"+b); } for(String b:
+	 * meanArr) { System.out.println("뜻 배열"+b); } }
+	 * 
+	 * 
+	 * return "redirect:"+session.getAttribute("id"); }
+	 */
 	//메인페이지
 	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
 	public String returnMainPage() {

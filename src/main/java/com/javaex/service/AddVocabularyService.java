@@ -19,4 +19,9 @@ public class AddVocabularyService {
 		public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){
 			return addVocabularyDao.selectWordbookAlldirectoryList(urlPathVo);
 		}
+
+		public URLPathVo getNickName(URLPathVo urlPathVo) {
+			// TODO Auto-generated method stub
+			return addVocabularyDao.selectOneNickName(urlPathVo);
+		}
 }

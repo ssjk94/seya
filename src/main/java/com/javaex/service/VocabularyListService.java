@@ -123,7 +123,9 @@ public class VocabularyListService {
 	public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){
 		return vocabularyListDao.selectWordbookAlldirectoryList(urlPathVo);
 	}
-		
-		
+
+	public URLPathVo getNickName(URLPathVo urlPathVo) {
+        return vocabularyListDao.selectOneNickName(urlPathVo);
+    }
 	
 }

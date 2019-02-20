@@ -100,16 +100,19 @@
 	width: 65px;
 	float: left;
 	border-radius: 2px;
-	border:none;
+	border: none;
 }
-.searchdiv{
-	width:500px;
-	float:left;
+
+.searchdiv {
+	width: 500px;
+	float: left;
 }
+
 .skin-red-light .sidebar-form {
-    border-radius: 3px;
-    margin: 6px 10px;
-    border : 0px;
+	border-radius: 3px;
+	margin: 6px 10px;
+	border: 0px;
+}
 </style>
 <script
 	src="${pageContext.request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
@@ -162,7 +165,7 @@
 	<!-- Header Navbar -->
 	<nav class="navbar navbar-static-top" role="navigation">
 
-				<!-- 일단 단어장으로만 검색 먼저 할것	<select name="searchCondition" id="search-select">
+		<!-- 일단 단어장으로만 검색 먼저 할것	<select name="searchCondition" id="search-select">
 						<option value="findwordname">단어장</option>
 						<option value="findnickname">닉네임</option> 
 					</select>  -->
@@ -170,10 +173,9 @@
 		<div class="searchdiv">
 			<form action="/selectsearch.do" method="get" class="sidebar-form">
 				<div class="input-group">
-<!-- 				<input type="text" name="wordbookName" class="form-control" placeholder="단어장 검색.."> -->
-				<span class="input-group-btn">
-						<button type="submit" id="search-btn"
-							class="btn btn-flat">
+					<!-- 				<input type="text" name="wordbookName" class="form-control" placeholder="단어장 검색.."> -->
+					<span class="input-group-btn">
+						<button type="submit" id="search-btn" class="btn btn-flat">
 							<i class="fa fa-search"></i>
 						</button>
 					</span>
@@ -183,14 +185,23 @@
 		<!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
+
 				<!-- User Account Menu -->
-				<li class="dropdown user user-menu">
-					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-						src="/upload/profile/${sessionScope.userImage}" class="user-image"
-						alt="User Image"> <!--/dist/images/user.png  --> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">${sessionScope.nickName}</span>
-				</a>
+				<li class="dropdown user user-menu"><c:if
+						test="${not empty sessionScope.id}">
+						<!-- Menu Toggle Button -->
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
+							<img src="/upload/profile/${sessionScope.userImage}"
+							class="user-image" alt="User Image"> <!--/dist/images/user.png  -->
+							<!-- hidden-xs hides the username on small devices so only the image appears. -->
+							<span class="hidden-xs">${sessionScope.nickName}</span></a>
+					</c:if> <c:if test="${empty sessionScope.id}">
+						<!-- Menu Toggle Button -->
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
+							<img src="/upload/profile/usericon.png" class="user-image"
+							alt="User Image"> <!--/dist/images/user.png  --> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+							<span class="hidden-xs">로그인</span></a>
+					</c:if>
 
 					<ul class="dropdown-menu gebyung">
 						<!-- The user image in the menu -->
@@ -254,8 +265,7 @@
 									class="btn btn-default btn-flat">내 단어장</a>
 							</div>
 						</c:if>
-					</ul>
-				</li>
+					</ul></li>
 			</ul>
 		</div>
 	</nav>
