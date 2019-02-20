@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +39,13 @@ public class UsersController {
 	@Autowired
 	UsersService usersService;
 
+	//자기아이디 아닐때 or 게스트로 페이지를 봤을때
+	/*
+	 * @RequestMapping("/{URLId}") public String urlCheck(HttpServletRequest req,
+	 * HttpSession session, UsersVo usersVo) {
+	 * 
+	 * return ""; }
+	 */
 	
 	//회원가입
 	@RequestMapping("/userinsert.do")
@@ -53,7 +61,7 @@ public class UsersController {
 	
 		return "redirect:main1";
 		
-	}
+	}	
 	// 로그인
 	@RequestMapping(value ="/userlogin.do", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model) {

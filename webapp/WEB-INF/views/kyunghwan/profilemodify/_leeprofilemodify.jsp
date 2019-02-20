@@ -269,8 +269,8 @@ desired effect
 							<!-- 닉네임 -->
 						<div class="lev1">
 							<div class="profileblock">닉네임</div>
-							 <input type="text" id="nickname" name="nickname"
-								value="${usersVo.nickname}" class=inputmodi>
+							 <input type="text" id="nickname" name="nickName"
+								value="${usersVo.nickName}" class=inputmodi>
 						</div>
 							<!-- 닉네임 -->
 							<!-- 프로필 사진 -->
@@ -278,14 +278,14 @@ desired effect
 							<div class="profileblock">프로필 사진</div>
 							 <input type="file" id="userimage" name="file"
 								class="inputmodi">
-							 <img id="imgpreview" src="/upload/profile/${usersVo.userimage}" alt="your image" />	
+							 <img id="imgpreview" src="/upload/profile/${usersVo.userImage}" alt="your image" />	
 						</div>
 							<!-- 프로필 사진 -->
 							<!-- 프로필 내용 -->
 						<div class="lev1">
 							<div class="profileblock">프로필 내용</div>
-							 <input type="text" id="usercontent" name="usercontent"
-								value="${usersVo.usercontent}" class=inputmodi>
+							 <input type="text" id="usercontent" name="userContent"
+								value="${usersVo.userContent}" class=inputmodi>
 						</div>
 							<!-- 프로필 내용 -->
 						<div class="lev1">
