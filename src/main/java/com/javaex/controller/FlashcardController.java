@@ -48,6 +48,9 @@ public class FlashcardController {
 		System.out.println("flashcardgame"+list.toString());
 		md.addAttribute("selectFlashcardList",list);
 		md.addAttribute("URLId", urlPathVo.getURLId());
+		//승
+		md.addAttribute("urlPathVo", flashcardService.getNickName(urlPathVo));
+		
 		return "_view/flashcardgame";
 	}
 

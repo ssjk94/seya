@@ -104,7 +104,7 @@
 		<selectKey keyProperty="userNo" resultType="int">
 
 			select
-			usersno_seq.currval as userno from dual
+			users_seq.currval as userno from dual
 
 		</selectKey>
 
