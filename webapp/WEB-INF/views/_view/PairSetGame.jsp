@@ -171,6 +171,7 @@
 			//console.log("선택했던 div 아이디1"+id1);
 		}
 		
+		
 		if(num == 2){
 			a2 = $(this).find("span").text();
 			id2 = $(this).attr("id");
