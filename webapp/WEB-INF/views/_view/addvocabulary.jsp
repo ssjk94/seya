@@ -460,12 +460,11 @@ desired effect
  		var wordName = $("[name=wordName]").val();
  		var wordbookName = $("[name=wordbookName]").val();
  		console.log(wordName);
- 		
- 		if(doubleSubmitCheck()){ 
- 			return;
- 		}
- 			console.log(wordbookName);
- 		$.ajax({
+ 		console.log(wordbookName);
+		if(doubleSubmitCheck()){
+			return;
+		}
+ 		 $.ajax({
  			url : "${pageContext.request.contextPath}/${URLId}/insertWord",
  			type : "post",
  // 			contentType : "application/json",
@@ -484,7 +483,7 @@ desired effect
  			error : function(XHR, status, error) {
  				console.error(status+" : "+error);
  			}
- 		});
+ 		}); 
  	};
  	
  	//중복 submit 방지
