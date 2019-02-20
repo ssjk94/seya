@@ -82,7 +82,7 @@ public class VocabularyListController {
 	public int wordInsert(URLPathVo urlPathVo, VocabularyListVo vocabularyListVo,Model md) {
 		//워드 네임은 보카브에  엔오들은 url에
 		System.out.println("ajax 단어장 만들기");
-		
+		System.out.println("워드 네임"+vocabularyListVo.getWordName());
 		//단어장 이름 적지않으면 처음페이지로 리턴
 		if(urlPathVo.getWordbookName() == "") {
 			return 0;
