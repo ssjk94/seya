@@ -169,8 +169,9 @@
 		<!-- Search -->
 		<div class="searchdiv">
 			<form action="/selectsearch.do" method="get" class="sidebar-form">
-				<div class="input-group"><input type="text" name="wordbookName" class="form-control"
-						placeholder="단어장 검색.."> <span class="input-group-btn">
+				<div class="input-group">
+<!-- 				<input type="text" name="wordbookName" class="form-control" placeholder="단어장 검색.."> -->
+				<span class="input-group-btn">
 						<button type="submit" id="search-btn"
 							class="btn btn-flat">
 							<i class="fa fa-search"></i>
