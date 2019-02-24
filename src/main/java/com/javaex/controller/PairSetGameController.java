@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.vo.PairSetGameVo;
+import com.javaex.vo.URLPathVo;
+import com.javaex.vo.VocabularyListVo;
 
 @Controller
 public class PairSetGameController {
@@ -21,8 +24,6 @@ public class PairSetGameController {
 		PairSetGameVo pair2 = new PairSetGameVo();
 		PairSetGameVo pair3 = new PairSetGameVo();
 		PairSetGameVo pair4 = new PairSetGameVo();
-		PairSetGameVo pair5 = new PairSetGameVo();
-		PairSetGameVo pair6 = new PairSetGameVo();
 		pair1.setWordNo(1);
 		pair1.setWordName("Jack");
 		pair1.setMeanName("잭");
@@ -40,17 +41,22 @@ public class PairSetGameController {
 		pair4.setWordName("Tiger");
 		pair4.setMeanName("호랑이");
 		list.add(pair4);
-		pair5.setWordNo(5);
-		pair5.setWordName("Eagle");
-		pair5.setMeanName("독수리");
-		list.add(pair5);
-		pair6.setWordNo(6);
-		pair6.setWordName("Bear");
-		pair6.setMeanName("곰");
-		list.add(pair6);
 		
 		md.addAttribute("gameList", list);
 		
 		return "_view/PairSetGame";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "{URLId}/wrongword", method = RequestMethod.POST)
+	public int wrongWord(URLPathVo urlPathVo,String wrongWord) {
+		System.out.println("ajax 틀린 단어");
+		
+		System.out.println(wrongWord);
+		
+		//서비스 가고 실행시키는 문장 들어가야함
+		
+		return 3;
+	}
+	
 }

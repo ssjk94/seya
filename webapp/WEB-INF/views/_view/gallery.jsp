@@ -45,10 +45,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Google Font -->
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	href="https://fonts.googleapis.com/css?family=Poor+Strory:300,400,600,700,300italic,400italic,600italic">
 <style>
 .ko-12 {
-	font-family: Nanum Gothic, dotum, sans-serif;
+	font-family: 'Poor Strory', cursive;
 	font-size: 12px;
 }
 
@@ -147,11 +147,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .breadcrumb {
 	background-color: #ffffff;
 	margin-top: -35px;
-}
-
-.button-name {
-	padding-bottom: 20px;
-	padding-right: 15px;
 }
 
 .btn-info {
@@ -290,6 +285,63 @@ h3.wordbook-name {
 	height: 100px;
 	width: 100%
 }
+#wordbookBox{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.wordbook{
+	width: 31.3%;
+    margin: 5px 1% 10px 1%;
+	background-color: #f5f5f5;
+	padding: 0 1px 0 0;
+	width: 258px;
+	border: 1px solid darkgray; !important
+}
+.editSetting{
+	height: 26px;
+}
+
+.editWordbook{
+	height: 20px;
+    padding: 0px 12px 0px 12px;
+    margin: 3px 0 3px 0;
+	visibility: hidden;
+}
+.editSetting:hover .editWordbook{
+    visibility: visible;
+}
+p{
+	display: inline;
+}
+.enterFlashcard{
+	width: 80%;
+	margin: 5px 0 10px 10%;
+	padding: 5px 0 5px 0;
+}
+.infowordbook{
+	border-top: 1px solid darkgray;
+	padding: 3px 5px 3px 5px;
+	clear: both;
+}
+.viewSelecter{
+	margin: 3px 0 25px 0;
+	padding-right: 5px;
+	clear: both;
+}
+.shareWordbook{
+	margin: 5px 0 5px 25px;
+}
+.wordbookHeader{
+	margin-bottom: 35px;
+}
+#pagenation{
+	margin-left: 38%;
+}
+.profile-content b{
+	font-size: 20px;
+}
+
 </style>
 
 </head>
@@ -337,205 +389,520 @@ desired effect
 					</ol>
 					<!--/단어장 경로 -->
 				</div>
-				<!--갤러리, 리스트 버튼 -->
-				<div class="button-name">
-
-					<div class="pull-right box-tools">
-						<a type="button" class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/${URLId}/list"><i
-							class="fa fa-bars"></i></a> <a type="button"
-							class="btn btn-info btn-xs" data-toggle="tooltip"
-							href="${pageContext.request.contextPath}/${URLId}"><i
-							class="fa fa-th-large"></i></a>
-					</div>
-				</div>
-				<!--/갤러리, 리스트 버튼 -->
+				
 			</section>
 			<!-- Main content -->
 			<section class="content container">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box">
-							<div class="box-body no-padding">
-								<div class="row">
-									<!-- 자기것이 아니면 이 추가창이 눌리면 안됌 아니 보이면?  -->
-									<c:if test="${sessionScope.id eq URLId && directoryNo ne 0}">
-										<div class="col-lg-4 col-xs-4">
-											<!-- small box -->
-											<div id="addvocabulary" class="small-box">
-												<div class="inner-header"></div>
-												<form class="inner-body"
-													action="${pageContext.request.contextPath}/${URLId}/addvocabulary"
-													method="get">
-													<input name="directoryNo" type="hidden"
-														value="${directoryNo}">
-													<button type="submit" class="Btn-submit col-xs-12">
-														<h3 class="create-wordbook-name">단어장 만들기</h3>
-														<div class="wordbook-inner">
-															<div class="col-lg-6 col-xs-6">
-																<p class="wordbook-maker"></p>
-																<p class="wordbook-regdate"></p>
-																<p class="wordbook-access"></p>
-															</div>
-															<div class="col-lg-6 col-xs-6">
-																<div class="icon">
-																	<i class="fa fa-plus"> </i>
-																</div>
-															</div>
-														</div>
-													</button>
-												</form>
-											</div>
-										</div>
-									</c:if>
-
-									<!-- ./col -->
-									<c:forEach items="${requestScope.wordbookList}"
-										var="wordbookVo">
-										<!-- ./col -->
-
-										<div class="col-lg-4 col-xs-4">
-											<!-- small box -->
-											<div class="small-box">
-												<div class="inner-header">
-													<div class="col-xs-12">
-														<div class="col-lg-3 col-xs-3"></div>
-														<c:choose>
-															<c:when test="${sessionScope.id eq URLId}">
-																<!-- 내가 이용하는 공간 -->
-
-																<!-- 공유 변경 아이콘 -->
-																<div class="col-lg-3 col-xs-3">
-																	<button class="Btn-share" type="submit"
-																		style="background-color: transparent; border: 0px transparent solid; outline:none;"
-																		onclick="changeWordbook(${wordbookVo.wordbookNo},${wordbookVo.wordbookAccess});">
-																		<i class="fa fa-share"></i>
-																	</button>
-																</div>
-																<!-- 수정하러 들어가는 리스트 아이콘 -->
-																<div class="col-lg-3 col-xs-3">
-																	<form class="Btn-change" style="display: inline"
-																		action="${pageContext.request.contextPath}/${URLId}/vocabularylist"
-																		method="get">
-																		<input name="wordbookNo" type="hidden"
-																			value="${wordbookVo.wordbookNo}"> <input
-																			name="wordbookName" type="hidden"
-																			value="${wordbookVo.wordbookName}">
-																		<button type="submit"
-																			style="background-color: transparent; border: 0px transparent solid; outline:none;">
-																			<i class="fa fa-edit"></i>
-																		</button>
-																	</form>
-																</div>
-																<!-- 삭제 아이콘 -->
-																<div class="col-lg-3 col-xs-3">
-																	<button class="Btn-delete" type="submit"
-																		style="background-color: transparent; border: 0px transparent solid; outline:none;"
-																		onclick="deleteWordbook(${wordbookVo.wordbookNo});">
-																		<i class="fa fa-trash-o"></i>
-																	</button>
-																</div>
-															</c:when>
-
-															<c:when test="${sessionScope.id eq null}">
-
-															</c:when>
-
-															<c:otherwise>
-																<!-- 서로 다른 회원끼리 이용하는 곳 -->
-																<c:choose>
-																	<c:when test="${wordbookVo.wordbookAccess eq 0}">
-																		<!-- 공유 기능 -->
-																		<div class="col-xs-12">
-																			<div class="col-lg-9 col-xs-9"></div>
-																			<div class="col-lg-3 col-xs-3">
-																				<button class="Btn-share" type="submit"
-																					style="background-color: transparent; border: 0px transparent solid; outline:none;"
-																					onclick="shareWordbook(${wordbookVo.wordbookNo});">
-																					<i class="fa fa-share"></i>
-																				</button>
-																			</div>
-																		</div>
-																	</c:when>
-
-																	<c:otherwise>
-																		<div class="col-xs-12">
-																			<div class="col-lg-9 col-xs-9"></div>
-																			<div class="col-lg-3 col-xs-3">
-																				<button class="Btn-share" type="submit"
-																					style="background-color: transparent; border: 0px transparent solid; outline:none;"
-																					onclick="doNotShare();">
-																					<i class="fa fa-share"></i>
-																				</button>
-																			</div>
-																		</div>
-																	</c:otherwise>
-																</c:choose>
-															</c:otherwise>
-														</c:choose>
-													</div>
-												</div>
-												<!-- 여기에 버튼 형식  -->
-												<div class="inner-body">
-													<form
-														action="${pageContext.request.contextPath}/${URLId}/flashcard"
-														method="get">
-														<input name="directoryNo" type="hidden"
-															value="${wordbookVo.directoryNo}"> <input
-															name="wordbookNo" type="hidden"
-															value="${wordbookVo.wordbookNo}">
-														<button type="submit" class="Btn-submit col-xs-12">
-															<h3 class="wordbook-name">${wordbookVo.wordbookName}</h3>
-															<div class="wordbook-inner">
-																<div class="col-lg-6 col-xs-6">
-																	<p class="wordbook-maker">${wordbookVo.wordbookMaker}</p>
-																	<p class="wordbook-regdate">${wordbookVo.wordbookRegdate}</p>
-																	<p class="wordbook-access">
-																		<c:choose>
-
-																			<c:when test="${wordbookVo.wordbookAccess eq 0}">
-																				<span class="label label-success">공유 가능</span>
-																			</c:when>
-
-																			<c:otherwise>
-																				<span class="label label-danger">공유 불가</span>
-																			</c:otherwise>
-
-																		</c:choose>
-																	</p>
-																</div>
-																<div class="col-lg-6 col-xs-6">
-																	<div class="file-icon">
-																		<i class="fa fa-file-text"> </i>
-																	</div>
-
-																</div>
-															</div>
-														</button>
-													</form>
-												</div>
-
-
-
-
-											</div>
-										</div>
-									</c:forEach>
-
-
-
-								</div>
-							</div>
-							<!-- /.box-body -->
-						</div>
-						<!-- /.box -->
+				
+				<!-- 검색결과  and 단어장 추가버튼 -->
+				<div class="wordbookHeader">
+					<!-- 검색결과창 나오는칸 -->
+					<!-- 검색결과 icon -->
+					<div class="fa-key pull-left">
+							검색결과 :
+							<!-- 검색내용 들어갈 칸 --> 
+							<b>단어장 2011</b>				
+					</div>
+					<!-- 단어장 추가하는 버튼이 들어가는칸 -->
+					<div class="pull-right">
+						<button class="btn btn-sm bg-navy">단어장 만들기</button>
 					</div>
 				</div>
+				
+				<!-- 깨끗 -->
+				<div style="clear: both;"></div>
+				<!-- 깨끗 -->
+				
+				<!-- 단어장이 나오는 칸 -->
+				<div class="box box-default">
+				
+					<!-- 단어장 뷰어를 선택하는 칸 -->
+					<!--갤러리, 리스트 버튼 -->
+					<div class="viewSelecter">
+		
+						<div class="pull-right box-tools">
+							<a type="button" class="btn btn-info btn-xs" data-toggle="tooltip"
+								href="${pageContext.request.contextPath}/${URLId}/list"><i
+								class="fa fa-bars"></i></a> <a type="button"
+								class="btn btn-info btn-xs" data-toggle="tooltip"
+								href="${pageContext.request.contextPath}/${URLId}"><i
+								class="fa fa-th-large"></i></a>
+						</div>
+					</div>
+					<!--/갤러리, 리스트 버튼 -->
+
+					<!-- 단어장 칸 -->
+					<div  id="wordbookBox" class="wordbookBox">
+					
+						<!-- 실질 한개의 단어장 div -->
+						<div class="wordbook box pull-left">
+							
+							<!-- 관리 들어가는 칸 -->
+							<div class="editSetting">
+								<!-- 호버 들어가야함 -->
+								<button class="pull-right btn btn-flat bg-maroon editWordbook">관리</button>
+							</div>
+							<!-- ㄲㄲ -->
+							<div style="clear: both;"></div>
+							<!-- ㄲㄲ -->
+							<!-- 단어장 리스트로 들어가는 칸 -->
+							<div>
+								<!-- 단어장 제목들어가는 칸 -->
+								<div class="profile-content">
+									<b>TOEIC 단어장 2011</b>
+								</div>
+								<!-- 단어장에 포함된 단어 갯수 들어가는 칸 -->
+								<div class="profile-content">
+									<p>300단어</p>
+								</div>
+							</div>
+							
+							<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+							<div>
+								<button class="btn btn-lg bg-olive enterFlashcard">단 어 암 기</button>
+							</div>
+							
+							<!-- 단어장 정보 나오는칸 -->
+							<div class="infowordbook">
+								<!-- 단어장 정보칸 -->
+								<div>
+									<!-- 단어장 만든이의 이미지가 나오는 칸 -->
+									<div class="pull-left">
+										 이미지<br/>
+										 이미지
+									</div>
+									<!-- 만든이와 만든 날짜나오는 칸 -->
+									<div class="pull-left">
+										<!-- 만든이 -->
+										<div>
+											<b>서경환`s</b>
+										</div>
+										<!-- 날짜 나오는칸 -->
+										<div>
+											<p>2019-03-22</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- 공유해가는 버튼있는 칸 -->
+								<div>
+									<button class="btn btn-sm bg-olive shareWordbook">
+										<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+									</button>
+								</div>
+							</div>
+						
+						</div>
+						<!--//실질 한개의 단어장 -->
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<!-- 실질 한개의 단어장 div -->
+						<div class="wordbook box pull-left">
+							
+							<!-- 관리 들어가는 칸 -->
+							<div class="editSetting">
+								<!-- 호버 들어가야함 -->
+								<button class="pull-right btn btn-flat bg-maroon editWordbook">관리</button>
+							</div>
+							<!-- ㄲㄲ -->
+							<div style="clear: both;"></div>
+							<!-- ㄲㄲ -->
+							<!-- 단어장 리스트로 들어가는 칸 -->
+							<div>
+								<!-- 단어장 제목들어가는 칸 -->
+								<div class="profile-content">
+									<b>TOEIC 단어장 2011</b>
+								</div>
+								<!-- 단어장에 포함된 단어 갯수 들어가는 칸 -->
+								<div class="profile-content">
+									<p>300단어</p>
+								</div>
+							</div>
+							
+							<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+							<div>
+								<button class="btn btn-lg bg-olive enterFlashcard">단 어 암 기</button>
+							</div>
+							
+							<!-- 단어장 정보 나오는칸 -->
+							<div class="infowordbook">
+								<!-- 단어장 정보칸 -->
+								<div>
+									<!-- 단어장 만든이의 이미지가 나오는 칸 -->
+									<div class="pull-left">
+										 이미지<br/>
+										 이미지
+									</div>
+									<!-- 만든이와 만든 날짜나오는 칸 -->
+									<div class="pull-left">
+										<!-- 만든이 -->
+										<div>
+											<b>서경환`s</b>
+										</div>
+										<!-- 날짜 나오는칸 -->
+										<div>
+											<p>2019-03-22</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- 공유해가는 버튼있는 칸 -->
+								<div>
+									<button class="btn btn-sm bg-olive shareWordbook">
+										<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+									</button>
+								</div>
+							</div>
+						
+						</div>
+						<!--//실질 한개의 단어장 --><!-- 실질 한개의 단어장 div -->
+						<div class="wordbook box pull-left">
+							
+							<!-- 관리 들어가는 칸 -->
+							<div class="editSetting">
+								<!-- 호버 들어가야함 -->
+								<button class="pull-right btn btn-flat bg-maroon editWordbook">관리</button>
+							</div>
+							<!-- ㄲㄲ -->
+							<div style="clear: both;"></div>
+							<!-- ㄲㄲ -->
+							<!-- 단어장 리스트로 들어가는 칸 -->
+							<div>
+								<!-- 단어장 제목들어가는 칸 -->
+								<div class="profile-content">
+									<b>TOEIC 단어장 2011</b>
+								</div>
+								<!-- 단어장에 포함된 단어 갯수 들어가는 칸 -->
+								<div class="profile-content">
+									<p>300단어</p>
+								</div>
+							</div>
+							
+							<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+							<div>
+								<button class="btn btn-lg bg-olive enterFlashcard">단 어 암 기</button>
+							</div>
+							
+							<!-- 단어장 정보 나오는칸 -->
+							<div class="infowordbook">
+								<!-- 단어장 정보칸 -->
+								<div>
+									<!-- 단어장 만든이의 이미지가 나오는 칸 -->
+									<div class="pull-left">
+										 이미지<br/>
+										 이미지
+									</div>
+									<!-- 만든이와 만든 날짜나오는 칸 -->
+									<div class="pull-left">
+										<!-- 만든이 -->
+										<div>
+											<b>서경환`s</b>
+										</div>
+										<!-- 날짜 나오는칸 -->
+										<div>
+											<p>2019-03-22</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- 공유해가는 버튼있는 칸 -->
+								<div>
+									<button class="btn btn-sm bg-olive shareWordbook">
+										<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+									</button>
+								</div>
+							</div>
+						
+						</div>
+						<!--//실질 한개의 단어장 --><!-- 실질 한개의 단어장 div -->
+						<div class="wordbook box pull-left">
+							
+							<!-- 관리 들어가는 칸 -->
+							<div class="editSetting">
+								<!-- 호버 들어가야함 -->
+								<button class="pull-right btn btn-flat bg-maroon editWordbook">관리</button>
+							</div>
+							<!-- ㄲㄲ -->
+							<div style="clear: both;"></div>
+							<!-- ㄲㄲ -->
+							<!-- 단어장 리스트로 들어가는 칸 -->
+							<div>
+								<!-- 단어장 제목들어가는 칸 -->
+								<div class="profile-content">
+									<b>TOEIC 단어장 2011</b>
+								</div>
+								<!-- 단어장에 포함된 단어 갯수 들어가는 칸 -->
+								<div class="profile-content">
+									<p>300단어</p>
+								</div>
+							</div>
+							
+							<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+							<div>
+								<button class="btn btn-lg bg-olive enterFlashcard">단 어 암 기</button>
+							</div>
+							
+							<!-- 단어장 정보 나오는칸 -->
+							<div class="infowordbook">
+								<!-- 단어장 정보칸 -->
+								<div>
+									<!-- 단어장 만든이의 이미지가 나오는 칸 -->
+									<div class="pull-left">
+										 이미지<br/>
+										 이미지
+									</div>
+									<!-- 만든이와 만든 날짜나오는 칸 -->
+									<div class="pull-left">
+										<!-- 만든이 -->
+										<div>
+											<b>서경환`s</b>
+										</div>
+										<!-- 날짜 나오는칸 -->
+										<div>
+											<p>2019-03-22</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- 공유해가는 버튼있는 칸 -->
+								<div>
+									<button class="btn btn-sm bg-olive shareWordbook">
+										<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+									</button>
+								</div>
+							</div>
+						
+						</div>
+						<!--//실질 한개의 단어장 -->
+						<!-- 실질 한개의 단어장 div -->
+						<div class="wordbook box pull-left">
+							
+							<!-- 관리 들어가는 칸 -->
+							<div class="editSetting">
+								<!-- 호버 들어가야함 -->
+								<button class="pull-right btn btn-flat bg-maroon editWordbook">관리</button>
+							</div>
+							<!-- ㄲㄲ -->
+							<div style="clear: both;"></div>
+							<!-- ㄲㄲ -->
+							<!-- 단어장 리스트로 들어가는 칸 -->
+							<div>
+								<!-- 단어장 제목들어가는 칸 -->
+								<div class="profile-content">
+									<b>TOEIC 단어장 2011</b>
+								</div>
+								<!-- 단어장에 포함된 단어 갯수 들어가는 칸 -->
+								<div class="profile-content">
+									<p>300단어</p>
+								</div>
+							</div>
+							
+							<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+							<div>
+								<button class="btn btn-lg bg-olive enterFlashcard">단 어 암 기</button>
+							</div>
+							
+							<!-- 단어장 정보 나오는칸 -->
+							<div class="infowordbook">
+								<!-- 단어장 정보칸 -->
+								<div>
+									<!-- 단어장 만든이의 이미지가 나오는 칸 -->
+									<div class="pull-left">
+										 이미지<br/>
+										 이미지
+									</div>
+									<!-- 만든이와 만든 날짜나오는 칸 -->
+									<div class="pull-left">
+										<!-- 만든이 -->
+										<div>
+											<b>서경환`s</b>
+										</div>
+										<!-- 날짜 나오는칸 -->
+										<div>
+											<p>2019-03-22</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- 공유해가는 버튼있는 칸 -->
+								<div>
+									<button class="btn btn-sm bg-olive shareWordbook">
+										<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+									</button>
+								</div>
+							</div>
+						
+						</div>
+						<!--//실질 한개의 단어장 -->
+						<!-- 실질 한개의 단어장 div -->
+						<div class="wordbook box pull-left">
+							
+							<!-- 관리 들어가는 칸 -->
+							<div class="editSetting">
+								<!-- 호버 들어가야함 -->
+								<button class="pull-right btn btn-flat bg-maroon editWordbook">관리</button>
+							</div>
+							<!-- ㄲㄲ -->
+							<div style="clear: both;"></div>
+							<!-- ㄲㄲ -->
+							<!-- 단어장 리스트로 들어가는 칸 -->
+							<div>
+								<!-- 단어장 제목들어가는 칸 -->
+								<div class="profile-content">
+									<b>TOEIC 단어장 2011</b>
+								</div>
+								<!-- 단어장에 포함된 단어 갯수 들어가는 칸 -->
+								<div class="profile-content">
+									<p>300단어</p>
+								</div>
+							</div>
+							
+							<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+							<div>
+								<button class="btn btn-lg bg-olive enterFlashcard">단 어 암 기</button>
+							</div>
+							
+							<!-- 단어장 정보 나오는칸 -->
+							<div class="infowordbook">
+								<!-- 단어장 정보칸 -->
+								<div>
+									<!-- 단어장 만든이의 이미지가 나오는 칸 -->
+									<div class="pull-left">
+										 이미지<br/>
+										 이미지
+									</div>
+									<!-- 만든이와 만든 날짜나오는 칸 -->
+									<div class="pull-left">
+										<!-- 만든이 -->
+										<div>
+											<b>서경환`s</b>
+										</div>
+										<!-- 날짜 나오는칸 -->
+										<div>
+											<p>2019-03-22</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- 공유해가는 버튼있는 칸 -->
+								<div>
+									<button class="btn btn-sm bg-olive shareWordbook">
+										<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+									</button>
+								</div>
+							</div>
+						
+						</div>
+						<!--//실질 한개의 단어장 -->
+						<!-- 실질 한개의 단어장 div -->
+						<div class="wordbook box pull-left">
+							
+							<!-- 관리 들어가는 칸 -->
+							<div class="editSetting">
+								<!-- 호버 들어가야함 -->
+								<button class="pull-right btn btn-flat bg-maroon editWordbook">관리</button>
+							</div>
+							<!-- ㄲㄲ -->
+							<div style="clear: both;"></div>
+							<!-- ㄲㄲ -->
+							<!-- 단어장 리스트로 들어가는 칸 -->
+							<div>
+								<!-- 단어장 제목들어가는 칸 -->
+								<div class="profile-content">
+									<b>TOEIC 단어장 2011</b>
+								</div>
+								<!-- 단어장에 포함된 단어 갯수 들어가는 칸 -->
+								<div class="profile-content">
+									<p>300단어</p>
+								</div>
+							</div>
+							
+							<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+							<div>
+								<button class="btn btn-lg bg-olive enterFlashcard">단 어 암 기</button>
+							</div>
+							
+							<!-- 단어장 정보 나오는칸 -->
+							<div class="infowordbook">
+								<!-- 단어장 정보칸 -->
+								<div>
+									<!-- 단어장 만든이의 이미지가 나오는 칸 -->
+									<div class="pull-left">
+										 이미지<br/>
+										 이미지
+									</div>
+									<!-- 만든이와 만든 날짜나오는 칸 -->
+									<div class="pull-left">
+										<!-- 만든이 -->
+										<div>
+											<b>서경환`s</b>
+										</div>
+										<!-- 날짜 나오는칸 -->
+										<div>
+											<p>2019-03-22</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- 공유해가는 버튼있는 칸 -->
+								<div>
+									<button class="btn btn-sm bg-olive shareWordbook">
+										<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+									</button>
+								</div>
+							</div>
+						
+						</div>
+						<!--//실질 한개의 단어장 -->
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					</div>
+				</div>
+				
 			</section>
 			<!-- /.content -->
+			
+			<!-- 페이지 네이션 -->
+			<div id="pagenation">
+				<ul class="pagination pagination-sm no-margin">
+	                <li><a href="#">«</a></li>
+	                <li><a href="#">1</a></li>
+	                <li><a href="#">2</a></li>
+	                <li><a href="#">3</a></li>
+	                <li><a href="#">4</a></li>
+	                <li><a href="#">5</a></li>
+	                <li><a href="#">»</a></li>
+              </ul>
+			</div>
+			
 		</div>
 		<!-- /.content-wrapper -->
-
+		
+		
+		
+		
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- /footer -->

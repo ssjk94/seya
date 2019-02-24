@@ -253,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 p {
-	padding-top: 15px;
+	padding-top: 5px;
 	margin: auto;
 }
 
@@ -278,7 +278,6 @@ p {
 }
 
 .vocabularycontainer {
-	width: 790px;
 	max-width: none !important;
 	margin: auto
 }
@@ -289,20 +288,12 @@ p {
 }
 
 .vocamodifybtn {
-	width: 92%;
+	width: 100%;
 	margin-top: 20px;
-	padding-right: 30px;
 }
 
 .addlistline {
 	
-}
-
-.btn-sm {
-	margin-left: 700px;
-	margin-top: 20px;
-	margin-right: 35px;
-	margin-bottom: 20px;
 }
 
 .subheader {
@@ -336,6 +327,36 @@ input:disabled {
 */
 *:focus{
 	outline: none;
+}
+#btnContent{
+	height: 30px;
+}
+#btnContent .pull-left{
+	margin-left: 0px;
+	clear: both;
+}
+#btnContent button{
+	width: 100px;
+	height: 30px;
+}
+.wordbook{
+	border-top: 1px solid;
+	margin: 10px 0 0 0;
+	padding: 15px 0 0 0;
+}
+
+.wordbook .wordbookname{
+	border: none;
+	border-bottom: 1px solid darkgray;
+}
+.wordbook .pull-left{
+	margin-left: 0px;
+	padding-top: 5px;
+}
+.wordbookname {
+	margin-bottom: 10px;
+	font-size: 25px;
+	width: 94%;
 }
 </style>
 
@@ -388,21 +409,33 @@ desired effect
 				</div>
 			</section>
 			
+			
+			<section class="content container">
 			<!-- 자바로 보내야함 -->
-			<form name="addvoca" action="${pageContext.request.contextPath}/${URLId}/vocabularylist" method="get">
-				<input type="hidden" name="directoryNo" value="${directoryNo}">
-				<input type="hidden" name="wordbookNo" value="">
-				<c:choose>
+			
+			<!-- 단어장 수정 버튼 과 페이지 설명-->
+				<div id="btnContent">
+					<!-- 페이지 설명 -->
+					<div class="pull-left fa-key">단어 수정</div>
+					<!-- 단어 수정 버튼 -->
+					<form action="">
+						<div>
+							<button class="pull-right btn btn-sm bg-navy">저장</button>
+						</div>
+					</form>
+				</div>
+			
+			
+				<div class="wordbook">
 				
-					<c:when test="${wordbookName eq null}">
-						<input type="text" class="wordpadname" name="wordbookName" value="">
-					</c:when>
-					<c:otherwise>
-						<input type="text" class="wordpadname" name="wordbookName" value="${wordbookName}">
-					</c:otherwise>
-				
-				</c:choose>
-				<div class="vocabularycontainer">
+					<div>
+						<div class="pull-left">제목 : &nbsp;&nbsp;</div>
+						<div>
+							<input type="text" class="wordbookname" value="TOEIC 단어장 단어 300선 2019">
+						</div>
+					</div>
+					
+					<div class="vocabularycontainer">
 					<!-- section 1 -->
 					<!-- Text area 구역 -->
 					<div class="textboxsize">
@@ -416,18 +449,17 @@ desired effect
 					<div class="listaddline">
 						
 						
-							<button type="button"
-								class="btn btn-danger btn-block btn-lg vocamodifybtn" 
-								onclick="insertWord(${wordbookNo},${directoryNo})">
-								저장하기</button>
+						<button type="button" class="btn bg-navy btn-block btn-lg vocamodifybtn">
+							저장하기</button>
 						
 					</div>
 
 				</div>
-			</form>
-		</div>
+					
+				</div>
+			</section>
 		<!-- /.content-wrapper -->
-
+</div>
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- /footer -->

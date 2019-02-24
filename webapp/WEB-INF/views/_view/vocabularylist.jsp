@@ -244,6 +244,7 @@ p.flashcard-font {
 	border-bottom: 2px solid lavender;
 	width: 100%;
 	text-align: center;
+	font-size: 22px;
 }
 
 .mean-textbox {
@@ -251,6 +252,7 @@ p.flashcard-font {
 	border-bottom: 2px solid lavender;
 	width: 100%;
 	text-align: center;
+	font-size: 22px;
 }
 
 input:disabled {
@@ -288,16 +290,10 @@ p {
 	width: 88%;
 }
 
-.wordpadname {
-	width: 300px;
-	height: 50px;
-	border: 2px #ffffff;
-	border-bottom: solid 1.5px #dd4b39;
-	margin-left: 15px;
+.wordbookname {
+	margin-bottom: 10px;
 	font-size: 25px;
-	margin-bottom: 20px;
-	margin-top: 10px;
-	padding-left: 20px;
+	width: 94%;
 }
 
 input:disabled {
@@ -306,11 +302,8 @@ input:disabled {
 
 .vocamodi-btn {
 	width: 100px;
-	height: 40px;
-	float: right;
+	height: 30px;
 	margin-left: 10px;
-	margin-top: 50px;
-	margin-right: 12px;
 }
 
 .btn-block+.btn-block {
@@ -321,20 +314,43 @@ input:disabled {
 	padding-right: 5px;
 }
 
-.deleteWord {
-	
+.deleteWord button{
+	visibility: hidden;
 }
 
-.deleteWord:hover {
+.deleteWord:hover button {
 	font-size: 25px;
+	background-color: #fff;
+    border: 0;
 	visibility: visible;
 }
+#pagenation{
+	margin: 15px 0 0 38%;
+}
+.wordbook{
+	border-top: 1px solid;
+	margin: 10px 0 0 0;
+	padding: 15px 0 0 0;
+}
+.wordbook .wordbookname{
+	border: none;
+	border-bottom: 1px solid darkgray;
+}
+.wordbook .pull-left{
+	margin-left: 0px;
+	padding-top: 5px;
+}
+#btnContent .pull-left{
+	margin-left: 0px;
+}
+
 /*
 아웃라인을 없애면 버튼같은 푸른색 테두리 없앤다
 */
 *:focus {
 	outline: none;
 }
+
 </style>
 
 </head>
@@ -383,134 +399,268 @@ desired effect
 						<li class="active">Simple</li>
 					</ol>
 
-					<c:choose>
-						<c:when test="${URLId eq sessionScope.id}">
-							<form name="header"
-								action="${pageContext.request.contextPath}/${URLId}/addvocabulary"
-								method="get">
-								<!--/단어장 경로 -->
-								<input type="text" class="wordpadname" name="wordbookName"
-									value="${wordbookName}">
-								<button type="button"
-									class="btn btn-danger btn-block btn-sm vocamodi-btn"
-									onclick="updateSubmit();">확인</button>
-								<input name="wordbookNo" type="hidden" value="${wordbookNo}">
-								<button type="submit"
-									class="btn btn-danger btn-block btn-sm vocamodi-btn">단어
-									추가</button>
-							</form>
-						</c:when>
-						<c:otherwise>
-							<input type="text" class="wordpadname" name="wordbookName"
-								value="${wordbookName}" readonly="readonly">
-						</c:otherwise>
-					</c:choose>
+					
 				</div>
 			</section>
 
 			<!-- Main content -->
 			<section class="content container">
-				<form name="updateWM"
-					action="${pageContext.request.contextPath}/${URLId}/wordmodify">
-					<input type="hidden" name="wordbookNo" value="${wordbookNo}">
-					<input type="hidden" name="wordName" value=""> <input
-						type="hidden" name="wordbookName" value="">
-
-
-					<!-- 단어장 리스트 가장 바깥 상자 -->
-					<div id="vocalistbox">
-						<c:choose>
-							<c:when test="${empty vocaList}">
-								<div class="vocaborder">
-									<p align="center">"단어장이 비어있습니다."</p>
-								</div>
-							</c:when>
-						
-							<c:when test="${URLId eq sessionScope.id}">
-								<c:forEach items="${requestScope.vocaList}" var="vocaList">
-									<!-- 복사를 해야하는 div -->
-									<div class="vocaborder">
-										<!-- word -->
-										<div class="vocafloat vocawordsection">
-											<!-- 단어 -->
-											<div class="vocafloat">
-												<p>단어 :</p>
-											</div>
-											<!-- 텍스트박스 -->
-											<div class="vocafloat textgapbox">
-												<input type="text" name="wordAName" class="word-textbox"
-													value="${vocaList.wordName}"
-													onblur="focusout(${vocaList.wordNo}, 0, this.value);">
-											</div>
-										</div>
-										<!-- mean -->
-										<div class="vocafloat wordgapmean vocawordsection">
-											<!-- 뜻 -->
-											<div class="vocafloat">
-												<p>뜻 :</p>
-											</div>
-											<!-- 텍스트박스 -->
-											<div class="vocafloat textgapbox">
-												<input type="text" name="meanAName" class="mean-textbox"
-													value="${vocaList.meanName}"
-													onblur="focusout(${vocaList.wordNo}, 1, this.value);">
-											</div>
-										</div>
-										<!-- 삭제 아이콘이 들어가야할 곳 -->
-										<button type="button" class="deleteWord">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true"
-												onclick="deleteWord(${vocaList.wordNo})"></span>
-										</button>
-									</div>
-									<!-- 복사를 해야하는 div -->
-								</c:forEach>
-							</c:when>
-
-							<c:otherwise>
-								<c:forEach items="${requestScope.vocaList}" var="vocaList">
-									<!-- 복사를 해야하는 div -->
-									<div class="vocaborder">
-										<!-- word -->
-										<div class="vocafloat vocawordsection">
-											<!-- 단어 -->
-											<div class="vocafloat">
-												<p>단어 :</p>
-											</div>
-											<!-- 텍스트박스 -->
-											<div class="vocafloat textgapbox">
-												<input type="text" name="wordAName" class="word-textbox"
-													value="${vocaList.wordName}"
-													onblur="focusout(${vocaList.wordNo}, 0, this.value);"
-													readonly="readonly">
-											</div>
-										</div>
-										<!-- mean -->
-										<div class="vocafloat wordgapmean vocawordsection">
-											<!-- 뜻 -->
-											<div class="vocafloat">
-												<p>뜻 :</p>
-											</div>
-											<!-- 텍스트박스 -->
-											<div class="vocafloat textgapbox">
-												<input type="text" name="meanAName" class="mean-textbox"
-													value="${vocaList.meanName}"
-													onblur="focusout(${vocaList.wordNo}, 1, this.value);"
-													readonly="readonly">
-											</div>
-										</div>
-									</div>
-									<!-- 복사를 해야하는 div -->
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-
+				<!-- 단어장 수정 버튼 과 페이지 설명-->
+				<div id="btnContent">
+					<!-- 페이지 설명 -->
+					<div class="pull-left fa-key">단어 수정</div>
+					<!-- 단어 수정 버튼 -->
+					<form action="">
+						<div>
+							<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
+						</div>
+						<!-- 단어 추가 버튼 -->
+						<div>
+							<button class="pull-right btn btn-sm bg-navy vocamodi-btn">단어장 추가</button>
+						</div>
+					</form>
+				</div>
+				<!-- 단어장 body -->
+				
+				<div style="clear: both;"></div>
+				
+				<div class="wordbook">
+				
+					<!-- 단어장 제목나오는 칸 -->
+					<div>
+						<div class="pull-left">제목 : &nbsp;&nbsp;</div>
+						<div>
+							<input type="text" class="wordbookname" value="TOEIC 단어장 단어 300선 2019">
+						</div>
 					</div>
-					<c:if test="${URLId eq sessionScope.id}">
-						<button type="button"
-							class="btn btn-danger btn-block btn-sm vocamodi-btn"
-							onclick="updateSubmit();">확인</button>
-					</c:if>
-				</form>
+
+
+					<!-- 실질적으로 반복되는 단어 리스트 칸 -->
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" name="wordAName" class="word-textbox">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">					
+									<input type="text" name="meanAName" class="mean-textbox">
+								</div>
+							</div>
+							<!-- 삭제 아이콘이 들어가야할 곳 -->
+							<div class="deleteWord">
+								<button type="button">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div -->
+						
+						
+						
+						
+						
+						
+						
+						
+						<!-- 실질적으로 반복되는 단어 리스트 칸 -->
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" name="wordAName" class="word-textbox">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">					
+									<input type="text" name="meanAName" class="mean-textbox">
+								</div>
+							</div>
+							<!-- 삭제 아이콘이 들어가야할 곳 -->
+							<div class="deleteWord">
+								<button type="button">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" name="wordAName" class="word-textbox">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">					
+									<input type="text" name="meanAName" class="mean-textbox">
+								</div>
+							</div>
+							<!-- 삭제 아이콘이 들어가야할 곳 -->
+							<div class="deleteWord">
+								<button type="button">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" name="wordAName" class="word-textbox">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">					
+									<input type="text" name="meanAName" class="mean-textbox">
+								</div>
+							</div>
+							<!-- 삭제 아이콘이 들어가야할 곳 -->
+							<div class="deleteWord">
+								<button type="button">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" name="wordAName" class="word-textbox">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">					
+									<input type="text" name="meanAName" class="mean-textbox">
+								</div>
+							</div>
+							<!-- 삭제 아이콘이 들어가야할 곳 -->
+							<div class="deleteWord">
+								<button type="button">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
+						<!-- 복사를 해야하는 div -->
+						<div class="vocaborder">
+							<!-- word -->
+							<div class="vocafloat vocawordsection">
+								<!-- 단어 -->
+								<div class="vocafloat">
+									<p>단어 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">
+									<input type="text" name="wordAName" class="word-textbox">
+								</div>
+							</div>
+							<!-- mean -->
+							<div class="vocafloat wordgapmean vocawordsection">
+								<!-- 뜻 -->
+								<div class="vocafloat">
+									<p>뜻 :</p>
+								</div>
+								<!-- 텍스트박스 -->
+								<div class="vocafloat textgapbox">					
+									<input type="text" name="meanAName" class="mean-textbox">
+								</div>
+							</div>
+							<!-- 삭제 아이콘이 들어가야할 곳 -->
+							<div class="deleteWord">
+								<button type="button">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- 복사를 해야하는 div -->
+						
+						
+						
+						
+						
+
+
+					<!-- 페이지 네이션 -->
+					<div id="pagenation">
+						<ul class="pagination pagination-sm no-margin">
+			                <li><a href="#">«</a></li>
+			                <li><a href="#">1</a></li>
+			                <li><a href="#">2</a></li>
+			                <li><a href="#">3</a></li>
+			                <li><a href="#">4</a></li>
+			                <li><a href="#">5</a></li>
+			                <li><a href="#">»</a></li>
+		            	</ul>
+					</div>
+					<!-- 확인 버튼 -->
+					<div>
+						<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
+					</div>
+				</div>
 			</section>
 			<!-- /.content -->
 		</div>
@@ -577,24 +727,24 @@ function refreshMemList(){
 			
 		}
 
-	function deleteWord(wordNo) {
-		console.log(wordNo);
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/${URLId}/deleteWord",
-			type : "post",
- //			contentType : "application/json",
-			data : {wordNo: wordNo},
-			dataType : "html",
-			success : function(){
-			/*성공시 처리해야될 코드 작성*/
-				refreshMemList();
-			},
-			error : function(XHR, status, error) {
-			console.error(status+" : "+error);
-			}
-		});
-	};
+		function deleteWord(wordNo) {
+	        console.log(wordNo);
+	        
+	        $.ajax({
+	            url : "${pageContext.request.contextPath}/${URLId}/deleteWord",
+	            type : "post",
+//	            contentType : "application/json",
+	            data : {wordNo: wordNo},
+	            dataType : "html",
+	            success : function(){
+	            /*성공시 처리해야될 코드 작성*/
+	                refreshMemList();
+	            },
+	            error : function(XHR, status, error) {
+	            console.error(status+" : "+error);
+	            }
+	        });
+	    };
 </script>
 
 
