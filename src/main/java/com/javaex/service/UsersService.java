@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.repository.UsersDao;
+import com.javaex.vo.HeaderSearchVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.UsersVo;
 import com.javaex.vo.VocabularyListVo;
@@ -38,6 +39,11 @@ public class UsersService {
 	public void updateform(UsersVo usersVo) {
 
 		usersDao.userUpdate(usersVo);
+	}
+	
+	public void updateform2(UsersVo usersVo) {
+
+		usersDao.userUpdate2(usersVo);
 	}
 
 	public UsersVo selectSession(UsersVo usersVo) {
@@ -80,13 +86,13 @@ public class UsersService {
 		return usersDao.insertWordBook(usersVo);
 	}
 
-	public List<WordbookVo> selectSearch(WordbookVo wordbookVo) {
+	public List<HeaderSearchVo> selectSearch(HeaderSearchVo headerSearchVo) {
 		// TODO Auto-generated method stub
-		return  usersDao.selectSearch(wordbookVo);
+		return  usersDao.selectSearch(headerSearchVo);
 	}
 
 
-	public List<VocabularyListVo> searchWordMeanList(int wordbookNo) {
+	public List<HeaderSearchVo> searchWordMeanList(int wordbookNo) {
 		// TODO Auto-generated method stub
 		return usersDao.selectWordMeanList(wordbookNo);
 	}
@@ -98,4 +104,11 @@ public class UsersService {
 	public URLPathVo getNickName(URLPathVo urlPathVo) {
         return usersDao.selectOneNickName(urlPathVo);
     }
+
+	public int countWordName(HeaderSearchVo headerSearchVo) {
+		
+		return usersDao.selectOneCountWordName(headerSearchVo);
+	}
+
+	
 }

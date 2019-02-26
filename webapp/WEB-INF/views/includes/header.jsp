@@ -113,43 +113,17 @@
 	margin: 6px 10px;
 	border: 0px;
 }
+
 </style>
+
 <script
 	src="${pageContext.request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
 <%-- <script
 	src="${pageContext.request.contextPath}/dist/jquery-ui/jquery-ui.js"></script>
  --%>
 <script type="text/javascript">
-	
-     // 자동으로 /ajax/auato 주소로 term 이란 파라미터가 전송된다.
 
-     // 응답은 [{label:~~~,value:~~~},{label:~~~,value:~~~}] 형태가 된다.
-
-<%--    $('#term').autocomplete({"source":"<%=cp%>/ajax/auto"}); --%>
-
-     $('#searchajax').autocomplete
-     		({"source":function(request,response){
-
-            $.getJSON("${pageContext.request.contextPath}/searchajax",{"term":request.term},
-
-                    function(result) {
-
-                           return response($.map(result, function(item){
-
-                                   var l = item.label.replace(request.term,
-
-                                                  "<span style='color:red'>"+request.term+"</span>");
-
-                                   return {label:l, value:item.value};
-
-                           }));
-
-            });
-
-     }});
-	
-
-	
+	asdsa
 </script>
 
 
@@ -173,7 +147,7 @@
 		<div class="searchdiv">
 			<form action="/selectsearch.do" method="get" class="sidebar-form">
 				<div class="input-group">
-					<!-- 				<input type="text" name="wordbookName" class="form-control" placeholder="단어장 검색.."> -->
+						<input type="text" name="keyword" class="form-control" placeholder="단어장 검색.."> 
 					<span class="input-group-btn">
 						<button type="submit" id="search-btn" class="btn btn-flat">
 							<i class="fa fa-search"></i>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.javaex.vo.HeaderSearchVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.UsersVo;
 import com.javaex.vo.VocabularyListVo;
@@ -35,6 +36,11 @@ public class UsersDao {
 		sqlSession.update("users.updateUsers", usersVo);
 	}
 
+	public void userUpdate2(UsersVo usersVo) {
+		
+		sqlSession.update("users.updateUsers2", usersVo);
+	}
+	
 	public UsersVo selectOneUsers(UsersVo usersVo) {
 		
 		return sqlSession.selectOne("users.selectOneUsers", usersVo); 
@@ -76,12 +82,12 @@ public class UsersDao {
 		return sqlSession.insert("users.insertWordBook", usersVo);
 	}
 
-	public List<WordbookVo> selectSearch(WordbookVo wordbookVo) {
+	public List<HeaderSearchVo> selectSearch(HeaderSearchVo headerSearchVo) {
 		
-		return sqlSession.selectList("users.selectSearch", wordbookVo);
+		return sqlSession.selectList("users.selectSearch",headerSearchVo);
 	}
 
-	public List<VocabularyListVo> selectWordMeanList(int wordbookNo) {
+	public List<HeaderSearchVo> selectWordMeanList(int wordbookNo) {
 		
 		return sqlSession.selectList("users.searchWordMeanList", wordbookNo);
 	}
@@ -95,6 +101,14 @@ public class UsersDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("wordbook.selectOneNickName", urlPathVo);
 	}
+
+	public int selectOneCountWordName(HeaderSearchVo headerSearchVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("users.selectOneCountWordName", headerSearchVo);
+	}
+
+
+
 
 
 }

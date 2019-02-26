@@ -87,7 +87,7 @@ b, strong {
 
 .search-result-content {
 	width: 800px;
-	height: 50%;
+	height: 100%;
 }
 
 .search-result {
@@ -104,6 +104,7 @@ b, strong {
 	width: 800px;
 	height: 160px;
 	margin: auto;
+	margin-bottom: 10px;
 }
 
 .list-content {
@@ -119,6 +120,8 @@ b, strong {
 	border: #e2e2e2 solid 2px;
 	margin-left: 15px;
 	margin-right: 15px;
+	margin-top : 3px;
+	background-color: #ffffff;
 }
 
 .content-line-2 {
@@ -149,10 +152,12 @@ b, strong {
 	margin-left: 15px;
 	padding: 0px;
 	background-color: #ffffff;
-    border-left: #e2e2e2 2px solid;
+	border-left: #e2e2e2 2px solid;
+	
 }
 
 .preview-mean {
+
 	display: table;
 	table-layout: fixed;
 	width: 96.3%;
@@ -161,21 +166,72 @@ b, strong {
 	margin-left: 15px;
 	padding: 0px;
 	border-bottom: #e2e2e2 2px solid;
-    border-left: #e2e2e2 2px solid;
+	border-left: #e2e2e2 2px solid;
+	
 }
 
 .preview-word-eng {
-		
 	height: 100%;
 	width: 25%;
 	border-right: #e2e2e2 2px solid;
+	padding-top: 10px;
+	padding-left: 20px;
 }
 
 .preview-mean-ko {
-	
 	height: 100%;
 	width: 25%;
-    border-right: #e2e2e2 2px solid;    
+	border-right: #e2e2e2 2px solid;
+	padding: 3px;
+	padding-left: 20px;
+}
+
+.search-img {
+	
+	margin-top: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    padding-left: 0px;
+
+}
+.content-inline1{
+
+	width: 60px;
+    padding-left: 0px;
+    float: left;
+}
+
+.content-inline2{
+    padding-left: 0px;
+    width: 100px;
+    margin-top: 17px;
+}
+.content-inline3{
+
+	padding-left: 0px;
+   
+}
+
+.content-inline4{
+ 
+    float: left;
+    width: 100px;
+    margin-top: 20px;
+    font-size: 20px;
+    border-left: solid #dd4b39;
+    padding-left: 15px;
+}
+.content-combine{
+	width: 115px;
+    height: 70px;
+    float: left;
+}
+.search-text-box{
+	width : 500px;
+	height : 50px;
+	margin-left : 50px;
+	font-size : 20px;
 }
 </style>
 
@@ -204,52 +260,69 @@ desired effect
 <body class="hold-transition skin-red-light fixed">
 	<div class="wrapper">
 
-		<!-- header -->
+		<%-- <!-- header -->
 		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
+		<!-- /header --> --%>
+		<!-- header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- /header -->
 
 		<div class="content-wrapper">
 			<!-- 	<div class="jumbotron">
 			</div>  /.jumbotron -->
 			<div class="search-result">
-				<div class="search-result-list">
+			   <div class="search-text-box">
+			   		${ param.keyword } 단어장 찾아보기
+			   </div>
+				<!-- 목록에서 단어장이름, 아이디를 뱉을곳 시작 -->
+				<c:forEach items="${list}" var="list">
+				  <form action=""></form>
 					<!-- 목록 전체를 덮을 박스 -->
-					<!-- 목록에서 단어장이름, 아이디를 뱉을곳 시작 -->
-					<div class="search-result-content">
-						<!-- 							<div class="list-content"> -->
-						<!-- 목록 닉네임, 단어장이름, 이미지를 뱉을 부분 -->
-						<div class="content-line-1 col-xs-12">
-							<!-- 닉네임, 유저이미지, 단어갯수 뱉을곳 -->
-
-						</div>
-						<!-- 							</div> -->
-						<div class="preview-word col-xs-12">
-							<div class="preview-word-eng col-xs-3"></div>
-							<div class="preview-word-eng col-xs-3"></div>
-							<div class="preview-word-eng col-xs-3"></div>
-							<div class="preview-word-eng col-xs-3"></div>
-							<!-- 영어단어를 뱉을 부분 -->
-						</div>
-						<div class="preview-mean col-xs-12">
-							<div class="preview-mean-ko col-xs-3"></div>
-							<div class="preview-mean-ko col-xs-3"></div>
-							<div class="preview-mean-ko col-xs-3"></div>
-							<div class="preview-mean-ko col-xs-3"></div>
-							<!-- 해석인 한글을 뱉을부분 -->
+					<div class="search-result-list">
+						<div class="search-result-content">
+							<!-- 							<div class="list-content"> -->
+							<!-- 목록 닉네임, 단어장이름, 이미지를 뱉을 부분 -->
+							<div class="content-line-1 col-xs-12">
+								<!-- 닉네임, 유저이미지, 단어갯수, 단어장 제목 뱉을곳 -->
+								<div class="content-inline1">
+									<img class="search-img" src="/upload/profile/${list.userImage}">
+								</div>
+								<div class="content-combine">
+								<div class="content-inline2">${list.nickName }</div>
+								<div class="content-inline3">${list.count } 단어</div>
+								</div>
+								<div class="content-inline4">${list.wordbookName}</div>
+							</div>
+							<!-- 							</div> -->
+							<div class="preview-word col-xs-12">
+								<div class="preview-word-eng col-xs-3">${list.wordArr[0]}</div>
+								<div class="preview-word-eng col-xs-3">${list.wordArr[1]}</div>
+								<div class="preview-word-eng col-xs-3">${list.wordArr[2]}</div>
+								<div class="preview-word-eng col-xs-3">${list.wordArr[3]}</div>
+								<!-- 영어단어를 뱉을 부분 -->
+							</div>
+							<div class="preview-mean col-xs-12">
+								<div class="preview-mean-ko col-xs-3">${list.meanArr[0]}</div>
+								<div class="preview-mean-ko col-xs-3">${list.meanArr[1]}</div>
+								<div class="preview-mean-ko col-xs-3">${list.meanArr[2]}</div>
+								<div class="preview-mean-ko col-xs-3">${list.meanArr[3]}</div>
+								<!-- 해석인 한글을 뱉을부분 -->
+							</div>
 						</div>
 					</div>
-					<!-- 목록에서 단어장이름, 아이디를 뱉을곳 끝 -->
+				</c:forEach>
+				<!-- 목록에서 단어장이름, 아이디를 뱉을곳 끝 -->
 
-					<!-- 목록에서 단어,뜻을 뱉을 부분 시작-->
-					<!-- 						<div class="search-result-word"> -->
-					<!-- 							<div class="word-preview"> -->
-					<!--목록 단어를 다 감싸게 될 div -->
+				<!-- 목록에서 단어,뜻을 뱉을 부분 시작-->
+				<!-- 						<div class="search-result-word"> -->
+				<!-- 							<div class="word-preview"> -->
+				<!--목록 단어를 다 감싸게 될 div -->
 
-					<!-- 							</div> -->
-					<!-- 						</div> -->
-					<!-- 목록에서 단어,뜻을 뱉을 부분  끝-->
+				<!-- 							</div> -->
+				<!-- 						</div> -->
+				<!-- 목록에서 단어,뜻을 뱉을 부분  끝-->
 
-				</div>
+
 			</div>
 
 
