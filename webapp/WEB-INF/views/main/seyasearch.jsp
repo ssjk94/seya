@@ -42,7 +42,167 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <style>
+.mainpage-wrapper {
+	width: 1080px;
+	height: 969px;
+}
+
+.mainpage-header {
+	width: 1080px;
+	height: 100px;
+}
+
+.mainlogo {
+	width: 330px;
+	font-size: 34px;
+	float: left;
+	text-align: right;
+	margin-right: 15px;
+	margin-top: 40px;
+}
+
+.searchdiv {
+	width: 500px;
+	float: left;
+}
+
+.input-group .form-control:focus {
+	border-color: red;
+}
+
+.input-group .form-control {
+	position: relative;
+	z-index: 2;
+	float: right;
+	margin-bottom: 0;
+	margin-top: 40px;
+	border-color: red;
+	width: 461px;
+	height: 50px;
+}
+
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
+	{
+	z-index: 2;
+	margin-left: -1px;
+	width: 40px;
+	height: 50px;
+	margin-top: 40px;
+	border-color: red;
+	background-color: white;
+}
+
+.main-content-wrapper {
+	width: 1080px;
+	height: 850px;
+	margin-top: 10px;
+}
+
+.content-picture {
+	width: 700px;
+	height: 400px;
+	border: 1px solid #d4d4d4;
+	margin: 30px 30px 10px 30px;
+	float: left;
+	background-color: #ddd;
+	overflow: hidden;
+}
+
+.main-content-login {
+	width: 290px;
+	height: 400px;
+	margin: 30px 30px 10px 0px;
+	float: left;
+	background-color: #ffffff;
+}
+
+.main-content-seyaword-line {
+	width: 1020px;
+	height: 300px;
+	border-top: 1px solid #262a2e;
+	float: left;
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.search-content-title {
+    width: 303px;
+    height: 50px;
+    float: left;
+    padding-left: 0px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #262a2e;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-bottom: 16px;
+    margin-left: 50px;
+}
+
+.recommend-wordbook-list {
+	width: 220px;
+	height: 260px;
+	border: 1px solid #d4d4d4;
+	margin: 20px 17px 20px 17px;
+	overflow: hidden;
+	float: left;
+}
+
+.wrong-wordbook-list {
+	width: 220px;
+	height: 260px;
+	border: 1px solid;
+	margin: 20px 17px 20px 17px;
+	float: left;
+}
+
+.cpicture {
+	width: 698px;
+	height: auto;
+}
+
+.main-login-body {
+	width: 290px;
+	height: 390px;
+	padding: 10px;
+	border: 1px solid #d4d4d4;
+}
+
+.login-text {
+	width: 280px;
+	height: 60px;
+	text-align: center
+}
+
+.login-text2 {
+	width: 280px;
+	height: 20px;
+	text-align: center;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+.content-title-img {
+	margin-right: 10px;
+    margin-left: -5px;
+}
+
+.content-title-img2 {
+	margin-top: 1px;
+	margin-right: 12px;
+}
+
 .fixed .content-main, .fixed .footer-main {
 	min-height: 100%;
 	z-index: 800;
@@ -96,6 +256,7 @@ b, strong {
 	background-color: #e9ecef;
 	margin-left: 90px;
 	padding-top: 20px;
+	border-top: 1px solid red;
 }
 
 .search-result-list {
@@ -103,8 +264,10 @@ b, strong {
 	background-color: #ffffff;
 	width: 800px;
 	height: 160px;
-	margin: auto;
+	float: left;
 	margin-bottom: 10px;
+	margin-left: 50px;
+	border: 1px solid lightgray;
 }
 
 .list-content {
@@ -120,7 +283,7 @@ b, strong {
 	border: #e2e2e2 solid 2px;
 	margin-left: 15px;
 	margin-right: 15px;
-	margin-top : 3px;
+	margin-top: 3px;
 	background-color: #ffffff;
 }
 
@@ -153,11 +316,9 @@ b, strong {
 	padding: 0px;
 	background-color: #ffffff;
 	border-left: #e2e2e2 2px solid;
-	
 }
 
 .preview-mean {
-
 	display: table;
 	table-layout: fixed;
 	width: 96.3%;
@@ -167,7 +328,6 @@ b, strong {
 	padding: 0px;
 	border-bottom: #e2e2e2 2px solid;
 	border-left: #e2e2e2 2px solid;
-	
 }
 
 .preview-word-eng {
@@ -187,95 +347,89 @@ b, strong {
 }
 
 .search-img {
-	
 	margin-top: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50px;
-    padding-left: 0px;
-
-}
-.content-inline1{
-
-	width: 60px;
-    padding-left: 0px;
-    float: left;
-}
-
-.content-inline2{
-    padding-left: 0px;
-    width: 100px;
-    margin-top: 17px;
-}
-.content-inline3{
-
+	height: 50px;
+	width: 50px;
+	border-radius: 50px;
 	padding-left: 0px;
-   
 }
 
-.content-inline4{
- 
-    float: left;
-    width: 100px;
-    margin-top: 20px;
-    font-size: 20px;
-    border-left: solid #dd4b39;
-    padding-left: 15px;
+.content-inline1 {
+	width: 60px;
+	padding-left: 0px;
+	float: left;
 }
-.content-combine{
+
+.content-inline2 {
+	padding-left: 0px;
+	width: 100px;
+	margin-top: 17px;
+}
+
+.content-inline3 {
+	padding-left: 0px;
+}
+
+.content-inline4 {
+	float: left;
+	width: 100px;
+	margin-top: 20px;
+	font-size: 20px;
+	border-left: solid #dd4b39;
+	padding-left: 15px;
+}
+
+.content-combine {
 	width: 115px;
-    height: 70px;
-    float: left;
+	height: 70px;
+	float: left;
 }
-.search-text-box{
-	width : 500px;
-	height : 50px;
-	margin-left : 50px;
-	font-size : 20px;
+
+.search-text-box {
+	width: 500px;
+	height: 50px;
+	margin-left: 50px;
+	font-size: 20px;
 }
 </style>
 
 </head>
+<body>
+	<div class="mainpage-wrapper">
 
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
-<body class="hold-transition skin-red-light fixed">
-	<div class="wrapper">
+		<!-- 헤더 시작 -->
+		<div class="mainpage-header">
+			<div class="mainlogo">SeyaWord</div>
 
-		<%-- <!-- header -->
-		<c:import url="/WEB-INF/views/includes/logout.jsp"></c:import>
-		<!-- /header --> --%>
-		<!-- header -->
-		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-		<!-- /header -->
+			<!-- 메인써취 -->
+			<div class="searchdiv">
+				<form action="/selectsearch.do" method="get" class="sidebar-form">
+					<div class="input-group">
+						<input type="text" name="keyword" class="form-control"
+							placeholder="단어장 검색.."> <span class="input-group-btn">
+							<button type="submit" id="search-btn" class="btn btn-flat">
+								<i class="fa fa-search"></i>
+							</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 헤더 끝 -->
 
-		<div class="content-wrapper">
-			<!-- 	<div class="jumbotron">
-			</div>  /.jumbotron -->
+		<!-- 본문 -->
+		<div class="main-content-wrapper">
 			<div class="search-result">
-			   <div class="search-text-box">
-			   		${ param.keyword } 단어장 찾아보기
-			   </div>
+				<!-- 검색결과 -->
+				<div class="search-content-title">
+					<img class="content-title-img"
+						src="/upload/profile/searchicon2.png">${ param.keyword } 의
+					검색결과
+				</div>
+				<!-- 검색결과  끝-->
 				<!-- 목록에서 단어장이름, 아이디를 뱉을곳 시작 -->
 				<c:forEach items="${list}" var="list">
+					<form action=""></form>
 					<!-- 목록 전체를 덮을 박스 -->
 					<div class="search-result-list">
 						<div class="search-result-content">
@@ -287,8 +441,8 @@ desired effect
 									<img class="search-img" src="/upload/profile/${list.userImage}">
 								</div>
 								<div class="content-combine">
-								<div class="content-inline2">${list.nickName }</div>
-								<div class="content-inline3">${list.count } 단어</div>
+									<div class="content-inline2">${list.nickName }</div>
+									<div class="content-inline3">${list.count }단어</div>
 								</div>
 								<div class="content-inline4">${list.wordbookName}</div>
 							</div>
@@ -323,26 +477,14 @@ desired effect
 
 
 			</div>
-
-
 		</div>
-		<!-- /.Content Wrapper -->
-
-		<!-- Main Footer -->
-
-		<footer class="main-footer">
-
-			<!-- Default to the right -->
-			<strong>Copyright &copy; 2019 <a href="#">Team GeSe</a>
-			</strong>
-
-		</footer>
-		<!-- /footer -->
-
-		<div class="control-sidebar-bg"></div>
-
+		<!-- 본문 끝 -->
 	</div>
-	<!-- ./wrapper -->
+
+
+
+
+
 
 
 

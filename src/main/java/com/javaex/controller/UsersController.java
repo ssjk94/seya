@@ -184,8 +184,8 @@ public class UsersController {
 				bout.write(fileData);
 
 				System.out.println(file.getOriginalFilename());
-				usersVo.setUserImage(saveName); // "upload/"+filepath였던곳 잠깐 바꿈
-
+				usersVo.setUserImage(saveName);
+				
 				if (bout != null) {
 					bout.close();
 				}
@@ -294,7 +294,7 @@ public class UsersController {
 		model.addAttribute("list", list);
 		
 		
-		return "main/searchform";
+		return "main/seyasearch";
 	}
 
 	// 메인페이지
@@ -349,5 +349,20 @@ public class UsersController {
 		map.put("cnt", count);
 		return map;
 	}
+	
+	//네이버 아이디로 로그인 
+  	@RequestMapping(value="login", method=RequestMethod.GET)
+	public String loginGET() {
+		System.out.println("네아로 확인 login");
+		return "main/seyamain";
+	}
+	
+	@RequestMapping(value="loginpostnaver", method=RequestMethod.GET)
+	public String loginPOSTNaver(HttpSession session) {
+		
+		System.out.println("네아로 확인 loginpostnaver");
+		return "main/loginpostnaver";
+	}
 
+	
 }

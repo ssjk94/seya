@@ -4,12 +4,14 @@
 <style>
 h3.gaeyeya {
     font-size: 22px;
-    text-align: center
+    text-align: center;
+    margin-top : 0px;
+    margin-bottom: 15px;
 }
 
 p.side-cont {
     padding: 10px;
-    text-align: center
+    text-align: center;
 }
 
 .direcIcon {
@@ -18,11 +20,10 @@ p.side-cont {
 }
 
 .user-panel>.img-circle {
-    vertical-align: middle;
-    margin: 0, auto;
-    border: 1px solid black;
-    width: 170px;
-    height: 150px;
+	
+    border: 1px solid white;
+    width: 160px;
+    height: 160px;
 }
 </style>
 
@@ -232,23 +233,7 @@ p.side-cont {
 		</ul>
 		<!-- /.sidebar-menu -->
 		<!-- 다녀간사람 목록 띄우기 --> --%>
-		<div class="sidebar-misc">
-			<div class="sidebar-header">GUEST LIST</div>
-			<ul class="sidebar-menu" data-widget="tree">
-				<ul class="sidebar-list ko-12">
-					<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-						class="center">다녀간사람</span></li>
-					<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-						class="center">다녀간사람</span></li>
-					<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-						class="center">다녀간사람</span></li>
-					<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-						class="center">다녀간사람</span></li>
-					<li class="side-pad"><i class="fa fa-circle-o green"></i> <span
-						class="center">다녀간사람</span></li>
-				</ul>
-			</ul>
-		</div>
+	
 		<!-- 다녀간사람 목록 띄우기 -->
 	</section>
 	<!-- /.sidebar -->

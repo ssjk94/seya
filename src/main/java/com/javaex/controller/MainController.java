@@ -17,8 +17,13 @@ public class MainController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main1() {
-		System.out.println("main1");
+
 		return "main/index";
+	}
+	@RequestMapping(value = "/seyamain", method = RequestMethod.GET)
+	public String seyamain() {
+
+		return "main/seyamain";
 	}
 	
 	
