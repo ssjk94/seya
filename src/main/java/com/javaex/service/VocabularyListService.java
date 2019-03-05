@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.repository.VocabularyListDao;
+import com.javaex.vo.PagingVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
@@ -35,7 +36,6 @@ public class VocabularyListService {
 			if(!arr[i].isEmpty()) {
 				arrList.add(arr[i]);
 			}
-			System.out.println("배열"+arr[i]);
 		}
 		
 		String wordArr[] = new String[arrList.size()];
@@ -45,22 +45,18 @@ public class VocabularyListService {
 		for(int i =0;i<wordArr.length;i++) {
 			wordArr[i] = arrList.get(i);
 			vocabularyListVo.setWordName(wordArr[i]);		
-			seyaList.add(vocabularyListDao.selectWordAndMean(vocabularyListVo));
+			if(vocabularyListDao.selectWordAndMean(vocabularyListVo)!=null) {
+				seyaList.add(vocabularyListDao.selectWordAndMean(vocabularyListVo));
+			}
 		}
-		
-		
-
-		
 		//입력한것중 사전 가져오기
 			
 
 		//배열 길이만큼 워드네임 삽입
 		for(int i =0;i<wordArr.length;i++) {
-			vocabularyListVo.setWordName(wordArr[i]);
+			vocabularyListVo.setWordName(wordArr[i]);	
 			for(int j=0;j<seyaList.size();j++) {
 				// 대소문자 맞추기
-
-				System.out.println((vocabularyListVo.getWordName()).toLowerCase());
 				
 				if((vocabularyListVo.getWordName()).toLowerCase().equals
 						(seyaList.get(j).getSeyaWordName())) {
@@ -82,11 +78,7 @@ public class VocabularyListService {
 	public List<VocabularyListVo> getWordAndMean1(VocabularyListVo vocabularyListVo){
 		
 		List<VocabularyListVo> list = vocabularyListDao.selectAllWord(vocabularyListVo);
-		
-		for(VocabularyListVo a :list) {
-			System.out.println("리스트 서비스 toString"+a.toString());
-		}
-		
+
 		return list;
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,6 +108,57 @@ public class VocabularyListService {
 			}
 		}
 	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+	//페이지 네이션
+	
+	public PagingVo pagenation(PagingVo pagingVo) {
+		pagingVo.setListCnt(10);//한 화면에 보여줄 리스트 갯수
+		
+		if(pagingVo.getTotal()%pagingVo.getListCnt()==0) {
+			pagingVo.setPageLastNum(pagingVo.getTotal()/pagingVo.getListCnt());
+		}else {
+			pagingVo.setPageLastNum(pagingVo.getTotal()/pagingVo.getListCnt()+1);
+		}
+
+		if(pagingVo.getIndex()<1) {
+			pagingVo.setIndex(1);
+		}else if(pagingVo.getIndex()>pagingVo.getPageLastNum()) {
+			pagingVo.setIndex(pagingVo.getPageLastNum());
+		}
+
+		if(pagingVo.getIndex()==pagingVo.getPageLastNum()) {
+			if(pagingVo.getTotal()%pagingVo.getListCnt()==0) {
+				pagingVo.setLastListCnt(pagingVo.getListCnt());
+			}else {
+				pagingVo.setLastListCnt(pagingVo.getTotal()%pagingVo.getListCnt());
+			}
+		}else {
+			pagingVo.setLastListCnt(pagingVo.getListCnt());
+		}
+				
+		if(pagingVo.getIndex()>=4&&pagingVo.getPageLastNum()>=pagingVo.getIndex()+2) {
+			pagingVo.setPageStartNum(pagingVo.getIndex()-2);
+			pagingVo.setPageLastNum(pagingVo.getIndex()+2);
+		}else {
+			if(pagingVo.getIndex()<4) {
+				if(pagingVo.getPageLastNum()>5) {
+					pagingVo.setPageLastNum(5);
+				}
+				pagingVo.setPageStartNum(1);					
+			}else{
+				if(pagingVo.getPageLastNum()<=pagingVo.getIndex()) {
+					pagingVo.setPageLastNum(pagingVo.getIndex());
+					pagingVo.setPageStartNum(pagingVo.getIndex()-4);
+				}else {
+					pagingVo.setPageStartNum(pagingVo.getIndex()-3);
+				}
+			}
+		}
+		
+		//마지막 번호를 알아야함
+		
+		return pagingVo;
+	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -129,7 +172,11 @@ public class VocabularyListService {
 	public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){
 		return vocabularyListDao.selectWordbookAlldirectoryList(urlPathVo);
 	}
-
+	
+	public String getWordbookName(int wordbookNo) {
+		return vocabularyListDao.selectOneWordbookName(wordbookNo);
+	}
+	
 	public URLPathVo getNickName(URLPathVo urlPathVo) {
         return vocabularyListDao.selectOneNickName(urlPathVo);
     }

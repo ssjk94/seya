@@ -56,10 +56,10 @@
 			position: absolute;
 			width: 210px;
 			height: 105px;
-			/*
+			
     		animation-duration: 1s;
   			animation-name: slidein;
-  			*/
+  			
 		}
 		
 		@keyframes slidein {
@@ -78,10 +78,10 @@
 			display: block;
     		text-align: center;
     		padding-top: 35px;
-    		/*
+    		
     		animation-duration: 1s;
   			animation-name: slidein;
-  			*/
+  			
 		}
 		.pairSetGameWordBox{
 			width: 210px;
@@ -116,8 +116,9 @@
 		.box4{
 			margin-left: 710px;
 		}
-		.clickOn{
+		.choiceblock{
 			color: darkcyan;
+			font-weight: bold;
 		}
 		
 		.modal-footer button{
@@ -168,9 +169,9 @@
 			<!-- Life div -->
 			<div class="pull-right">
 				<p>목숨 : &nbsp;&nbsp;</p>
-				<img alt="" src="dist/images/heart.png">
-				<img alt="" src="dist/images/heart.png">
-				<img alt="" src="dist/images/heart2.gif">
+				<img alt="" src="/dist/images/heart.png">
+				<img alt="" src="/dist/images/heart.png">
+				<img alt="" src="/dist/images/heart2.gif">
 			</div>
 		
 		</div>
@@ -188,28 +189,28 @@
 			
 			<div class="absolute box1 boxline1">
 				<div id="word1" class="pairSetGameWordBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>aaaaaaaaaaa</span>
 				</div>
 			</div>
 				
 			<div class="absolute box2 boxline1">
 				<div id="word2" class="pairSetGameWordBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>bb</span>
 				</div>
 			</div>
 			
 			<div class="absolute box3 boxline1">
 				<div id="word3" class="pairSetGameWordBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>cc</span>
 				</div>
 			</div>
 			
 			<div class="absolute box4 boxline1">
 				<div id="word4" class="pairSetGameWordBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>dd</span>
 				</div>
 			</div>
@@ -221,28 +222,28 @@
 			
 			<div class="absolute box1 boxline2">
 				<div id="mean1"  class="pairSetGameMeanBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>11</span>
 				</div>
 		    </div>
 		    
 		    <div class="absolute box2 boxline2">
 				<div id="mean2"  class="pairSetGameMeanBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>22</span>
 				</div>
 		    </div>
 		    
 		    <div class="absolute box3 boxline2">
 				<div id="mean3"  class="pairSetGameMeanBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>33</span>
 				</div>
 		    </div>
 		    
 		    <div class="absolute box4 boxline2">
 				<div id="mean4"  class="pairSetGameMeanBox">
-					<img alt="" src="dist/images/PairFrame.png">
+					<img alt="" src="/dist/images/PairFrame.png">
 					<span>44</span>
 				</div>
 		    </div>
@@ -286,6 +287,7 @@ var wordIndex;	//3개 랜덤 흩뿌릴때 인덱스 써야함
 var meanIndex;
 var gameLength;//3개이하일경우 길이를 측정해야하는 전역변수
 
+var life=3;
 var gameName = "Pair Word";//${gameName};  게임 네임을 저장하는 변수
 var gameScore = 5; // 게임 스코어 전역변수
 var listlength;
@@ -304,15 +306,131 @@ $(document).ready(function() {
 	gameStart(gameName,gameScore);
 	gameScore = 2222
 	gameScoreUpdate(gameScore);
-	startGame(gameList);
+	startGame();
 });
 
 //modal창 키고나서 스타트게임 함수 실행하고
 //클릭이벤트로다가 끝
 
+	$(".absolute").on("click","div",function(){
+			
+		$(this).find("span").toggleClass("choiceblock");
+			
+		if(num == 1){
+			a1 = $(this).find("span").text();
+			id1 = $(this).attr("id");
+		}
+		
+		if(num == 2){
+			a2 = $(this).find("span").text();
+			id2 = $(this).attr("id");
+			
+			//word부터 시작하는지 mean부터 시작하는지 알기위해
+		if(id1.startsWith( 'w' )){
+			if(success.indexOf(a1)+1==success.indexOf(a2)){
+				console.log("정답");
+					
+				$("#"+id1).hide();
+				$("#"+id2).hide();
+				$("#"+id1).find("span").removeClass("choiceblock");
+				$("#"+id2).find("span").removeClass("choiceblock");
+					
+				gameScore = gameScore + 100;
+				rnum++;//정답 횟수를 체크하는 전역변수
+					
+				gameScoreUpdate(gameScore);
+					
+				//단어장에 있는 단어를 다 사용 하였을때	
+				if(listlength<4 && success.length == rnum+1){
+					//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
+					alert("끄읕");
+				}
+				//지정했던 클래스 삭제
+					
+				//지정했던 클래스 삭제
+					
+			}else {
+				console.log("오답");
+				gameScore = gameScore - 44;
+				gameScoreUpdate(gameScore);
+				
+				$("#"+id1).find("span").removeClass("choiceblock");
+				$("#"+id2).find("span").removeClass("choiceblock");
+				
+				if(id1.startsWith('w') && !id2.startsWith('w')){
+					wrong(a1);
+				}else if(!id1.startsWith('w') && id2.startsWith('w')){
+					wrong(a2);
+				}
+					
+			}
+				
+		}else{//처음에 워드를 누르지 않았을 경우
+			if(success.indexOf(a1)==success.indexOf(a2)+1){
+				console.log("정답");
+					
+				$("#"+id1).hide();
+				$("#"+id2).hide();
+				$("#"+id1).find("span").removeClass("choiceblock");
+				$("#"+id2).find("span").removeClass("choiceblock");
+					
+				gameScore = gameScore + 100;
+				rnum++;//정답 횟수를 체크하는 전역변수
+					
+				gameScoreUpdate(gameScore);
+					
+				//단어장에 있는 단어를 다 사용 하였을때	
+				if(listlength<4 && success.length == rnum+1){
+					//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
+					alert("끄읕");
+				}
+				//지정했던 클래스 삭제
+					
+				//지정했던 클래스 삭제
+					
+			}else {
+				console.log("오답");
+				$("#"+id1).find("span").removeClass("choiceblock");
+				$("#"+id2).find("span").removeClass("choiceblock");
+				gameScore = gameScore - 44;
+				gameScoreUpdate(gameScore);
+				
+				
+				if(id1.startsWith('w') && !id2.startsWith('w')){
+					wrong(a1);
+				}else if(!id1.startsWith('w') && id2.startsWith('w')){
+					wrong(a2);
+				}
+					
+			}
+		}	
+			
+		if(rnum == 4){
+			rnum = 0;
+			startGame();
+		}
+	}//정답 체크 } num ==2
+	
+	//전역변수 초기화 문장
+	if(num == 1){
+		num++;
+	}else{
+		num =1;
+	}
+});
+	//클릭 이벤트 펑션 끝나는곳
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-	function startGame(gameList){
+	function startGame(){
 		//단어장 리스트 갯수확인하는 지역변수
 		listlength = gameList.length
 		console.log("시작");

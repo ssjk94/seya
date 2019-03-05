@@ -69,7 +69,7 @@
 	</update>
 	-->
 	<select id="selectallword" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.VocabularyListVo">
-		select 	w.wordname, w.meanname,w.wordno,wb.wordbookno
+		select 	w.wordname, w.meanname, w.wordno, wb.wordbookno
 		from 	word w,wordbook wb
 		where 	w.wordbookno = wb.wordbookno
 		and 		wb.wordbookno =#{wordbookNo}
@@ -99,5 +99,10 @@
 		set 		meanname = #{meanName}
 		where 	wordno = #{wordNo}
 	</update>	
+	<select id="selectOneWordbookName" resultType="java.lang.String" parameterType="int">
+		select wordbookname
+		from wordbook
+		where wordbookno = #{wordbookNo}
+	</select>
 
 </mapper>

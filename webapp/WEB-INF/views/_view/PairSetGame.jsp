@@ -215,7 +215,8 @@
 		console.log(wordName);
 		console.log(meanName);
 		console.log(success);
-		//현재 배열중 랜덤으로 뽑은 3개	
+		//현재 배열중 랜덤으로 뽑은 3개
+		
 		//다시 보이게
 		for(var i = 1; i<success.length;i++){
 			

@@ -340,7 +340,7 @@ input:disabled {
 	height: 30px;
 }
 .wordbook{
-	border-top: 1px solid;
+	border-top: 3px solid #d2d6de;
 	margin: 10px 0 0 0;
 	padding: 15px 0 0 0;
 }
@@ -403,7 +403,7 @@ desired effect
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
 						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home</a></li>
-								<li>Make Vocabulary</li>
+						<li>Make Vocabulary</li>
 					</ol>
 					<!--/단어장 경로 -->
 				</div>
@@ -418,9 +418,12 @@ desired effect
 					<!-- 페이지 설명 -->
 					<div class="pull-left fa-key">단어 수정</div>
 					<!-- 단어 수정 버튼 -->
-					<form action="">
+					<form name="addvoca" action="${pageContext.request.contextPath}/${URLId}/vocabularylist">
 						<div>
-							<button class="pull-right btn btn-sm bg-navy">저장</button>
+							<input type="hidden" name="directoryNo" value="${directoryNo}">
+							<input type="hidden" name="wordbookNo" value="${wordbookNo}">
+							
+							<button type="button" class="pull-right btn btn-sm bg-navy btnAddVoca">저장</button>
 						</div>
 					</form>
 				</div>
@@ -430,9 +433,20 @@ desired effect
 				
 					<div>
 						<div class="pull-left">제목 : &nbsp;&nbsp;</div>
-						<div>
-							<input type="text" class="wordbookname" value="TOEIC 단어장 단어 300선 2019">
-						</div>
+						
+						<c:choose>
+							<c:when test="${wordbookName eq null}">
+								<div>
+									<input type="text" class="wordbookname" name="wordbookName" value="">
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div>
+									<input type="text" class="wordbookname" name="wordbookName" value="${wordbookName}">
+								</div>
+							</c:otherwise>
+						</c:choose>
+
 					</div>
 					
 					<div class="vocabularycontainer">
@@ -447,11 +461,9 @@ desired effect
 					<!-- 리스트 추가하기 -->
 					<!-- 단어 리스트 추가할 버튼  style="margin-top: 50px;margin-left: 20%;margin-right: 20%;" -->
 					<div class="listaddline">
-						
-						
-						<button type="button" class="btn bg-navy btn-block btn-lg vocamodifybtn">
-							저장하기</button>
-						
+						<button type="button" class="btn bg-navy btn-block btn-lg vocamodifybtn btnAddVoca">
+							저장하기
+						</button>
 					</div>
 
 				</div>
@@ -485,6 +497,39 @@ desired effect
      
      <script type="text/javascript">
      //wordpadname 추가해야함
+     
+     
+     $(".btnAddVoca").on("click",function(){
+    	var wordbookNo = $("[name=wordbookNo]").val();
+    	var directoryNo = $("[name=directoryNo]").val();
+    	var wordName = $("[name=wordName]").val();
+  		var wordbookName = $("[name=wordbookName]").val();
+  		if(doubleSubmitCheck()){
+			return;
+		};
+		
+		$.ajax({
+ 			url : "${pageContext.request.contextPath}/${URLId}/insertWord",
+ 			type : "post",
+ // 			contentType : "application/json",
+ 			data : {wordbookNo: wordbookNo, directoryNo: directoryNo,wordName: wordName,wordbookName: wordbookName},
+ 			dataType : "html",
+ 			success : function(wordbookNo){
+ 			/*성공시 처리해야될 코드 작성*/
+ 				if(wordbookNo == 0){
+ 					alert("단어장 이름을 입력해주세요");
+ 					location.reload();
+ 				}else{
+ 					document.addvoca.wordbookNo.value = wordbookNo
+ 					document.addvoca.submit();
+ 				}
+ 			},
+ 			error : function(XHR, status, error) {
+ 				console.error(status+" : "+error);
+ 			}
+ 		}); 
+     });
+     
      
      function insertWord(wordbookNo,directoryNo) {
  		console.log(wordbookNo);

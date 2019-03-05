@@ -29,6 +29,7 @@
 		from 	wordbook w, directory d, users u
 		where 	w.directoryno = d.directoryno
 		and 		d.userno = u.userno
+		and 		w.wordbooktype = any(0,1)
 		and 		d.directoryno = #{directoryNo}
 	]]>
 	</select>
@@ -45,6 +46,7 @@
 		from 		wordbook w, directory d, users u
 		where 		u.id = #{URLId}
 		and 			w.directoryno = d.directoryno
+		and 			w.wordbooktype = any(0,1)
 		and 			d.userno = u.userno
 		order by 	w.wordbookno asc
 	]]>
@@ -163,5 +165,11 @@
 			insert into word 	(wordno,wordname,meanname,wordbookno)
 			values					(word_seq.nextval,#{wordName},#{meanName},#{wordbookNo})
 		</insert>
-
+		<!-- 단어수 체크 -->
+		<select id="selectWordNum" resultType="int" parameterType="int">
+			select 		count(w.wordno)as wordnum 
+			from 		word w,wordbook wb 
+			where		w.wordbookno = wb.wordbookno
+			and			wb.wordbookno = #{wordbookNo}
+		</select>
 </mapper>

@@ -24,6 +24,7 @@ public class PairSetGameController {
 		PairSetGameVo pair2 = new PairSetGameVo();
 		PairSetGameVo pair3 = new PairSetGameVo();
 		PairSetGameVo pair4 = new PairSetGameVo();
+		PairSetGameVo pair5 = new PairSetGameVo();
 		pair1.setWordNo(1);
 		pair1.setWordName("Jack");
 		pair1.setMeanName("잭");
@@ -42,9 +43,14 @@ public class PairSetGameController {
 		pair4.setMeanName("호랑이");
 		list.add(pair4);
 		
+		pair5.setWordNo(5);
+		pair5.setWordName("Word");
+		pair5.setMeanName("단어");
+		list.add(pair5);
+		
 		md.addAttribute("gameList", list);
 		
-		return "_view/PairSetGame";
+		return "_view/test";
 	}
 	
 	@ResponseBody

@@ -328,7 +328,7 @@ input:disabled {
 	margin: 15px 0 0 38%;
 }
 .wordbook{
-	border-top: 1px solid;
+	border-top: 3px solid #d2d6de;
 	margin: 10px 0 0 0;
 	padding: 15px 0 0 0;
 }
@@ -394,12 +394,9 @@ desired effect
 				<div class="path-name btn-padding">
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
-						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li><a href="#">Tables</a></li>
-						<li class="active">Simple</li>
+						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home</a></li>
+						<li>VocaList</li>
 					</ol>
-
-					
 				</div>
 			</section>
 
@@ -408,258 +405,202 @@ desired effect
 				<!-- 단어장 수정 버튼 과 페이지 설명-->
 				<div id="btnContent">
 					<!-- 페이지 설명 -->
-					<div class="pull-left fa-key">단어 수정</div>
+					<div class="pull-left fa-key">단어 리스트</div>
 					<!-- 단어 수정 버튼 -->
-					<form action="">
-						<div>
-							<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
-						</div>
-						<!-- 단어 추가 버튼 -->
-						<div>
-							<button class="pull-right btn btn-sm bg-navy vocamodi-btn">단어장 추가</button>
-						</div>
-					</form>
+					<c:choose>
+						<c:when test="${URLId eq sessionScope.id}">
+							<!-- 단어 업데이트 버튼 -->
+							<div class="submit">
+								<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
+							</div>
+								<!-- 단어 추가 버튼 -->
+							<form name="addVoca" action="${pageContext.request.contextPath}/${URLId}/addvocabulary">
+							<input name="wordbookName" type="hidden" value="">
+							<input name="wordbookNo" type="hidden" value="${wordbookNo}">
+								<div>
+									<button id="addVoca" type="button" class="pull-right btn btn-sm bg-navy vocamodi-btn">
+										단어 추가
+									</button>
+								</div>
+							</form>
+						</c:when>
+						<c:otherwise>
+							
+							<!-- 갤러리로 튕기기 -->
+							<div>
+								<a href="${pageContext.request.contextPath}/${URLId}">
+									<button class="pull-right btn btn-sm bg-navy vocamodi-btn">단어장으로</button>
+								</a>
+							</div>
+							<c:if test="${sessionScope.id ne null}">
+								<!-- 공유 버튼 -->
+								<div class="share">
+									<button class="pull-right btn btn-sm bg-navy vocamodi-btn">퍼가기</button>
+								</div>
+							</c:if>
+						</c:otherwise>
+					
+					
+					
+					</c:choose>
 				</div>
 				<!-- 단어장 body -->
 				
 				<div style="clear: both;"></div>
 				
-				<div class="wordbook">
-				
+				<form name="updateWord" action="${pageContext.request.contextPath}/${URLId}/wordmodify">
+					<input type="hidden" name="wordbookName" value="">
+					<input type="hidden" name="wordName" value="">
+					<input type="hidden" name="wordbookNo" value="${wordbookNo}">
+				</form>
+
+				<div class="wordbook">				
 					<!-- 단어장 제목나오는 칸 -->
 					<div>
 						<div class="pull-left">제목 : &nbsp;&nbsp;</div>
-						<div>
-							<input type="text" class="wordbookname" value="TOEIC 단어장 단어 300선 2019">
-						</div>
+						<c:choose>
+							<c:when test="${URLId eq sessionScope.id}">
+								<!-- 자기것이면 단어장이름 수정이 가능함 -->
+								<div>
+									<input type="text" name="wordbookName" class="wordbookname" value="${wordbookName}">
+								</div>
+							</c:when>
+							<c:otherwise>
+								<!-- 자기것아니면 오직 읽기만 -->
+								<div>
+									<input type="text" name="wordbookName" class="wordbookname" value="${wordbookName}" readonly="readonly">
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
 					</div>
 
+					<c:choose>
+						<c:when test="${empty vocaList}">
+							<!-- 단어장이 비었을 경우 -->
+							<div class="vocaborder">
+								<p align="center">"단어장이 비어있습니다."</p>
+							</div>
+						</c:when>
+						
+						<c:when test="${URLId eq sessionScope.id}">
+							<!-- 단어장안에 단어가 있는데 자기것일 경우 -->
+							<c:forEach items="${requestScope.vocaList}" var="vocaList">
+								<!-- 실질적으로 반복되는 단어 리스트 칸 -->
+								<!-- 복사를 해야하는 div -->
+								<div class="vocaborder">
+									<!-- word -->
+									<div class="vocafloat vocawordsection">
+										<!-- 단어 -->
+										<div class="vocafloat">
+											<p>단어 :</p>
+										</div>
+										<!-- 텍스트박스 -->
+										<div class="vocafloat textgapbox wordClass">
+											<input type="hidden" name="wordNo" class="wordNo" value="${vocaList.wordNo}">
+											<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}">
+										</div>
+									</div>
+									<!-- mean -->
+									<div class="vocafloat wordgapmean vocawordsection">
+										<!-- 뜻 -->
+										<div class="vocafloat">
+											<p>뜻 :</p>
+										</div>
+										<!-- 민박스 -->
+										<div class="vocafloat textgapbox meanClass">		
+											<input type="hidden" name="wordNo" class="wordNo" value="${vocaList.wordNo}">			
+											<input type="text" name="meanAName" class="mean-textbox"value="${vocaList.meanName}">
+										</div>
+									</div>
+									<!-- 삭제 아이콘이 들어가야할 곳 -->
+									<div class="deleteWord">
+										<input type="hidden" name="wordNo" class="wordNo" value="${vocaList.wordNo}">
+										<button type="button">
+											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										</button>
+									</div>
+								</div>
+								<!-- 복사를 해야하는 div -->
+							</c:forEach>
+						</c:when>
+						
+						<c:otherwise>
+							<!-- 단어장에 단어가 있지만 자기것이 아닐경우 -->
+							<c:forEach items="${requestScope.vocaList}" var="vocaList">
+								<!-- 실질적으로 반복되는 단어 리스트 칸 -->
+								<!-- 복사를 해야하는 div -->
+								<div class="vocaborder">
+									<!-- word -->
+									<div class="vocafloat vocawordsection">
+										<!-- 단어 -->
+										<div class="vocafloat">
+											<p>단어 :</p>
+										</div>
+										<!-- 텍스트박스 -->
+										<div class="vocafloat textgapbox wordClass">
+											<input type="hidden" name="wordNo" class="wordNo" value="${vocaList.wordNo}">
+											<input type="text" name="wordAName" class="word-textbox" value="${vocaList.wordName}" readonly="readonly">
+										</div>
+									</div>
+									<!-- mean -->
+									<div class="vocafloat wordgapmean vocawordsection">
+										<!-- 뜻 -->
+										<div class="vocafloat">
+											<p>뜻 :</p>
+										</div>
+										<!-- 민박스 -->
+										<div class="vocafloat textgapbox meanClass">		
+											<input type="hidden" name="wordNo" class="wordNo" value="${vocaList.wordNo}">			
+											<input type="text" name="meanAName" class="mean-textbox"value="${vocaList.meanName}" readonly="readonly">
+										</div>
+									</div>
+								</div>
+								<!-- 복사를 해야하는 div -->
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+					
+					<form action="${pageContext.request.contextPath}/${URLId}/wordmodify">
+						
+					</form>
+					
 
-					<!-- 실질적으로 반복되는 단어 리스트 칸 -->
-						<!-- 복사를 해야하는 div -->
-						<div class="vocaborder">
-							<!-- word -->
-							<div class="vocafloat vocawordsection">
-								<!-- 단어 -->
-								<div class="vocafloat">
-									<p>단어 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="wordAName" class="word-textbox">
-								</div>
-							</div>
-							<!-- mean -->
-							<div class="vocafloat wordgapmean vocawordsection">
-								<!-- 뜻 -->
-								<div class="vocafloat">
-									<p>뜻 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">					
-									<input type="text" name="meanAName" class="mean-textbox">
-								</div>
-							</div>
-							<!-- 삭제 아이콘이 들어가야할 곳 -->
-							<div class="deleteWord">
-								<button type="button">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-						<!-- 복사를 해야하는 div -->
-						
-						
-						
-						
-						
-						
-						
-						
-						<!-- 실질적으로 반복되는 단어 리스트 칸 -->
-						<!-- 복사를 해야하는 div -->
-						<div class="vocaborder">
-							<!-- word -->
-							<div class="vocafloat vocawordsection">
-								<!-- 단어 -->
-								<div class="vocafloat">
-									<p>단어 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="wordAName" class="word-textbox">
-								</div>
-							</div>
-							<!-- mean -->
-							<div class="vocafloat wordgapmean vocawordsection">
-								<!-- 뜻 -->
-								<div class="vocafloat">
-									<p>뜻 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">					
-									<input type="text" name="meanAName" class="mean-textbox">
-								</div>
-							</div>
-							<!-- 삭제 아이콘이 들어가야할 곳 -->
-							<div class="deleteWord">
-								<button type="button">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
-						<!-- 복사를 해야하는 div -->
-						<div class="vocaborder">
-							<!-- word -->
-							<div class="vocafloat vocawordsection">
-								<!-- 단어 -->
-								<div class="vocafloat">
-									<p>단어 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="wordAName" class="word-textbox">
-								</div>
-							</div>
-							<!-- mean -->
-							<div class="vocafloat wordgapmean vocawordsection">
-								<!-- 뜻 -->
-								<div class="vocafloat">
-									<p>뜻 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">					
-									<input type="text" name="meanAName" class="mean-textbox">
-								</div>
-							</div>
-							<!-- 삭제 아이콘이 들어가야할 곳 -->
-							<div class="deleteWord">
-								<button type="button">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
-						<!-- 복사를 해야하는 div -->
-						<div class="vocaborder">
-							<!-- word -->
-							<div class="vocafloat vocawordsection">
-								<!-- 단어 -->
-								<div class="vocafloat">
-									<p>단어 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="wordAName" class="word-textbox">
-								</div>
-							</div>
-							<!-- mean -->
-							<div class="vocafloat wordgapmean vocawordsection">
-								<!-- 뜻 -->
-								<div class="vocafloat">
-									<p>뜻 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">					
-									<input type="text" name="meanAName" class="mean-textbox">
-								</div>
-							</div>
-							<!-- 삭제 아이콘이 들어가야할 곳 -->
-							<div class="deleteWord">
-								<button type="button">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
-						<!-- 복사를 해야하는 div -->
-						<div class="vocaborder">
-							<!-- word -->
-							<div class="vocafloat vocawordsection">
-								<!-- 단어 -->
-								<div class="vocafloat">
-									<p>단어 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="wordAName" class="word-textbox">
-								</div>
-							</div>
-							<!-- mean -->
-							<div class="vocafloat wordgapmean vocawordsection">
-								<!-- 뜻 -->
-								<div class="vocafloat">
-									<p>뜻 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">					
-									<input type="text" name="meanAName" class="mean-textbox">
-								</div>
-							</div>
-							<!-- 삭제 아이콘이 들어가야할 곳 -->
-							<div class="deleteWord">
-								<button type="button">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-						<!-- 복사를 해야하는 div --><!-- 실질적으로 반복되는 단어 리스트 칸 -->
-						<!-- 복사를 해야하는 div -->
-						<div class="vocaborder">
-							<!-- word -->
-							<div class="vocafloat vocawordsection">
-								<!-- 단어 -->
-								<div class="vocafloat">
-									<p>단어 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">
-									<input type="text" name="wordAName" class="word-textbox">
-								</div>
-							</div>
-							<!-- mean -->
-							<div class="vocafloat wordgapmean vocawordsection">
-								<!-- 뜻 -->
-								<div class="vocafloat">
-									<p>뜻 :</p>
-								</div>
-								<!-- 텍스트박스 -->
-								<div class="vocafloat textgapbox">					
-									<input type="text" name="meanAName" class="mean-textbox">
-								</div>
-							</div>
-							<!-- 삭제 아이콘이 들어가야할 곳 -->
-							<div class="deleteWord">
-								<button type="button">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-						<!-- 복사를 해야하는 div -->
-						
-						
-						
-						
 						
 
-
+					세션:${ sessionScope.id}
+					url:${URLId }
 					<!-- 페이지 네이션 -->
+					<form name="pagenationForm" action="${pageContext.request.contextPath}/${URLId}/vocabularylist">
+						<input type="hidden" name="wordbookNo" value="">
+						<input type="hidden" name="wordbookName" value="">
+						<input type="hidden" name="index" value="">
+					</form>
 					<div id="pagenation">
 						<ul class="pagination pagination-sm no-margin">
-			                <li><a href="#">«</a></li>
-			                <li><a href="#">1</a></li>
-			                <li><a href="#">2</a></li>
-			                <li><a href="#">3</a></li>
-			                <li><a href="#">4</a></li>
-			                <li><a href="#">5</a></li>
-			                <li><a href="#">»</a></li>
-		            	</ul>
+							<li><a href="#">«</a></li>
+							<c:forEach var="i" begin="${pagingVo.pageStartNum}" end="${pagingVo.pageLastNum}">
+								<li><a href="#"><c:out value="${i}" /></a></li>
+							</c:forEach>
+							<li><a href="#">»</a></li>
+		              </ul>
 					</div>
 					<!-- 확인 버튼 -->
-					<div>
-						<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
-					</div>
+					<c:choose>
+						<c:when test="${URLId eq sessionScope.id}">
+							<div class="submit">
+								<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div>
+							<!-- 메인으로 걸어주기 -->
+								<a href="${pageContext.request.contextPath}/${URLId}">
+									<button class="pull-right btn btn-sm bg-navy vocamodi-btn">메인으로</button>
+								</a>
+							</div>
+						</c:otherwise>
+					</c:choose>					
 				</div>
 			</section>
 			<!-- /.content -->
@@ -696,55 +637,130 @@ desired effect
 //새로고침
 
 var wordAndMean="";
+var wordNo=5;
+var word;
+
+
+$("#addVoca").on("click",function(){
+	//바뀐 제목의 값이 히든값으로 저장하는 문장
+	
+	var wordbookName=$(".wordbook").find(".wordbookname").val();
+	document.addVoca.wordbookName.value = wordbookName;
+	document.addVoca.submit();
+});
+
+$(".submit>button").on("click",function(){
+	
+	if(wordAndMean != "" || $(".wordbook").find($('input[name="wordbookName"]')).val() != ""){
+		
+		document.updateWord.wordName.value = wordAndMean;
+		document.updateWord.wordbookName.value = $(".wordbook").find($('input[name="wordbookName"]')).val();
+		document.updateWord.submit();
+	}
+});
+
+
+$(".wordClass").focusout(function(){
+	
+	wordNo=$(this).find($('input[name="wordNo"]')).val();
+	word = $(this).find($('input[name="wordAName"]')).val();
+	var str = wordNo+" "+'0'+" "+word+"\n";
+	wordAndMean = wordAndMean + str;
+});
+
+$(".meanClass").focusout(function(){
+	wordNo=$(this).find($('input[name="wordNo"]')).val();
+	word = $(this).find($('input[name="meanAName"]')).val();
+	var str = wordNo+" "+'1'+" "+word+"\n";
+	wordAndMean = wordAndMean + str;
+	console.log(wordAndMean);
+});
+
+$(".deleteWord>button").on("click",function(){
+	
+	wordNo=$(this).prev().val();
+	
+	 $.ajax({
+		    url : "${pageContext.request.contextPath}/${URLId}/deleteWord",
+		    type : "post",
+//		    contentType : "application/json",
+		    data : {wordNo: wordNo},
+		    dataType : "html",
+		    success : function(){
+		    /*성공시 처리해야될 코드 작성*/
+		        refreshMemList();
+		    },
+		    error : function(XHR, status, error) {
+		    console.error(status+" : "+error);
+		    }
+		});
+});
+
+$(".share").on("click",function(){
+	var wordbookNo=${wordbookNo};
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/${URLId}/share",
+		type : "post",
+//			contentType : "application/json",
+		data : {wordbookNo: wordbookNo},
+		dataType : "html",
+		success : function(){
+		/*성공시 처리해야될 코드 작성*/
+			alert('가져갔어요');
+			refreshMemList();
+		},
+		error : function(XHR, status, error) {
+		console.error(status+" : "+error);
+		}
+	});	
+});
+
 
 function refreshMemList(){
 
 	location.reload();
 };
 
-	function updateSubmit() {
-		//제목 밸류 받고
-		//컨텐츠 밸류 받고
-		//섭밋 실행문 실행
-		if(wordAndMean != "" || document.header.wordbookName.value != ""){
-			//워드와 민의 일정한 값
-			document.updateWM.wordName.value = wordAndMean;
-			//바뀐 제목의 값이 히든값으로 저장하는 문장
-			document.updateWM.wordbookName.value = document.header.wordbookName.value;
-			document.updateWM.submit();
-		}else{
-			location.href = "/${URLId}";
-		}
-	}
-		function focusout(wordNo,seperator,word) {
+$(document).ready(function() {
+	var allPageNum = $(".pagination").find("a").text();
+	var nowPageIndex=allPageNum.indexOf("${pagingVo.index}") + 1;
 	
-			var arr = wordNo+" "+seperator+" "+word+"\n";
-			
-			wordAndMean = wordAndMean + arr;
-			console.log(arr);
-			console.log(wordAndMean)
-			
-			
-		}
+	$(".pagination li:nth-child("+nowPageIndex+")").addClass("active");
+	
+	//몇번째 자식이냐에 포커스만 주면 끝
+	
+	if(${pagingVo.index}==1){
+		$(".pagination>li:first").find("a").addClass("disabled");
+	}
+	if(${pagingVo.index}==${pagingVo.pageLastNum}){
+		$(".pagination>li:last").find("a").addClass("disabled");
+	}
+});
 
-		function deleteWord(wordNo) {
-	        console.log(wordNo);
-	        
-	        $.ajax({
-	            url : "${pageContext.request.contextPath}/${URLId}/deleteWord",
-	            type : "post",
-//	            contentType : "application/json",
-	            data : {wordNo: wordNo},
-	            dataType : "html",
-	            success : function(){
-	            /*성공시 처리해야될 코드 작성*/
-	                refreshMemList();
-	            },
-	            error : function(XHR, status, error) {
-	            console.error(status+" : "+error);
-	            }
-	        });
-	    };
+
+$(".pagination").on("click","a",function page(){
+	var wordbookName='${wordbookName}';
+	var wordbookNo = ${wordbookNo};
+	if($(this).text()=="≪"){
+		document.pagenationForm.wordbookName.value=wordbookName;
+		document.pagenationForm.wordbookNo.value=wordbookNo;
+		document.pagenationForm.index.value=${pagingVo.index}-1;
+	}else if($(this).text()=='≫'){
+		document.pagenationForm.wordbookName.value=wordbookName;
+		document.pagenationForm.wordbookNo.value=wordbookNo;
+		document.pagenationForm.index.value=${pagingVo.index}+1;
+	}else{
+		nowpageNum=$(this).text();
+		document.pagenationForm.wordbookName.value=wordbookName;
+		document.pagenationForm.wordbookNo.value=wordbookNo;
+		document.pagenationForm.index.value = nowpageNum;
+	}
+	document.pagenationForm.submit();
+	
+});
+
+
 </script>
 
 

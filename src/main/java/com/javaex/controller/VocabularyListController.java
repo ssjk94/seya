@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.VocabularyListService;
+import com.javaex.vo.PagingVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
@@ -24,7 +25,7 @@ public class VocabularyListController {
 	VocabularyListService vocabularyListService;
 	
 	@RequestMapping(value = "{URLId}/vocabularylist", method = RequestMethod.GET)
-	public String wordbook(URLPathVo urlPathVo,VocabularyListVo vocabularyListVo,Model md,HttpServletRequest req) {
+	public String wordbook(URLPathVo urlPathVo,VocabularyListVo vocabularyListVo,Model md,PagingVo pagingVo) {
 		//no가 있을경우 와
 		//no가 없을경우의 리스트 작성을 해야함
 		//리스트 컨트롤러
@@ -33,18 +34,39 @@ public class VocabularyListController {
 		
 		System.out.println("보카리스트컨트롤러"+vocabularyListVo.getWordbookNo());
 		System.out.println("보카리스트컨트롤러 디렉"+ urlPathVo.getDirectoryNo());
+		//워드북 네임을 가지고 set
+		vocabularyListVo.setWordbookName(vocabularyListService.getWordbookName(vocabularyListVo.getWordbookNo()));
 		
-		List<VocabularyListVo> vocaList1=vocabularyListService.getWordAndMean1(vocabularyListVo);
-		
+		List<VocabularyListVo> vocaList=vocabularyListService.getWordAndMean1(vocabularyListVo);
 		//디렉토리
 		List<WordbookVo> directoryList = vocabularyListService.getWordbookAlldirectoryList(urlPathVo);
-		//현재 셀렉키 썻음 새로 고쳐야할 필요가 있음 서비스에서는 나오지않음 여기서만 나옴
+
+		pagingVo.setTotal(vocaList.size());
+		pagingVo = vocabularyListService.pagenation(pagingVo);
+		
+		for(VocabularyListVo a:vocaList) {
+			System.out.println("보카리스트서비스 투스트링"+a.toString());
+		}
+		
+		//리스트 잘라주는 문장 들어가야함
+		try {
+			
+			System.out.println("시작"+pagingVo.getListCnt()*(pagingVo.getIndex()-1));
+			System.out.println("끝"+(pagingVo.getListCnt()*(pagingVo.getIndex()-1)+pagingVo.getLastListCnt()));
+			vocaList = vocaList.subList(
+					pagingVo.getListCnt()*(pagingVo.getIndex()-1),
+					pagingVo.getListCnt()*(pagingVo.getIndex()-1)+pagingVo.getLastListCnt());
+
+		}catch (IndexOutOfBoundsException e) {
+			System.out.println("보카리스트 바운드 초과");
+		}
+		
 		
 		md.addAttribute("wordbookNo", vocabularyListVo.getWordbookNo());
 		md.addAttribute("wordbookName", vocabularyListVo.getWordbookName());
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList", directoryList);
-		md.addAttribute("vocaList", vocaList1);
+		md.addAttribute("vocaList", vocaList);
 		md.addAttribute("urlPathVo", vocabularyListService.getNickName(urlPathVo));
 		return "_view/vocabularylist";
 	}

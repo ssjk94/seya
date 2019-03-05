@@ -69,6 +69,10 @@ public class VocabularyListDao {
 	public void updateMeanName(VocabularyListVo vocabularyListVo) {
 		sqlSession.update("vocabularylist.updateMeanName", vocabularyListVo);
 	}
+	//단어장 제목 가져오는 reposit
+	public String selectOneWordbookName(int wordbookNo) {
+		return sqlSession.selectOne("vocabularylist.selectOneWordbookName", wordbookNo);
+	}
 /////////////////////////////////////////////////////////////////////////////////////////////
 	//디렉토리 리스트
 	public List<WordbookVo> selectWordbookAlldirectoryList(URLPathVo urlPathVo){

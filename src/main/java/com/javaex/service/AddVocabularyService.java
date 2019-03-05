@@ -15,13 +15,16 @@ public class AddVocabularyService {
 	@Autowired
 	AddVocabularyDao addVocabularyDao;
 	
+	public URLPathVo allDirectoryInsert(URLPathVo urlPathVo) {
+		return addVocabularyDao.selectDirectoryNoInfo(urlPathVo);
+	}
+	
 	//디렉토리 목록 보여주는 리스트
 		public List<WordbookVo> getWordbookAlldirectoryList(URLPathVo urlPathVo){
 			return addVocabularyDao.selectWordbookAlldirectoryList(urlPathVo);
 		}
 
 		public URLPathVo getNickName(URLPathVo urlPathVo) {
-			// TODO Auto-generated method stub
 			return addVocabularyDao.selectOneNickName(urlPathVo);
 		}
 }

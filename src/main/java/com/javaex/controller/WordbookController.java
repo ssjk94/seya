@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.WordbookService;
+import com.javaex.vo.PagingVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
@@ -26,7 +27,7 @@ public class WordbookController {
 	
 	//사용자 아이디로 들어갔을때 갤러리 출력 컨트롤러
 	@RequestMapping(value = "{URLId}", method = RequestMethod.GET)
-	public String wordbook(URLPathVo urlPathVo,Model md) {
+	public String wordbook(URLPathVo urlPathVo,PagingVo pagingVo,Model md) {
 		
 		
 		
@@ -35,13 +36,28 @@ public class WordbookController {
 		
 		List<WordbookVo> directoryList = wordbookService.getWordbookAlldirectoryList(urlPathVo);
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
+		//워드북의 갯수
+		pagingVo.setTotal(wordbookList.size());
+		pagingVo = wordbookService.pagenation(pagingVo);
+		
+		//리스트 잘라주는 문장 들어가야함
+		try {
+			wordbookList = wordbookList.subList(
+					pagingVo.getListCnt()*(pagingVo.getIndex()-1),
+					pagingVo.getListCnt()*(pagingVo.getIndex()-1)+pagingVo.getLastListCnt());
+		}catch (IndexOutOfBoundsException e) {
+			
+		}
+		
+		System.out.println(pagingVo.toString());
+		
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		md.addAttribute("directoryList",directoryList);
 		md.addAttribute("wordbookList",wordbookList);		
 		md.addAttribute("urlPathVo", wordbookService.getNickName(urlPathVo));
 		//디렉토리에 단어장이 없을때 디렉토리 토리토리
 		md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
-
+		md.addAttribute("pagingVo", pagingVo);
 		return "_view/gallery";
 	}
 	//리스트 출력 컨트롤러

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.repository.WordbookDao;
+import com.javaex.vo.PagingVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.VocabularyListVo;
 import com.javaex.vo.WordbookVo;
@@ -25,8 +26,16 @@ public class WordbookService {
 		
 		if(urlPathVo.getDirectoryNo()==0) {
 			list = wordbookDao.selectDefaultWordbookList(urlPathVo);
+			//단어수를 뽑아내기 위한 실행문
+			for(int i=0;i<list.size();i++) {
+				list.get(i).setWordNum(wordbookDao.selectWordNum(list.get(i).getWordbookNo()));
+			}
 		}else {
 			list = wordbookDao.selectDirectoryWordbookList(urlPathVo);
+			//단어수를 뽑아내기 위한 실행문
+			for(int i=0;i<list.size();i++) {
+				list.get(i).setWordNum(wordbookDao.selectWordNum(list.get(i).getWordbookNo()));
+			}
 		}
 		return list;
 	}
@@ -83,6 +92,55 @@ public class WordbookService {
 			//공유 불가능으로 업데이트
 			wordbookDao.updateWordbookAccess1(wordbookvo);
 		}
+	}
+	//페이지네이션 서비스 실행부분
+	public PagingVo pagenation(PagingVo pagingVo) {
+		pagingVo.setListCnt(9);//한 화면에 보여줄 리스트 갯수
+		
+		if(pagingVo.getTotal()%pagingVo.getListCnt()==0) {
+			pagingVo.setPageLastNum(pagingVo.getTotal()/pagingVo.getListCnt());
+		}else {
+			pagingVo.setPageLastNum(pagingVo.getTotal()/pagingVo.getListCnt()+1);
+		}
+
+		if(pagingVo.getIndex()<1) {
+			pagingVo.setIndex(1);
+		}else if(pagingVo.getIndex()>pagingVo.getPageLastNum()) {
+			pagingVo.setIndex(pagingVo.getPageLastNum());
+		}
+
+		if(pagingVo.getIndex()==pagingVo.getPageLastNum()) {
+			if(pagingVo.getTotal()%pagingVo.getListCnt()==0) {
+				pagingVo.setLastListCnt(pagingVo.getListCnt());
+			}else {
+				pagingVo.setLastListCnt(pagingVo.getTotal()%pagingVo.getListCnt());
+			}
+		}else {
+			pagingVo.setLastListCnt(pagingVo.getListCnt());
+		}
+				
+		if(pagingVo.getIndex()>=4&&pagingVo.getPageLastNum()>=pagingVo.getIndex()+2) {
+			pagingVo.setPageStartNum(pagingVo.getIndex()-2);
+			pagingVo.setPageLastNum(pagingVo.getIndex()+2);
+		}else {
+			if(pagingVo.getIndex()<4) {
+				if(pagingVo.getPageLastNum()>5) {
+					pagingVo.setPageLastNum(5);
+				}
+				pagingVo.setPageStartNum(1);					
+			}else{
+				if(pagingVo.getPageLastNum()<=pagingVo.getIndex()) {
+					pagingVo.setPageLastNum(pagingVo.getIndex());
+					pagingVo.setPageStartNum(pagingVo.getIndex()-4);
+				}else {
+					pagingVo.setPageStartNum(pagingVo.getIndex()-3);
+				}
+			}
+		}
+		
+		//마지막 번호를 알아야함
+		
+		return pagingVo;
 	}
 	
 }

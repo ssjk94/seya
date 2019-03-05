@@ -71,4 +71,8 @@ public class WordbookDao {
 		public void updateWordbookAccess1(WordbookVo wordbookvo) {
 			sqlSession.update("wordbook.updateWordbookAccess1", wordbookvo);
 		}
+		//단어의 숫자를 가져오기 위한 Dao
+		public int selectWordNum(int wordbookNo){
+			return sqlSession.selectOne("wordbook.selectWordNum",wordbookNo);
+		}
 }

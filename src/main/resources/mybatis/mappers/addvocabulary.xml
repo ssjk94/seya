@@ -16,4 +16,14 @@
 		ORDER BY DIRECTORYNO ASC
 		]]>
 	</select>
+	<!-- 디렉토리 정보가 없을경우 -->
+	<select id="selectDirectoryNoInfo" resultType="com.javaex.vo.URLPathVo" parameterType="com.javaex.vo.URLPathVo">
+		select * 
+		from  (select 	d.directoryno
+	  			  from 		directory d,users u
+	  			  where 	u.id=#{URLId}
+	  			  and 		u.userno = d.userno
+				  order by d.directoryno)
+		where rownum=1
+	</select>
 </mapper>

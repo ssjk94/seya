@@ -24,6 +24,10 @@ public class AddVocabularyController {
 		
 		List<WordbookVo> directoryList = addVocabularyService.getWordbookAlldirectoryList(urlPathVo);
 		
+		if(urlPathVo.getDirectoryNo() ==0) {
+			urlPathVo.setDirectoryNo(addVocabularyService.allDirectoryInsert(urlPathVo).getDirectoryNo());
+		}
+		System.out.println("디렉토리 엔오"+urlPathVo.getDirectoryNo());
 		//워드북 엔오가 있음
 		md.addAttribute("wordbookNo", urlPathVo.getWordbookNo());
 		md.addAttribute("wordbookName", urlPathVo.getWordbookName());

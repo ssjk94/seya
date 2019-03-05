@@ -19,6 +19,7 @@ public class WordbookVo {
 	private Date wordbookRegdate;
 	private int wordbookAccess;
 	private int wordbookType;
+	private int wordNum;
 	
 	
 	
@@ -27,9 +28,10 @@ public class WordbookVo {
 	public WordbookVo() {
 		super();
 	}
+
 	public WordbookVo(int userNo, int directoryNo, int wordbookNo, String nickName, String userImage,
 			String userContent, String directoryName, String wordbookName, String wordbookMaker, Date wordbookRegdate,
-			int wordbookAccess, int wordbookType) {
+			int wordbookAccess, int wordbookType, int wordNum) {
 		super();
 		this.userNo = userNo;
 		this.directoryNo = directoryNo;
@@ -43,12 +45,20 @@ public class WordbookVo {
 		this.wordbookRegdate = wordbookRegdate;
 		this.wordbookAccess = wordbookAccess;
 		this.wordbookType = wordbookType;
+		this.wordNum = wordNum;
 	}
 
 
-
 	//setter and getter
-	
+
+	public int getWordNum() {
+		return wordNum;
+	}
+
+	public void setWordNum(int wordNum) {
+		this.wordNum = wordNum;
+	}
+
 	public int getUserNo() {
 		return userNo;
 	}
@@ -121,16 +131,15 @@ public class WordbookVo {
 	public void setWordbookType(int wordbookType) {
 		this.wordbookType = wordbookType;
 	}
-	
+
 	//tostring
-	
 	@Override
 	public String toString() {
 		return "WordbookVo [userNo=" + userNo + ", directoryNo=" + directoryNo + ", wordbookNo=" + wordbookNo
 				+ ", nickName=" + nickName + ", userImage=" + userImage + ", userContent=" + userContent
 				+ ", directoryName=" + directoryName + ", wordbookName=" + wordbookName + ", wordbookMaker="
 				+ wordbookMaker + ", wordbookRegdate=" + wordbookRegdate + ", wordbookAccess=" + wordbookAccess
-				+ ", wordbookType=" + wordbookType + "]";
+				+ ", wordbookType=" + wordbookType + ", wordNum=" + wordNum + "]";
 	}
 }
 
