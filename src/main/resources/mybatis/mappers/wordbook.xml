@@ -172,4 +172,16 @@
 			where		w.wordbookno = wb.wordbookno
 			and			wb.wordbookno = #{wordbookNo}
 		</select>
+		<!-- 단어 타입을 체크하려는 셀렉트문  -->
+		<select id="selectWordbookType" resultType="int" parameterType="com.javaex.vo.URLPathVo">
+			select 	wordbooktype 
+			from 	wordbook 
+			where 	wordbookno = #{wordbookNo}
+		</select>
+		<!-- 기본단어장을 삭제하려고 할때 삭제가 아닌 업데이트로 처리 -->
+		<update id="updateDefaultWordbook" parameterType="com.javaex.vo.URLPathVo">
+			update wordbook
+			set wordbooktype = 2
+			where wordbookno = #{wordbookNo}
+		</update>
 </mapper>

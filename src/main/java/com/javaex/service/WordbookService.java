@@ -50,8 +50,13 @@ public class WordbookService {
 	}
 	// 단어장 삭제
 	public void deleteWordbook(URLPathVo urlPathVo) {
-		wordbookDao.deleteWord(urlPathVo);
-		wordbookDao.deleteWordbook(urlPathVo);
+		//기본 단어장을 삭제하려고할때
+		if(wordbookDao.selectWordbookType(urlPathVo)==0) {
+			wordbookDao.updateDefaultWordbook(urlPathVo);
+		}else if(wordbookDao.selectWordbookType(urlPathVo)==1){			
+			wordbookDao.deleteWord(urlPathVo);
+			wordbookDao.deleteWordbook(urlPathVo);
+		}
 	}
 	// 단어장 관련된것을 가져오는 객체
 	//session id로 자기의 첫번째 디렉토리 번호를 찾는것

@@ -64,7 +64,6 @@ p.side-cont {
 		<script type="text/javascript">
 		
 			function refreshMemList(){
-
 				location.reload();
 			};
 		

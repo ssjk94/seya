@@ -83,9 +83,7 @@ public class WordbookController {
 	@RequestMapping(value = "{URLId}/delete", method = RequestMethod.POST)
 	public void wordbookDelete(URLPathVo urlPathVo,Model md) {
 		System.out.println("삭제");
-		System.out.println("워드북 엔오"+urlPathVo.getWordbookNo());
 		wordbookService.deleteWordbook(urlPathVo);
-		
 	}
 	
 	@ResponseBody

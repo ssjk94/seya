@@ -403,7 +403,14 @@ desired effect
 					<!--단어장 경로 -->
 					<ol class="breadcrumb">
 						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li>Make Vocabulary</li>
+						<c:choose>
+							<c:when test="${wordbookName eq null }">
+								<li>Make Vocabulary</li>
+							</c:when>
+							<c:otherwise>
+								<li>Modify Vocabulary</li>
+							</c:otherwise>
+						</c:choose>
 					</ol>
 					<!--/단어장 경로 -->
 				</div>
@@ -416,7 +423,15 @@ desired effect
 			<!-- 단어장 수정 버튼 과 페이지 설명-->
 				<div id="btnContent">
 					<!-- 페이지 설명 -->
-					<div class="pull-left fa-key">단어 수정</div>
+					<c:choose>
+						<c:when test="${wordbookName eq null }">
+							<div class="pull-left fa-key">단어 만들기</div>
+						</c:when>
+						<c:otherwise>
+							<div class="pull-left fa-key">단어 수정</div>
+						</c:otherwise>
+					</c:choose>
+					
 					<!-- 단어 수정 버튼 -->
 					<form name="addvoca" action="${pageContext.request.contextPath}/${URLId}/vocabularylist">
 						<div>
@@ -529,39 +544,6 @@ desired effect
  			}
  		}); 
      });
-     
-     
-     function insertWord(wordbookNo,directoryNo) {
- 		console.log(wordbookNo);
- 		console.log(directoryNo);
- 		var wordName = $("[name=wordName]").val();
- 		var wordbookName = $("[name=wordbookName]").val();
- 		console.log(wordName);
- 		console.log(wordbookName);
-		if(doubleSubmitCheck()){
-			return;
-		}
- 		 $.ajax({
- 			url : "${pageContext.request.contextPath}/${URLId}/insertWord",
- 			type : "post",
- // 			contentType : "application/json",
- 			data : {wordbookNo: wordbookNo, directoryNo: directoryNo,wordName: wordName,wordbookName: wordbookName},
- 			dataType : "html",
- 			success : function(wordbookNo){
- 			/*성공시 처리해야될 코드 작성*/
- 				if(wordbookNo == 0){
- 					alert("단어장 이름을 입력해주세요");
- 					location.reload();
- 				}else{
- 					document.addvoca.wordbookNo.value = wordbookNo
- 					document.addvoca.submit();
- 				}
- 			},
- 			error : function(XHR, status, error) {
- 				console.error(status+" : "+error);
- 			}
- 		}); 
- 	};
  	
  	//중복 submit 방지
  	var doubleSubmitFlag = false;

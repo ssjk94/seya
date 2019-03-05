@@ -523,7 +523,7 @@ desired effect
 								<!-- 단어장 리스트로 들어가는 칸 -->
 								<div>
 									<!-- 단어장 제목들어가는 칸 -->
-									<form id="wordbooklist" action="${pageContext.request.contextPath}/${URLId}/vocabularylist">
+									<form action="${pageContext.request.contextPath}/${URLId}/vocabularylist">
 										<input type="hidden" name="wordbookNo" value="${wordbookVo.wordbookNo}">
 										<input type="hidden" name="wordbookName" value="${wordbookVo.wordbookName}">
 										<div class="profile-content">
@@ -588,12 +588,41 @@ desired effect
 													</c:otherwise>
 												</c:choose>
 											</c:when>
+											<c:when test="${sessionScope.id ne null}">
+												<c:choose>
+													<c:when test="${wordbookVo.wordbookAccess eq 0}">
+														<div>
+															<button class="btn btn-sm shareWordbook changeborder0">
+																<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+															</button>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div>
+															<button class="btn btn-sm shareWordbook changeborder1">
+																<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+															</button>
+														</div>
+													</c:otherwise>
+												</c:choose>
+											</c:when>
 											<c:otherwise>
-												<div>
-													<button class="btn btn-sm shareWordbook">
-														<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
-													</button>
-												</div>
+												<c:choose>
+													<c:when test="${wordbookVo.wordbookAccess eq 0}">
+														<div>
+															<button class="btn btn-sm shareWordbook changeborder0 notLogin">
+																<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+															</button>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div>
+															<button class="btn btn-sm shareWordbook changeborder1 notLogin">
+																<i class="fa fa-save">&nbsp;&nbsp;&nbsp;퍼가기</i>
+															</button>
+														</div>
+													</c:otherwise>
+												</c:choose>
 											</c:otherwise>
 										</c:choose>
 									
@@ -676,13 +705,83 @@ desired effect
 			$(".pagination>li:last").find("a").addClass("disabled");
 		}
 	});
-
+	
+	$(".deleteWordbook").on("click",function(){
+ 		var wordbookNo=$(this).parent().siblings().find($('input[name="wordbookNo"]')).val();
+ 		
+ 		$.ajax({
+			url : "${pageContext.request.contextPath}/${URLId}/delete",
+			type : "post",
+// 			contentType : "application/json",
+			data : {wordbookNo: wordbookNo},
+			dataType : "html",
+			success : function(){
+			/*성공시 처리해야될 코드 작성*/
+				alert('삭제되었습니다');
+				refreshMemList();
+			},
+			error : function(XHR, status, error) {
+			console.error(status+" : "+error);
+			}
+		});
+ 		
+ 	});
+	
 	$(".accessChange").on("click",function(){
+		var wordbookNo=$(this).parents(".infowordbook").prev().find($('input[name="wordbookNo"]')).val();
+		var wordbookAccess;
 		
+		if($(this).hasClass("changeborder0")){
+			wordbookAccess = 0;
+		}else{
+			wordbookAccess = 1;
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${URLId}/change",
+			type : "post",
+// 			contentType : "application/json",
+			data : {wordbookNo: wordbookNo, wordbookAccess: wordbookAccess},
+			dataType : "html",
+			success : function(){
+			/*성공시 처리해야될 코드 작성*/
+				alert('공유 기능이 변경되었습니다.');
+				refreshMemList();
+			},
+			error : function(XHR, status, error) {
+			console.error(status+" : "+error);
+			}
+		});
 	});
 	
 	$(".shareWordbook").on("click",function(){
-		
+		var wordbookNo=$(this).parents(".infowordbook").prev().find($('input[name="wordbookNo"]')).val();
+		if($(this).hasClass("notLogin")){
+			alert("로그인이 필요한 기능입니다.");
+		}else{
+			if($(this).hasClass("changeborder0")){
+				//공유가능	
+				 $.ajax({
+					url : "${pageContext.request.contextPath}/${URLId}/share",
+					type : "post",
+//		 			contentType : "application/json",
+					data : {wordbookNo: wordbookNo},
+					dataType : "html",
+					success : function(){
+					/*성공시 처리해야될 코드 작성*/
+						alert('가져갔어요');
+						refreshMemList();
+					},
+					error : function(XHR, status, error) {
+					console.error(status+" : "+error);
+					}
+				});
+				 
+			}else{
+				//공유불가
+				alert("가져갈 수 없는 단어장입니다.");
+			}
+		}
 	});
  
 	$(".pagination").on("click","a",function page(){
@@ -702,75 +801,12 @@ desired effect
 		
 	});
 
- 	$(".deleteWordbook").on("click",function(){
- 		var wordbookNo=document.wordbooklist.wordbookNo.val();
- 		console.log(wordbookNo);
- 	});
+ 	
 
 //새로고침
 function refreshMemList(){
 	location.reload();
 }
-
-	function deleteWordbook(wordbookNo) {
-		console.log(wordbookNo);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/${URLId}/delete",
-			type : "post",
-// 			contentType : "application/json",
-			data : {wordbookNo: wordbookNo},
-			dataType : "html",
-			success : function(){
-			/*성공시 처리해야될 코드 작성*/
-				alert('삭제되었습니다');
-				refreshMemList();
-			},
-			error : function(XHR, status, error) {
-			console.error(status+" : "+error);
-			}
-		});
-	};
-	
-	function shareWordbook(wordbookNo) {
-		console.log(wordbookNo);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/${URLId}/share",
-			type : "post",
-// 			contentType : "application/json",
-			data : {wordbookNo: wordbookNo},
-			dataType : "html",
-			success : function(){
-			/*성공시 처리해야될 코드 작성*/
-				alert('가져갔어요');
-				refreshMemList();
-			},
-			error : function(XHR, status, error) {
-			console.error(status+" : "+error);
-			}
-		});
-	};
-	
-	function changeWordbook(wordbookNo,wordbookAccess) {
-		console.log(wordbookNo,wordbookAccess);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/${URLId}/change",
-			type : "post",
-// 			contentType : "application/json",
-			data : {wordbookNo: wordbookNo, wordbookAccess: wordbookAccess},
-			dataType : "html",
-			success : function(){
-			/*성공시 처리해야될 코드 작성*/
-				alert('공유 기능이 변경되었습니다.');
-				refreshMemList();
-			},
-			error : function(XHR, status, error) {
-			console.error(status+" : "+error);
-			}
-		});
-	};
-	function doNotShare(){
-		alert('가져갈 수 없는 단어장 입니다.');
-	}
 </script>
 
 

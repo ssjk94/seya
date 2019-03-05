@@ -75,4 +75,12 @@ public class WordbookDao {
 		public int selectWordNum(int wordbookNo){
 			return sqlSession.selectOne("wordbook.selectWordNum",wordbookNo);
 		}
+		//단어 타입을 가져오는 셀렉트문
+		public int selectWordbookType(URLPathVo urlPathVo) {
+			return sqlSession.selectOne("wordbook.selectWordbookType", urlPathVo);
+		}
+		//기본 단어장을 삭제하려고할때 삭제가 아닌 업데이트로 안나오게끔 만드는 문
+		public void updateDefaultWordbook(URLPathVo urlPathVo) {
+			sqlSession.update("wordbook.updateDefaultWordbook",urlPathVo);
+		}
 }

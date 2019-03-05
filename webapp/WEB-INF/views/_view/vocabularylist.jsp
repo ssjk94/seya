@@ -343,6 +343,9 @@ input:disabled {
 #btnContent .pull-left{
 	margin-left: 0px;
 }
+.disabled{
+	pointer-events: none;
+}
 
 /*
 아웃라인을 없애면 버튼같은 푸른색 테두리 없앤다
