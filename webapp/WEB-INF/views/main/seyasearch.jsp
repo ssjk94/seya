@@ -60,13 +60,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	height: 100px;
 }
 
-.mainlogo {
-	width: 330px;
-	font-size: 34px;
-	float: left;
-	text-align: right;
-	margin-right: 15px;
-	margin-top: 40px;
+.main-logo {
+	width: 165px;
+    font-size: 34px;
+    float: left;
+    text-align: center;
+    margin-right: 15px;
+    margin-left: 165px;
+    margin-top: 40px;
+}
+.main-logo:hover {
+	cursor: pointer;
+
 }
 
 .searchdiv {
@@ -134,20 +139,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .search-content-title {
-    width: 303px;
-    height: 50px;
-    float: left;
-    padding-left: 0px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #ffffff;
-    background-color: #262a2e;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    margin-bottom: 16px;
-    margin-left: 50px;
+	width: 303px;
+	height: 50px;
+	float: left;
+	padding-left: 0px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #ffffff;
+	background-color: #262a2e;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	margin-bottom: 16px;
+	margin-left: 50px;
 }
 
 .recommend-wordbook-list {
@@ -195,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .content-title-img {
 	margin-right: 10px;
-    margin-left: -5px;
+	margin-left: -5px;
 }
 
 .content-title-img2 {
@@ -251,12 +256,12 @@ b, strong {
 }
 
 .search-result {
-	width: 900px;
-	height: 868px;
-	background-color: #e9ecef;
-	margin-left: 90px;
-	padding-top: 20px;
-	border-top: 1px solid red;
+	width: 1020px;
+    height: 868px;
+    background-color: #e9ecef;
+    margin-left: 30px;
+    padding-top: 20px;
+    border-top: 1px solid red;
 }
 
 .search-result-list {
@@ -269,7 +274,12 @@ b, strong {
 	margin-left: 50px;
 	border: 1px solid lightgray;
 }
-
+.search-result-list:hover {
+	cursor: pointer;
+	border-bottom : 5px solid #262a2e;
+	-webkit-transition: 0.5s all ease;
+     transition: 0.5s all ease;
+}
 .list-content {
 	margin-left: 10px;
 	width: 780px;
@@ -399,7 +409,8 @@ b, strong {
 
 		<!-- 헤더 시작 -->
 		<div class="mainpage-header">
-			<div class="mainlogo">SeyaWord</div>
+			<form action="/seyamain" id="mainlogoform"></form>
+			<div class="main-logo" id="mainlogo">SeyaWord</div>
 
 			<!-- 메인써취 -->
 			<div class="searchdiv">
@@ -429,40 +440,45 @@ b, strong {
 				<!-- 검색결과  끝-->
 				<!-- 목록에서 단어장이름, 아이디를 뱉을곳 시작 -->
 				<c:forEach items="${list}" var="list">
-					<form action=""></form>
-					<!-- 목록 전체를 덮을 박스 -->
-					<div class="search-result-list">
-						<div class="search-result-content">
-							<!-- 							<div class="list-content"> -->
-							<!-- 목록 닉네임, 단어장이름, 이미지를 뱉을 부분 -->
-							<div class="content-line-1 col-xs-12">
-								<!-- 닉네임, 유저이미지, 단어갯수, 단어장 제목 뱉을곳 -->
-								<div class="content-inline1">
-									<img class="search-img" src="/upload/profile/${list.userImage}">
+					<form action="${list.id}/vocabularylist" class="searchform">
+						<input type="hidden" name="${URLId}" value="${list.id }">
+						<input type="hidden" name="wordbookNo" value="${list.wordbookNo }">
+						<input type="hidden" name="wordbookName" value="${list.wordbookName}">
+						<!-- 목록 전체를 덮을 박스 -->
+						<div class="search-result-list">
+							<div class="search-result-content">
+								<!-- 							<div class="list-content"> -->
+								<!-- 목록 닉네임, 단어장이름, 이미지를 뱉을 부분 -->
+								<div class="content-line-1 col-xs-12">
+									<!-- 닉네임, 유저이미지, 단어갯수, 단어장 제목 뱉을곳 -->
+									<div class="content-inline1">
+										<img class="search-img"
+											src="/upload/profile/${list.userImage}">
+									</div>
+									<div class="content-combine">
+										<div class="content-inline2">${list.nickName }</div>
+										<div class="content-inline3">${list.count }단어</div>
+									</div>
+									<div class="content-inline4">${list.wordbookName}</div>
 								</div>
-								<div class="content-combine">
-									<div class="content-inline2">${list.nickName }</div>
-									<div class="content-inline3">${list.count }단어</div>
+								<!-- 							</div> -->
+								<div class="preview-word col-xs-12">
+									<div class="preview-word-eng col-xs-3">${list.wordArr[0]}</div>
+									<div class="preview-word-eng col-xs-3">${list.wordArr[1]}</div>
+									<div class="preview-word-eng col-xs-3">${list.wordArr[2]}</div>
+									<div class="preview-word-eng col-xs-3">${list.wordArr[3]}</div>
+									<!-- 영어단어를 뱉을 부분 -->
 								</div>
-								<div class="content-inline4">${list.wordbookName}</div>
-							</div>
-							<!-- 							</div> -->
-							<div class="preview-word col-xs-12">
-								<div class="preview-word-eng col-xs-3">${list.wordArr[0]}</div>
-								<div class="preview-word-eng col-xs-3">${list.wordArr[1]}</div>
-								<div class="preview-word-eng col-xs-3">${list.wordArr[2]}</div>
-								<div class="preview-word-eng col-xs-3">${list.wordArr[3]}</div>
-								<!-- 영어단어를 뱉을 부분 -->
-							</div>
-							<div class="preview-mean col-xs-12">
-								<div class="preview-mean-ko col-xs-3">${list.meanArr[0]}</div>
-								<div class="preview-mean-ko col-xs-3">${list.meanArr[1]}</div>
-								<div class="preview-mean-ko col-xs-3">${list.meanArr[2]}</div>
-								<div class="preview-mean-ko col-xs-3">${list.meanArr[3]}</div>
-								<!-- 해석인 한글을 뱉을부분 -->
+								<div class="preview-mean col-xs-12">
+									<div class="preview-mean-ko col-xs-3">${list.meanArr[0]}</div>
+									<div class="preview-mean-ko col-xs-3">${list.meanArr[1]}</div>
+									<div class="preview-mean-ko col-xs-3">${list.meanArr[2]}</div>
+									<div class="preview-mean-ko col-xs-3">${list.meanArr[3]}</div>
+									<!-- 해석인 한글을 뱉을부분 -->
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</c:forEach>
 				<!-- 목록에서 단어장이름, 아이디를 뱉을곳 끝 -->
 
@@ -504,5 +520,16 @@ b, strong {
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
+<script type="text/javascript">
+	$('.search-result-list').click(function () {
+		$('.searchform').submit();
+	});
+		
+	$('#mainlogo').click(function() {
+		$('#mainlogoform').submit();
+	});
+	
+
+</script>
 
 </html>

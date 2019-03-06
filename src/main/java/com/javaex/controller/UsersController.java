@@ -363,6 +363,13 @@ public class UsersController {
 		System.out.println("네아로 확인 loginpostnaver");
 		return "main/loginpostnaver";
 	}
+	// 게임 임시 보내기 폼
+	@RequestMapping("/multiplechoice")
+	public String multipleChoice(HttpSession session, HttpServletRequest req) {
+		
 
+		return "main/multiplechoice";
+	}
+	
 	
 }

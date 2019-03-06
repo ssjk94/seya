@@ -60,14 +60,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	height: 100px;
 }
 
-.mainlogo {
-	width: 330px;
-	font-size: 34px;
-	float: left;
-	text-align: right;
-	margin-right: 15px;
-	margin-top: 40px;
+.main-logo {
+	width: 165px;
+    font-size: 34px;
+    float: left;
+    text-align: center;
+    margin-right: 15px;
+    margin-left: 165px;
+    margin-top: 40px;
 }
+.main-logo:hover {
+	cursor: pointer;
+
+}
+
 
 .searchdiv {
 	width: 500px;
@@ -174,7 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .main-login-body {
 	width: 290px;
-	height: 390px;
+	height: 400px;
 	padding: 10px;
 	border: 1px solid #d4d4d4;
 }
@@ -216,7 +222,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<!-- 헤더 시작 -->
 		<div class="mainpage-header">
-			<div class="mainlogo">SeyaWord</div>
+			<form action="/seyamain" id="mainlogoform"></form>
+			<div class="main-logo" id="mainlogo">SeyaWord</div>
 
 			<!-- 메인써취 -->
 			<div class="searchdiv">
@@ -421,6 +428,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		naver_id_login.setState(state);
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
+		
+		$('#mainlogo').click(function() {
+			$('#mainlogoform').submit();
+		});
 	</script>
 
 

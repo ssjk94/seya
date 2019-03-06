@@ -18,9 +18,11 @@ public class HeaderSearchVo {
 	private String userContent;
 	private String wordName;
 	private String meanName;
+	private String seyaMeanName;
 	private String[] wordArr;
 	private String[] meanArr;
 	private int count;
+	
 	
 	public int getWorkbookAccess() {
 		return workbookAccess;
@@ -106,6 +108,12 @@ public class HeaderSearchVo {
 	public void setMeanName(String meanName) {
 		this.meanName = meanName;
 	}
+	public String getSeyaMeanName() {
+		return seyaMeanName;
+	}
+	public void setSeyaMeanName(String seyaMeanName) {
+		this.seyaMeanName = seyaMeanName;
+	}
 	public String[] getWordArr() {
 		return wordArr;
 	}
@@ -124,18 +132,27 @@ public class HeaderSearchVo {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	public HeaderSearchVo() {
+		super();
+	}
 	@Override
 	public String toString() {
 		return "HeaderSearchVo [workbookAccess=" + workbookAccess + ", wordNo=" + wordNo + ", wordbookNo=" + wordbookNo
 				+ ", wordbookName=" + wordbookName + ", keyword=" + keyword + ", directoryNo=" + directoryNo
 				+ ", directoryName=" + directoryName + ", userNo=" + userNo + ", id=" + id + ", nickName=" + nickName
-				+ ", userImage=" + userImage + ", userContent=" + userContent + ", wordName="
-				+ wordName + ", meanName=" + meanName + ", wordArr=" + Arrays.toString(wordArr) + ", meanArr="
-				+ Arrays.toString(meanArr) + ", count=" + count + "]";
+				+ ", userImage=" + userImage + ", userContent=" + userContent + ", wordName=" + wordName + ", meanName="
+				+ meanName + ", seyaMeanName=" + seyaMeanName + ", wordArr=" + Arrays.toString(wordArr) + ", meanArr="
+				+ Arrays.toString(meanArr) + ", count=" + count + ", getWorkbookAccess()=" + getWorkbookAccess()
+				+ ", getWordNo()=" + getWordNo() + ", getWordbookNo()=" + getWordbookNo() + ", getWordbookName()="
+				+ getWordbookName() + ", getKeyword()=" + getKeyword() + ", getDirectoryNo()=" + getDirectoryNo()
+				+ ", getDirectoryName()=" + getDirectoryName() + ", getUserNo()=" + getUserNo() + ", getId()=" + getId()
+				+ ", getNickName()=" + getNickName() + ", getUserImage()=" + getUserImage() + ", getUserContent()="
+				+ getUserContent() + ", getWordName()=" + getWordName() + ", getMeanName()=" + getMeanName()
+				+ ", getSeyaMeanName()=" + getSeyaMeanName() + ", getWordArr()=" + Arrays.toString(getWordArr())
+				+ ", getMeanArr()=" + Arrays.toString(getMeanArr()) + ", getCount()=" + getCount() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	public HeaderSearchVo() {
-		super();
-	}
+	
 	
 	
 }

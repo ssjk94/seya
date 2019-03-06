@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.repository.FlashcardDao;
 import com.javaex.vo.FlashcardVo;
+import com.javaex.vo.HeaderSearchVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.WordbookVo;
 
@@ -35,5 +36,20 @@ public class FlashcardService {
 		
         return flashcardDao.selectOneNickName(urlPathVo);
     }
+
+	public List<HeaderSearchVo> getWordChoiceList(HeaderSearchVo headerSearchVo) {
+		// TODO Auto-generated method stub
+		return flashcardDao.selectWordChoice(headerSearchVo);
+	}
+
+	public List<HeaderSearchVo> getMeanChoiceList(HeaderSearchVo headerSearchVo) {
+		// TODO Auto-generated method stub
+		return flashcardDao.selectMeanChoice(headerSearchVo);
+	}
+
+	public List<HeaderSearchVo> getBadMeanChoiceList(int wordListSize) {
+				
+		return flashcardDao.selectBadMeanChoice(wordListSize);
+	}
 	
 }

@@ -284,19 +284,7 @@ desired effect
 				<!--게임링크-->
 				<div class="gamerow text-center">
 					<div class="col-xs-4 col-md-4">
-						<form
-							action="${pageContext.request.contextPath}/${URLId}/flashcardgame"
-							method="get">
-							<input name="wordbookNo" type="hidden"
-								value="${flashcardVo.wordbookNo}">
-							<button type="submit"
-								style="background-color: transparent; border: 0px transparent solid;">
-								<img class="flashcard-image"
-									src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
-									alt="플래시 카드">
-								<p class=text-center>플래시 카드</p>
-							</button>
-						</form>
+			
 
 					</div>
 
@@ -307,42 +295,12 @@ desired effect
 						<p class=text-center>짝 맞추기</p>
 					</div>
 					<div class="col-xs-4 col-md-4">
-							<img class="flashcard-image" data-toggle="modal" data-target="#quizModal"
-								src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
-								alt="랜덤 퀴즈">
-							<p class=text-center>랜덤 퀴즈</p>
-			
-						<div class="modal fade" id = "quizModal">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title">사지선다 퀴즈</h4>
-									</div>
-									<div class="modal-body">
-									
-									
-										<p>One fine body&hellip;</p>
-										
-										
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save
-											changes</button>
-									</div>
-								</div>
-								<!-- /.modal-content -->
-							</div>
-							<!-- /.modal-dialog -->
-						</div>
-						<!-- /.modal -->
 
+						<a href="#"><img src="dist/images/question_mark.png"
+							alt="랜덤 퀴즈"> </a>
+						<p class=text-center>랜덤 퀴즈</p>
 					</div>
+				</div>
 			</section>
 			<!-- /.content -->
 		</div>
@@ -355,7 +313,7 @@ desired effect
 	</div>
 	<!-- ./wrapper -->
 
-	<!-- "${pageContext.request.contextPath}/${URLId}/multiplechoice" 써야할지도모름-->
+
 
 	<!-- REQUIRED JS SCRIPTS -->
 
@@ -373,10 +331,4 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 </body>
-
-<script type="text/javascript">
-	
-	
-	
-</script>
 </html>

@@ -210,7 +210,23 @@
 		where nickname = #{nickName}
 	</select>
 
+	<select id="selectWordChoice" resultType="com.javaex.vo.HeaderSearchVo">
+		<![CDATA[
+			select wordname from word where wordbookno = #{wordbookNo}
+		]]>
+	</select>
 
+	<select id="selectMeanChoice" resultType="com.javaex.vo.HeaderSearchVo">
+		<![CDATA[
+			select meanname from word where wordbookno = #{wordbookNo}
+		]]>
+	</select>
 
-
+	<select id="selectBadMeanChoice" parameterType="int" resultType="com.javaex.vo.HeaderSearchVo">
+		<![CDATA[
+			select SEYAMEANNAME from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <#{wordListSize}+1
+		]]>
+	</select>
+	
+	
 </mapper>

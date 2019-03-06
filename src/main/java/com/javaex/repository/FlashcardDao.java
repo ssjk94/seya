@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.FlashcardVo;
+import com.javaex.vo.HeaderSearchVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.WordbookVo;
 
@@ -36,5 +37,20 @@ public class FlashcardDao {
 	public URLPathVo selectOneNickName(URLPathVo urlPathVo) {
         return sqlSession.selectOne("wordbook.selectOneNickName", urlPathVo);
     }
+
+	public List<HeaderSearchVo> selectWordChoice(HeaderSearchVo headerSearchVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("users.selectWordChoice", headerSearchVo);
+	}
+
+	public List<HeaderSearchVo> selectMeanChoice(HeaderSearchVo headerSearchVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("users.selectMeanChoice", headerSearchVo);
+	}
+
+	public List<HeaderSearchVo> selectBadMeanChoice(int wordListSize) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("users.selectBadMeanChoice", wordListSize);	
+	}
 
 }
