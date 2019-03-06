@@ -83,4 +83,7 @@ public class WordbookDao {
 		public void updateDefaultWordbook(URLPathVo urlPathVo) {
 			sqlSession.update("wordbook.updateDefaultWordbook",urlPathVo);
 		}
+		public int realExistUser(URLPathVo urlPathVo) {
+			return sqlSession.selectOne("wordbook.realExistUser", urlPathVo);
+		}
 }

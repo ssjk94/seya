@@ -19,18 +19,19 @@
 	
 	<select id="selectdirectoryWordbookList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
 	<![CDATA[
-		select   u.nickname,
-					w.wordbookno,
-					w.wordbookname,
-					w.wordbookregdate,
-					w.wordbookaccess,
-					w.wordbookmaker,
-					d.directoryno
-		from 	wordbook w, directory d, users u
-		where 	w.directoryno = d.directoryno
-		and 		d.userno = u.userno
-		and 		w.wordbooktype = any(0,1)
-		and 		d.directoryno = #{directoryNo}
+		select   		u.nickname,
+						w.wordbookno,
+						w.wordbookname,
+						w.wordbookregdate,
+						w.wordbookaccess,
+						w.wordbookmaker,
+						d.directoryno
+		from 		wordbook w, directory d, users u
+		where 		w.directoryno = d.directoryno
+		and 			d.userno = u.userno
+		and 			w.wordbooktype = any(0,1)
+		and 			d.directoryno = #{directoryNo}
+		order by 	w.wordbookno asc;
 	]]>
 	</select>
 
@@ -114,74 +115,72 @@
 	
 	</select>
 
-
-<!-- <selectKey keyProperty="wordbookNo" resultType="int">
-
+	<!-- 공유기능 변경을 위한 쿼리문 작성칸 (공유가능으로) -->
+	<update id="updateWordbookAccess0" parameterType="com.javaex.vo.URLPathVo">
+		
+		update  wordbook 
+		set 		wordbookaccess = 0 
+		where wordbookno = #{wordbookNo}
+		
+	</update>
+		
+	<!-- 공유기능 변경을 위한 쿼리문 작성칸 (공유 불가로)-->
+	<update id="updateWordbookAccess1" parameterType="com.javaex.vo.URLPathVo">
+		
+		update  wordbook 
+		set 		wordbookaccess = 1 
+		where wordbookno = #{wordbookNo}
+		
+	</update>
+	<!-- 단어장만들기 -->
+	<insert id="insertWordbook" parameterType="com.javaex.vo.WordbookVo">
+		insert into wordbook (	wordbookno,
+										 	wordbookname,
+										 	wordbookregdate,
+											wordbookaccess,
+											wordbooktype,
+											wordbookmaker,
+											directoryno) 
+		values	(	wordbook_seq.nextval,
+						#{wordbookName},
+						#{wordbookRegdate},
+						#{wordbookAccess},
+						1,
+						#{wordbookMaker},
+						#{directoryNo})
+						
+		<selectKey keyProperty="wordbookNo" resultType="int">
 			select wordbook_seq.currval as wordbookno from dual
-
-		</selectKey> -->
-		<!-- 공유기능 변경을 위한 쿼리문 작성칸 (공유가능으로) -->
-		<update id="updateWordbookAccess0" parameterType="com.javaex.vo.URLPathVo">
-		
-			update  wordbook 
-			set 		wordbookaccess = 0 
-			where wordbookno = #{wordbookNo}
-		
-		</update>
-		
-		<!-- 공유기능 변경을 위한 쿼리문 작성칸 (공유 불가로)-->
-		<update id="updateWordbookAccess1" parameterType="com.javaex.vo.URLPathVo">
-		
-			update  wordbook 
-			set 		wordbookaccess = 1 
-			where wordbookno = #{wordbookNo}
-		
-		</update>
-		<!-- 단어장만들기 -->
-		<insert id="insertWordbook" parameterType="com.javaex.vo.WordbookVo">
-			insert into wordbook (	wordbookno,
-											 	wordbookname,
-											 	wordbookregdate,
-												wordbookaccess,
-												wordbooktype,
-												wordbookmaker,
-												directoryno) 
-			values	(	wordbook_seq.nextval,
-							#{wordbookName},
-							#{wordbookRegdate},
-							#{wordbookAccess},
-							1,
-							#{wordbookMaker},
-							#{directoryNo})
-							
-			<selectKey keyProperty="wordbookNo" resultType="int">
-
-			select wordbook_seq.currval as wordbookno from dual
-
 			</selectKey>
-		</insert>
-		<!-- 단어만들기 -->
-		<insert id="insertWord" parameterType="com.javaex.vo.VocabularyListVo">
-			insert into word 	(wordno,wordname,meanname,wordbookno)
-			values					(word_seq.nextval,#{wordName},#{meanName},#{wordbookNo})
-		</insert>
-		<!-- 단어수 체크 -->
-		<select id="selectWordNum" resultType="int" parameterType="int">
-			select 		count(w.wordno)as wordnum 
-			from 		word w,wordbook wb 
-			where		w.wordbookno = wb.wordbookno
-			and			wb.wordbookno = #{wordbookNo}
-		</select>
-		<!-- 단어 타입을 체크하려는 셀렉트문  -->
-		<select id="selectWordbookType" resultType="int" parameterType="com.javaex.vo.URLPathVo">
-			select 	wordbooktype 
-			from 	wordbook 
-			where 	wordbookno = #{wordbookNo}
-		</select>
-		<!-- 기본단어장을 삭제하려고 할때 삭제가 아닌 업데이트로 처리 -->
-		<update id="updateDefaultWordbook" parameterType="com.javaex.vo.URLPathVo">
-			update wordbook
-			set wordbooktype = 2
-			where wordbookno = #{wordbookNo}
-		</update>
+	</insert>
+	<!-- 단어만들기 -->
+	<insert id="insertWord" parameterType="com.javaex.vo.VocabularyListVo">
+		insert into word 	(wordno,wordname,meanname,wordbookno)
+		values					(word_seq.nextval,#{wordName},#{meanName},#{wordbookNo})
+	</insert>
+	<!-- 단어수 체크 -->
+	<select id="selectWordNum" resultType="int" parameterType="int">
+		select 		count(w.wordno)as wordnum 
+		from 		word w,wordbook wb 
+		where		w.wordbookno = wb.wordbookno
+		and			wb.wordbookno = #{wordbookNo}
+	</select>
+	<!-- 단어 타입을 체크하려는 셀렉트문  -->
+	<select id="selectWordbookType" resultType="int" parameterType="com.javaex.vo.URLPathVo">
+		select 	wordbooktype 
+		from 	wordbook 
+		where 	wordbookno = #{wordbookNo}
+	</select>
+	<!-- 기본단어장을 삭제하려고 할때 삭제가 아닌 업데이트로 처리 -->
+	<update id="updateDefaultWordbook" parameterType="com.javaex.vo.URLPathVo">
+		update wordbook
+		set wordbooktype = 2
+		where wordbookno = #{wordbookNo}
+	</update>
+	<select id="realExistUser" resultType="int" parameterType="com.javaex.vo.URLPathVo">
+		select 
+		count(userno) 
+		from 	users 
+		where 	id = #{URLId}
+	</select>
 </mapper>

@@ -27,10 +27,16 @@ public class WordbookController {
 	
 	//사용자 아이디로 들어갔을때 갤러리 출력 컨트롤러
 	@RequestMapping(value = "{URLId}", method = RequestMethod.GET)
-	public String wordbook(URLPathVo urlPathVo,PagingVo pagingVo,Model md) {
+	public String wordbook(String keyword,URLPathVo urlPathVo,PagingVo pagingVo,Model md) {
 		
+		//URLId에 들어온 값이 진짜 있는 유저인지 알아보는서비스
+		if(!wordbookService.realExistUser(urlPathVo)) {
+			return "main/seyamain";
+		}
 		
-		
+		//검색결과 받는거
+		System.out.println("keword: "+keyword);
+		keyword = "안녕하세여";
 		//기본은 전체 디렉토리
 		//디렉토리는 가는데
 		
@@ -55,6 +61,7 @@ public class WordbookController {
 		md.addAttribute("directoryList",directoryList);
 		md.addAttribute("wordbookList",wordbookList);		
 		md.addAttribute("urlPathVo", wordbookService.getNickName(urlPathVo));
+		md.addAttribute("keyword", keyword);
 		//디렉토리에 단어장이 없을때 디렉토리 토리토리
 		md.addAttribute("directoryNo", urlPathVo.getDirectoryNo());
 		md.addAttribute("pagingVo", pagingVo);

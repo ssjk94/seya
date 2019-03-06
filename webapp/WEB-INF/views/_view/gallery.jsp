@@ -470,7 +470,7 @@ desired effect
 					<div class="fa-key pull-left">
 							검색결과 :
 							<!-- 검색내용 들어갈 칸 --> 
-							<b>단어장 2011</b>				
+							<b>${keyword}</b>				
 					</div>
 					<!-- 단어장 추가하는 버튼이 들어가는칸 -->
 					<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary">

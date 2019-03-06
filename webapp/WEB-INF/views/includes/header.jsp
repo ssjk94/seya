@@ -165,7 +165,7 @@
 						test="${not empty sessionScope.id}">
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
-							<img src="/upload/profile/${sessionScope.userImage}"
+						 <img src="/upload/profile/${sessionScope.userImage}"
 							class="user-image" alt="User Image"> <!--/dist/images/user.png  -->
 							<!-- hidden-xs hides the username on small devices so only the image appears. -->
 							<span class="hidden-xs">${sessionScope.nickName}</span></a>

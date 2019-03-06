@@ -147,5 +147,14 @@ public class WordbookService {
 		
 		return pagingVo;
 	}
+	public boolean realExistUser(URLPathVo urlPathVo) {
+		boolean user;
+		if(wordbookDao.realExistUser(urlPathVo)==0) {
+			user = false;
+		}else {
+			user = true;
+		}
+		return user;
+	}
 	
 }
