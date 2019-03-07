@@ -224,7 +224,7 @@
 
 	<select id="selectBadMeanChoice" parameterType="int" resultType="com.javaex.vo.HeaderSearchVo">
 		<![CDATA[
-			select SEYAMEANNAME from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <#{wordListSize}+1
+			select SEYAMEANNAME from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <#{wordListSize}*3+1
 		]]>
 	</select>
 	

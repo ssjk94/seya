@@ -224,6 +224,21 @@ p.flashcard-font {
 	background-color: #ffffff;
 	margin-top: -35px;
 }
+
+.quiz-question {
+	width: 850px;
+	height: 50px;
+	font-size: 20px;
+}
+
+.quiz-answer {
+	width: 850px;
+	height: 30px;
+	font-size: 16px;
+	margin-bottom: 15px;
+	text-align: center;
+	margin-left: 50px;
+}
 </style>
 
 </head>
@@ -307,43 +322,57 @@ desired effect
 						<p class=text-center>짝 맞추기</p>
 					</div>
 					<div class="col-xs-4 col-md-4">
-							<img class="flashcard-image" data-toggle="modal" data-target="#quizModal"
-								src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
-								alt="랜덤 퀴즈">
-							<p class=text-center>랜덤 퀴즈</p>
-			
-						<div class="modal fade" id = "quizModal">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title">사지선다 퀴즈</h4>
-									</div>
-									<div class="modal-body">
-									
-									
-										<p>One fine body&hellip;</p>
-										
-										
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save
-											changes</button>
-									</div>
-								</div>
-								<!-- /.modal-content -->
-							</div>
-							<!-- /.modal-dialog -->
-						</div>
-						<!-- /.modal -->
+						<img class="flashcard-image" data-toggle="modal"
+							data-target="#quizModal"
+							src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+							alt="랜덤 퀴즈">
+						<p class=text-center>랜덤 퀴즈</p>
+
+
 
 					</div>
 			</section>
+			<div class="modal fade" id="quizModal">
+				<div class="modal-dialog" style="width: 80%">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">사지선다 퀴즈</h4>
+						</div>
+						<div class="modal-body">
+							<div class="quiz-question" id="game-question">
+							
+							</div>
+							<div class="quiz-answer">
+								<p>1.</p>
+							</div>
+							<div class="quiz-answer">
+								<p>2.</p>
+							</div>
+							<div class="quiz-answer">
+								<p>3.</p>
+							</div>
+							<div class="quiz-answer">
+								<p>4.</p>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save
+								changes</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
@@ -375,8 +404,57 @@ desired effect
 </body>
 
 <script type="text/javascript">
+$(document).ready(function(){
+
+	$(function () {
+		var wordlist = new Array();
+		var badmeanlist = new Array();
+		var meanlist = new Array();
+		var answerlist = new Array();
+		
 	
+	 	<c:forEach items="${wordList}" var="wordlist">
+			var word = new Object();
+			word.wordname = "${wordlist.wordName}";
+			wordlist.push(word);
+		</c:forEach> 
+		
+		<c:forEach items="${meanList}" var="meanlist">
+		var mean = new Object();
+		mean.meanname = "${meanlist.meanName}";
+	    meanlist.push(mean);
+		</c:forEach>
+	 	
+		<c:forEach items="${badMeanList}" var="badmeanlist">
+		var badmean = new Object();
+		badmean.badname = "${badmeanlist.seyaMeanName}";
+	    badmeanlist.push(badmean);
+		</c:forEach>
 	
+				
+		for(var i=0; i<wordlist.length; i++){
+			
+			console.log(wordlist[i].wordname);
+		};
+		
+		for(var i=0; i<meanlist.length; i++){
+			
+			console.log(meanlist[i].meanname);
+		};
+		
+		for(var i=0; i<badmeanlist.length; i++){
+			
+			console.log(badmeanlist[i].badname);
+		};
+		
+		var wordlength = (Math.floor(Math.random() * wordlist.length));
+ 		$("#game-question").text(wordlist[wordlength]);
+		console.log("퀘스쳔 : "+wordlist[0]);
+		
+   });
+
+
+});
 	
 </script>
 </html>

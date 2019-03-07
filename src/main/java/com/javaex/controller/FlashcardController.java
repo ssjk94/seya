@@ -24,7 +24,7 @@ public class FlashcardController {
 	FlashcardService flashcardService;
 
 	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
-	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, Model md) {
+	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, HeaderSearchVo headerSearchVo, Model md) {
 
 		System.out.println(flashcardVo.toString());
 		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
@@ -39,6 +39,25 @@ public class FlashcardController {
 		List<WordbookVo> directoryList = flashcardService.getWordbookAlldirectoryList(urlPathVo);
 		md.addAttribute("directoryList", directoryList);
 
+		// 사지선다게임 모달전용.
+		List<HeaderSearchVo> wordList = flashcardService.getWordChoiceList(headerSearchVo);
+		
+		int wordListSize = wordList.size(); 
+		
+		List<HeaderSearchVo> meanList = flashcardService.getMeanChoiceList(headerSearchVo);
+
+		List<HeaderSearchVo> badMeanList = flashcardService.getBadMeanChoiceList(wordListSize);
+
+		System.out.println("워드 리스트 : " + wordList.toString());
+		System.out.println("민 리스트 : " + meanList.toString());
+		System.out.println("틀린 민 리스트 : " + badMeanList.toString());
+		
+		
+		md.addAttribute("wordList", wordList);
+		md.addAttribute("meanList", meanList);
+		md.addAttribute("badMeanList", badMeanList);
+		// 모달전용 끝.
+		
 		return "_view/flashcard";
 	}
 
