@@ -410,8 +410,10 @@ $(document).ready(function(){
 		var wordlist = new Array();
 		var badmeanlist = new Array();
 		var meanlist = new Array();
+		var questionlist = new Array();
 		var answerlist = new Array();
-		
+		var k = 0;
+		var p = 0;
 	
 	 	<c:forEach items="${wordList}" var="wordlist">
 			var word = new Object();
@@ -420,36 +422,40 @@ $(document).ready(function(){
 		</c:forEach> 
 		
 		<c:forEach items="${meanList}" var="meanlist">
-		var mean = new Object();
-		mean.meanname = "${meanlist.meanName}";
-	    meanlist.push(mean);
+			var mean = new Object();
+			mean.meanname = "${meanlist.meanName}";
+		    meanlist.push(mean);
 		</c:forEach>
 	 	
 		<c:forEach items="${badMeanList}" var="badmeanlist">
-		var badmean = new Object();
-		badmean.badname = "${badmeanlist.seyaMeanName}";
-	    badmeanlist.push(badmean);
+			var badmean = new Object();
+			badmean.badname = "${badmeanlist.seyaMeanName}";
+		    badmeanlist.push(badmean);
 		</c:forEach>
 	
 				
+
 		for(var i=0; i<wordlist.length; i++){
 			
-			console.log(wordlist[i].wordname);
-		};
-		
-		for(var i=0; i<meanlist.length; i++){
+			k = Math.floor(Math.random() * wordList.length);
+			questionlist[i] =  wordlist[k].wordname;
+			answerlist[i] = meanlist[k].meanname;
 			
-			console.log(meanlist[i].meanname);
-		};
-		
-		for(var i=0; i<badmeanlist.length; i++){
+			for (var q=0; q<3; q++){
+				q = Math.floor(Math.random() * badmeanlist.length);				
+				answerlist[i] = badmeanlist[q].badname;
+				badmeanlist.splice(q, 1);
+			}
 			
-			console.log(badmeanlist[i].badname);
+			wordlist.splice(k, 1);
+			meanlist.splice(k, 1);
+			console.log("질문리스트 "+ i + "번째 : " + questionlist[i]);
+			console.log("답 리스트  "+ i + "번째 : " + answerlist[i]);
+			
 		};
 		
-		var wordlength = (Math.floor(Math.random() * wordlist.length));
- 		$("#game-question").text(wordlist[wordlength]);
-		console.log("퀘스쳔 : "+wordlist[0]);
+
+		
 		
    });
 
