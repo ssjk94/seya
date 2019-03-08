@@ -5,7 +5,7 @@ public class FlashcardVo {
 	private String wordName;
 	private String meanName;
 	private int wordbookNo;
-
+	
 	public int getWordNo() {
 		return wordNo;
 	}
