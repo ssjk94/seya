@@ -1,0 +1,118 @@
+@charset "UTF-8";
+<style type="text/css">
+		.modal-dialog{
+			width: 1000px;
+		}
+		.gameInfo {
+			clear: both;
+			height: 60px;
+		}
+		.gameInfo p{
+			display: inline-block;
+			font-size: 25px;
+			margin: 0px;
+		}
+		.gameInfo b{
+			font-size: 35px;
+		}
+		.gameInfo img{
+			width: 40px;
+		}
+		.gameInfo div:nth-child(3) p{
+			margin-top: 10px;
+		}
+		.gameInfo .pull-left{
+			margin-right: 50px;
+		}
+		.gameInfo .pull-right{
+			margin-left: 10px;
+		}
+		
+		
+		
+		.pair-content{
+			height: 768px;
+		}
+		
+		.pair-body{
+			height: 380px;
+		}
+		.clearBox{
+			clear: both;
+		}
+		.clearBox img{
+			position: absolute;
+			width: 210px;
+			height: 105px;
+			
+    		animation-duration: 1s;
+  			animation-name: slidein;
+  			
+		}
+		
+		@keyframes slidein {
+		  from {
+		    margin-left: 75%;
+		    width: 10%
+		  }
+		
+		  to {
+		    margin-left: 0%;
+		    width: 92%;
+		  }
+		}
+		.clearBox span{
+			font-size: 25px;
+			display: block;
+    		text-align: center;
+    		padding-top: 35px;
+    		
+    		animation-duration: 1s;
+  			animation-name: slidein;
+  			
+		}
+		.pairSetGameWordBox{
+			width: 210px;
+			height: 105px;
+			margin: 30px 0px 0px 20px;
+			float: left;
+		}
+		.pairSetGameMeanBox{
+			width: 210px;
+			height: 105px;
+			margin: 80px 0px 0px 20px;
+			float: left;
+		}
+		.absolute{
+			position: absolute;
+		}
+		.boxline1{
+			margin-top: 0px;
+		}
+		.boxline2{
+			margin-top: 135px;
+		}
+		.box1{
+			margin-left: 0px;
+		}
+		.box2{
+			margin-left: 230px;
+		}
+		.box3{
+			margin-left: 480px;
+		}
+		.box4{
+			margin-left: 710px;
+		}
+		.choiceblock{
+			color: darkcyan;
+			font-weight: bold;
+		}
+		
+		.modal-footer button{
+			background-color: #7c8ba8;
+		}
+		.modal-footer button:hover{
+			background-color: #626f87;
+		}
+	</style>

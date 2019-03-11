@@ -12,8 +12,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<style type="text/css">
-		.modal-dialog{
-			width: 1000px;
+		.pair-dialog{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
 		}
 		.gameInfo {
 			clear: both;
@@ -41,16 +43,11 @@
 		}
 		
 		
+
 		
-		.modal-content{
-			height: 768px;
-		}
-		
-		.modal-body{
-			height: 380px;
-		}
 		.clearBox{
 			clear: both;
+			text-align: center;
 		}
 		.clearBox img{
 			position: absolute;
@@ -84,15 +81,13 @@
   			
 		}
 		.pairSetGameWordBox{
-			width: 210px;
-			height: 105px;
-			margin: 30px 0px 0px 20px;
+			width: 230px;
+			height: 135px;
 			float: left;
 		}
 		.pairSetGameMeanBox{
-			width: 210px;
-			height: 105px;
-			margin: 80px 0px 0px 20px;
+			width: 230px;
+			height: 135px;
 			float: left;
 		}
 		.absolute{
@@ -121,11 +116,20 @@
 			font-weight: bold;
 		}
 		
-		.modal-footer button{
+		.pair-footer button{
 			background-color: #7c8ba8;
 		}
-		.modal-footer button:hover{
+		.pair-footer button:hover{
 			background-color: #626f87;
+		}
+		
+		
+		
+		.click{
+			width: 230px;
+			height: 135px;
+			float: left;
+			display: inline-block;
 		}
 	</style>
 </head>
@@ -149,9 +153,9 @@
 		<!--  data-backdrop="static" data-keyboard="false" -->
 	<!-- The Modal -->								<!-- 바깥쪽 누른다고 탈출 못하게 하는 문장 -->
 <div id="myModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+  <div class="modal-dialog pair-dialog">
+    <div class="modal-content pair-content">
+      <div class="modal-header pair-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	    <!-- 설명이 들어갈 div -->
 		<div class="gameInfo">
@@ -182,34 +186,33 @@
 		시이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이간이이이이이이이이간
 		</div>
       </div>
-      <div class="modal-body">
+      <div class="modal-body pair-body">
         
       	 <div class="clearBox">
 			
-			<div class="absolute box1 boxline1">
+			<div class="click">
 				<div id="word1" class="pairSetGameWordBox">
-					<img alt="" src="/dist/images/PairFrame.png">
 					<span>aaaaaaaaaaa</span>
 				</div>
 			</div>
 				
-			<div class="absolute box2 boxline1">
+			<div class="click">
 				<div id="word2" class="pairSetGameWordBox">
-					<img alt="" src="/dist/images/PairFrame.png">
+					
 					<span>bb</span>
 				</div>
 			</div>
 			
-			<div class="absolute box3 boxline1">
+			<div class="click">
 				<div id="word3" class="pairSetGameWordBox">
-					<img alt="" src="/dist/images/PairFrame.png">
+					
 					<span>cc</span>
 				</div>
 			</div>
 			
-			<div class="absolute box4 boxline1">
+			<div class="click">
 				<div id="word4" class="pairSetGameWordBox">
-					<img alt="" src="/dist/images/PairFrame.png">
+					
 					<span>dd</span>
 				</div>
 			</div>
@@ -219,30 +222,26 @@
 	
 		<div class="clearBox">
 			
-			<div class="absolute box1 boxline2">
+			<div class="click down">
 				<div id="mean1"  class="pairSetGameMeanBox">
-					<img alt="" src="/dist/images/PairFrame.png">
 					<span>11</span>
 				</div>
 		    </div>
 		    
-		    <div class="absolute box2 boxline2">
+		    <div class="click">
 				<div id="mean2"  class="pairSetGameMeanBox">
-					<img alt="" src="/dist/images/PairFrame.png">
 					<span>22</span>
 				</div>
 		    </div>
 		    
-		    <div class="absolute box3 boxline2">
-				<div id="mean3"  class="pairSetGameMeanBox">
-					<img alt="" src="/dist/images/PairFrame.png">
+		    <div class="click">
+				<div id="mean3"  class="pairSetGameMeanBox">				
 					<span>33</span>
 				</div>
 		    </div>
 		    
-		    <div class="absolute box4 boxline2">
+		    <div class="click">
 				<div id="mean4"  class="pairSetGameMeanBox">
-					<img alt="" src="/dist/images/PairFrame.png">
 					<span>44</span>
 				</div>
 		    </div>
@@ -252,7 +251,7 @@
       </div>
       
       
-      <div class="modal-footer">
+      <div class="modal-footer pair-footer">
         	<button type="button" class="btn btn-primary" data-dismiss="modal">나가기</button>	
         	<!--  
         	<button type="submit" class="btn btn-primary">나가기</button>
@@ -319,7 +318,7 @@ $(document).ready(function() {
 
 //modal창 키고나서 스타트게임 함수 실행하고
 //클릭이벤트로다가 끝
-	$(".absolute").on("click","div",function(){
+	$(".click").on("click","div",function(){
 		var meanindex // 의미찾는 인덱스값
 		$(this).find("span").toggleClass("choiceblock");
 			
@@ -338,7 +337,9 @@ $(document).ready(function() {
 				console.log("정답");
 					
 				$("#"+id1).hide();
+				$("#"+id1).parent().hide();
 				$("#"+id2).hide();
+				$("#"+id2).parent().hide();
 				$("#"+id1).find("span").removeClass("choiceblock");
 				$("#"+id2).find("span").removeClass("choiceblock");
 				

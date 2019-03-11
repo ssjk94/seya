@@ -33,6 +33,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/dist/css/skins/skin-red-light.css">
+<!-- 경환 css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/dist/css/pairsetgame.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -362,13 +365,18 @@ desired effect
 						</form>
 
 					</div>
-
+					<!-- 경환 body -->
+					<c:import url="/WEB-INF/views/_view/pairsetgame.jsp" />
+					
 					<div class="col-xs-4 col-md-4">
 
-						<a href="#"><img class="flashcard-image"
+						<a href="#"><img class="flashcard-image" data-toggle = "modal"
+							data-target = "#pairSetGame"
 							src="dist/images/wordmatch.png" alt="짝 맞추기"> </a>
 						<p class=text-center>짝 맞추기</p>
 					</div>
+					
+					
 					<div class="col-xs-4 col-md-4" id="randomQuiz">
 						<img class="flashcard-image" data-toggle="modal"
 							data-target="#quizModal"
@@ -536,7 +544,7 @@ var feverGo;
 var correctIndex;
 var listlength;
 
-<c:forEach items="${gameList}" var = "info">
+<c:forEach items="${wordbookList}" var = "info">
 	var PairSetGameVo = new Object();
 	PairSetGameVo.wordName = "${info.wordName}";
 	PairSetGameVo.meanName = "${info.meanName}";
