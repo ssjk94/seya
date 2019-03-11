@@ -46,10 +46,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
-body {
+body{
 	font-family: 'Jeju Gothic', sans-serif;
 }
 
@@ -236,60 +235,57 @@ p.flashcard-font {
 
 .quiz-header {
 	width: 100%;
-	height: 100px;
-	font-size: 20px;
-	border: solid 2px;
-	padding: 10px;
-	padding-top: 30px;
-	text-align: center;
+    height: 100px;
+    font-size: 20px;
+    border: solid 2px;
+    padding: 10px;
+    padding-top: 30px;
+    text-align: center;
 }
 
 .quiz-answer {
 	width: 100%;
-	height: 70px;
-	font-size: 16px;
-	margin-top: 10px;
-	float: right;
-	padding: 10px;
-	text-align: center;
-	border: solid;
-	padding-top: 20px;
+    height: 70px;
+    font-size: 16px;
+    margin-top: 10px;
+    float: right;
+    padding: 10px;
+    text-align: center;
+    border: solid;
+    padding-top: 20px;
 }
-
 .quiz-OX {
 	width: 100%;
-	height: 300px;
-	border: solid;
-	float: left;
-	text-align: center;
-	padding: 10px;
-	padding-top: 15px;
-	margin-top: 10px;
+    height: 300px;
+    border: solid;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    padding-top: 15px;
+    margin-top: 10px;
+   
 }
 
-.quiz-question {
+.quiz-question{
 	width: 100%;
 	heigth: 70%;
-	font-size: 50px;
-	padding-top: 90px;
+    font-size: 50px;
+    padding-top: 90px;
 }
-
 .check-mark {
-	width: 50px;
-	height: 50px;
-	float: left;
-	margin-top: -14px;
+    width: 50px;
+    height: 50px;    
+    float: left;
+    margin-top: -14px;
 }
-
 .select-answer {
-	width: 94%;
+	width : 94%;
 }
-
-.correct-mark {
+.correct-mark{
 	width: 30%;
-	margin-bottom: 15px;
-	min-width: 150px;
-	max-width: 230px;
+    margin-bottom: 15px;
+    min-width: 150px;
+    max-width: 230px;
 }
 </style>
 
@@ -350,28 +346,22 @@ desired effect
 
 				<!--게임링크-->
 				<div class="gamerow text-center">
-					<div class="col-xs-4 col-md-4" id="flashQuiz">
-						<img class="flashcard-image" data-toggle="modal"
-							data-target="#flashquizModal"
-							src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
-							alt="플래시 퀴즈">
-						<p class=text-center>플래시 퀴즈</p>
+					<div class="col-xs-4 col-md-4">
+						<form
+							action="${pageContext.request.contextPath}/${URLId}/flashcardgame"
+							method="get">
+							<input name="wordbookNo" type="hidden"
+								value="${flashcardVo.wordbookNo}">
+							<button type="submit"
+								style="background-color: transparent; border: 0px transparent solid;">
+								<img class="flashcard-image"
+									src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+									alt="플래시 카드">
+								<p class=text-center>플래시 카드</p>
+							</button>
+						</form>
+
 					</div>
-<!-- 					<div class="col-xs-4 col-md-4"> -->
-<!-- 						<form -->
-<%-- 							action="${pageContext.request.contextPath}/${URLId}/flashcardgame" --%>
-<!-- 							method="get"> -->
-<!-- 							<input name="wordbookNo" type="hidden" -->
-<%-- 								value="${flashcardVo.wordbookNo}"> --%>
-<!-- 							<button type="submit" -->
-<!-- 								style="background-color: transparent; border: 0px transparent solid;"> -->
-<!-- 								<img class="flashcard-image" -->
-<%-- 									src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg" --%>
-<!-- 									alt="플래시 카드"> -->
-<!-- 								<p class=text-center>플래시 카드</p> -->
-<!-- 							</button> -->
-<!-- 						</form> -->
-<!-- 					</div> -->
 
 					<div class="col-xs-4 col-md-4">
 
@@ -381,14 +371,13 @@ desired effect
 					</div>
 					<div class="col-xs-4 col-md-4" id="randomQuiz">
 						<img class="flashcard-image" data-toggle="modal"
-							data-target="#randomquizModal"
+							data-target="#quizModal"
 							src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
 							alt="랜덤 퀴즈">
 						<p class=text-center>랜덤 퀴즈</p>
 					</div>
-				</div>
 			</section>
-			<div class="modal fade" id="randomquizModal">
+			<div class="modal fade" id="quizModal">
 				<div class="modal-dialog" style="width: 80%">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -399,36 +388,38 @@ desired effect
 							<h4 class="modal-title">사지선다 퀴즈</h4>
 						</div>
 						<div class="modal-body">
-							<div class="quiz-header">다음의 보기에서 알맞은 정답을 선택하세요.</div>
+							<div class="quiz-header">
+								다음의 보기에서 알맞은 정답을 선택하세요.
+							</div>
 							<!-- 문제 나오고 , 정답 체크 하는 곳 -->
 							<div class="quiz-OX">
 								<!-- <img class="correct-mark" src="/upload/profile/correct-mark01.png">
 								<p>정답입니다.</p> -->
-								<div class="quiz-question" id="game-question"></div>
+								<div class="quiz-question" id="game-question" >
+								 
+								</div>
 							</div>
 							<!-- 정답 번호 1번. -->
-							<div class="btn btn-default quiz-answer">
+							<div class="btn btn-default quiz-answer" >
 								<img class="check-mark" src="/upload/profile/check-mark.png">
-								<div class="select-answer" id="ans01">1.
-									${quizVo.answerArray[0]}</div>
+								<div class="select-answer" id="ans01">1. ${quizVo.answerArray[0]}</div>
 							</div>
-
+							
 							<!-- 정답 번호 2번. -->
 							<div class="btn btn-default quiz-answer" id="ans02">
 								<img class="check-mark" src="/upload/profile/x-mark04.png">
 								<div class="select-answer">2.${quizVo.answerArray[1]}</div>
 							</div>
-
+							
 							<!-- 정답 번호 3번. -->
 							<div class="btn btn-default quiz-answer" id="ans03">
 								<img class="check-mark" src="/upload/profile/circle-mark02.png">
 								<div class="select-answer">3.${quizVo.answerArray[2]}</div>
 							</div>
-
+							
 							<!-- 정답 번호 4번. -->
 							<div class="btn btn-default quiz-answer" id="ans04">
-								<img class="check-mark"
-									src="/upload/profile/blank-background04.png">
+								<img class="check-mark" src="/upload/profile/blank-background04.png">
 								<div class="select-answer">4.${quizVo.answerArray[3]}</div>
 							</div>
 
@@ -479,7 +470,7 @@ desired effect
 <script type="text/javascript">
 $("#randomQuiz").on("click", function(){
 	
-	console.log("${flashcardVo.wordbookNo}");
+	console.log(${flashcardVo.wordbookNo});
 	
 	var wordbookNo = "${flashcardVo.wordbookNo}";
 	
@@ -505,32 +496,7 @@ $("#randomQuiz").on("click", function(){
 	
 });
 
-$("#flashQuiz").on("click", function(){
-	
-	console.log("${flashcardVo.wordbookNo}");
-	
-	var wordbookNo = "${flashcardVo.wordbookNo}";
-	
-	$.ajax({
-		url : "${pageContext.request.contextPath}/flashcardgame",   //url 
-		type : "post",
-//		contentType : "application/json",
-		data : {wordbookNo: wordbookNo},
-		
-		dataType : "json",
-		success : function(quizList){
-		/*성공시 처리해야될 코드 작성*/
-			console.log(quizList);
-		
-		},
-		error : function(XHR, status, error) {
-		console.error(status+" : "+error);
-		}
-	});
-	
-	
-	
-});
+
 
 
 	

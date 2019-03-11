@@ -228,7 +228,7 @@
 		]]>
 	</select>
 	
-	<select id="selectBadMeanChoice2" resultType="com.javaex.vo.QuizVo">
+	<select id="selectBadMeanChoice2" resultType="String">
 		<![CDATA[
 			select SEYAMEANNAME as badAnswer from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <5
 		]]>
@@ -242,6 +242,12 @@
 	
 	
 	<!-- -->
+	<select id="selectQuizSize" parameterType="int" resultType="com.javaex.vo.QuizVo">
+		<![CDATA[
+			select wordname as question from word where wordbookno =#{wordbookNo}
+		]]>
+	</select>
+	
 	<select id="selectRandomQuizWord" parameterType="int" resultType="com.javaex.vo.QuizVo">
 		<![CDATA[
 			select 	wordNo,
@@ -250,7 +256,6 @@
 			from word 
 			where wordbookno = #{wordbookNo}
 		]]>
-	</select>
-	
+	</select>	
 
 </mapper>

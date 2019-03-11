@@ -59,17 +59,23 @@ public class FlashcardDao {
 		return sqlSession.selectOne("users.selectMeanChoiceOne", headerSearchVo);
 	}
 
-	
 	//
 	public List<QuizVo> selectRandomQuizWord(int wordbookNo) {
 		
 		return sqlSession.selectList("users.selectRandomQuizWord", wordbookNo);
 	}
 
-	public List<QuizVo> selectbadMeanList() {
+	public List<String> selectbadMeanList() {
 		
 		return sqlSession.selectList("users.selectBadMeanChoice2");
 	}
+
+	public List<QuizVo> selectRandomQuizSize(int wordbookNo) {
+		
+		
+		return sqlSession.selectList("users.selectQuizSize", wordbookNo);
+	}
+	
 	
 	
 }
