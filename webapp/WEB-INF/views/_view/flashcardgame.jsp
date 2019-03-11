@@ -4,113 +4,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-</style>
 <script type="text/javascript">
 	var time;
 	var t;
-	var wordList = new Array();
-	var meanList = new Array();
-	var noList = new Array();
 	var quizList = new Array();
 	var answerList = new Array();
-	var wordbookNo = '${flashcardVo.wordbookNo}';
-	var i = 0;
-	var j = 0;
+	var a = 0;
+	var b = 0;
 	var count = 0;
-</script>
-<c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
-	<script type="text/javascript">
-		noList[i] = '${flashcardVo.wordNo}';
-		wordList[i] = '${flashcardVo.wordName}';
-		meanList[i] = '${flashcardVo.meanName}';
-		i++;
-	</script>
-</c:forEach>
-<script type="text/javascript">
 	if (noList.length > 14) {
 		for (var k = 0; k < 15; k++) {
-			i = Math.floor(Math.random() * noList.length);
-			j = Math.floor(Math.random() * 2);
-			if (j == 0) {
-				quizList[k] = wordList[i];
-				answerList[k] = meanList[i];
+			a = Math.floor(Math.random() * noList.length);
+			b = Math.floor(Math.random() * 2);
+			if (b == 0) {
+				quizList[k] = wordList[a];
+				answerList[k] = meanList[a];
 			} else {
-				quizList[k] = meanList[i];
-				answerList[k] = wordList[i];
+				quizList[k] = meanList[a];
+				answerList[k] = wordList[a];
 			}
-			noList.splice(i, 1);
-			wordList.splice(i, 1);
-			meanList.splice(i, 1);
+			noList.splice(a, 1);
+			wordList.splice(a, 1);
+			meanList.splice(a, 1);
 		}
 	} else {
 		for (var k = 0; k < noList.length; k++) {
-			i = Math.floor(Math.random() * wordList.length);
-			j = Math.floor(Math.random() * 2);
-			if (j == 0) {
-				quizList[k] = wordList[i];
-				answerList[k] = meanList[i];
+			a = Math.floor(Math.random() * wordList.length);
+			b = Math.floor(Math.random() * 2);
+			if (b == 0) {
+				quizList[k] = wordList[a];
+				answerList[k] = meanList[a];
 			} else {
-				quizList[k] = meanList[i];
-				answerList[k] = wordList[i];
+				quizList[k] = meanList[a];
+				answerList[k] = wordList[a];
 			}
-			wordList.splice(i, 1);
-			meanList.splice(i, 1);
+			wordList.splice(a, 1);
+			meanList.splice(a, 1);
 		}
 	}
 	console.log(quizList);
 	console.log(answerList);
 	$(document).ready(function() {
 		// 난수 생성
-		console.log(quizList[i]);
-		console.log(answerList[i]);
-		quizTextCheck(quizList[i]);
-		$("#answer").text(answerList[i]);
+		console.log(quizList[a]);
+		console.log(answerList[a]);
+		quizTextCheck(quizList[a]);
+		$("#answer").text(answerList[a]);
 
 		function quizTextCheck(quizText) {
 			var hanText = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|,]/;
-			var quizText = quizList[i];
+			var quizText = quizList[a];
 			if (hanText.test(quizText)) {
 				$("#quiz").css({
 					"font-size" : "30px",
-					"padding-top" : "50px"
+					"padding-top" : "165px"
 				});
 				$("#quiz").text(quizText);
 			} else {
 				$("#quiz").css({
 					"font-size" : "50px",
-					"padding-top" : "30px"
+					"padding-top" : "150px"
 				});
 				$("#quiz").text(quizText);
 			}
 		}
 
 		function quiz() {
-			i++;
-			quizTextCheck(quizList[i]);
-			$("#answer").text(answerList[i]);
-			console.log(quizList[i]);
-			console.log(answerList[i]);
+			a++;
+			quizTextCheck(quizList[a]);
+			$("#answer").text(answerList[a]);
+			console.log(quizList[a]);
+			console.log(answerList[a]);
 		}
 
 		function answerCheck() {
-			if ($("#flashSubmit").val() == answerList[i]) {
+			if ($("#flashSubmit").val() == answerList[a]) {
 				console.log($("#flashSubmit").val());
+				$("#flashSubmit").val("");
 				alert("정답입니다.")
 				return true;
 			} else {
 				console.log($("#flashSubmit").val());
+				$("#flashSubmit").val("");
 				alert("오답입니다.")
 				return false;
 			}
-
+			
 		}
 		$(function() {
 			$(document).on("keyup", function(e) {
 				switch (e.keyCode) {
 				case 13:
 					answerCheck();
-					if (i < quizList.length - 1) {
+					if (a < quizList.length - 1) {
 						quiz()
 						console.log(quizList.length)
 						console.log(i)
@@ -123,29 +109,7 @@
 	});
 </script>
 </head>
-
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body>
-	<!-- width 790px height 450-->
 	<div class="quiz-header">다음의 보기에서 알맞은 정답을 적어주세요.</div>
 	<div class="time-bar">
 		<div class="progress">
@@ -157,12 +121,12 @@ desired effect
 		</div>
 	</div>
 	<!-- content box -->
-	<div id="wm-over" role="button" class="panel-body flashcardbox">
+	<div id="wm-over" role="button" class="quiz-OX">
 		<!-- mean -->
 		<p id="quiz"></p>
 	</div>
 	<!-- 		<form action="#" class="flashquiz-container"> -->
-	<input class="flashquiz-box text-center" type="text" id="flashSubmit"
+	<input class="quiz-answer text-center" type="text" id="flashSubmit"
 		autocomplete="off">
 	<!-- word -->
 	<input type="hidden" id="answer">

@@ -261,7 +261,7 @@ p.flashcard-font {
 
 .quiz-OX {
 	width: 100%;
-	height: 300px;
+	min-height: 400px;
 	border: solid;
 	float: left;
 	text-align: center;
@@ -347,10 +347,7 @@ desired effect
 
 			<!-- Main content -->
 			<section class="content container">
-
 				<c:import url="/WEB-INF/views/kyunghwan/flashcard/_flashcard.jsp"></c:import>
-
-
 				<!--게임링크-->
 				<div class="gamerow text-center">
 					<div class="col-xs-4 col-md-4" id="flashQuiz">
@@ -364,13 +361,13 @@ desired effect
 					<c:import url="/WEB-INF/views/_view/pairsetgame.jsp" />
 					<div class="col-xs-4 col-md-4">
 
-						<a href="#"><img class="flashcard-image" data-toggle = "modal"
-							data-target = "#pairSetGame"
-							src="dist/images/wordmatch.png" alt="짝 맞추기"> </a>
+						<a href="#"><img class="flashcard-image" data-toggle="modal"
+							data-target="#pairSetGame" src="dist/images/wordmatch.png"
+							alt="짝 맞추기"> </a>
 						<p class=text-center>짝 맞추기</p>
 					</div>
-					
-					
+
+
 					<div class="col-xs-4 col-md-4" id="randomQuiz">
 						<img class="flashcard-image" data-toggle="modal"
 							data-target="#randomquizModal"
@@ -438,6 +435,31 @@ desired effect
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
+			<div class="modal fade" id="flashquizModal">
+				<div class="modal-dialog" style="width: 80%">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">플래시 퀴즈</h4>
+						</div>
+						<div class="modal-body">
+							<c:import url="/WEB-INF/views/_view/flashcardgame.jsp" />
+						</div>
+						<div class="modal-footer">
+							<!-- <button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save
+								changes</button> -->
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
@@ -469,375 +491,378 @@ desired effect
 </body>
 
 <script type="text/javascript">
-$("#randomQuiz").on("click", function(){
-	
-	console.log("${flashcardVo.wordbookNo}");
-	
-	var wordbookNo = "${flashcardVo.wordbookNo}";
-	
-	$.ajax({
-		url : "${pageContext.request.contextPath}/randomquiz",   //url 
-		type : "post",
-//		contentType : "application/json",
-		data : {wordbookNo: wordbookNo},
-		
-		dataType : "json",
-		success : function(quizList){
-		/*성공시 처리해야될 코드 작성*/
-			console.log(quizList);
-			 $("#ans01").text("살려는주십시오.")
-		
-		},
-		error : function(XHR, status, error) {
-		console.error(status+" : "+error);
-		}
+	$("#randomQuiz").on("click", function() {
+
+		console.log("${flashcardVo.wordbookNo}");
+
+		var wordbookNo = "${flashcardVo.wordbookNo}";
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/randomquiz", //url 
+			type : "post",
+			//		contentType : "application/json",
+			data : {
+				wordbookNo : wordbookNo
+			},
+
+			dataType : "json",
+			success : function(quizList) {
+				/*성공시 처리해야될 코드 작성*/
+				console.log(quizList);
+				$("#ans01").text("살려는주십시오.")
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+
 	});
-	
-	
-	
-});
 
-$("#flashQuiz").on("click", function(){
-	
-	console.log("${flashcardVo.wordbookNo}");
-	
-	var wordbookNo = "${flashcardVo.wordbookNo}";
-	
-	$.ajax({
-		url : "${pageContext.request.contextPath}/flashcardgame",   //url 
-		type : "post",
-//		contentType : "application/json",
-		data : {wordbookNo: wordbookNo},
-		
-		dataType : "json",
-		success : function(quizList){
-		/*성공시 처리해야될 코드 작성*/
-			console.log(quizList);
-		
-		},
-		error : function(XHR, status, error) {
-		console.error(status+" : "+error);
-		}
+	$("#flashQuiz").on("click", function() {
+
+		console.log("${flashcardVo.wordbookNo}");
+
+		var wordbookNo = "${flashcardVo.wordbookNo}";
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/flashquiz", //url 
+			type : "post",
+			//		contentType : "application/json",
+			data : {
+				wordbookNo : wordbookNo
+			},
+
+			dataType : "json",
+			success : function(quizList) {
+				/*성공시 처리해야될 코드 작성*/
+				console.log(quizList);
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+
 	});
-	
-	
-	
-});
-
-
-	
 </script>
 
 <!-- 경환 -->
 <script type="text/javascript">
-jQuery.ajaxSettings.traditional = true;
+	jQuery.ajaxSettings.traditional = true;
 
-var master = "${sessionScope.id}";
+	var master = "${sessionScope.id}";
 
-var gameList = new Array();	//게임 리스트를 받는 배열
-var success = new Array();		//정답지 리스트
-var wordName =	new Array();//게임 워드 받는 배열
-var meanName =	new Array();//게임 뜻 받는 배열
-var wrongWord = new Array();//틀린 단어 저장하는 배열
+	var gameList = new Array(); //게임 리스트를 받는 배열
+	var success = new Array(); //정답지 리스트
+	var wordName = new Array();//게임 워드 받는 배열
+	var meanName = new Array();//게임 뜻 받는 배열
+	var wrongWord = new Array();//틀린 단어 저장하는 배열
 
-	
-var rnum = 0;//정답 횟수를 추측하여 다시 리셋 시키게 하는 전역변수
+	var rnum = 0;//정답 횟수를 추측하여 다시 리셋 시키게 하는 전역변수
 
-var num = 1; //클릭을 몇번 했는지 나타내는 전역변수
-var a1; // 1번째 워드 or mean값
-var a2;	// 2번째 워드 or mean값
-var meanName;//틀린답일시 여기에있는 뜻을 가져감
-var id1; // 1번째 워드 or mean값 에 div아이디
-var id2;// 2번째 워드 or mean값 에 div아이디
+	var num = 1; //클릭을 몇번 했는지 나타내는 전역변수
+	var a1; // 1번째 워드 or mean값
+	var a2; // 2번째 워드 or mean값
+	var meanName;//틀린답일시 여기에있는 뜻을 가져감
+	var id1; // 1번째 워드 or mean값 에 div아이디
+	var id2;// 2번째 워드 or mean값 에 div아이디
 
-var wordIndex;	//3개 랜덤 흩뿌릴때 인덱스 써야함
-var meanIndex;
-var gameLength;//3개이하일경우 길이를 측정해야하는 전역변수
+	var wordIndex; //3개 랜덤 흩뿌릴때 인덱스 써야함
+	var meanIndex;
+	var gameLength;//3개이하일경우 길이를 측정해야하는 전역변수
 
-var life=3;
-var gameName = "Pair Word";//${gameName};  게임 네임을 저장하는 변수
-var gameScore = 0; // 게임 스코어 전역변수
-var feverScore=[1,2,3,4,5];
-var feverGo;
-var correctIndex;
-var listlength;
-
-<c:forEach items="${wordbookList}" var = "info">
-	var PairSetGameVo = new Object();
-	PairSetGameVo.wordName = "${info.wordName}";
-	PairSetGameVo.meanName = "${info.meanName}";
-	gameList.push(PairSetGameVo);
+	var life = 3;
+	var gameName = "Pair Word";//${gameName};  게임 네임을 저장하는 변수
+	var gameScore = 0; // 게임 스코어 전역변수
+	var feverScore = [ 1, 2, 3, 4, 5 ];
+	var feverGo;
+	var correctIndex;
+	var listlength;
+</script>
+<c:forEach items="${wordbookList}" var="info">
+	<script type="text/javascript">
+		var PairSetGameVo = new Object();
+		PairSetGameVo.wordName = "${info.wordName}";
+		PairSetGameVo.meanName = "${info.meanName}";
+		gameList.push(PairSetGameVo);
+	</script>
 </c:forEach>
+<script type="text/javascript">
+	$(document).ready(function() {
+		gameStart(gameName, gameScore);
+		correctIndex = true;
+		feverGo = 0;
+		master = 'seo';
+		gameScoreUpdate(gameScore);
+		startGame();
+		//gameEnd();
+	});
 
-$(document).ready(function() {
-
-	
-	
-	gameStart(gameName,gameScore);
-	correctIndex = true;
-	feverGo = 0;
-	master = 'seo';
-	gameScoreUpdate(gameScore);
-	startGame();
-	//gameEnd();
-});
-
-//modal창 키고나서 스타트게임 함수 실행하고
-//클릭이벤트로다가 끝
-	$(".absolute").on("click","div",function(){
+	//modal창 키고나서 스타트게임 함수 실행하고
+	//클릭이벤트로다가 끝
+	$(".absolute").on("click", "div", function() {
 		var meanindex // 의미찾는 인덱스값
 		$(this).find("span").toggleClass("choiceblock");
-			
-		if(num == 1){
+
+		if (num == 1) {
 			a1 = $(this).find("span").text();
 			id1 = $(this).attr("id");
 		}
-		
-		if(num == 2){
+
+		if (num == 2) {
 			a2 = $(this).find("span").text();
 			id2 = $(this).attr("id");
-			
+
 			//word부터 시작하는지 mean부터 시작하는지 알기위해
-		if(id1.startsWith( 'w' )){
-			if(success.indexOf(a1)+1==success.indexOf(a2)){
-				console.log("정답");
-					
-				$("#"+id1).hide();
-				$("#"+id2).hide();
-				$("#"+id1).find("span").removeClass("choiceblock");
-				$("#"+id2).find("span").removeClass("choiceblock");
-				
-				
-				gameScore = gameScore + 100*feverScore[feverGo];
-				if(feverGo<4){
-					feverGo = feverGo + 1;
-				};
-				
-				
-				rnum++;//정답 횟수를 체크하는 전역변수
-					
-				gameScoreUpdate(gameScore);
-					
-				//단어장에 있는 단어를 다 사용 하였을때	
-				if(listlength<4 && success.length == rnum+1){
-					//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
-					alert("끄읕");
-					gameEnd();
+			if (id1.startsWith('w')) {
+				if (success.indexOf(a1) + 1 == success.indexOf(a2)) {
+					console.log("정답");
+
+					$("#" + id1).hide();
+					$("#" + id2).hide();
+					$("#" + id1).find("span").removeClass("choiceblock");
+					$("#" + id2).find("span").removeClass("choiceblock");
+
+					gameScore = gameScore + 100 * feverScore[feverGo];
+					if (feverGo < 4) {
+						feverGo = feverGo + 1;
+					}
+					;
+
+					rnum++;//정답 횟수를 체크하는 전역변수
+
+					gameScoreUpdate(gameScore);
+
+					//단어장에 있는 단어를 다 사용 하였을때	
+					if (listlength < 4 && success.length == rnum + 1) {
+						//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
+						alert("끄읕");
+						gameEnd();
+					}
+					//지정했던 클래스 삭제
+
+					//지정했던 클래스 삭제
+
+				} else {
+					console.log("오답");
+					if (gameScore < 44) {
+						gameScore = 0;
+					} else {
+						gameScore = gameScore - 44;
+					}
+					feverGo = 0;
+					gameScoreUpdate(gameScore);
+
+					$("#" + id1).find("span").removeClass("choiceblock");
+					$("#" + id2).find("span").removeClass("choiceblock");
+
+					if (id1.startsWith('w') && !id2.startsWith('w')) {
+						wrong(a1);
+						var meanindex = success.indexOf(a1) + 1;
+						meanName = success[meanindex];
+					} else if (!id1.startsWith('w') && id2.startsWith('w')) {
+						wrong(a2);
+					}
+
 				}
-				//지정했던 클래스 삭제
-					
-				//지정했던 클래스 삭제
-					
-			}else {
-				console.log("오답");
-				if(gameScore<44){
-					gameScore = 0;
-				}else{
-					gameScore = gameScore - 44;	
+
+			} else {//처음에 워드를 누르지 않았을 경우
+				if (success.indexOf(a1) == success.indexOf(a2) + 1) {
+					console.log("정답");
+
+					$("#" + id1).hide();
+					$("#" + id2).hide();
+					$("#" + id1).find("span").removeClass("choiceblock");
+					$("#" + id2).find("span").removeClass("choiceblock");
+
+					gameScore = gameScore + 100 * feverScore[feverGo];
+					if (feverGo < 4) {
+						feverGo = feverGo + 1;
+					}
+					;
+					rnum++;//정답 횟수를 체크하는 전역변수
+
+					gameScoreUpdate(gameScore);
+
+					//단어장에 있는 단어를 다 사용 하였을때	
+					if (listlength < 4 && success.length == rnum + 1) {
+						//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
+						alert("끄읕");
+						gameEnd();
+					}
+					//지정했던 클래스 삭제
+
+					//지정했던 클래스 삭제
+
+				} else {
+					console.log("오답");
+					$("#" + id1).find("span").removeClass("choiceblock");
+					$("#" + id2).find("span").removeClass("choiceblock");
+					//점수 부분
+					if (gameScore < 44) {
+						gameScore = 0;
+					} else {
+						gameScore = gameScore - 44;
+					}
+					feverGo = 0;
+					gameScoreUpdate(gameScore);
+
+					if (id1.startsWith('w') && !id2.startsWith('w')) {
+						wrong(a1);
+					} else if (!id1.startsWith('w') && id2.startsWith('w')) {
+						wrong(a2);
+					}
+
 				}
-				feverGo = 0;
-				gameScoreUpdate(gameScore);
-				
-				$("#"+id1).find("span").removeClass("choiceblock");
-				$("#"+id2).find("span").removeClass("choiceblock");
-				
-				if(id1.startsWith('w') && !id2.startsWith('w')){
-					wrong(a1);
-					var meanindex = success.indexOf(a1)+1;
-					meanName = success[meanindex];
-				}else if(!id1.startsWith('w') && id2.startsWith('w')){
-					wrong(a2);
-				}
-					
 			}
-				
-		}else{//처음에 워드를 누르지 않았을 경우
-			if(success.indexOf(a1)==success.indexOf(a2)+1){
-				console.log("정답");
-					
-				$("#"+id1).hide();
-				$("#"+id2).hide();
-				$("#"+id1).find("span").removeClass("choiceblock");
-				$("#"+id2).find("span").removeClass("choiceblock");
-					
-				gameScore = gameScore + 100*feverScore[feverGo];
-				if(feverGo<4){
-					feverGo = feverGo + 1;
-				};
-				rnum++;//정답 횟수를 체크하는 전역변수
-					
-				gameScoreUpdate(gameScore);
-					
-				//단어장에 있는 단어를 다 사용 하였을때	
-				if(listlength<4 && success.length == rnum+1){
-					//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
-					alert("끄읕");
-					gameEnd();
-				}
-				//지정했던 클래스 삭제
-					
-				//지정했던 클래스 삭제
-					
-			}else {
-				console.log("오답");
-				$("#"+id1).find("span").removeClass("choiceblock");
-				$("#"+id2).find("span").removeClass("choiceblock");
-				//점수 부분
-				if(gameScore<44){
-					gameScore = 0;
-				}else{
-					gameScore = gameScore - 44;	
-				}
-				feverGo = 0;
-				gameScoreUpdate(gameScore);
-				
-				
-				if(id1.startsWith('w') && !id2.startsWith('w')){
-					wrong(a1);
-				}else if(!id1.startsWith('w') && id2.startsWith('w')){
-					wrong(a2);
-				}
-					
+
+			if (rnum == 4) {
+				rnum = 0;
+				startGame();
 			}
-		}	
-			
-		if(rnum == 4){
-			rnum = 0;
-			startGame();
+		}//정답 체크 } num ==2
+
+		//전역변수 초기화 문장
+		if (num == 1) {
+			num++;
+		} else {
+			num = 1;
 		}
-	}//정답 체크 } num ==2
-	
-	//전역변수 초기화 문장
-	if(num == 1){
-		num++;
-	}else{
-		num =1;
-	}
-});
+	});
 	//클릭 이벤트 펑션 끝나는곳
-function startGame(){
+	function startGame() {
 		//단어장 리스트 갯수확인하는 지역변수
 		listlength = gameList.length
 		console.log("시작");
-		
+
 		success = new Array();
-			
-		for(var i =1 ; i<5 ; i++){
-			
+
+		for (var i = 1; i < 5; i++) {
+
 			var index = gameList.indexOf(random(gameList));
 			wordName.push(gameList[index].wordName);
 			meanName.push(gameList[index].meanName);
-			
+
 			success.push(gameList[index].wordName);
 			success.push(gameList[index].meanName);
-			gameList.splice(index,1);
-			
-			if(listlength<5 && i == listlength){
+			gameList.splice(index, 1);
+
+			if (listlength < 5 && i == listlength) {
 				console.log("4개이하 탈출");
 				break;
-			};
-		};
-		
+			}
+			;
+		}
+		;
+
 		//현재 배열중 랜덤으로 뽑은 4개
 		console.log(wordName);
 		console.log(meanName);
 		console.log(success);
 		//현재 배열중 랜덤으로 뽑은 4개
-		
+
 		//다시 보이게
-		for(var i = 1; i<success.length;i++){
-			
-			$("#word"+i).show();
-			$("#mean"+i).show();
+		for (var i = 1; i < success.length; i++) {
+
+			$("#word" + i).show();
+			$("#mean" + i).show();
 		}
-	
+
 		//랜덤 뽑은 4개로 랜덤하게 위치하게끔 뿌림
-		gameLength =wordName.length;
-		
-		for(var i=1 ; i<=gameLength ; i++){
-				
+		gameLength = wordName.length;
+
+		for (var i = 1; i <= gameLength; i++) {
+
 			wordIndex = wordName.indexOf(random(wordName));
 			meanIndex = meanName.indexOf(random(meanName));
-			$("#word"+i).find("span").text(wordName[wordIndex]);
-			$("#mean"+i).find("span").text(meanName[meanIndex]);
-			wordName.splice(wordIndex,1);
-			meanName.splice(meanIndex,1);
+			$("#word" + i).find("span").text(wordName[wordIndex]);
+			$("#mean" + i).find("span").text(meanName[meanIndex]);
+			wordName.splice(wordIndex, 1);
+			meanName.splice(meanIndex, 1);
 		}
 	}
 
-//모달창 여는 함수
-	function gameStart(gameName,gameScore) {
+	//모달창 여는 함수
+	function gameStart(gameName, gameScore) {
 		$("#myModal").modal();
 		$("#myModal").modal("show");
 		$("#gameName").find("b").text(gameName);
 		$("#gameScore").find("b").text(gameScore);
 	};
-	
-	function gameScoreUpdate(gameScore){
+
+	function gameScoreUpdate(gameScore) {
 		$("#gameScore").find("b").text(gameScore);
 	}
 	//여기서 점수 업데이트 해야함
-	function gameEnd(){
-		
-		if(master !=""){
-			
+	function gameEnd() {
+
+		if (master != "") {
+
 			console.log("게임이 끝나고 게임점수 업데이트");
-			
+
 			//wordbookNo 값 받아야합니다. 함수 안에다 넣어야 합니다 합니다 합니다 합니다.
 			//url 바꾸어야합니다.
 			wordbookNo = 221;
 			master = "기기";
 			gameScore = 5;
 			gameName = "니니";
-			
+
 			$.ajax({
 				url : "${pageContext.request.contextPath}/seo/scoreupdate",
 				type : "post",
-		//		traditional : true,
-				data : {wordbookNo: wordbookNo,gameName: gameName,gameScore: gameScore,master: master},
+				//		traditional : true,
+				data : {
+					wordbookNo : wordbookNo,
+					gameName : gameName,
+					gameScore : gameScore,
+					master : master
+				},
 				dataType : "html",
-				success : function(){
-				/*성공시 처리해야될 코드 작성*/
+				success : function() {
+					/*성공시 처리해야될 코드 작성*/
 					console.log("성공q")
 				},
 				error : function(XHR, status, error) {
-					console.error(status+" : "+error);
+					console.error(status + " : " + error);
 				}
 			});
 		} //if문
-		
+
 		$("#myModal").modal("hide");
 	}
 
-	
-//랜덤 함수
+	//랜덤 함수
 	function random(a) {
-	  return a[Math.floor(Math.random() * a.length)];
+		return a[Math.floor(Math.random() * a.length)];
 	};
-	
-//틀린단어 단어장에 작성하는 ajax함수
-	function wrong(wrongWord) {
-			//url 바꾸어야합니다
 
-		if(wrongWord !="" && master !=""){
+	//틀린단어 단어장에 작성하는 ajax함수
+	function wrong(wrongWord) {
+		//url 바꾸어야합니다
+
+		if (wrongWord != "" && master != "") {
 			console.log("오답일때 들어옴");
 			$.ajax({
 				url : "${pageContext.request.contextPath}/seo/wrongword",
 				type : "post",
-		//		traditional : true,
-				data : {wrongWord: wrongWord},
+				//		traditional : true,
+				data : {
+					wrongWord : wrongWord
+				},
 				dataType : "json",
-				success : function(num){
-				/*성공시 처리해야될 코드 작성*/
+				success : function(num) {
+					/*성공시 처리해야될 코드 작성*/
 					console.log("틀린단어 ajax");
 					console.log(num);
 				},
 				error : function(XHR, status, error) {
-				console.error(status+" : "+error);
+					console.error(status + " : " + error);
 				}
 			});
-		};//if
-		
+		}
+		;//if
+
 	};//function
 </script>
 
