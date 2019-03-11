@@ -212,7 +212,7 @@
 
 	<select id="selectWordChoice" resultType="com.javaex.vo.HeaderSearchVo">
 		<![CDATA[
-			select wordname from word where wordbookno = #{wordbookNo}
+			select wordname, wordbookno from word where wordbookno = #{wordbookNo}
 		]]>
 	</select>
 
@@ -222,11 +222,35 @@
 		]]>
 	</select>
 
-	<select id="selectBadMeanChoice" parameterType="int" resultType="com.javaex.vo.HeaderSearchVo">
+	<select id="selectBadMeanChoice" resultType="com.javaex.vo.HeaderSearchVo">
 		<![CDATA[
-			select SEYAMEANNAME from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <#{wordListSize}+1
+			select SEYAMEANNAME from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <5
+		]]>
+	</select>
+	
+	<select id="selectBadMeanChoice2" resultType="com.javaex.vo.QuizVo">
+		<![CDATA[
+			select SEYAMEANNAME as badAnswer from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <5
+		]]>
+	</select>
+	
+	<select id="selectMeanChoiceOne" resultType="com.javaex.vo.HeaderSearchVo">
+		<![CDATA[
+			select meanname from word where wordbookno = #{wordbookNo} and wordname = #{wordName}
 		]]>
 	</select>
 	
 	
+	<!-- -->
+	<select id="selectRandomQuizWord" parameterType="int" resultType="com.javaex.vo.QuizVo">
+		<![CDATA[
+			select 	wordNo,
+					wordname as question,
+					meanName as answer
+			from word 
+			where wordbookno = #{wordbookNo}
+		]]>
+	</select>
+	
+
 </mapper>

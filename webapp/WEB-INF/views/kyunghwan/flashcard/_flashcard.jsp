@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+
 .flashcardcontainer {
 	width: 790px;
 	height: 450px;
@@ -115,14 +116,14 @@
 	var i = 0;
 	var j = 0;
 </script>
-<c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
-	<script type="text/javascript">
-		noList[i] = '${flashcardVo.wordNo}';
-		wordList[i] = '${flashcardVo.wordName}';
-		meanList[i] = '${flashcardVo.meanName}';
-		i++;
-	</script>
-</c:forEach>
+	<c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
+		<script type="text/javascript">
+			noList[i] = '${flashcardVo.wordNo}';
+			wordList[i] = '${flashcardVo.wordName}';
+			meanList[i] = '${flashcardVo.meanName}';
+			i++;
+		</script>
+	</c:forEach>
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -288,5 +289,4 @@
 		});
 	};
 </script>
-
 </html>

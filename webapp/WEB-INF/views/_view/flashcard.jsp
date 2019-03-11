@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <!DOCTYPE html>
 
 <!--
@@ -44,6 +45,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+body{
+	font-family: 'Jeju Gothic', sans-serif;
+}
+
 .ko-12 {
 	font-family: Nanum Gothic, dotum, sans-serif;
 	font-size: 12px;
@@ -224,6 +232,61 @@ p.flashcard-font {
 	background-color: #ffffff;
 	margin-top: -35px;
 }
+
+.quiz-header {
+	width: 100%;
+    height: 100px;
+    font-size: 20px;
+    border: solid 2px;
+    padding: 10px;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.quiz-answer {
+	width: 100%;
+    height: 70px;
+    font-size: 16px;
+    margin-top: 10px;
+    float: right;
+    padding: 10px;
+    text-align: center;
+    border: solid;
+    padding-top: 20px;
+}
+.quiz-OX {
+	width: 100%;
+    height: 300px;
+    border: solid;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    padding-top: 15px;
+    margin-top: 10px;
+   
+}
+
+.quiz-question{
+	width: 100%;
+	heigth: 70%;
+    font-size: 50px;
+    padding-top: 90px;
+}
+.check-mark {
+    width: 50px;
+    height: 50px;    
+    float: left;
+    margin-top: -14px;
+}
+.select-answer {
+	width : 94%;
+}
+.correct-mark{
+	width: 30%;
+    margin-bottom: 15px;
+    min-width: 150px;
+    max-width: 230px;
+}
 </style>
 
 </head>
@@ -306,44 +369,74 @@ desired effect
 							src="dist/images/wordmatch.png" alt="짝 맞추기"> </a>
 						<p class=text-center>짝 맞추기</p>
 					</div>
-					<div class="col-xs-4 col-md-4">
-							<img class="flashcard-image" data-toggle="modal" data-target="#quizModal"
-								src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
-								alt="랜덤 퀴즈">
-							<p class=text-center>랜덤 퀴즈</p>
-			
-						<div class="modal fade" id = "quizModal">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title">사지선다 퀴즈</h4>
-									</div>
-									<div class="modal-body">
-									
-									
-										<p>One fine body&hellip;</p>
-										
-										
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save
-											changes</button>
-									</div>
-								</div>
-								<!-- /.modal-content -->
-							</div>
-							<!-- /.modal-dialog -->
-						</div>
-						<!-- /.modal -->
-
+					<div class="col-xs-4 col-md-4" id="randomQuiz">
+						<img class="flashcard-image" data-toggle="modal"
+							data-target="#quizModal"
+							src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+							alt="랜덤 퀴즈">
+						<p class=text-center>랜덤 퀴즈</p>
 					</div>
 			</section>
+			<div class="modal fade" id="quizModal">
+				<div class="modal-dialog" style="width: 80%">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">사지선다 퀴즈</h4>
+						</div>
+						<div class="modal-body">
+							<div class="quiz-header">
+								다음의 보기에서 알맞은 정답을 선택하세요.
+							</div>
+							<!-- 문제 나오고 , 정답 체크 하는 곳 -->
+							<div class="quiz-OX">
+								<!-- <img class="correct-mark" src="/upload/profile/correct-mark01.png">
+								<p>정답입니다.</p> -->
+								<div class="quiz-question" id="game-question" >
+								 
+								</div>
+							</div>
+							<!-- 정답 번호 1번. -->
+							<div class="btn btn-default quiz-answer" >
+								<img class="check-mark" src="/upload/profile/check-mark.png">
+								<div class="select-answer" id="ans01">1. ${quizVo.answerArray[0]}</div>
+							</div>
+							
+							<!-- 정답 번호 2번. -->
+							<div class="btn btn-default quiz-answer" id="ans02">
+								<img class="check-mark" src="/upload/profile/x-mark04.png">
+								<div class="select-answer">2.${quizVo.answerArray[1]}</div>
+							</div>
+							
+							<!-- 정답 번호 3번. -->
+							<div class="btn btn-default quiz-answer" id="ans03">
+								<img class="check-mark" src="/upload/profile/circle-mark02.png">
+								<div class="select-answer">3.${quizVo.answerArray[2]}</div>
+							</div>
+							
+							<!-- 정답 번호 4번. -->
+							<div class="btn btn-default quiz-answer" id="ans04">
+								<img class="check-mark" src="/upload/profile/blank-background04.png">
+								<div class="select-answer">4.${quizVo.answerArray[3]}</div>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+							<!-- <button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save
+								changes</button> -->
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
@@ -375,8 +468,37 @@ desired effect
 </body>
 
 <script type="text/javascript">
+$("#randomQuiz").on("click", function(){
+	
+	console.log(${flashcardVo.wordbookNo});
+	
+	var wordbookNo = "${flashcardVo.wordbookNo}";
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/randomquiz",   //url 
+		type : "post",
+//		contentType : "application/json",
+		data : {wordbookNo: wordbookNo},
+		
+		dataType : "json",
+		success : function(quizList){
+		/*성공시 처리해야될 코드 작성*/
+			console.log(quizList);
+			 $("#ans01").text("살려는주십시오.")
+		
+		},
+		error : function(XHR, status, error) {
+		console.error(status+" : "+error);
+		}
+	});
 	
 	
+	
+});
+
+
+
+
 	
 </script>
 </html>
