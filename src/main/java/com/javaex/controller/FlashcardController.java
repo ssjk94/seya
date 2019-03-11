@@ -32,7 +32,7 @@ public class FlashcardController {
 
 		System.out.println(flashcardVo.toString());
 		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
-		md.addAttribute("selectFlashcardList", list);
+		md.addAttribute("wordbookList", list);
 		md.addAttribute("URLId", urlPathVo.getURLId());
 
 		
@@ -87,7 +87,7 @@ public class FlashcardController {
 		System.out.println(flashcardVo.toString());
 		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
 		System.out.println("flashcardgame" + list.toString());
-		md.addAttribute("selectFlashcardList", list);
+		md.addAttribute("wordbookList", list);
 		md.addAttribute("URLId", urlPathVo.getURLId());
 		// 승
 		md.addAttribute("urlPathVo", flashcardService.getNickName(urlPathVo));
