@@ -32,17 +32,6 @@
 	text-align: center;
 }
 
-.searchbar {
-	width: 300px;
-	height: 45px;
-	background-color: #dd4b39;
-	border: none;
-	border-bottom: solid 1px #ffffff;
-	padding: 10px;
-	color: #ffffff;
-	float: left;
-}
-
 .searchform {
 	display: inline-block;
 }
@@ -70,16 +59,6 @@
 	opacity: 1;
 }
 
-.searchbar {
-	width: 450px;
-	height: 45px;
-	background-color: #ffffff;
-	border: none;
-	border-bottom: solid 1px #ffffff;
-	padding: 10px;
-	color: #ffffff;
-}
-
 .formcontroll {input [type="submit"] { font-family:FontAwesome;
 	background-color: rgba(255, 255, 255, 0.7);
 	font-size: 27px;
@@ -91,7 +70,7 @@
 	position: relative;
 	z-index: 2;
 	float: right;
-	width: 85%;
+	width: 495px;
 	margin-bottom: 0;
 }
 
@@ -104,7 +83,7 @@
 }
 
 .searchdiv {
-	width: 500px;
+	width: 570px;
 	float: left;
 }
 
@@ -112,6 +91,10 @@
 	border-radius: 3px;
 	margin: 6px 10px;
 	border: 0px;
+}
+
+.main-header .navbar-custom-menu {
+	margin-right: 22px;
 }
 
 </style>
