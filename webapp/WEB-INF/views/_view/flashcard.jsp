@@ -360,28 +360,8 @@ desired effect
 							alt="플래시 퀴즈">
 						<p class=text-center>플래시 퀴즈</p>
 					</div>
-<<<<<<< HEAD
 					<!-- 경환 body -->
 					<c:import url="/WEB-INF/views/_view/pairsetgame.jsp" />
-					
-=======
-<!-- 					<div class="col-xs-4 col-md-4"> -->
-<!-- 						<form -->
-<%-- 							action="${pageContext.request.contextPath}/${URLId}/flashcardgame" --%>
-<!-- 							method="get"> -->
-<!-- 							<input name="wordbookNo" type="hidden" -->
-<%-- 								value="${flashcardVo.wordbookNo}"> --%>
-<!-- 							<button type="submit" -->
-<!-- 								style="background-color: transparent; border: 0px transparent solid;"> -->
-<!-- 								<img class="flashcard-image" -->
-<%-- 									src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg" --%>
-<!-- 									alt="플래시 카드"> -->
-<!-- 								<p class=text-center>플래시 카드</p> -->
-<!-- 							</button> -->
-<!-- 						</form> -->
-<!-- 					</div> -->
-
->>>>>>> refs/remotes/origin/master
 					<div class="col-xs-4 col-md-4">
 
 						<a href="#"><img class="flashcard-image" data-toggle = "modal"
@@ -735,18 +715,7 @@ $(document).ready(function() {
 	}
 });
 	//클릭 이벤트 펑션 끝나는곳
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	function startGame(){
+function startGame(){
 		//단어장 리스트 갯수확인하는 지역변수
 		listlength = gameList.length
 		console.log("시작");
