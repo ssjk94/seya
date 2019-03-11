@@ -48,7 +48,6 @@ public class FlashcardService {
 		// 리스트 for vo하나에 들어갈것들 하시오
 			System.out.println("위 퀴즈리스트: "+ quizList.size());
 		for (int i=0; i<quizList.size(); i++) {
-			System.out.println("아래 퀴즈리스트: "+ quizList.size());
 
 			quizVo.setWordNo(quizList.get(i).getWordNo());
 			quizVo.setQuestion(quizList.get(i).getQuestion());
@@ -66,13 +65,11 @@ public class FlashcardService {
 			Random random = new Random();
 			int ansNo;
 			ansNo = random.nextInt(4);
-			System.out.println("랜덤번호 : " + ansNo);
 			quizVo.setAnsNo(ansNo);
 			
 			// 정답입력
 			answerArray2[ansNo] = quizList.get(i).getAnswer();
 			quizVo.setAnswerArray(answerArray2);
-			System.out.println("답 배열 : " + quizVo.toString());
 
 			//퀴즈리스트에 추가하기
 //			quizList.add(quizVo);
