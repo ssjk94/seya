@@ -53,9 +53,11 @@ public class WordbookService {
 		//기본 단어장을 삭제하려고할때
 		if(wordbookDao.selectWordbookType(urlPathVo)==0) {
 			wordbookDao.updateDefaultWordbook(urlPathVo);
+			wordbookDao.deleteGameScore(urlPathVo);
 		}else if(wordbookDao.selectWordbookType(urlPathVo)==1){			
 			wordbookDao.deleteWord(urlPathVo);
 			wordbookDao.deleteWordbook(urlPathVo);
+			wordbookDao.deleteGameScore(urlPathVo);
 		}
 	}
 	// 단어장 관련된것을 가져오는 객체

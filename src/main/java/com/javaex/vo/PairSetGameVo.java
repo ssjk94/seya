@@ -2,10 +2,14 @@ package com.javaex.vo;
 
 public class PairSetGameVo {
 
+	private int wordbookNo;
 	private int wordNo;
+	private int userNo;
 	private String wordName;
 	private String meanName;
-	
+	private String gameName;
+	private int gameScore;
+	private String master;
 	
 	
 	
@@ -13,12 +17,69 @@ public class PairSetGameVo {
 	public PairSetGameVo() {
 		super();
 	}
-	public PairSetGameVo(int wordNo, String wordName, String meanName) {
-		super();
-		this.wordNo = wordNo;
-		this.wordName = wordName;
-		this.meanName = meanName;
+
+	
+	
+	public int getWordbookNo() {
+		return wordbookNo;
 	}
+
+
+
+	public void setWordbookNo(int wordbookNo) {
+		this.wordbookNo = wordbookNo;
+	}
+
+
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+
+
+	public String getGameName() {
+		return gameName;
+	}
+
+
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+
+
+	public int getGameScore() {
+		return gameScore;
+	}
+
+
+
+	public void setGameScore(int gameScore) {
+		this.gameScore = gameScore;
+	}
+
+
+
+	public String getMaster() {
+		return master;
+	}
+
+
+
+	public void setMaster(String master) {
+		this.master = master;
+	}
+
+
+
 	public int getWordNo() {
 		return wordNo;
 	}
@@ -37,10 +98,16 @@ public class PairSetGameVo {
 	public void setMeanName(String meanName) {
 		this.meanName = meanName;
 	}
+
+
+
 	@Override
 	public String toString() {
-		return "PairSetGameVo [wordNo=" + wordNo + ", wordName=" + wordName + ", meanName=" + meanName + "]";
+		return "PairSetGameVo [wordbookNo=" + wordbookNo + ", wordNo=" + wordNo + ", userNo=" + userNo + ", wordName="
+				+ wordName + ", meanName=" + meanName + ", gameName=" + gameName + ", gameScore=" + gameScore
+				+ ", master=" + master + "]";
 	}
+
 	
 	
 	

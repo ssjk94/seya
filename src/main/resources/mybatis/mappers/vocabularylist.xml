@@ -7,8 +7,8 @@
 	<!-- 닉네임인가? -->
 	<insert id="insertWordbook" parameterType="com.javaex.vo.URLPathVo">
 		insert into wordbook (wordbookno,wordbookname,wordbookregdate,wordbookaccess
-										,wordbooktype,wordbookmaker,directoryno)
-		values(wordbook_seq.nextval,#{wordbookName},sysdate,0,1,(select nickname from users where id = #{URLId}),#{directoryNo})
+										,wordbooktype,wordbookmaker,wordbookmakerimage,directoryno)
+		values(wordbook_seq.nextval,#{wordbookName},sysdate,0,1,(select nickname from users where id = #{URLId}),(select userimage from users where id = #{URLId}),#{directoryNo})
 		
 		<selectKey keyProperty="wordbookNo" resultType="int">
 

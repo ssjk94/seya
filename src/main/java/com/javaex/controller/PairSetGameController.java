@@ -3,19 +3,24 @@ package com.javaex.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.javaex.service.PairSetGameService;
 import com.javaex.vo.PairSetGameVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.VocabularyListVo;
 
 @Controller
 public class PairSetGameController {
-
+	
+	@Autowired
+	PairSetGameService pairSetGameService;
+	
 	@RequestMapping(value = "{URLId}/pairsetgame", method = RequestMethod.GET)
 	public String pairSetGameMain(Model md) {
 		
@@ -55,14 +60,22 @@ public class PairSetGameController {
 	
 	@ResponseBody
 	@RequestMapping(value = "{URLId}/wrongword", method = RequestMethod.POST)
-	public int wrongWord(URLPathVo urlPathVo,String wrongWord) {
+	public void wrongWord(URLPathVo urlPathVo,String wrongWord) {
 		System.out.println("ajax 틀린 단어");
-		
+		System.out.println(urlPathVo.toString());
 		System.out.println(wrongWord);
 		
-		//서비스 가고 실행시키는 문장 들어가야함
+		pairSetGameService.wrongWordInsert(urlPathVo, wrongWord);
 		
-		return 3;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "{URLId}/scoreupdate", method = RequestMethod.POST)
+	public void wrongWord(PairSetGameVo pairSetGameVo) {
+		System.out.println("게임이 끝난뒤 점수 업데이트");
+		//dao 주석 풀어야함
+		pairSetGameService.scoreRankinInsert(pairSetGameVo);
+		
 	}
 	
 }

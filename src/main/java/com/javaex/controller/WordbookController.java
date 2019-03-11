@@ -31,7 +31,8 @@ public class WordbookController {
 		
 		//URLId에 들어온 값이 진짜 있는 유저인지 알아보는서비스
 		if(!wordbookService.realExistUser(urlPathVo)) {
-			return "main/seyamain";
+			//리다이렉트로 보내기
+			return "redirect:"+"/";
 		}
 		
 		//검색결과 받는거

@@ -37,6 +37,9 @@ public class FlashcardController {
 
 		// 경환
 		List<WordbookVo> directoryList = flashcardService.getWordbookAlldirectoryList(urlPathVo);
+		if(list.size()>=0) {
+			md.addAttribute("wordbookNo", list.get(0).getWordbookNo());			
+		}
 		md.addAttribute("directoryList", directoryList);
 
 		return "_view/flashcard";

@@ -23,11 +23,6 @@ public class VocabularyListDao {
 	public void insertWordbook(URLPathVo urlPathVo){
 		sqlSession.insert("vocabularylist.insertWordbook",urlPathVo);
 	}
-	//만든 단어장 no값 리턴받기
-	public VocabularyListVo selectWordbookNo(URLPathVo urlPathVo) {
-		return null;
-		//sqlSession.selectOne("vocabularylist.selectWordbookNo",urlPathVo);
-	}
 	//워드삽입
 	public void insertWord(VocabularyListVo vocabularyListVo) {
 		sqlSession.insert("vocabularylist.insertword",vocabularyListVo);

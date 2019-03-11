@@ -25,13 +25,14 @@
 						w.wordbookregdate,
 						w.wordbookaccess,
 						w.wordbookmaker,
+						w.wordbookmakerimage,
 						d.directoryno
 		from 		wordbook w, directory d, users u
 		where 		w.directoryno = d.directoryno
 		and 			d.userno = u.userno
 		and 			w.wordbooktype = any(0,1)
 		and 			d.directoryno = #{directoryNo}
-		order by 	w.wordbookno asc;
+		order by 	w.wordbookno desc
 	]]>
 	</select>
 
@@ -43,13 +44,14 @@
 						w.wordbookregdate,
 						w.wordbookaccess,
 						w.wordbookmaker,
+						w.wordbookmakerimage,
 						d.directoryno
 		from 		wordbook w, directory d, users u
 		where 		u.id = #{URLId}
 		and 			w.directoryno = d.directoryno
 		and 			w.wordbooktype = any(0,1)
 		and 			d.userno = u.userno
-		order by 	w.wordbookno asc
+		order by 	w.wordbookno desc
 	]]>
 	</select>
 	<delete id="deleteWordbook" parameterType="com.javaex.vo.URLPathVo">
@@ -72,6 +74,12 @@
 		]]>
 	
 	</delete>
+	<delete id="deleteGameScore" parameterType="com.javaex.vo.URLPathVo">
+		<![CDATA[
+			delete from 	gamescore
+			where 			wordbookno = #{wordbookNo}
+		]]>
+	</delete>
 	
 	<select id="selectOneNickName" resultType="com.javaex.vo.URLPathVo" parameterType="com.javaex.vo.URLPathVo">
 	
@@ -93,7 +101,7 @@
 	
 	<!-- 공유하는 구문 -->
 	<select id="selectWordbookInfo" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
-		select wordbookname,wordbookregdate,wordbookaccess,wordbookmaker 
+		select wordbookname,wordbookregdate,wordbookaccess,wordbookmaker,wordbookmakerimage 
 		from wordbook 
 		where wordbookno=#{wordbookNo}
 	</select>
@@ -140,6 +148,7 @@
 											wordbookaccess,
 											wordbooktype,
 											wordbookmaker,
+											wordbookmakerimage,
 											directoryno) 
 		values	(	wordbook_seq.nextval,
 						#{wordbookName},
@@ -147,6 +156,7 @@
 						#{wordbookAccess},
 						1,
 						#{wordbookMaker},
+						#{wordbookMakerImage},
 						#{directoryNo})
 						
 		<selectKey keyProperty="wordbookNo" resultType="int">

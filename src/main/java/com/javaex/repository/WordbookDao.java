@@ -33,6 +33,9 @@ public class WordbookDao {
 		public void deleteWord(URLPathVo urlPathVo) {
 			sqlSession.delete("wordbook.deleteWord", urlPathVo);
 		}
+		public void deleteGameScore(URLPathVo urlPathVo) {
+			sqlSession.delete("wordbook.deleteGameScore", urlPathVo);
+		}
 		//닉네임 조회 셀렉트
 		public URLPathVo selectOneNickName(URLPathVo urlPathVo) {
 			return sqlSession.selectOne("wordbook.selectOneNickName", urlPathVo);

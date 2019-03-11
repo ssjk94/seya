@@ -473,12 +473,14 @@ desired effect
 							<b>${keyword}</b>				
 					</div>
 					<!-- 단어장 추가하는 버튼이 들어가는칸 -->
-					<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary">
-						<input type="hidden" name="directoryNo" value="${directoryNo}">
-						<div class="pull-right">
-							<button type="submit" class="btn btn-sm bg-navy">단어장 만들기</button>
-						</div>
-					</form>
+					<c:if test="${URLId eq sessionScope.id}">
+						<form action="${pageContext.request.contextPath}/${URLId}/addvocabulary">
+							<input type="hidden" name="directoryNo" value="${directoryNo}">
+							<div class="pull-right">
+								<button type="submit" class="btn btn-sm bg-navy">단어장 만들기</button>
+							</div>
+						</form>
+					</c:if>
 				</div>
 				
 				<!-- 깨끗 -->
@@ -552,7 +554,7 @@ desired effect
 									<div>
 										<!-- 단어장 만든이의 이미지가 나오는 칸 -->
 										<div class="pull-left">
-											 <img class="img-circle" alt="사진없음" src="dist/images/bonobono.jpg">
+											 <img class="img-circle" alt="사진없음" src="/upload/profile/${wordbookVo.wordbookMakerImage}">
 										</div>
 										<!-- 만든이와 만든 날짜나오는 칸 -->
 										<div class="pull-left">
@@ -642,16 +644,17 @@ desired effect
 				<input type="hidden" name="directoryNo" value="">
 				<input type="hidden" name="index" value="">
 			</form>
-			<div id="pagenation">
-				<ul class="pagination pagination-sm no-margin">
-					<li><a href="#">«</a></li>
-					<c:forEach var="i" begin="${pagingVo.pageStartNum}" end="${pagingVo.pageLastNum}">
-						<li><a href="#"><c:out value="${i}" /></a></li>
-					</c:forEach>
-					<li><a href="#">»</a></li>
-              </ul>
-			</div>
-			
+			<c:if test="${!empty wordbookList}">
+				<div id="pagenation">
+					<ul class="pagination pagination-sm no-margin">
+						<li><a href="#">«</a></li>
+						<c:forEach var="i" begin="${pagingVo.pageStartNum}" end="${pagingVo.pageLastNum}">
+							<li><a href="#"><c:out value="${i}" /></a></li>
+						</c:forEach>
+						<li><a href="#">»</a></li>
+	              </ul>
+				</div>
+			</c:if>
 		</div>
 		<!-- /.content-wrapper -->
 		

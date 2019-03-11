@@ -325,7 +325,9 @@ input:disabled {
 	visibility: visible;
 }
 #pagenation{
-	margin: 15px 0 0 38%;
+	margin: 15px 0 0 0;
+	width: 100%;
+	text-align: center;
 }
 .wordbook{
 	border-top: 3px solid #d2d6de;
@@ -571,37 +573,41 @@ desired effect
 
 						
 
-					세션:${ sessionScope.id}
-					url:${URLId }
 					<!-- 페이지 네이션 -->
 					<form name="pagenationForm" action="${pageContext.request.contextPath}/${URLId}/vocabularylist">
 						<input type="hidden" name="wordbookNo" value="">
 						<input type="hidden" name="wordbookName" value="">
 						<input type="hidden" name="index" value="">
 					</form>
-					<div id="pagenation">
-						<ul class="pagination pagination-sm no-margin">
-							<li><a href="#">«</a></li>
-							<c:forEach var="i" begin="${pagingVo.pageStartNum}" end="${pagingVo.pageLastNum}">
-								<li><a href="#"><c:out value="${i}" /></a></li>
-							</c:forEach>
-							<li><a href="#">»</a></li>
-		              </ul>
-					</div>
+					<c:if test="${!empty vocaList }">
+						<div id="pagenation">
+							<ul class="pagination pagination-sm no-margin">
+								<li><a href="#">«</a></li>
+								<c:forEach var="i" begin="${pagingVo.pageStartNum}" end="${pagingVo.pageLastNum}">
+									<li><a href="#"><c:out value="${i}" /></a></li>
+								</c:forEach>
+								<li><a href="#">»</a></li>
+			              </ul>
+						</div>
+					</c:if>
 					<!-- 확인 버튼 -->
 					<c:choose>
 						<c:when test="${URLId eq sessionScope.id}">
-							<div class="submit">
-								<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
-							</div>
+							<c:if test="${!empty vocaList }">							
+								<div class="submit">
+									<button class="pull-right btn btn-sm bg-navy vocamodi-btn">확인</button>
+								</div>
+							</c:if>
 						</c:when>
 						<c:otherwise>
-							<div>
-							<!-- 메인으로 걸어주기 -->
-								<a href="${pageContext.request.contextPath}/${URLId}">
-									<button class="pull-right btn btn-sm bg-navy vocamodi-btn">메인으로</button>
-								</a>
-							</div>
+							<c:if test="${!empty vocaList }">							
+								<div>
+								<!-- 메인으로 걸어주기 -->
+									<a href="${pageContext.request.contextPath}/${URLId}">
+										<button class="pull-right btn btn-sm bg-navy vocamodi-btn">메인으로</button>
+									</a>
+								</div>
+							</c:if>
 						</c:otherwise>
 					</c:choose>					
 				</div>

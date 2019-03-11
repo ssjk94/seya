@@ -19,6 +19,7 @@
 		<mapper resource="mybatis/mappers/flashcard.xml" />
 		<mapper resource="mybatis/mappers/vocabularylist.xml" />
 		<mapper resource="mybatis/mappers/navigation.xml" />
+		<mapper resource="mybatis/mappers/pairsetgame.xml" />
 	</mappers>
 	
 	

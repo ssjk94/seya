@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pairsetgame">
+
+	<!-- 쿼리문 작성 -->
+
+	<insert id="updateGameScore" parameterType="com.javaex.vo.PairSetGameVo">
+		<![CDATA[
+			
+			insert into gamescore	(gamescoreno,
+												  wordbookno,
+												  gameselectno,
+												  userno,
+												  gamescore)
+			values							  (gamescore_seq.nextval,
+	  											  #{wordbookNo},
+	  											  	(select 	gameselectno 
+	  											  from 		gameselect 
+	  											  where 	gameselectname = '#{gameName}'),
+	  											  	(select 	userno 
+	  											  from 		users 
+	  											  where 	id = '#{master}'),
+	  											  #{gameScore})
+			
+		]]>
+	</insert>
+
+
+</mapper>

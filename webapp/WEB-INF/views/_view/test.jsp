@@ -65,12 +65,12 @@
 		@keyframes slidein {
 		  from {
 		    margin-left: 75%;
-		    width: 300%
+		    width: 10%
 		  }
 		
 		  to {
 		    margin-left: 0%;
-		    width: 100%;
+		    width: 92%;
 		  }
 		}
 		.clearBox span{
@@ -136,7 +136,6 @@
 	
 			
 			
-
 
 
 
@@ -268,6 +267,8 @@
 <script type="text/javascript">
 jQuery.ajaxSettings.traditional = true;
 
+var master = "${sessionScope.id}";
+
 var gameList = new Array();	//게임 리스트를 받는 배열
 var success = new Array();		//정답지 리스트
 var wordName =	new Array();//게임 워드 받는 배열
@@ -280,6 +281,7 @@ var rnum = 0;//정답 횟수를 추측하여 다시 리셋 시키게 하는 전�
 var num = 1; //클릭을 몇번 했는지 나타내는 전역변수
 var a1; // 1번째 워드 or mean값
 var a2;	// 2번째 워드 or mean값
+var meanName;//틀린답일시 여기에있는 뜻을 가져감
 var id1; // 1번째 워드 or mean값 에 div아이디
 var id2;// 2번째 워드 or mean값 에 div아이디
 
@@ -289,7 +291,10 @@ var gameLength;//3개이하일경우 길이를 측정해야하는 전역변수
 
 var life=3;
 var gameName = "Pair Word";//${gameName};  게임 네임을 저장하는 변수
-var gameScore = 5; // 게임 스코어 전역변수
+var gameScore = 0; // 게임 스코어 전역변수
+var feverScore=[1,2,3,4,5];
+var feverGo;
+var correctIndex;
 var listlength;
 
 <c:forEach items="${gameList}" var = "info">
@@ -304,16 +309,18 @@ $(document).ready(function() {
 	
 	
 	gameStart(gameName,gameScore);
-	gameScore = 2222
+	correctIndex = true;
+	feverGo = 0;
+	master = 'seo';
 	gameScoreUpdate(gameScore);
 	startGame();
+	//gameEnd();
 });
 
 //modal창 키고나서 스타트게임 함수 실행하고
 //클릭이벤트로다가 끝
-
 	$(".absolute").on("click","div",function(){
-			
+		var meanindex // 의미찾는 인덱스값
 		$(this).find("span").toggleClass("choiceblock");
 			
 		if(num == 1){
@@ -334,8 +341,14 @@ $(document).ready(function() {
 				$("#"+id2).hide();
 				$("#"+id1).find("span").removeClass("choiceblock");
 				$("#"+id2).find("span").removeClass("choiceblock");
-					
-				gameScore = gameScore + 100;
+				
+				
+				gameScore = gameScore + 100*feverScore[feverGo];
+				if(feverGo<4){
+					feverGo = feverGo + 1;
+				};
+				
+				
 				rnum++;//정답 횟수를 체크하는 전역변수
 					
 				gameScoreUpdate(gameScore);
@@ -344,6 +357,7 @@ $(document).ready(function() {
 				if(listlength<4 && success.length == rnum+1){
 					//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
 					alert("끄읕");
+					gameEnd();
 				}
 				//지정했던 클래스 삭제
 					
@@ -351,7 +365,12 @@ $(document).ready(function() {
 					
 			}else {
 				console.log("오답");
-				gameScore = gameScore - 44;
+				if(gameScore<44){
+					gameScore = 0;
+				}else{
+					gameScore = gameScore - 44;	
+				}
+				feverGo = 0;
 				gameScoreUpdate(gameScore);
 				
 				$("#"+id1).find("span").removeClass("choiceblock");
@@ -359,6 +378,8 @@ $(document).ready(function() {
 				
 				if(id1.startsWith('w') && !id2.startsWith('w')){
 					wrong(a1);
+					var meanindex = success.indexOf(a1)+1;
+					meanName = success[meanindex];
 				}else if(!id1.startsWith('w') && id2.startsWith('w')){
 					wrong(a2);
 				}
@@ -374,7 +395,10 @@ $(document).ready(function() {
 				$("#"+id1).find("span").removeClass("choiceblock");
 				$("#"+id2).find("span").removeClass("choiceblock");
 					
-				gameScore = gameScore + 100;
+				gameScore = gameScore + 100*feverScore[feverGo];
+				if(feverGo<4){
+					feverGo = feverGo + 1;
+				};
 				rnum++;//정답 횟수를 체크하는 전역변수
 					
 				gameScoreUpdate(gameScore);
@@ -383,6 +407,7 @@ $(document).ready(function() {
 				if(listlength<4 && success.length == rnum+1){
 					//모달창 으로다가 보여주고 확인 누르면 시작 페이지로 시작 페이지 아직 만들지 않음 확인밖에 없음
 					alert("끄읕");
+					gameEnd();
 				}
 				//지정했던 클래스 삭제
 					
@@ -392,7 +417,13 @@ $(document).ready(function() {
 				console.log("오답");
 				$("#"+id1).find("span").removeClass("choiceblock");
 				$("#"+id2).find("span").removeClass("choiceblock");
-				gameScore = gameScore - 44;
+				//점수 부분
+				if(gameScore<44){
+					gameScore = 0;
+				}else{
+					gameScore = gameScore - 44;	
+				}
+				feverGo = 0;
 				gameScoreUpdate(gameScore);
 				
 				
@@ -491,18 +522,39 @@ $(document).ready(function() {
 	function gameScoreUpdate(gameScore){
 		$("#gameScore").find("b").text(gameScore);
 	}
-//클릭시에 발생하는 이벤트
-	function hov(){
+	//여기서 점수 업데이트 해야함
+	function gameEnd(){
 		
+		if(master !=""){
+			
+			console.log("게임이 끝나고 게임점수 업데이트");
+			
+			//wordbookNo 값 받아야합니다. 함수 안에다 넣어야 합니다 합니다 합니다 합니다.
+			//url 바꾸어야합니다.
+			wordbookNo = 221;
+			master = "기기";
+			gameScore = 5;
+			gameName = "니니";
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/seo/scoreupdate",
+				type : "post",
+		//		traditional : true,
+				data : {wordbookNo: wordbookNo,gameName: gameName,gameScore: gameScore,master: master},
+				dataType : "html",
+				success : function(){
+				/*성공시 처리해야될 코드 작성*/
+					console.log("성공")
+				},
+				error : function(XHR, status, error) {
+					console.error(status+" : "+error);
+				}
+			});
+		} //if문
 		
-		/* if(boo == true){
-			$("div").removeClass("white").addClass("black");
-			boo = false;
-		}else{
-			$("div").removeClass("black").addClass("white");
-			boo = true;
-		} */
+		$("#myModal").modal("hide");
 	}
+
 	
 //랜덤 함수
 	function random(a) {
@@ -511,9 +563,10 @@ $(document).ready(function() {
 	
 //틀린단어 단어장에 작성하는 ajax함수
 	function wrong(wrongWord) {
-			
-		if(wrongWord !=""){
-			
+			//url 바꾸어야합니다
+
+		if(wrongWord !="" && master !=""){
+			console.log("오답일때 들어옴");
 			$.ajax({
 				url : "${pageContext.request.contextPath}/seo/wrongword",
 				type : "post",
@@ -530,6 +583,7 @@ $(document).ready(function() {
 				}
 			});
 		};//if
+		
 	};//function
 </script>
 

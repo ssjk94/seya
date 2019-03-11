@@ -17,6 +17,7 @@ public class WordbookVo {
 	private String wordbookName;
 	private String wordbookMaker;
 	private Date wordbookRegdate;
+	private String wordbookMakerImage;
 	private int wordbookAccess;
 	private int wordbookType;
 	private int wordNum;
@@ -31,7 +32,7 @@ public class WordbookVo {
 
 	public WordbookVo(int userNo, int directoryNo, int wordbookNo, String nickName, String userImage,
 			String userContent, String directoryName, String wordbookName, String wordbookMaker, Date wordbookRegdate,
-			int wordbookAccess, int wordbookType, int wordNum) {
+			int wordbookAccess, int wordbookType, int wordNum,String wordbookMakerImage) {
 		super();
 		this.userNo = userNo;
 		this.directoryNo = directoryNo;
@@ -46,13 +47,22 @@ public class WordbookVo {
 		this.wordbookAccess = wordbookAccess;
 		this.wordbookType = wordbookType;
 		this.wordNum = wordNum;
+		this.wordbookMakerImage = wordbookMakerImage;
 	}
 
 
 	//setter and getter
-
+	
 	public int getWordNum() {
 		return wordNum;
+	}
+
+	public String getWordbookMakerImage() {
+		return wordbookMakerImage;
+	}
+
+	public void setWordbookMakerImage(String wordbookMakerImage) {
+		this.wordbookMakerImage = wordbookMakerImage;
 	}
 
 	public void setWordNum(int wordNum) {
@@ -139,7 +149,7 @@ public class WordbookVo {
 				+ ", nickName=" + nickName + ", userImage=" + userImage + ", userContent=" + userContent
 				+ ", directoryName=" + directoryName + ", wordbookName=" + wordbookName + ", wordbookMaker="
 				+ wordbookMaker + ", wordbookRegdate=" + wordbookRegdate + ", wordbookAccess=" + wordbookAccess
-				+ ", wordbookType=" + wordbookType + ", wordNum=" + wordNum + "]";
+				+ ", wordbookType=" + wordbookType + ", wordNum=" + wordNum +", wordbookMakerImage="+wordbookMakerImage +"]";
 	}
 }
 
