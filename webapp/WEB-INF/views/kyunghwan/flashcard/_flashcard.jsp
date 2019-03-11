@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+
 .flashcardcontainer {
 	width: 790px;
 	height: 450px;

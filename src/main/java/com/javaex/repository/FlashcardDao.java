@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.FlashcardVo;
 import com.javaex.vo.HeaderSearchVo;
+import com.javaex.vo.QuizVo;
 import com.javaex.vo.URLPathVo;
 import com.javaex.vo.WordbookVo;
 
@@ -39,18 +40,36 @@ public class FlashcardDao {
     }
 
 	public List<HeaderSearchVo> selectWordChoice(HeaderSearchVo headerSearchVo) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("users.selectWordChoice", headerSearchVo);
 	}
 
 	public List<HeaderSearchVo> selectMeanChoice(HeaderSearchVo headerSearchVo) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("users.selectMeanChoice", headerSearchVo);
 	}
 
-	public List<HeaderSearchVo> selectBadMeanChoice(int wordListSize) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("users.selectBadMeanChoice", wordListSize);	
+	public List<HeaderSearchVo> selectBadMeanChoice(HeaderSearchVo headerSearchVo) {
+		
+		return sqlSession.selectList("users.selectBadMeanChoice", headerSearchVo);	
 	}
 
+	public HeaderSearchVo selectMeanChoiceOne(HeaderSearchVo headerSearchVo) {
+		
+		return sqlSession.selectOne("users.selectMeanChoiceOne", headerSearchVo);
+	}
+
+	
+	//
+	public List<QuizVo> selectRandomQuizWord(int wordbookNo) {
+		
+		return sqlSession.selectList("users.selectRandomQuizWord", wordbookNo);
+	}
+
+	public List<QuizVo> selectbadMeanList() {
+		
+		return sqlSession.selectList("users.selectBadMeanChoice2");
+	}
+	
+	
 }

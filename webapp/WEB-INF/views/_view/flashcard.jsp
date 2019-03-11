@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <!DOCTYPE html>
 
 <!--
@@ -44,6 +45,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+body{
+	font-family: 'Jeju Gothic', sans-serif;
+}
+
 .ko-12 {
 	font-family: Nanum Gothic, dotum, sans-serif;
 	font-size: 12px;
@@ -225,19 +233,59 @@ p.flashcard-font {
 	margin-top: -35px;
 }
 
-.quiz-question {
-	width: 850px;
-	height: 50px;
-	font-size: 20px;
+.quiz-header {
+	width: 100%;
+    height: 100px;
+    font-size: 20px;
+    border: solid 2px;
+    padding: 10px;
+    padding-top: 30px;
+    text-align: center;
 }
 
 .quiz-answer {
-	width: 850px;
-	height: 30px;
-	font-size: 16px;
-	margin-bottom: 15px;
-	text-align: center;
-	margin-left: 50px;
+	width: 100%;
+    height: 70px;
+    font-size: 16px;
+    margin-top: 10px;
+    float: right;
+    padding: 10px;
+    text-align: center;
+    border: solid;
+    padding-top: 20px;
+}
+.quiz-OX {
+	width: 100%;
+    height: 300px;
+    border: solid;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    padding-top: 15px;
+    margin-top: 10px;
+   
+}
+
+.quiz-question{
+	width: 100%;
+	heigth: 70%;
+    font-size: 50px;
+    padding-top: 90px;
+}
+.check-mark {
+    width: 50px;
+    height: 50px;    
+    float: left;
+    margin-top: -14px;
+}
+.select-answer {
+	width : 94%;
+}
+.correct-mark{
+	width: 30%;
+    margin-bottom: 15px;
+    min-width: 150px;
+    max-width: 230px;
 }
 </style>
 
@@ -321,15 +369,12 @@ desired effect
 							src="dist/images/wordmatch.png" alt="짝 맞추기"> </a>
 						<p class=text-center>짝 맞추기</p>
 					</div>
-					<div class="col-xs-4 col-md-4">
+					<div class="col-xs-4 col-md-4" id="randomQuiz">
 						<img class="flashcard-image" data-toggle="modal"
 							data-target="#quizModal"
 							src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
 							alt="랜덤 퀴즈">
 						<p class=text-center>랜덤 퀴즈</p>
-
-
-
 					</div>
 			</section>
 			<div class="modal fade" id="quizModal">
@@ -343,29 +388,48 @@ desired effect
 							<h4 class="modal-title">사지선다 퀴즈</h4>
 						</div>
 						<div class="modal-body">
-							<div class="quiz-question" id="game-question">
+							<div class="quiz-header">
+								다음의 보기에서 알맞은 정답을 선택하세요.
+							</div>
+							<!-- 문제 나오고 , 정답 체크 하는 곳 -->
+							<div class="quiz-OX">
+								<!-- <img class="correct-mark" src="/upload/profile/correct-mark01.png">
+								<p>정답입니다.</p> -->
+								<div class="quiz-question" id="game-question" >
+								 
+								</div>
+							</div>
+							<!-- 정답 번호 1번. -->
+							<div class="btn btn-default quiz-answer" >
+								<img class="check-mark" src="/upload/profile/check-mark.png">
+								<div class="select-answer" id="ans01">1. ${quizVo.answerArray[0]}</div>
+							</div>
 							
+							<!-- 정답 번호 2번. -->
+							<div class="btn btn-default quiz-answer" id="ans02">
+								<img class="check-mark" src="/upload/profile/x-mark04.png">
+								<div class="select-answer">2.${quizVo.answerArray[1]}</div>
 							</div>
-							<div class="quiz-answer">
-								<p>1.</p>
+							
+							<!-- 정답 번호 3번. -->
+							<div class="btn btn-default quiz-answer" id="ans03">
+								<img class="check-mark" src="/upload/profile/circle-mark02.png">
+								<div class="select-answer">3.${quizVo.answerArray[2]}</div>
 							</div>
-							<div class="quiz-answer">
-								<p>2.</p>
-							</div>
-							<div class="quiz-answer">
-								<p>3.</p>
-							</div>
-							<div class="quiz-answer">
-								<p>4.</p>
+							
+							<!-- 정답 번호 4번. -->
+							<div class="btn btn-default quiz-answer" id="ans04">
+								<img class="check-mark" src="/upload/profile/blank-background04.png">
+								<div class="select-answer">4.${quizVo.answerArray[3]}</div>
 							</div>
 
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
+							<!-- <button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
 							<button type="button" class="btn btn-primary">Save
-								changes</button>
+								changes</button> -->
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -404,63 +468,37 @@ desired effect
 </body>
 
 <script type="text/javascript">
-$(document).ready(function(){
-
-	$(function () {
-		var wordlist = new Array();
-		var badmeanlist = new Array();
-		var meanlist = new Array();
-		var questionlist = new Array();
-		var answerlist = new Array();
-		var k = 0;
-		var p = 0;
+$("#randomQuiz").on("click", function(){
 	
-	 	<c:forEach items="${wordList}" var="wordlist">
-			var word = new Object();
-			word.wordname = "${wordlist.wordName}";
-			wordlist.push(word);
-		</c:forEach> 
-		
-		<c:forEach items="${meanList}" var="meanlist">
-			var mean = new Object();
-			mean.meanname = "${meanlist.meanName}";
-		    meanlist.push(mean);
-		</c:forEach>
-	 	
-		<c:forEach items="${badMeanList}" var="badmeanlist">
-			var badmean = new Object();
-			badmean.badname = "${badmeanlist.seyaMeanName}";
-		    badmeanlist.push(badmean);
-		</c:forEach>
+	console.log(${flashcardVo.wordbookNo});
 	
-				
-
-		for(var i=0; i<wordlist.length; i++){
-			
-			k = Math.floor(Math.random() * wordList.length);
-			questionlist[i] =  wordlist[k].wordname;
-			answerlist[i] = meanlist[k].meanname;
-			
-			for (var q=0; q<3; q++){
-				q = Math.floor(Math.random() * badmeanlist.length);				
-				answerlist[i] = badmeanlist[q].badname;
-				badmeanlist.splice(q, 1);
-			}
-			
-			wordlist.splice(k, 1);
-			meanlist.splice(k, 1);
-			console.log("질문리스트 "+ i + "번째 : " + questionlist[i]);
-			console.log("답 리스트  "+ i + "번째 : " + answerlist[i]);
-			
-		};
+	var wordbookNo = "${flashcardVo.wordbookNo}";
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/randomquiz",   //url 
+		type : "post",
+//		contentType : "application/json",
+		data : {wordbookNo: wordbookNo},
 		
-
+		dataType : "json",
+		success : function(quizList){
+		/*성공시 처리해야될 코드 작성*/
+			console.log(quizList);
+			 $("#ans01").text("살려는주십시오.")
 		
-		
-   });
-
-
+		},
+		error : function(XHR, status, error) {
+		console.error(status+" : "+error);
+		}
+	});
+	
+	
+	
 });
+
+
+
+
 	
 </script>
 </html>
