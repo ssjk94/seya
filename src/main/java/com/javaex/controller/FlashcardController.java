@@ -37,10 +37,10 @@ public class FlashcardController {
 
 		// 승
 		md.addAttribute("urlPathVo", flashcardService.getNickName(urlPathVo));
-
+		
 		// 경환
 		List<WordbookVo> directoryList = flashcardService.getWordbookAlldirectoryList(urlPathVo);
-
+		md.addAttribute("wordbookNo", urlPathVo.getWordbookNo());
 		md.addAttribute("directoryList", directoryList);
 
 		// 사지선다게임 모달전용.
