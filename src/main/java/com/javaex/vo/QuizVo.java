@@ -1,15 +1,17 @@
 package com.javaex.vo;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class QuizVo {
 
 	private int wordNo;
 	private String question;
 	private String answer;
-	private String badAnswer;
-	private String[] answerArray;
+	// private String[] answerArray;
+	private List<String> answerArray;
+
 	private int ansNo;
+	private String badAnswer;
 
 	private String ans01;
 	private String ans02;
@@ -18,6 +20,21 @@ public class QuizVo {
 	private String choiceAnswer;
 
 	public QuizVo() {
+	}
+
+	public QuizVo(int wordNo, String question, String answer, List<String> answerArray, int ansNo, String badAnswer,
+			String ans01, String ans02, String ans03, String ans04, String choiceAnswer) {
+		this.wordNo = wordNo;
+		this.question = question;
+		this.answer = answer;
+		this.answerArray = answerArray;
+		this.ansNo = ansNo;
+		this.badAnswer = badAnswer;
+		this.ans01 = ans01;
+		this.ans02 = ans02;
+		this.ans03 = ans03;
+		this.ans04 = ans04;
+		this.choiceAnswer = choiceAnswer;
 	}
 
 	public int getWordNo() {
@@ -44,19 +61,11 @@ public class QuizVo {
 		this.answer = answer;
 	}
 
-	public String getBadAnswer() {
-		return badAnswer;
-	}
-
-	public void setBadAnswer(String badAnswer) {
-		this.badAnswer = badAnswer;
-	}
-
-	public String[] getAnswerArray() {
+	public List<String> getAnswerArray() {
 		return answerArray;
 	}
 
-	public void setAnswerArray(String[] answerArray) {
+	public void setAnswerArray(List<String> answerArray) {
 		this.answerArray = answerArray;
 	}
 
@@ -66,6 +75,14 @@ public class QuizVo {
 
 	public void setAnsNo(int ansNo) {
 		this.ansNo = ansNo;
+	}
+
+	public String getBadAnswer() {
+		return badAnswer;
+	}
+
+	public void setBadAnswer(String badAnswer) {
+		this.badAnswer = badAnswer;
 	}
 
 	public String getAns01() {
@@ -110,26 +127,9 @@ public class QuizVo {
 
 	@Override
 	public String toString() {
-		return "QuizVo [wordNo=" + wordNo + ", question=" + question + ", answer=" + answer + ", badAnswer=" + badAnswer
-				+ ", answerArray=" + Arrays.toString(answerArray) + ", ansNo=" + ansNo + ", ans01=" + ans01 + ", ans02="
+		return "QuizVo [wordNo=" + wordNo + ", question=" + question + ", answer=" + answer + ", answerArray="
+				+ answerArray + ", ansNo=" + ansNo + ", badAnswer=" + badAnswer + ", ans01=" + ans01 + ", ans02="
 				+ ans02 + ", ans03=" + ans03 + ", ans04=" + ans04 + ", choiceAnswer=" + choiceAnswer + "]";
 	}
 
-	public QuizVo(int wordNo, String question, String answer, String badAnswer, String[] answerArray, int ansNo,
-			String ans01, String ans02, String ans03, String ans04, String choiceAnswer) {
-		super();
-		this.wordNo = wordNo;
-		this.question = question;
-		this.answer = answer;
-		this.badAnswer = badAnswer;
-		this.answerArray = answerArray;
-		this.ansNo = ansNo;
-		this.ans01 = ans01;
-		this.ans02 = ans02;
-		this.ans03 = ans03;
-		this.ans04 = ans04;
-		this.choiceAnswer = choiceAnswer;
-	}
-	
-	
 }

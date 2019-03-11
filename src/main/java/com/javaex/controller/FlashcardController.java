@@ -107,12 +107,11 @@ public class FlashcardController {
 	@ResponseBody
 	@RequestMapping(value = "/randomquiz", method = RequestMethod.POST)
 	public List<QuizVo> randomQuiz(@RequestParam("wordbookNo") int wordbookNo) {
-		System.out.println(wordbookNo);
+		System.out.println("ho");
+		List<QuizVo> randomQuizList = flashcardService.randomQuiz(wordbookNo);
+		System.out.println("Controller: " + randomQuizList);
 		
-		List<QuizVo> quizList = flashcardService.randomQuiz(wordbookNo);
-		System.out.println("Controller: " + quizList);
-		
-		return quizList;
+		return randomQuizList;
 		
 		
 		
