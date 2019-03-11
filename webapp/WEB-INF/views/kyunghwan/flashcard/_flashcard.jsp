@@ -116,7 +116,7 @@
 	var i = 0;
 	var j = 0;
 </script>
-	<c:forEach items="${requestScope.selectFlashcardList}" var="flashcardVo">
+	<c:forEach items="${requestScope.wordbookList}" var="flashcardVo">
 		<script type="text/javascript">
 			noList[i] = '${flashcardVo.wordNo}';
 			wordList[i] = '${flashcardVo.wordName}';
