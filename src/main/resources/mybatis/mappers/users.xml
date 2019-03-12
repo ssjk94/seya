@@ -46,7 +46,7 @@
 	<select id="selectSearch" resultType="com.javaex.vo.HeaderSearchVo"
 		parameterType="com.javaex.vo.HeaderSearchVo">
 		<![CDATA[
-			 distinct u.nickname, wb.wordbookname, u.userimage, wb.wordbookno, u.id
+			 select distinct u.nickname, wb.wordbookname, u.userimage, wb.wordbookno, u.id
 					    from 		users u, directory d, wordbook wb, word w
 					    where		u.userno = d.userno
 					    and 		d.directoryno = wb.directoryno
