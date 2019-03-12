@@ -179,11 +179,12 @@ b, strong {
 }
 
 .preview-mean-ko {
-	height: 100%;
-	width: 25%;
-	border-right: #e2e2e2 2px solid;
-	padding: 3px;
-	padding-left: 20px;
+    overflow: hidden;
+    height: 25px;
+    width: 25%;
+    border-right: #e2e2e2 2px solid;
+    padding: 3px;
+    padding-left: 20px;
 }
 
 .search-img {
