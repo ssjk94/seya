@@ -391,6 +391,7 @@ b, strong {
     font-size: 20px;
     border-left: solid #dd4b39;
     padding-left: 15px;
+    margin-left: 28px;
 }
 
 .content-combine {
