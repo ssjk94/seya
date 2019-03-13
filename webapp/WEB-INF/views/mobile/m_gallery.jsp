@@ -138,6 +138,10 @@ a:-webkit-any-link {
 	text-decoration: none;
 }
 
+.wordbookbox {
+	background-color: white;
+}
+
 .wordbook-content {
 	width: 100%;
 	display: table;
@@ -153,10 +157,18 @@ a:-webkit-any-link {
 	height: 60px;
 	border: 1px solid #d2d6de;
 	text-align: left;
+	background-color: white;
 }
 
 form+form {
 	margin-top: 5px;
+}
+
+.wordbook-wrapper {
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	border: 1px solid #d2d6de;
 }
 
 .wordbook-image {
@@ -172,10 +184,11 @@ form+form {
 	text-align: center;
 	display: inline-block;
 	float: left;
+	font-size: 10px;
 }
 
 .wordbook-maker, .wordbook-num {
-	margin-top: 5px;
+	margin-top: 10px;
 }
 
 .wordbook-name {
@@ -194,6 +207,7 @@ form+form {
 
 .wordbook-title {
 	line-height: 55px;
+	font-size: 13px;
 }
 </style>
 <meta charset="utf-8" name="viewport"
@@ -218,15 +232,15 @@ form+form {
 		<div class="m-content">
 			<!-- 단어장이 나오는 칸 -->
 			<div class="box box-default">
-				<!-- 단어장 칸 -->
-				<div id="wordbookBox" class="wordbookBox">
-					<c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
-						<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
-						<form
-							action="${pageContext.request.contextPath}/${URLId}/flashcard">
-							<input type="hidden" name="wordbookNo"
-								value="${wordbookVo.wordbookNo }">
-							<button type="submit" class="btn-enterFlash">
+				<c:forEach items="${requestScope.wordbookList}" var="wordbookVo">
+					<!-- 플래쉬카드 들어가는 버튼 들어가는 칸 -->
+					<form
+						action="${pageContext.request.contextPath}/${URLId}/flashcard"
+						class="wordbookbox">
+						<input type="hidden" name="wordbookNo"
+							value="${wordbookVo.wordbookNo }">
+						<button type="submit" class="btn-enterFlash">
+							<div class="wordbook-wrapper">
 								<div class="wordbook-image">
 									<img class="maker-image" alt="사진없음"
 										src="/upload/profile/${wordbookVo.wordbookMakerImage}">
@@ -242,10 +256,10 @@ form+form {
 								<div class="wordbook-name">
 									<span class="wordbook-title">${wordbookVo.wordbookName}</span>
 								</div>
-							</button>
-						</form>
-					</c:forEach>
-				</div>
+							</div>
+						</button>
+					</form>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
