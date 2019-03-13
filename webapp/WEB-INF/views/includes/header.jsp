@@ -4,7 +4,7 @@
 <!-- Main Header -->
 <style>
 .pull-left, .thismargin {
-	margin-right: 6px;
+	margin-right: 5px;
 	margin-left: 6px;
 }
 
