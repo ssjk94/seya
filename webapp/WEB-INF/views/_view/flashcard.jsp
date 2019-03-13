@@ -261,13 +261,13 @@ p.flashcard-font {
 
 .quiz-OX {
 	width: 100%;
-	min-height: 400px;
-	border: solid;
-	float: left;
-	text-align: center;
-	padding: 10px;
-	padding-top: 15px;
-	margin-top: 10px;
+    height: 300px;
+    border: solid;
+    float: left;
+    padding: 10px;
+    padding-top: 15px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .quiz-question {
@@ -283,12 +283,14 @@ p.flashcard-font {
 	float: left;
 	margin-top: -14px;
 }
+
 .circle-mark {
 	width: 50px;
 	height: 50px;
 	float: left;
 	margin-top: -14px;
 }
+
 .x-mark {
 	width: 50px;
 	height: 50px;
@@ -296,37 +298,46 @@ p.flashcard-font {
 	margin-top: -14px;
 }
 
-
 .select-answer {
 	width: 94%;
 }
 
 .correct-mark {
 	width: 30%;
-	margin-bottom: 15px;
-	min-width: 150px;
-	max-width: 230px;
-}
-#ansCheck01 {
-	
-	float: left;
-}
-#ansCheck02 {
-	
-	float: left;
-	
-}
-#ansCheck03 {
-	
-	float: left;
-	
-}
-#ansCheck04	 {
-	
-	float: left;
-	
+    margin-bottom: 15px;
+    min-width: 150px;
+    max-width: 230px;
+    position: absolute;
+    margin-left: -115px;
 }
 
+#ansCheck01 {
+	float: left;
+}
+
+#ansCheck02 {
+	float: left;
+}
+
+#ansCheck03 {
+	float: left;
+}
+
+#ansCheck04 {
+	float: left;
+}
+.quiz-answer img{
+	visibility: hidden;
+}
+.lee-dialog{
+	width: 1100px;
+    height: 820px;
+}
+.lee-content{
+	width: 100%;
+    height: 100%;
+}
+.
 </style>
 
 </head>
@@ -418,8 +429,8 @@ desired effect
 				</div>
 			</section>
 			<div class="modal fade" id="quizModal">
-				<div class="modal-dialog" style="width: 80%">
-					<div class="modal-content">
+				<div class="modal-dialog lee-dialog" style="width: 80%">
+					<div class="modal-content lee-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
@@ -437,36 +448,31 @@ desired effect
 								<div class="quiz-question" id="game-question"></div>
 							</div>
 							<!-- 정답 번호 1번. -->
-							
+
 							<div class="btn btn-default quiz-answer">
-								<img id="ansCheck01" src="">
-								<!-- <img class="check-mark" src="/upload/profile/check-mark.png"> -->
-								<div class="select-answer" id="ans01"></div>
+								<img class="check-mark" id="ansCheck00">
+								<div class="select-answer" id="ans00"></div>
 								<input type="hidden" value=0 class="ansValue">
 							</div>
 
 							<!-- 정답 번호 2번. -->
 							<div class="btn btn-default quiz-answer">
-								<img id="ansCheck02" src="">
-								<!-- <img class="check-mark" src="/upload/profile/x-mark04.png"> -->
-								<div class="select-answer" id="ans02"></div>
+								<img class="check-mark" id="ansCheck01" src="/upload/profile/white-background01.png">
+								<div class="select-answer" id="ans01"></div>
 								<input type="hidden" value=1 class="ansValue">
 							</div>
 
 							<!-- 정답 번호 3번. -->
 							<div class="btn btn-default quiz-answer">
-								<img id="ansCheck03" src="">
-								<!-- <img class="check-mark" src="/upload/profile/circle-mark02.png"> -->
-								<div class="select-answer" id="ans03"></div>
+								<img class="check-mark" id="ansCheck02" src="/upload/profile/white-background01.png">
+								<div class="select-answer" id="ans02"></div>
 								<input type="hidden" value=2 class="ansValue">
 							</div>
 
 							<!-- 정답 번호 4번. -->
 							<div class="btn btn-default quiz-answer">
-								<img id ="ansCheck04" src="">
-						<!-- 		<img class="check-mark"
-									src="/upload/profile/blank-background04.png"> -->
-								<div class="select-answer" id="ans04"></div>
+								<img class="check-mark" id="ansCheck03" src="/upload/profile/white-background01.png">
+								<div class="select-answer" id="ans03"></div>
 								<input type="hidden" value=3 class="ansValue">
 							</div>
 						</div>
@@ -554,77 +560,72 @@ desired effect
 
 			dataType : "json",
 			success : function(randomQuizList) {
+				
 				/*성공시 처리해야될 코드 작성*/
-				console.log(randomQuizList);
-				for ( var i in randomQuizList) {
+				console.log("성공 : "+ randomQuizList);
+				
+				for (var i in randomQuizList) {
 					//정답
 					$("#game-question").text(randomQuizList[i].question);
 					//보기
-					$("#ans01").text("1. " + randomQuizList[i].answerArray[0]);
-					$("#ans02").text("2. " + randomQuizList[i].answerArray[1]);
-					$("#ans03").text("3. " + randomQuizList[i].answerArray[2]);
-					$("#ans04").text("4. " + randomQuizList[i].answerArray[3]);
-				}
-				var Choice01 = $("#ans01").text();
-				var ChoiceAnswer01 = Choice01.substring(3);
-				var Choice02 = $("#ans02").text();
-				var ChoiceAnswer01 = Choice01.substring(3);
-				var Choice03 = $("#ans03").text();
-				var ChoiceAnswer01 = Choice01.substring(3);
-				var Choice04 = $("#ans04").text();
-				var ChoiceAnswer01 = Choice01.substring(3);
+					$("#ans00").text("1. " + randomQuizList[i].answerArray[0]);
+					$("#ans01").text("2. " + randomQuizList[i].answerArray[1]);
+					$("#ans02").text("3. " + randomQuizList[i].answerArray[2]);
+					$("#ans03").text("4. " + randomQuizList[i].answerArray[3]);
+				
+				//var Choice01 = $("#ans01").text();
+				//var ChoiceAnswer01 = Choice01.substring(3);
+				
 				var ansNo = randomQuizList[i].ansNo;
 				console.log("가져온 정답번호 : "+ ansNo);
 				
-				
-
 				$(".quiz-answer").on("click",function(){
+				 	// 정답체크				
 					var str = $(this).find("input").val();
-					console.log(str);
-					$("#ansCheck01").addClass("check-mark");
-					if (str == ansNo) {
+					 // 누른곳 체크 이미지 변경	
+					 	$("#ansCheck0"+str).css("visibility","visible");
+						$(this).find("img").attr("src","/upload/profile/check-mark.png");
+
+					//체크 1초후에 정답 확인할것임
+					setTimeout(function() {
+						// 정답체크후 정답시에
+						if (str == ansNo) {
+							$("#ansCheck0"+ansNo).css("visibility","visible");
+							console.log("체크한답 : "+ str +  " , 실제 정답 : " + ansNo );
+							$("#ansCheck0"+ansNo).attr("src","/upload/profile/circle-mark01.png");
+	  					    $(".correct-mark").attr("src", "/upload/profile/correct-mark01.png");
+	  					    		
+						} else {
+							// 정답 아닐때에 
+							$("#ansCheck0"+str).css("visibility","visible");
+							$("#ansCheck0"+str).attr("src","/upload/profile/x-mark01.png");
+							$(".correct-mark").attr("src", "/upload/profile/incorrect-mark02.png");
+							//정답인곳에 O 이미지 띄우기
+							$("#ansCheck0"+ansNo).css("visibility","visible");
+							$("#ansCheck0"+ansNo).attr("src","/upload/profile/circle-mark01.png");
 						
-						
-					}
+						}
+						  console.log('1초뒤에 실행함');
+					}, 1000);	
 				});
-				
-				
-/* 			 	if($("#ans01").on("click", function(){
-					//일단 체크이미지 띄워주고 1초뒤에 나올수 있도록 만듬
-					$("#ansCheck01").addClass("check-mark");
-					$(".check-mark").attr("src", "/upload/profile/check-mark.png");
-					 							
-		
-					 console.log("선택한 답 : "+ ChoiceAnswer01);
-					 console.log("진짜 답 : "+randomQuizList[i].answer);
-					
-					
-					if(ChoiceAnswer01==randomQuizList[i].answer){
-						 //성공시 O 이미지 , 본문에도 O이미지 만듬
-						 $("#ansCheck01").removeClass("check-mark");
-						 $("#ansCheck01").addClass("x-mark");
-						 $(".x-mark").attr("src", "/upload/profile/x-mark04.png");
-								
-					}else {
-						alert("하하하하아아하");
-						
-					}					
-						
-			})); */
-		 */		
-				
+				};
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
 	});
+</script>
+
+
+
+<script type="text/javascript">
 	$("#flashQuiz").on("click", function() {
 
 		console.log("${flashcardVo.wordbookNo}");
 
 		var wordbookNo = "${flashcardVo.wordbookNo}";
-
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/flashquiz", //url 
 			type : "post",
