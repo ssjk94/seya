@@ -242,6 +242,12 @@ p#mean {
 				</div>
 			</div>
 		</div>
+		<div class="m-content">
+			<div class="m-gamerow">
+				<div class="flashquiz"></div>
+				
+			</div>
+		</div>
 	</div>
 </body>
 <!-- jQuery 3 -->

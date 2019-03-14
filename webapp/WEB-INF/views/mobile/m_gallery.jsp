@@ -179,7 +179,7 @@ form+form {
 }
 
 .wordbook-info {
-	width: 18%;
+	width: 28%;
 	height: 50%;
 	text-align: center;
 	display: inline-block;
@@ -192,7 +192,7 @@ form+form {
 }
 
 .wordbook-name {
-	width: 67%;
+	width: 57%;
 	height: 100%;
 	text-align: left;
 	display: inline-block;
