@@ -20,6 +20,7 @@
 		<mapper resource="mybatis/mappers/vocabularylist.xml" />
 		<mapper resource="mybatis/mappers/navigation.xml" />
 		<mapper resource="mybatis/mappers/pairsetgame.xml" />
+		<mapper resource="mybatis/mappers/ranking.xml" />
 	</mappers>
 	
 	
