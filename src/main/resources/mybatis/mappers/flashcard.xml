@@ -28,4 +28,57 @@
 			and wordno = #{wordNo}
 		]]>
 	</update>
+	<select id="selectFlashWordList" resultType="com.javaex.vo.FlashcardVo" parameterType="com.javaex.vo.FlashcardVo">
+		<![CDATA[
+		
+			select wordno,wordname,meanname 
+			from word 
+			where wordbookno = ${wordbookNo}
+	
+		]]>
+	</select>
+	
+	
+	<!-- 게임용 -->
+	
+	<insert id="insertGameScore" parameterType="com.javaex.vo.FlashcardVo">
+		<![CDATA[
+			
+			insert into gamescore	(gamescoreno,
+												  wordbookno,
+												  gameselectno,
+												  userno,
+												  gamescore)
+			values							  (gamescore_seq.nextval,
+	  											  ${wordbookNo},
+	  											  	(select 	gameselectno 
+	  											  from 		gameselect 
+	  											  where 	gameselectname = '${gameName}'),
+	  											  	(select 	userno 
+	  											  from 		users 
+	  											  where 	id = '${master}'),
+	  											  ${gameScore})
+			
+		]]>
+	</insert>
+	<insert id="inserWrongWord" parameterType="com.javaex.vo.FlashcardVo">
+		<![CDATA[
+			insert into word(wordno,wordname,meanname,wordbookno)
+			values				(word_seq.nextval,
+									'${wordName}',
+									'${meanName}',
+									${wordbookNo})
+		]]>
+	</insert>
+	<select id="selectWrongWordbookNo" resultType="int" parameterType="com.javaex.vo.FlashcardVo">
+		<![CDATA[
+			select 		wordbookno 
+			from 		wordbook w,directory d,users u
+			where 		u.id='${master}'
+			and 			u.userno = d.userno
+			and 			d.directoryno = w.directoryno
+			and 			rownum =1
+			order by 	wordbookno asc
+		]]>
+	</select>
 </mapper>

@@ -5,7 +5,37 @@ public class FlashcardVo {
 	private String wordName;
 	private String meanName;
 	private int wordbookNo;
+	private String gameName;
+	private String gameScore;
+	private String master;
 	
+	
+	
+	
+	public String getGameName() {
+		return gameName;
+	}
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+	public String getGameScore() {
+		return gameScore;
+	}
+
+	public void setGameScore(String gameScore) {
+		this.gameScore = gameScore;
+	}
+
+	public String getMaster() {
+		return master;
+	}
+
+	public void setMaster(String master) {
+		this.master = master;
+	}
+
 	public int getWordNo() {
 		return wordNo;
 	}
@@ -51,6 +81,6 @@ public class FlashcardVo {
 	@Override
 	public String toString() {
 		return "FlashcardVo [wordNo=" + wordNo + ", wordName=" + wordName + ", meanName=" + meanName + ", wordbookNo="
-				+ wordbookNo + "]";
+				+ wordbookNo + ", gameName=" + gameName + ", gameScore=" + gameScore + ", master=" + master + "]";
 	}
 }

@@ -1,7 +1,14 @@
 @charset "UTF-8";
-<style type="text/css">
-		.modal-dialog{
-			width: 1000px;
+	<style type="text/css">
+		.pair-dialog{
+			width: 1100px;
+			height: 820px;
+			margin-left: 10%;
+			margin-right: 10%;
+		}
+		.pair-content{
+			height: 100%;
+			overflow: hidden;
 		}
 		.gameInfo {
 			clear: both;
@@ -29,21 +36,19 @@
 		}
 		
 		
+
 		
-		.pair-content{
-			height: 768px;
-		}
-		
-		.pair-body{
-			height: 380px;
-		}
 		.clearBox{
 			clear: both;
+			text-align: center;
+			padding-top: 5%;
+			padding-bottom :5%;
+			height: 50%;
 		}
 		.clearBox img{
-			position: absolute;
+/* 			position: absolute;
 			width: 210px;
-			height: 105px;
+			height: 105px; */
 			
     		animation-duration: 1s;
   			animation-name: slidein;
@@ -65,54 +70,51 @@
 			font-size: 25px;
 			display: block;
     		text-align: center;
-    		padding-top: 35px;
+    		line-height:113px;
     		
+    		vertical-align: middle;
     		animation-duration: 1s;
   			animation-name: slidein;
   			
 		}
 		.pairSetGameWordBox{
-			width: 210px;
-			height: 105px;
-			margin: 30px 0px 0px 20px;
+			width: 100%;
+			height: 100%;
 			float: left;
+			
+			border: 1px solid;
+			overflow: hidden;
 		}
 		.pairSetGameMeanBox{
-			width: 210px;
-			height: 105px;
-			margin: 80px 0px 0px 20px;
+			width: 100%;
+			height: 100%;
 			float: left;
-		}
-		.absolute{
-			position: absolute;
-		}
-		.boxline1{
-			margin-top: 0px;
-		}
-		.boxline2{
-			margin-top: 135px;
-		}
-		.box1{
-			margin-left: 0px;
-		}
-		.box2{
-			margin-left: 230px;
-		}
-		.box3{
-			margin-left: 480px;
-		}
-		.box4{
-			margin-left: 710px;
+			
+			border: 1px solid;
+			overflow: hidden;
 		}
 		.choiceblock{
 			color: darkcyan;
 			font-weight: bold;
 		}
 		
-		.modal-footer button{
+		.pair-footer button{
 			background-color: #7c8ba8;
 		}
-		.modal-footer button:hover{
+		.pair-footer button:hover{
 			background-color: #626f87;
+		}
+		
+		
+		
+		.click{
+			width:20%;
+			margin-left:4%;
+			height:70%;
+			float: left;
+			display: inline-block;
+		}
+		.pair-body{
+			height: 70%;
 		}
 	</style>

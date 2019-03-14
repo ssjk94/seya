@@ -4,9 +4,17 @@
 
 <mapper namespace="pairsetgame">
 
-	<!-- 쿼리문 작성 -->
+	<select id="selectPairGameSource" resultType="com.javaex.vo.PairSetGameVo" parameterType="com.javaex.vo.PairSetGameVo">
+		<![CDATA[
+			select 	wordno,wordname,meanname 
+			from 	word 
+			where 	wordbookno = ${wordbookNo}
+		]]>
+	</select>
 
-	<insert id="updateGameScore" parameterType="com.javaex.vo.PairSetGameVo">
+
+	<!-- 쿼리문 작성 -->
+	<insert id="insertGameScore" parameterType="com.javaex.vo.PairSetGameVo">
 		<![CDATA[
 			
 			insert into gamescore	(gamescoreno,
@@ -15,17 +23,36 @@
 												  userno,
 												  gamescore)
 			values							  (gamescore_seq.nextval,
-	  											  #{wordbookNo},
+	  											  ${wordbookNo},
 	  											  	(select 	gameselectno 
 	  											  from 		gameselect 
-	  											  where 	gameselectname = '#{gameName}'),
+	  											  where 	gameselectname = '${gameName}'),
 	  											  	(select 	userno 
 	  											  from 		users 
-	  											  where 	id = '#{master}'),
-	  											  #{gameScore})
+	  											  where 	id = '${master}'),
+	  											  ${gameScore})
 			
 		]]>
 	</insert>
-
+	<insert id="inserWrongWord" parameterType="com.javaex.vo.PairSetGameVo">
+		<![CDATA[
+			insert into word(wordno,wordname,meanname,wordbookno)
+			values				(word_seq.nextval,
+									'${wordName}',
+									'${meanName}',
+									${wordbookNo})
+		]]>
+	</insert>
+	<select id="selectWrongWord" resultType="int" parameterType="com.javaex.vo.PairSetGameVo">
+		<![CDATA[
+			select 		wordbookno 
+			from 		wordbook w,directory d,users u
+			where 		u.id='${master}'
+			and 			u.userno = d.userno
+			and 			d.directoryno = w.directoryno
+			and 			rownum =1
+			order by 	wordbookno asc
+		]]>
+	</select>
 
 </mapper>

@@ -1,10 +1,7 @@
 package com.javaex.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
@@ -79,17 +76,11 @@ public class FlashcardController {
 
 	}
 
-	@RequestMapping(value = "{URLId}/flashcardgame", method = RequestMethod.GET)
-	public String flashcardgame(URLPathVo urlPathVo, FlashcardVo flashcardVo, Model md) {
-		System.out.println(flashcardVo.toString());
-		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
-		System.out.println("flashcardgame" + list.toString());
-		md.addAttribute("wordbookList", list);
-		md.addAttribute("URLId", urlPathVo.getURLId());
-		// 승
-		md.addAttribute("urlPathVo", flashcardService.getNickName(urlPathVo));
-
-		return "_view/flashcardgame";
+	@ResponseBody
+	@RequestMapping(value = "flashcardgame", method = RequestMethod.POST)
+	public List<FlashcardVo> flashcardgame(FlashcardVo flashcardVo) {
+		System.out.println("플래시카드 게임 ajax실행");
+		return flashcardService.getFlashGameSource(flashcardVo);
 	}
 
 	@ResponseBody
@@ -102,11 +93,23 @@ public class FlashcardController {
 	@ResponseBody
 	@RequestMapping(value = "/randomquiz", method = RequestMethod.POST)
 	public List<QuizVo> randomQuiz(@RequestParam("wordbookNo") int wordbookNo) {
-		System.out.println("ho");
-		List<QuizVo> randomQuizList = flashcardService.randomQuiz(wordbookNo);
-		System.out.println("Controller: " + randomQuizList);
+		System.out.println(wordbookNo);
 
-		return randomQuizList;
+		List<QuizVo> quizList = flashcardService.randomQuiz(wordbookNo);
+		System.out.println("Controller: " + quizList);
+		return quizList;
+	}
+	@ResponseBody
+	@RequestMapping(value = "{URLId}/flashwrongword", method = RequestMethod.POST)
+	public void wrongWord(FlashcardVo flashcardVo) {
+		System.out.println("ajax flash 틀린 단어");
+		flashcardService.setWrongWord(flashcardVo);
+	}
 
+	@ResponseBody
+	@RequestMapping(value = "{URLId}/flashscoreupdate", method = RequestMethod.POST)
+	public void scoreUpdate(FlashcardVo flashcardVo) {
+		System.out.println("ajax flash 점수업데이트");
+		flashcardService.setGameScore(flashcardVo);
 	}
 }

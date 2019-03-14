@@ -13,9 +13,14 @@
 	
 	<style type="text/css">
 		.pair-dialog{
-			width: 80%;
+			width: 1100px;
+			height: 820px;
 			margin-left: 10%;
 			margin-right: 10%;
+		}
+		.pair-content{
+			height: 100%;
+			overflow: hidden;
 		}
 		.gameInfo {
 			clear: both;
@@ -48,11 +53,14 @@
 		.clearBox{
 			clear: both;
 			text-align: center;
+			padding-top: 5%;
+			padding-bottom :5%;
+			height: 50%;
 		}
 		.clearBox img{
-			position: absolute;
+/* 			position: absolute;
 			width: 210px;
-			height: 105px;
+			height: 105px; */
 			
     		animation-duration: 1s;
   			animation-name: slidein;
@@ -74,21 +82,28 @@
 			font-size: 25px;
 			display: block;
     		text-align: center;
-    		padding-top: 35px;
+    		line-height:113px;
     		
+    		vertical-align: middle;
     		animation-duration: 1s;
   			animation-name: slidein;
   			
 		}
 		.pairSetGameWordBox{
-			width: 230px;
-			height: 135px;
+			width: 100%;
+			height: 100%;
 			float: left;
+			
+			border: 1px solid;
+			overflow: hidden;
 		}
 		.pairSetGameMeanBox{
-			width: 230px;
-			height: 135px;
+			width: 100%;
+			height: 100%;
 			float: left;
+			
+			border: 1px solid;
+			overflow: hidden;
 		}
 		.absolute{
 			position: absolute;
@@ -126,10 +141,14 @@
 		
 		
 		.click{
-			width: 230px;
-			height: 135px;
+			width:20%;
+			margin-left:4%;
+			height:70%;
 			float: left;
 			display: inline-block;
+		}
+		.pair-body{
+			height: 70%;
 		}
 	</style>
 </head>
@@ -172,9 +191,9 @@
 			<!-- Life div -->
 			<div class="pull-right">
 				<p>목숨 : &nbsp;&nbsp;</p>
-				<img alt="" src="/dist/images/heart.png">
-				<img alt="" src="/dist/images/heart.png">
-				<img alt="" src="/dist/images/heart2.gif">
+				<img id="gameLife1" alt="" src="/dist/images/heart.png">
+				<img id="gameLife2" alt="" src="/dist/images/heart.png">
+				<img id="gameLife3" alt="" src="/dist/images/heart.png">
 			</div>
 		
 		</div>
@@ -280,7 +299,7 @@ var rnum = 0;//정답 횟수를 추측하여 다시 리셋 시키게 하는 전�
 var num = 1; //클릭을 몇번 했는지 나타내는 전역변수
 var a1; // 1번째 워드 or mean값
 var a2;	// 2번째 워드 or mean값
-var meanName;//틀린답일시 여기에있는 뜻을 가져감
+var wrongMean;//틀린답일시 여기에있는 뜻을 가져감
 var id1; // 1번째 워드 or mean값 에 div아이디
 var id2;// 2번째 워드 or mean값 에 div아이디
 
@@ -288,7 +307,7 @@ var wordIndex;	//3개 랜덤 흩뿌릴때 인덱스 써야함
 var meanIndex;
 var gameLength;//3개이하일경우 길이를 측정해야하는 전역변수
 
-var life=3;
+var life=0;
 var gameName = "Pair Word";//${gameName};  게임 네임을 저장하는 변수
 var gameScore = 0; // 게임 스코어 전역변수
 var feverScore=[1,2,3,4,5];
@@ -337,9 +356,7 @@ $(document).ready(function() {
 				console.log("정답");
 					
 				$("#"+id1).hide();
-				$("#"+id1).parent().hide();
 				$("#"+id2).hide();
-				$("#"+id2).parent().hide();
 				$("#"+id1).find("span").removeClass("choiceblock");
 				$("#"+id2).find("span").removeClass("choiceblock");
 				
@@ -366,6 +383,8 @@ $(document).ready(function() {
 					
 			}else {
 				console.log("오답");
+			
+				
 				if(gameScore<44){
 					gameScore = 0;
 				}else{
@@ -373,18 +392,22 @@ $(document).ready(function() {
 				}
 				feverGo = 0;
 				gameScoreUpdate(gameScore);
+				//라이프 하나 감소
+				life++;
+				//라이프가 없어 끝날때
+				if(life==4){
+					gameEnd();
+				}
+				$("#gameLife"+life).attr("src","/dist/images/heart2.gif");
 				
 				$("#"+id1).find("span").removeClass("choiceblock");
 				$("#"+id2).find("span").removeClass("choiceblock");
 				
 				if(id1.startsWith('w') && !id2.startsWith('w')){
-					wrong(a1);
 					var meanindex = success.indexOf(a1)+1;
-					meanName = success[meanindex];
-				}else if(!id1.startsWith('w') && id2.startsWith('w')){
-					wrong(a2);
-				}
-					
+					wrongMean = success[meanindex];
+					wrong(a1,wrongMean);
+				}	
 			}
 				
 		}else{//처음에 워드를 누르지 않았을 경우
@@ -426,14 +449,19 @@ $(document).ready(function() {
 				}
 				feverGo = 0;
 				gameScoreUpdate(gameScore);
-				
-				
-				if(id1.startsWith('w') && !id2.startsWith('w')){
-					wrong(a1);
-				}else if(!id1.startsWith('w') && id2.startsWith('w')){
-					wrong(a2);
+				//라이프 하나 감소
+				life++;
+				if(life==4){
+					gameEnd();
 				}
-					
+				$("#gameLife"+life).attr("src","/dist/images/heart2.gif");
+				
+				if(!id1.startsWith('w') && id2.startsWith('w')){
+					var meanindex = success.indexOf(a1)-1;
+					wrongMean = success[meanindex];
+					wrong(a2,wrongMean);
+				}
+
 			}
 		}	
 			
@@ -563,7 +591,7 @@ $(document).ready(function() {
 	};
 	
 //틀린단어 단어장에 작성하는 ajax함수
-	function wrong(wrongWord) {
+	function wrong(wrongWord,wrongMean) {
 			//url 바꾸어야합니다
 
 		if(wrongWord !="" && master !=""){
@@ -572,8 +600,8 @@ $(document).ready(function() {
 				url : "${pageContext.request.contextPath}/seo/wrongword",
 				type : "post",
 		//		traditional : true,
-				data : {wrongWord: wrongWord},
-				dataType : "json",
+				data : {wrongWord: wrongWord,wrongMean:wrongMean},
+				dataType : "html",
 				success : function(num){
 				/*성공시 처리해야될 코드 작성*/
 					console.log("틀린단어 ajax");

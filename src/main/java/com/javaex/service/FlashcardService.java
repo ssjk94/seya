@@ -1,8 +1,10 @@
 package com.javaex.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,27 +45,25 @@ public class FlashcardService {
 	public List<QuizVo> randomQuiz(int wordbookNo) {
 		// 단어15 가져오기
 		List<QuizVo> randomQuizList = flashcardDao.selectRandomQuizWord(wordbookNo);
-		
-		
+
 		// 단어15 <-- 배드
-		for(int i=0; i<randomQuizList.size(); i++) {
+		for (int i = 0; i < randomQuizList.size(); i++) {
 			List<String> answerArray = flashcardDao.selectbadMeanList();
 			randomQuizList.get(i).setAnswerArray(answerArray);
-			
-			// 정답 번호생성   정답 업데이트
-			
-			//random 1~4 3번에 정답입력 0 ~ 3 
-			Random random = new Random(); 
+
+			// 정답 번호생성 정답 업데이트
+
+			// random 1~4 3번에 정답입력 0 ~ 3
+			Random random = new Random();
 			int ansNo = random.nextInt(4);
-			
+
 			// ansNo 번호 세팅
 			// ansNo 뜻 세팅
 			randomQuizList.get(i).setAnsNo(ansNo);
-			randomQuizList.get(i).getAnswerArray().set(ansNo, randomQuizList.get(i).getAnswer());			
+			randomQuizList.get(i).getAnswerArray().set(ansNo, randomQuizList.get(i).getAnswer());
 		}
 		System.out.println(randomQuizList);
 
-		
 		return randomQuizList;
 	}
 
@@ -74,7 +74,6 @@ public class FlashcardService {
 	}
 
 	public List<HeaderSearchVo> getMeanChoiceList(HeaderSearchVo headerSearchVo) {
-		// TODO Auto-generated method stub
 		return flashcardDao.selectMeanChoice(headerSearchVo);
 	}
 
@@ -88,4 +87,78 @@ public class FlashcardService {
 		return flashcardDao.selectMeanChoiceOne(headerSearchVo);
 	}
 
+	// 세윤스 플래시카드 게임소스
+	public List<FlashcardVo> getFlashGameSource(FlashcardVo flashcardVo) {
+
+		List<FlashcardVo> list = flashcardDao.selectFlashWordList(flashcardVo);
+		// 잘라주어여함
+		Set<FlashcardVo> set = new HashSet<FlashcardVo>();
+
+		if (list.size() > 15) {
+
+			while (set.size() < 15) {
+				set.add(list.get((int) (Math.random() * list.size())));
+			}
+			list = new ArrayList<FlashcardVo>();
+			for (FlashcardVo a : set) {
+				int num = (int) (Math.random() * 2);
+				String changeWord;
+				// 영단어로 문제내는곳
+				if (num == 0) {
+					list.add(a);
+				} else {// 의미로 문제내는곳
+					changeWord = a.getWordName();
+					a.setWordName(a.getMeanName());
+					a.setMeanName(changeWord);
+					list.add(a);
+				}
+			}
+
+			return list;
+		} else {// 전체 다 가져가야함
+			System.out.println("오긴와?");
+			while (set.size() < list.size()) {
+				System.out.println("오긴와?123");
+				set.add(list.get((int) (Math.random() * list.size())));
+				System.out.println("확인용" + list.get((int) (Math.random() * list.size())).toString());
+			}
+
+			list = new ArrayList<FlashcardVo>();
+			for (FlashcardVo a : set) {
+				int num = (int) (Math.random() * 2);
+				String changeWord;
+				// 영단어로 문제내는곳
+				if (num == 0) {
+					list.add(a);
+				} else {// 의미로 문제내는곳
+					changeWord = a.getWordName();
+					a.setWordName(a.getMeanName());
+					a.setMeanName(changeWord);
+					list.add(a);
+				}
+			}
+			return list;
+		}
+	}
+
+	// 게임 에이잭스
+	public void setGameScore(FlashcardVo flashcardVo) {
+		flashcardDao.insertGameScore(flashcardVo);
+	}
+
+	public void setWrongWord(FlashcardVo flashcardVo) {
+		String str = flashcardVo.getWordName();
+		int score = flashcardDao.selectWrongWordbookNo(flashcardVo);
+		flashcardVo.setWordbookNo(score);
+		// 알파벳일경우
+		if (str.matches("^[A-Za-z]*$")) {
+			flashcardDao.inserWrongWord(flashcardVo);
+		} else {
+			// 알파벳이 아닐경우
+			flashcardVo.setWordName(flashcardVo.getMeanName());
+			flashcardVo.setMeanName(str);
+			flashcardDao.inserWrongWord(flashcardVo);
+		}
+
+	}
 }
