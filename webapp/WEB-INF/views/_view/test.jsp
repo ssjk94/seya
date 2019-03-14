@@ -18,6 +18,7 @@
 			margin-left: 10%;
 			margin-right: 10%;
 		}
+		
 		.pair-content{
 			height: 100%;
 			overflow: hidden;

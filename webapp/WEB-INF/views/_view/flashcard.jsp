@@ -3,17 +3,9 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <!DOCTYPE html>
-
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 <head>
-<!-- 경환 css -->
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport">
@@ -102,9 +94,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .clearBox img {
-	/* 			position: absolute;
-			width: 210px;
-			height: 105px; */
 	animation-duration: 1s;
 	animation-name: slidein;
 }
@@ -175,6 +164,8 @@ to {
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
 
 body {
 	font-family: 'Jeju Gothic', sans-serif;
@@ -526,35 +517,13 @@ p.flashcard-font {
 	position: relative;
 	z-index: 2;
 }
->>>>>>>
-stash
+
 </style>
 
 </head>
-
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-red-light fixed">
 	<div class="wrapper">
-
+	
 		<!-- header -->
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- /header -->
@@ -717,36 +686,6 @@ desired effect
 				</div>
 			</div>
 			<!-- RANDOM QUIZ MODAL IN MODAL END -->
-
-
-
-
-			<div class="modal fade" id="flashquizModal">
-				<div class="modal-dialog" style="width: 80%">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title">플래시 퀴즈</h4>
-						</div>
-						<div class="modal-body">
-							<c:import url="/WEB-INF/views/_view/flashcardgame.jsp" />
-						</div>
-						<div class="modal-footer">
-							<!-- <button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save
-								changes</button> -->
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<!-- /.modal -->
-			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
 
@@ -791,7 +730,9 @@ desired effect
 			url : "${pageContext.request.contextPath}/randomquiz", //url 
 			type : "post",
 			//		contentType : "application/json",
-			data : {wordbookNo : wordbookNo},
+			data : {
+				wordbookNo : wordbookNo
+			},
 			dataType : "json",
 			success : function(data) {
 				/*성공시 처리해야될 코드 작성*/
@@ -917,16 +858,49 @@ desired effect
 
 	};
 
-	$("#pairSetGame").on("click", function() {
+	//현재 에이잭스는 활성화 상태 by세윤
+	$("#flashQuiz").on("click", function(){
+		
 		var wordbookNo = "${flashcardVo.wordbookNo}";
+		
 		$.ajax({
-			url : "${pageContext.request.contextPath}/pairsetgame", //url type : "post",
-			// contentType : "application/json", data : { wordbookNo : wordbookNo },
+			url : "${pageContext.request.contextPath}/flashcardgame",   //url 
+			type : "post",
+//			contentType : "application/json",
+			data : {wordbookNo: wordbookNo},
 			dataType : "json",
-			success : function(pairGameSource) { /*성공시 처리해야될 코드
-			작성*///리스트 반환할것 pairFinishList = pairGameSource[0]; pairRandomList =
-				pairGameSource[1];
-				pairNow = 0;
+			success : function(flashGameSource){
+			/*성공시 처리해야될 코드 작성*/
+				for(var i=0;i<flashGameSource.length;i++){
+					flashGameList.push(flashGameSource[i]);
+				}
+				flashStart();
+				flashSetting();
+			},
+			error : function(XHR, status, error) {
+				console.error(status+" : "+error);
+			}
+		});
+		
+		
+		
+	});
+		
+	$("#pairSetGame").on("click", function(){
+		
+		var wordbookNo = "${flashcardVo.wordbookNo}";
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/pairsetgame",   //url 
+			type : "post",
+//			contentType : "application/json",
+			data : {wordbookNo: wordbookNo},
+			dataType : "json",
+			success : function(pairGameSource){
+				/*성공시 처리해야될 코드 작성*/ //리스트 반환할것
+				pairFinishList = pairGameSource[0];
+				pairRandomList = pairGameSource[1];
+				pairNow=0;
 				pairScore = 0;
 				pairHiddenSetting();
 				pairSetting();
@@ -935,11 +909,12 @@ desired effect
 				pairLifeInitialization();
 			},
 			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
+				console.error(status+" : "+error);
 			}
 		});
 	});
 </script>
+
 
 <!-- 경환 스크립트 -->
 <script type="text/javascript">
@@ -1012,6 +987,7 @@ desired effect
 							clickEventNone();
 						}, 400);
 					}
+
 					if (pairNowSituation == 4) {
 						pairInitialization();
 					}
@@ -1023,7 +999,9 @@ desired effect
 					}
 					;
 				}
+
 			})
+
 	//초기화 시키는 함수
 	function wordInitialization() {
 		pairAnswer = false;
@@ -1134,7 +1112,9 @@ desired effect
 		} else {
 			roopNo = 5;
 		}
-
+		console.log("루프" + roopNo);
+		console.log("페어나우" + pairNow);
+		console.log("렝스" + pairFinishList.length);
 		for (var i = 1; i < roopNo; i++) {
 			if (i == 1) {
 				$("#word" + i).find("span").text(
@@ -1189,12 +1169,15 @@ desired effect
 			clickEventNone();
 		}, 400);
 		if (sessionId != "" && pairScore != 0) {
+
 			//url 바꾸어야합니다.
 			var wordbookNo = "${flashcardVo.wordbookNo}";
+
 			$
 					.ajax({
 						url : "${pageContext.request.contextPath}/${URLId}/scoreupdate",
 						type : "post",
+						//		traditional : true,
 						data : {
 							wordbookNo : wordbookNo,
 							gameName : pairGameName,
@@ -1213,9 +1196,7 @@ desired effect
 		} //if문
 
 		$("#pairSetGameModal").modal("hide");
-
 	}
-
 	function pairGameWrong() {
 		var sessionId = "${sessionScope.id}"
 		if (pairWordValue != "" && sessionId != "") {
@@ -1223,6 +1204,7 @@ desired effect
 			$.ajax({
 				url : "${pageContext.request.contextPath}/${URLId}/wrongword",
 				type : "post",
+				//		traditional : true,
 				data : {
 					wordName : pairWordValue,
 					meanName : pairMeanValue,
