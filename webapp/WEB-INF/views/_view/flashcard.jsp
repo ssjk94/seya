@@ -464,6 +464,70 @@ p.flashcard-font {
 	width: 100%;
 	height: 100%;
 }
+
+.random-quiz-result-header {
+	width: 860px;
+	height: 100px;
+	font-size: 36px;
+	text-align: center;
+	padding-top: 20px;
+	z-index: 2;
+	position: relative;
+	color: antiquewhite;
+}
+
+.random-quiz-result-list {
+	width: 860px;
+	height: 50px;
+	font-size: 36px;
+	text-align: center;
+	color: ghostwhite;
+}
+
+.random-quiz-result-score {
+	width: 860px;
+	height: 50px;
+	font-size: 36px;
+	text-align: center;
+	color: khaki;
+}
+
+.random-quiz-result-text {
+	width: 860px;
+	height: 55px;
+	font-size: 36px;
+	text-align: center;
+	padding-top: 5px;
+}
+
+.random-quiz-result-xword {
+	width: 860px;
+	height: 100px;
+	font-size: 45px;
+	text-align: center;
+	color: initial;
+}
+
+.random-quiz-result-xmean {
+	width: 860px;
+	height: 50px;
+	font-size: 36px;
+	text-align: center;
+}
+
+.result-image {
+	margin-bottom: 15px;
+	position: absolute;
+	width: 870px;
+	height: 380px;
+}
+
+.random-quiz-result-content {
+	position: relative;
+	z-index: 2;
+}
+>>>>>>>
+stash
 </style>
 
 </head>
@@ -604,6 +668,8 @@ desired effect
 							</div>
 						</div>
 						<div class="modal-footer">
+							<a data-toggle="modal" data-target="#myModal2" id="modalClick"></a>
+
 							<!-- <button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
 							<button type="button" class="btn btn-primary">Save
@@ -615,6 +681,46 @@ desired effect
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
+			<!-- 랜덤퀴즈 Modal 안의 Modal -->
+			<div class="modal fade" id="myModal2" aria-hidden="true"
+				style="display: none; z-index: 1060;">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h4 class="modal-title">랜덤 퀴즈</h4>
+						</div>
+						<div class="container"></div>
+						<div class="modal-body">
+							<img class="result-image"
+								src="/upload/profile/result-background.jpg">
+							<div class="random-quiz-result-header">랜덤 퀴즈 게임 결과</div>
+							<div class="random-quiz-result-content">
+								<div class="random-quiz-result-list" id="random-quiz-size">
+									문제 갯수 :</div>
+								<div class="random-quiz-result-score" id="random-quiz-score">
+									<p>얻은 점수 :</p>
+								</div>
+								<div class="random-quiz-result-text">틀린 문제</div>
+								<div class="random-quiz-result-xword" id="random-quiz-xWord">
+								</div>
+
+
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<a href="#" data-dismiss="modal" class="btn">나가기</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- RANDOM QUIZ MODAL IN MODAL END -->
+
+
+
+
 			<div class="modal fade" id="flashquizModal">
 				<div class="modal-dialog" style="width: 80%">
 					<div class="modal-content">
@@ -671,10 +777,14 @@ desired effect
 </body>
 <!-- 세윤 and 승현 합작 -->
 <script type="text/javascript">
+	var randomQuizList;
+	var crtRandomNo = -1;
+	var incorrectWord = new Array();
+	var incorrectMean = new Array();
+	var userScore = 0;
+	//랜덤퀴즈 클릭할때
 	$("#randomQuiz").on("click", function() {
-
 		console.log("${flashcardVo.wordbookNo}");
-
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 
 		$.ajax({
@@ -686,60 +796,140 @@ desired effect
 			},
 
 			dataType : "json",
-			success : function(quizList) {
+			success : function(data) {
 				/*성공시 처리해야될 코드 작성*/
-				console.log(quizList);
-				$("#ans01").text("살려는주십시오.")
-
+				console.log("성공 : " + data);
+				randomQuizList = data;
+				randomQuizPrint();
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		});
-	})
-	//현재 에이잭스는 활성화 상태 by세윤
-	$("#flashQuiz").on("click", function() {
-
-		var wordbookNo = "${flashcardVo.wordbookNo}";
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/flashcardgame", //url 
-			type : "post",
-			//			contentType : "application/json",
-			data : {
-				wordbookNo : wordbookNo
-			},
-			dataType : "json",
-			success : function(flashGameSource) {
-				/*성공시 처리해야될 코드 작성*/
-				for (var i = 0; i < flashGameSource.length; i++) {
-					flashGameList.push(flashGameSource[i]);
-				}
-				flashStart();
-				flashSetting();
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+		}); // /ajax
 	});
 
+	//랜덤퀴즈> 보기클릭했을때
+	$(".quiz-answer").on("click", function() {
+		console.log("보기클릭");
+
+		// 누른곳 체크 이미지 변경	
+		var choiceNo = $(this).find("input").val();
+		$("#ansCheck0" + choiceNo).css("visibility", "visible");
+		$(this).find("img").attr("src", "/upload/profile/check-mark.png");
+
+		//정답 판단및 다음진행
+		setTimeout(function() {
+			randomQuizPrint(choiceNo);
+		}, 1000);
+	});
+
+	//퀴즈 출력(현재번호 출력)
+	function randomQuizPrint(choiceNo) {
+		var delayTime;
+		if (crtRandomNo == -1) {
+			delayTime = 0;
+		} else {
+			delayTime = 500;
+		}
+
+		//1초지연
+		setTimeout(function() {
+			crtRandomNo++;
+			console.log("randomQuizRender", randomQuizList[crtRandomNo]);
+			$("#game-question").text(randomQuizList[crtRandomNo].question);
+			//보기
+			$("#ans00")
+					.text("1. " + randomQuizList[crtRandomNo].answerArray[0]);
+			$("#ans01")
+					.text("2. " + randomQuizList[crtRandomNo].answerArray[1]);
+			$("#ans02")
+					.text("3. " + randomQuizList[crtRandomNo].answerArray[2]);
+			$("#ans03")
+					.text("4. " + randomQuizList[crtRandomNo].answerArray[3]);
+		}, delayTime);
+
+		var answerNo = randomQuizList[crtRandomNo].ansNo;
+
+		//정답판단
+		if (answerNo == choiceNo) {
+			console.log("진짜 정답 번호 체크 true : " + answerNo);
+			console.log("누른 정답 번호 체크 true: " + answerNo);
+			// 정답체크후 정답시에
+			$("#ansCheck0" + answerNo).css("visibility", "visible");
+			$("#ansCheck0" + answerNo).attr("src",
+					"/upload/profile/circle-mark01.png");
+			//문제에 O, X 체크
+			$(".correct-mark")
+					.attr("src", "/upload/profile/correct-mark01.png");
+			userScore = userScore + 50;
+		} else {
+			console.log("진짜 정답 번호 체크 false: " + answerNo);
+			console.log("누른 정답 번호 체크 false: " + answerNo);
+			// 정답 아닐때에 
+			$("#ansCheck0" + choiceNo).css("visibility", "visible");
+			$("#ansCheck0" + choiceNo).attr("src",
+					"/upload/profile/x-mark01.png");
+			//문제에 O, X 체크
+			$(".correct-mark").attr("src",
+					"/upload/profile/incorrect-mark02.png");
+			//정답인곳에 O 이미지 띄우기
+			$("#ansCheck0" + answerNo).css("visibility", "visible");
+			$("#ansCheck0" + answerNo).attr("src",
+					"/upload/profile/circle-mark01.png");
+			userScore = userScore - 30;
+
+			incorrectWord.push(randomQuizList[crtRandomNo].question);
+
+			incorrectMean
+					.push(randomQuizList[crtRandomNo].answerArray[answerNo]);
+
+		}
+
+		//정답여부 그리기
+
+		var compareLength = randomQuizList.length - 1;
+		console.log("현재문제 번호 : " + crtRandomNo + " 리스트 랭쓰 : " + compareLength);
+		//마지막문제면
+		if (crtRandomNo >= compareLength) {
+
+			//결과페이지 출력
+			console.log("다끝났습니다.");
+			$("#modalClick").trigger("click");
+
+			var resultSize = crtRandomNo;
+			$("#random-quiz-size").text("총 문제 수 : " + (resultSize + 1) + " 개");
+			$("#random-quiz-score").text("획득 점수 : " + userScore + " 점");
+			$("#random-quiz-xWord").text(incorrectWord);
+			//			$("#random-quiz-xMean").text(incorrectMean);
+			$('#quizModal').modal('hide');
+
+		}
+		//마지막이 아니면
+		else {
+			setTimeout(function() {
+				//다음문제 출력
+				//이전 이미지, 값 초기화
+				$("#ansCheck00").css("visibility", "hidden");
+				$("#ansCheck01").css("visibility", "hidden");
+				$("#ansCheck02").css("visibility", "hidden");
+				$("#ansCheck03").css("visibility", "hidden");
+				$(".correct-mark").attr("src", "");
+			}, 500);
+		}
+
+		//
+
+	};
+
 	$("#pairSetGame").on("click", function() {
-
 		var wordbookNo = "${flashcardVo.wordbookNo}";
-
 		$.ajax({
-			url : "${pageContext.request.contextPath}/pairsetgame", //url 
-			type : "post",
-			//		contentType : "application/json",
-			data : {
-				wordbookNo : wordbookNo
-			},
+			url : "${pageContext.request.contextPath}/pairsetgame", //url type : "post",
+			// contentType : "application/json", data : { wordbookNo : wordbookNo },
 			dataType : "json",
-			success : function(pairGameSource) {
-				/*성공시 처리해야될 코드 작성*///리스트 반환할것
-				pairFinishList = pairGameSource[0];
-				pairRandomList = pairGameSource[1];
+			success : function(pairGameSource) { /*성공시 처리해야될 코드
+			작성*///리스트 반환할것 pairFinishList = pairGameSource[0]; pairRandomList =
+				pairGameSource[1];
 				pairNow = 0;
 				pairScore = 0;
 				pairHiddenSetting();
