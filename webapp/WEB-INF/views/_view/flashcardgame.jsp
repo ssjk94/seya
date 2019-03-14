@@ -3,70 +3,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-.flash-dialog {
-	width: 1100px;
-	height: 820px;
-	margin-left: 10%;
-}
-
-.flash-content {
-	width: 100%;
-	height: 100%;
-}
-
-.flashInfo {
-	clear: both;
-	height: 60px;
-}
-
-.flashInfo p {
-	display: inline-block;
-	font-size: 25px;
-	margin: 0px;
-}
-
-.flashInfo b {
-	font-size: 35px;
-}
-
-.flashInfo img {
-	width: 40px;
-}
-
-.flashInfo div:nth-child(3) p {
-	margin-top: 10px;
-}
-
-.flashInfo .pull-left {
-	margin-right: 50px;
-}
-
-.flashInfo .pull-right {
-	margin-left: 10px;
-}
-
-.flash-body {
-	height: 75%;
-}
-
-#flashDenote {
-	height: 400px;
-	display: table;
-}
-
-#flashSubmit {
-	background-color: ghostwhite;
-}
-
-#quiz {
-	font-size: 50px;
-	display: table-cell;
-	vertical-align: middle;
-}
-</style>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		.flash-dialog {
+			width: 1100px;
+			height: 820px;
+			margin-left: 10%;
+		}
+		
+		.flash-content {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.flashInfo {
+			clear: both;
+			height: 60px;
+		}
+		
+		.flashInfo p {
+			display: inline-block;
+			font-size: 25px;
+			margin: 0px;
+		}
+		
+		.flashInfo b {
+			font-size: 35px;
+		}
+		
+		.flashInfo img {
+			width: 40px;
+		}
+		
+		.flashInfo div:nth-child(3) p {
+			margin-top: 10px;
+		}
+		
+		.flashInfo .pull-left {
+			margin-right: 50px;
+		}
+		
+		.flashInfo .pull-right {
+			margin-left: 10px;
+		}
+		
+		.flash-body {
+			height: 75%;
+		}
+		
+		#flashDenote {
+			height: 400px;
+			display: table;
+		}
+		
+		#flashSubmit {
+			background-color: ghostwhite;
+		}
+		
+		#quiz {
+			font-size: 50px;
+			display: table-cell;
+			vertical-align: middle;
+		}
+	</style>
 </head>
 <body>
 	<div id="flashquizModal" class="modal fade">

@@ -116,11 +116,8 @@ public class FlashcardService {
 
 			return list;
 		} else {// 전체 다 가져가야함
-			System.out.println("오긴와?");
 			while (set.size() < list.size()) {
-				System.out.println("오긴와?123");
 				set.add(list.get((int) (Math.random() * list.size())));
-				System.out.println("확인용" + list.get((int) (Math.random() * list.size())).toString());
 			}
 
 			list = new ArrayList<FlashcardVo>();
