@@ -791,10 +791,7 @@ desired effect
 			url : "${pageContext.request.contextPath}/randomquiz", //url 
 			type : "post",
 			//		contentType : "application/json",
-			data : {
-				wordbookNo : wordbookNo
-			},
-
+			data : {wordbookNo : wordbookNo},
 			dataType : "json",
 			success : function(data) {
 				/*성공시 처리해야될 코드 작성*/
@@ -831,7 +828,6 @@ desired effect
 		} else {
 			delayTime = 500;
 		}
-
 		//1초지연
 		setTimeout(function() {
 			crtRandomNo++;
