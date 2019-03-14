@@ -538,7 +538,7 @@ desired effect
 					<div class="col-xs-4 col-md-4" id="pairSetGame">
 						<a href="#"><img class="flashcard-image" data-toggle="modal"
 							data-target="#pairSetGameModal" src="dist/images/wordmatch.png"
-							alt="짝 맞추기"> </a> >>>>>>> stash
+							alt="짝 맞추기"> </a>
 						<p class=text-center>짝 맞추기</p>
 					</div>
 
