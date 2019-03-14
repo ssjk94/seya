@@ -172,14 +172,14 @@ form+form {
 }
 
 .wordbook-image {
-	width: 20%;
+	width: 15%;
 	height: 100%;
 	display: inline-block;
 	float: left;
 }
 
 .wordbook-info {
-	width: 30%;
+	width: 18%;
 	height: 50%;
 	text-align: center;
 	display: inline-block;
@@ -192,9 +192,9 @@ form+form {
 }
 
 .wordbook-name {
-	width: 50%;
+	width: 67%;
 	height: 100%;
-	text-align: center;
+	text-align: left;
 	display: inline-block;
 	float: left;
 }
@@ -203,6 +203,7 @@ form+form {
 	margin-top: 3px;
 	border-radius: 20px;
 	block-size: 50px;
+	margin-left: 3px;
 }
 
 .wordbook-title {
