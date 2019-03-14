@@ -154,10 +154,11 @@ a:-webkit-any-link {
 
 .btn-enterFlash {
 	width: 100%;
-	height: 60px;
+	height: 70px;
 	border: 1px solid #d2d6de;
 	text-align: left;
 	background-color: white;
+	padding: 5px;
 }
 
 form+form {
@@ -207,7 +208,7 @@ form+form {
 }
 
 .wordbook-title {
-	line-height: 55px;
+	line-height: 60px;
 	font-size: 13px;
 }
 </style>

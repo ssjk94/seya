@@ -219,6 +219,15 @@ p#mean {
 	margin-right: 0px;
 	margin-top: -8px;
 }
+
+.btn-flashquiz {
+	width: 100%;
+	height: 70px;
+	border: 1px solid #d2d6de;
+	text-align: left;
+	background-color: white;
+	padding: 5px;
+}
 </style>
 </head>
 <body>
@@ -244,8 +253,9 @@ p#mean {
 		</div>
 		<div class="m-content">
 			<div class="m-gamerow">
-				<div class="flashquiz"></div>
-				
+				<div class="game-wrapper">
+					<button class="btn-flashquiz"></button>
+				</div>
 			</div>
 		</div>
 	</div>
