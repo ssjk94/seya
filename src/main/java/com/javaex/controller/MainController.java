@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,20 +14,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
-	
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main1() {
-
-		return "main/index";
+	public String main1(Device device) {
+		if (device.isMobile()) {
+			return "mobile/m_main";
+		} else {
+			return "main/index";
+		}
 	}
+
 	@RequestMapping(value = "/seyamain", method = RequestMethod.GET)
-	public String seyamain() {
+	public String seyamain(Device device) {
+		if (device.isMobile()) {
+			return "mobile/m_main";
+		} else {
+			return "main/seyamain";
+		}
 
-		return "main/seyamain";
 	}
-	
-	
+
 	@RequestMapping(value = "/main2", method = RequestMethod.GET)
 	public String main2() {
 		System.out.println("main2");
@@ -80,28 +87,31 @@ public class MainController {
 		System.out.println("signup");
 		return "kyunghwan/signup/signupform";
 	}
+
 	@RequestMapping(value = "/leech", method = RequestMethod.GET)
 	public String modibreak() {
 		System.out.println("leech");
 		return "_view/leech";
 	}
+
 	@RequestMapping(value = "/listtest", method = RequestMethod.GET)
 	public String listtest() {
 		System.out.println("list test");
 		return "_view/listtest";
 	}
+
 	@RequestMapping(value = "/rankpage", method = RequestMethod.GET)
 	public String rankpage() {
 		System.out.println("list test");
 		return "kyunghwan/gamepage/rankpage";
 	}
-	
+
 	@RequestMapping(value = "/modalmodify", method = RequestMethod.GET)
 	public String modalmodify() {
 		System.out.println("modalmodify");
 		return "wordpad/modalmodify";
 	}
-	
+
 //	@RequestMapping("/hello")
 //	public String hello() {
 //		System.out.println("/mysiteh/hello");
@@ -112,7 +122,7 @@ public class MainController {
 	public String hello() {
 		System.out.println("/mysiteh/hello");
 		return "index";
-}
+	}
 
 	static int num = 0;
 	static int numc = 0;
@@ -127,6 +137,5 @@ public class MainController {
 		}
 		return num;
 	}
-	
-	
+
 }

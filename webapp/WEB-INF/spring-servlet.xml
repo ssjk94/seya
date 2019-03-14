@@ -44,13 +44,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 				</property>
 			</bean>
 		</mvc:message-converters>
-		
+
 	</mvc:annotation-driven>
 
-	 <!-- url매핑 -->
- 	<mvc:resources mapping="/upload/**"	location="file:D:/_seyaworld/upload/"/>  
- 	
- 	
+	<!-- url매핑 -->
+	<mvc:resources mapping="/upload/**"
+		location="file:D:/_seyaworld/upload/" />
+
+
 	<!-- 멀티파트 리졸버 -->
 
 	<bean id="multipartResolver"
@@ -65,7 +66,21 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<!-- defaultEncoding -->
 		<property name="defaultEncoding" value="utf-8" />
 	</bean>
-	
-	
+	<!-- mobile intercepter -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean
+				class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean
+				class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
 
 </beans>

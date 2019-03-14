@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,58 +29,54 @@ public class FlashcardController {
 	FlashcardService flashcardService;
 
 	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
-	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, HeaderSearchVo headerSearchVo,QuizVo quizVo, Model md, Random random) {
+	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, HeaderSearchVo headerSearchVo, QuizVo quizVo,
+			Model md, Random random, Device device) {
 
 		System.out.println(flashcardVo.toString());
 		List<FlashcardVo> list = flashcardService.getFlashcardList(urlPathVo);
 		md.addAttribute("wordbookList", list);
 		md.addAttribute("URLId", urlPathVo.getURLId());
 
-		
 		// 승
 		md.addAttribute("urlPathVo", flashcardService.getNickName(urlPathVo));
-		
+
 		// 경환
 		List<WordbookVo> directoryList = flashcardService.getWordbookAlldirectoryList(urlPathVo);
 		md.addAttribute("wordbookNo", urlPathVo.getWordbookNo());
 		md.addAttribute("directoryList", directoryList);
 
 		// 사지선다게임 모달전용.
-		/*List<HeaderSearchVo> wordList = flashcardService.getWordChoiceList(headerSearchVo);
-		
-		//int wordListSize = wordList.size(); 
-		for(int i=0 ; i < wordList.size(); i++ ) {
-						
-			//문제 세팅
-			headerSearchVo.setWordName(wordList.get(i).getWordName());
-			headerSearchVo.setWordbookNo(wordList.get(i).getWordbookNo());
-			quizVo.setQuestion(wordList.get(i).getWordName());
-			//답 세팅
-			HeaderSearchVo meanList2= flashcardService.getMeanChoiceOne(headerSearchVo);
-			quizVo.setAnswer(meanList2.getMeanName());
-			//답 위치 랜덤생성
-			int ansNo;
-			ansNo = random.nextInt(4);
-			quizVo.setAnsNo(ansNo);
-			//틀린답 가져오기	
-			List<HeaderSearchVo> badMeanList = flashcardService.getBadMeanChoiceList(headerSearchVo);
-			//틀린 답 세팅 ( 정답 세팅 전)
-			String answerArray[] = new String[4];
-			
-			for(int j=0; j<badMeanList.size(); j++) {
-				
-			 answerArray[j] =  badMeanList.get(j).getSeyaMeanName(); 
-			}
-			// 정답 세팅
-			answerArray[ansNo] = meanList2.getMeanName();
-			// 리스트에 넣음 
-			quizVo.setAnswerArray(answerArray);
-			
-			md.addAttribute("quizVo", quizVo);
-		} */
-		
-		
-		return "_view/flashcard";
+		/*
+		 * List<HeaderSearchVo> wordList =
+		 * flashcardService.getWordChoiceList(headerSearchVo);
+		 * 
+		 * //int wordListSize = wordList.size(); for(int i=0 ; i < wordList.size(); i++
+		 * ) {
+		 * 
+		 * //문제 세팅 headerSearchVo.setWordName(wordList.get(i).getWordName());
+		 * headerSearchVo.setWordbookNo(wordList.get(i).getWordbookNo());
+		 * quizVo.setQuestion(wordList.get(i).getWordName()); //답 세팅 HeaderSearchVo
+		 * meanList2= flashcardService.getMeanChoiceOne(headerSearchVo);
+		 * quizVo.setAnswer(meanList2.getMeanName()); //답 위치 랜덤생성 int ansNo; ansNo =
+		 * random.nextInt(4); quizVo.setAnsNo(ansNo); //틀린답 가져오기 List<HeaderSearchVo>
+		 * badMeanList = flashcardService.getBadMeanChoiceList(headerSearchVo); //틀린 답
+		 * 세팅 ( 정답 세팅 전) String answerArray[] = new String[4];
+		 * 
+		 * for(int j=0; j<badMeanList.size(); j++) {
+		 * 
+		 * answerArray[j] = badMeanList.get(j).getSeyaMeanName(); } // 정답 세팅
+		 * answerArray[ansNo] = meanList2.getMeanName(); // 리스트에 넣음
+		 * quizVo.setAnswerArray(answerArray);
+		 * 
+		 * md.addAttribute("quizVo", quizVo); }
+		 */
+
+		if (device.isMobile()) {
+			return "mobile/m_flashcard";
+		} else {
+			return "_view/flashcard";
+		}
+
 	}
 
 	@RequestMapping(value = "{URLId}/flashcardgame", method = RequestMethod.GET)
@@ -102,20 +99,14 @@ public class FlashcardController {
 		flashcardService.updateFlashcard(flashcardVo);
 	}
 
-
-	
 	@ResponseBody
 	@RequestMapping(value = "/randomquiz", method = RequestMethod.POST)
 	public List<QuizVo> randomQuiz(@RequestParam("wordbookNo") int wordbookNo) {
-		System.out.println(wordbookNo);
-		
-		List<QuizVo> quizList = flashcardService.randomQuiz(wordbookNo);
-		System.out.println("Controller: " + quizList);
-		
-		return quizList;
-		
-		
-		
-		
+		System.out.println("ho");
+		List<QuizVo> randomQuizList = flashcardService.randomQuiz(wordbookNo);
+		System.out.println("Controller: " + randomQuizList);
+
+		return randomQuizList;
+
 	}
 }

@@ -50,6 +50,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+
+
 .mainpage-wrapper {
 	width: 1080px;
 	height: 969px;
@@ -62,18 +67,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .main-logo {
 	width: 165px;
-    font-size: 34px;
-    float: left;
-    text-align: center;
-    margin-right: 15px;
-    margin-left: 165px;
-    margin-top: 40px;
+	font-size: 34px;
+	float: left;
+	text-align: center;
+	margin-right: 15px;
+	margin-left: 165px;
+	margin-top: 40px;
 }
+
 .main-logo:hover {
 	cursor: pointer;
-
 }
-
 
 .searchdiv {
 	width: 500px;
@@ -179,10 +183,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .main-login-body {
+	font-family: 'Jeju Gothic', sans-serif;
 	width: 290px;
 	height: 400px;
 	padding: 10px;
 	border: 1px solid #d4d4d4;
+}
+.main-login-body2{
+	width: 290px;
+	height: 400px;
+	padding: 10px;
+	border: 1px solid #d4d4d4;
+	font-family: 'Jeju Gothic', sans-serif;
+	background-color: indianred;	
 }
 
 .login-text {
@@ -208,11 +221,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	margin-top: 1px;
 	margin-right: 12px;
 }
-.seya-solid{
-	border-top:solid 1px red;
-	width:1020px;
+
+.seya-solid {
+	border-top: solid 1px red;
+	width: 1020px;
 	margin-left: 30px;
-	height:1px;
+	height: 1px;
+}
+.main-id-view{
+	width: 270px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 5px;
+    color: currentColor;
+}
+.main-nickname-view {
+	width: 240px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+    border-bottom: 1px solid #d4d4d4;
+    margin-left: 15px;
+     color: currentColor;
+}
+.main-userimage-view {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 47px;
+    border: 3px solid #d2d6de;
+    padding: 3px;
+
+}
+.main-usercontent-view {
+	width: 270px;
+    height: 70px;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 10px;
+    
+}
+.main-myblog{
+	width: 270px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+.text-change{
+	font-family: 'Nanum Gothic', sans-serif;
 }
 </style>
 
@@ -250,34 +309,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</div>
 
 			<!-- 로그인 -->
-			<div class="main-content-login">
-				<form action="userlogin.do" name="loginform" method="post">
-					<div class="main-login-body">
-						<h2 class="login-text">Login</h2>
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="아이디" id="id"
-								name="id" maxlength="20">
+			<c:if test="${empty sessionScope.id}">
+				<div class="main-content-login">
+					<form action="userlogin.do" name="loginform" method="post">
+						<div class="main-login-body">
+							<h2 class="login-text">Login</h2>
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="아이디"
+									id="id" name="id" maxlength="20">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control text-change" placeholder="비밀번호"
+									id="password" name="password" maxlength="20">
+							</div>
+							
+							<div>							
+								<input type="submit"
+									class="btn btn-block btn-danger form control"
+									style="width: 100%" value="로그인"> <a
+									href="${pageContext.request.contextPath}/main2"
+									class="btn btn-block btn-danger form control"
+									style="width: 100%">회원가입</a> <a href="#"
+									class="btn btn-block btn-danger form control"
+									style="width: 100%">비밀번호 찾기</a>
+							</div>
+							<div class="login-text2">OR</div>
+							<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+							<div id="naver_id_login"></div>
 						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="비밀번호"
-								id="password" name="password" maxlength="20">
+					</form>
+				</div>
+			</c:if>
+			<c:if test="${not empty sessionScope.id}">
+				<div class="main-content-login">
+					<div class="main-login-body2">
+						<div class="main-id-view">${ sessionScope.id}&nbsp;님 환영합니다!</div>
+						<img class="main-userimage-view" src="/upload/profile/${sessionScope.userImage}">
+						<div class="main-nickname-view">${ sessionScope.nickName}</div>
+						<div class="main-usercontent-view">${ sessionScope.userContent}</div>
+						<div class="main-myblog">
+							<a href="${pageContext.request.contextPath}/${ sessionScope.id}" class="btn btn-default btn-flat">
+								내 단어장 바로가기</a>
+							<a href="/logout.do" class="btn btn-default btn-flat">
+								로그아웃</a>
 						</div>
-						<div>
-							<input type="submit"
-								class="btn btn-block btn-danger form control"
-								style="width: 100%" value="로그인"> <a
-								href="${pageContext.request.contextPath}/main2"
-								class="btn btn-block btn-danger form control"
-								style="width: 100%">회원가입</a> <a href="#"
-								class="btn btn-block btn-danger form control"
-								style="width: 100%">비밀번호 찾기</a>
-						</div>
-						<div class="login-text2">OR</div>
-						<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-						<div id="naver_id_login"></div>
+						<input type="hidden" id="naver_id_login">
 					</div>
-				</form>
-			</div>
+				</div>
+			</c:if>
 			<!-- 로그인  끝-->
 			<div class="main-content-title">
 				<img class="content-title-img"
@@ -428,7 +507,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		naver_id_login.setState(state);
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
-		
+
 		$('#mainlogo').click(function() {
 			$('#mainlogoform').submit();
 		});

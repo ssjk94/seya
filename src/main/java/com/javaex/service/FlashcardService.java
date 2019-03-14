@@ -1,5 +1,6 @@
 package com.javaex.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -41,42 +42,29 @@ public class FlashcardService {
 
 	public List<QuizVo> randomQuiz(int wordbookNo) {
 		// 단어15 가져오기
-		List<QuizVo> quizList = flashcardDao.selectRandomQuizWord(wordbookNo);
-		System.out.println("Service: " + quizList);
-
-		QuizVo quizVo = new QuizVo();
-		// 리스트 for vo하나에 들어갈것들 하시오
-			System.out.println("위 퀴즈리스트: "+ quizList.size());
-		for (int i=0; i<quizList.size(); i++) {
-
-			quizVo.setWordNo(quizList.get(i).getWordNo());
-			quizVo.setQuestion(quizList.get(i).getQuestion());
-			quizVo.setAnswer(quizList.get(i).getAnswer());
-
-			String answerArray2[] = new String[4];
-			// 보기채우기 for
-			List<QuizVo> quizArray = flashcardDao.selectbadMeanList();
+		List<QuizVo> randomQuizList = flashcardDao.selectRandomQuizWord(wordbookNo);
+		
+		
+		// 단어15 <-- 배드
+		for(int i=0; i<randomQuizList.size(); i++) {
+			List<String> answerArray = flashcardDao.selectbadMeanList();
+			randomQuizList.get(i).setAnswerArray(answerArray);
 			
-			for (int j = 0; j < quizArray.size(); j++) {
-					answerArray2[j] = quizArray.get(j).getBadAnswer();
-			}
+			// 정답 번호생성   정답 업데이트
 			
-			// random 1~4 3번에 정답입력
-			Random random = new Random();
-			int ansNo;
-			ansNo = random.nextInt(4);
-			quizVo.setAnsNo(ansNo);
+			//random 1~4 3번에 정답입력 0 ~ 3 
+			Random random = new Random(); 
+			int ansNo = random.nextInt(4);
 			
-			// 정답입력
-			answerArray2[ansNo] = quizList.get(i).getAnswer();
-			quizVo.setAnswerArray(answerArray2);
-
-			//퀴즈리스트에 추가하기
-//			quizList.add(quizVo);
-//			System.out.println("quizList 라스트 : " + quizList.toString());
-			
+			// ansNo 번호 세팅
+			// ansNo 뜻 세팅
+			randomQuizList.get(i).setAnsNo(ansNo);
+			randomQuizList.get(i).getAnswerArray().set(ansNo, randomQuizList.get(i).getAnswer());			
 		}
-		return quizList;
+		System.out.println(randomQuizList);
+
+		
+		return randomQuizList;
 	}
 
 	public List<HeaderSearchVo> getWordChoiceList(HeaderSearchVo headerSearchVo) {

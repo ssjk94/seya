@@ -17,6 +17,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -67,11 +68,15 @@ public class UsersController {
 
 	// 로그인
 	@RequestMapping(value = "/userlogin.do", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model) {
+	public String userLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model,
+			Device device) {
 		System.out.println(usersVo.toString());
 		if (usersService.userLogin(usersVo) == null) {
-			return "main/index";
-
+			if (device.isMobile()) {
+				return "mobile/m_main";
+			} else {
+				return "main/index";
+			}
 		} else {
 			usersService.userLogin(usersVo);
 			String id = req.getParameter("id");
@@ -90,10 +95,13 @@ public class UsersController {
 				session.setAttribute("nickName", usersVo.getNickName());
 				session.setAttribute("userImage", usersVo.getUserImage());
 				session.setAttribute("userContent", usersVo.getUserContent());
-
 				return "redirect:" + id;
 			} else {
-				return "main/index";
+				if (device.isMobile()) {
+					return "mobile/m_main";
+				} else {
+					return "main/index";
+				}
 			}
 
 		}
@@ -185,7 +193,7 @@ public class UsersController {
 
 				System.out.println(file.getOriginalFilename());
 				usersVo.setUserImage(saveName);
-				
+
 				if (bout != null) {
 					bout.close();
 				}
@@ -257,28 +265,26 @@ public class UsersController {
 			VocabularyListVo vocabularyListVo) {
 
 		List<HeaderSearchVo> list = usersService.selectSearch(headerSearchVo);
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println("toString" + list.get(i).toString());
-			//System.out.println("워드북no : " + list.get(i).getWordbookNo());
-			
+			// System.out.println("워드북no : " + list.get(i).getWordbookNo());
+
 			headerSearchVo.setWordbookNo(list.get(i).getWordbookNo());
 			int count = usersService.countWordName(headerSearchVo);
-			
+
 			list.get(i).setCount(count);
-			
-		
+
 			int wordbookNo = list.get(i).getWordbookNo();
 			vocabularyListVo.setWordbookNo(wordbookNo);
-			
-			
+
 			List<HeaderSearchVo> list2 = usersService.searchWordMeanList(wordbookNo);
-			//System.out.println("워드 민,kor :" + vocabularyListVo.toString());
+			// System.out.println("워드 민,kor :" + vocabularyListVo.toString());
 
 			String[] wordArr = new String[4];
 			String[] meanArr = new String[4];
 
-			for (int j = 0; j < list2.size() ; j++) {
+			for (int j = 0; j < list2.size(); j++) {
 				wordArr[j] = list2.get(j).getWordName();
 				meanArr[j] = list2.get(j).getMeanName();
 			}
@@ -290,10 +296,9 @@ public class UsersController {
 			 * meanArr) { System.out.println("뜻 배열" + b); }
 			 */
 		}
-		
+
 		model.addAttribute("list", list);
-		
-		
+
 		return "main/seyasearch";
 	}
 
@@ -349,27 +354,26 @@ public class UsersController {
 		map.put("cnt", count);
 		return map;
 	}
-	
-	//네이버 아이디로 로그인 
-  	@RequestMapping(value="login", method=RequestMethod.GET)
+
+	// 네이버 아이디로 로그인
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String loginGET() {
 		System.out.println("네아로 확인 login");
 		return "main/seyamain";
 	}
-	
-	@RequestMapping(value="loginpostnaver", method=RequestMethod.GET)
+
+	@RequestMapping(value = "loginpostnaver", method = RequestMethod.GET)
 	public String loginPOSTNaver(HttpSession session) {
-		
+
 		System.out.println("네아로 확인 loginpostnaver");
 		return "main/loginpostnaver";
 	}
+
 	// 게임 임시 보내기 폼
 	@RequestMapping("/multiplechoice")
 	public String multipleChoice(HttpSession session, HttpServletRequest req) {
-		
 
 		return "main/multiplechoice";
 	}
-	
-	
+
 }

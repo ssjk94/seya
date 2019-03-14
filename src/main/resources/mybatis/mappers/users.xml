@@ -46,38 +46,13 @@
 	<select id="selectSearch" resultType="com.javaex.vo.HeaderSearchVo"
 		parameterType="com.javaex.vo.HeaderSearchVo">
 		<![CDATA[
-			select u.nickname, wb.wordbookname, u.userimage, wb.wordbookno, u.id 
-			from users u, directory d, wordbook wb, word w
-			where u.userno = any(select u.userno 
-							 	 from users u, directory d, wordbook w
-							 	 where w.wordbookno = any(select wordbookno 
-							 						  from wordbook 
-							 						  where wordbookname like '%'||#{keyword}||'%' 
-													  and WORDBOOKACCESS = 0)
-								 and w.directoryno = d.directoryno
-								 and d.userno = u.userno)
-			and d.userno = u.userno
-			and d.directoryno = wb.directoryno
-			and wb.wordbookno = w.wordno
-			and wb.wordbookname = any(select wordbookname 
-									  from wordbook w, directory d, users u
-									  where wordbookname like '%'||#{keyword}||'%'
-								  	  and WORDBOOKACCESS = 0
-									  and w.wordbookno = any(select wordbookno 
-									  						 from wordbook 
-									  						 where wordbookname like '%'||#{keyword}||'%'
-									 						 and WORDBOOKACCESS = 0)
-									  and d.userno = u.userno
-									  and d.directoryno = w.directoryno)
-			and u.id =any(select u.id 
-							 	 from users u, directory d, wordbook w
-							 	 where w.wordbookno = any(select wordbookno 
-							 						  from wordbook 
-							 						  where wordbookname like '%'||#{keyword}||'%'
-													  and WORDBOOKACCESS = 0)
-								 and w.directoryno = d.directoryno
-								 and d.userno = u.userno)
-			order by wb.wordbookname asc
+			 select distinct u.nickname, wb.wordbookname, u.userimage, wb.wordbookno, u.id
+					    from 		users u, directory d, wordbook wb, word w
+					    where		u.userno = d.userno
+					    and 		d.directoryno = wb.directoryno
+					    and 		wb.wordbookaccess = 0
+					    and 		wb.wordbookname like '%'||#{keyword}||'%'
+					    order by 	wb.wordbookname asc
 		]]>
 	</select>
 	<!-- 써치후 단어 리스트 쿼리문 -->
@@ -228,7 +203,7 @@
 		]]>
 	</select>
 	
-	<select id="selectBadMeanChoice2" resultType="com.javaex.vo.QuizVo">
+	<select id="selectBadMeanChoice2" resultType="String">
 		<![CDATA[
 			select SEYAMEANNAME as badAnswer from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <5
 		]]>
@@ -242,6 +217,12 @@
 	
 	
 	<!-- -->
+	<select id="selectQuizSize" parameterType="int" resultType="com.javaex.vo.QuizVo">
+		<![CDATA[
+			select wordname as question from word where wordbookno =#{wordbookNo}
+		]]>
+	</select>
+	
 	<select id="selectRandomQuizWord" parameterType="int" resultType="com.javaex.vo.QuizVo">
 		<![CDATA[
 			select 	wordNo,
@@ -250,7 +231,6 @@
 			from word 
 			where wordbookno = #{wordbookNo}
 		]]>
-	</select>
-	
+	</select>	
 
 </mapper>
