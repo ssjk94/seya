@@ -9,6 +9,8 @@
 	content="width=device-width, user-scalable=no">
 <title>SeyaWord</title>
 <link rel="stylesheet"
+	href="../../bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/revise.css">
 <style>
 html, body {
@@ -32,6 +34,11 @@ html, body {
 	padding: 10px;
 	background-color: rgba(255, 255, 255, 0.4);
 	border-radius: 10px;
+}
+
+.m-blank {
+	height: 1px;
+	width: 100%;
 }
 
 .user-header {
@@ -142,6 +149,26 @@ a:-webkit-any-link {
 	text-decoration: none;
 }
 
+.wordbook-content {
+	width: 100%;
+	display: table;
+}
+
+.btn-search {
+	border-radius: 0;
+	box-shadow: none;
+	border-color: #d2d6de;
+	width: 10%;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	display: table-cell;
+}
+
 .btn-pure {
 	width: 100%;
 	display: contents;
@@ -220,19 +247,46 @@ p#mean {
 	margin-top: -8px;
 }
 
-.btn-flashquiz {
+.btn-flashquiz, .btn-pairsetgame, .btn-randomquiz {
 	width: 100%;
-	height: 70px;
+	height: 100%;
 	border: 1px solid #d2d6de;
-	text-align: left;
-	background-color: white;
-	padding: 5px;
+	display: inline-block;
+}
+
+.m-flashquiz, .m-pairsetgame, .m-randomquiz {
+	display: inline-block;
+	width: 32.18%;
+}
+
+.m-flashquiz-image, .m-pairsetgame-image, .m-randomquiz-image {
+	background: no-repeat center center;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.m-gamename {
+	font-size: 1px;
+	text-align: center;
+	margin-block-end: 0em;
 }
 </style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/mobile/m_header.jsp"></c:import>
 	<div class="m-wrapper">
+		<div class="m-content">
+			<form action="/selectsearch.do" method="get">
+				<div class="wordbook-content">
+					<input type="text" name="keyword" class="form-control"
+						placeholder="내 단어장 이름검색"> <span class="btn-search">
+						<button type="submit" class="btn-pure">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
 		<div class="m-content">
 			<div class="flashcardcontainer">
 				<!-- content box -->
@@ -251,10 +305,37 @@ p#mean {
 				</div>
 			</div>
 		</div>
+		<div class="m-blank"></div>
 		<div class="m-content">
 			<div class="m-gamerow">
 				<div class="game-wrapper">
-					<button class="btn-flashquiz"></button>
+					<div class="m-flashquiz">
+						<button class="btn-flashquiz">
+							<img class="m-flashquiz-image" data-toggle="modal"
+								data-target="#flashquizModal"
+								src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+								alt="플래시 퀴즈">
+						</button>
+						<p class="m-gamename">플래시 퀴즈</p>
+					</div>
+					<div class="m-pairsetgame">
+						<button class="btn-pairsetgame">
+							<img class="m-pairsetgame-image" data-toggle="modal"
+								data-target="#pairSetGameModal"
+								src="${pageContext.request.contextPath}/dist/images/wordmatch.png"
+								alt="짝 맞추기">
+						</button>
+						<p class="m-gamename">짝 맞추기</p>
+					</div>
+					<div class="m-randomquiz">
+						<button class="btn-randomquiz">
+							<img class="m-randomquiz-image" data-toggle="modal"
+								data-target="#quizModal"
+								src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+								alt="랜덤 퀴즈">
+						</button>
+						<p class="m-gamename">랜덤 퀴즈</p>
+					</div>
 				</div>
 			</div>
 		</div>
