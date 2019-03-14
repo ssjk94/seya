@@ -948,9 +948,7 @@ desired effect
 		} else {
 			roopNo = 5;
 		}
-		console.log("루프" + roopNo);
-		console.log("페어나우" + pairNow);
-		console.log("렝스" + pairFinishList.length);
+
 		for (var i = 1; i < roopNo; i++) {
 			if (i == 1) {
 				$("#word" + i).find("span").text(
