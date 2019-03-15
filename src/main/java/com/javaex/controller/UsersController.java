@@ -55,7 +55,6 @@ public class UsersController {
 	// 회원가입
 	@RequestMapping("/userinsert.do")
 	public String insertUser(@ModelAttribute UsersVo usersVo, HttpServletRequest req) {
-
 		usersVo.setUserImage("default.png");
 		usersVo.setUserContent("안녕하세요");
 		usersService.insertUser(usersVo);

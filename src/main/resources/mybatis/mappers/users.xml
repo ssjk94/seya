@@ -145,14 +145,22 @@
 	<insert id="insertWordBook"
 		parameterType="com.javaex.vo.UsersVo">
 		<![CDATA[
-			insert into wordbook
+			insert into wordbook (wordbookno,
+									wordbookname,
+									wordbookregdate,
+									wordbookaccess,
+									wordbooktype,
+									directoryno,
+									wordbookmaker,
+									wordbookmakerimage)
 			values (wordbook_seq.nextval,
 					'Seya 단어장',
 					sysdate,
 					2,
 					0,
-					#{directoryNo},
-					'Seya')
+					${directoryNo},
+					'Seya',
+					'seya.png')
 		]]>
 	</insert>
 
