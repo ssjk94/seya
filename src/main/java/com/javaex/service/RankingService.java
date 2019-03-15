@@ -1,5 +1,6 @@
 package com.javaex.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,16 @@ public class RankingService {
 	@Autowired
 	RankingDao rankingDao;
 	
-	public List<RankingVo> getRanking5(RankingVo rankingVo){
+	public List<Object> getRanking(RankingVo rankingVo){
 		
-		return rankingDao.selectRanking5(rankingVo);
+		List<Object> finalList = new ArrayList<Object>();
+		
+		List<RankingVo> list = rankingDao.selectRanking(rankingVo);
+		RankingVo myRanking = rankingDao.selectMyRanking(rankingVo); 
+		
+		finalList.add(myRanking);
+		finalList.add(list);
+		
+		return finalList;
 	}
 }

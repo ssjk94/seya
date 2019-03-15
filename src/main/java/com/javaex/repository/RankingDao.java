@@ -15,8 +15,11 @@ public class RankingDao {
 	SqlSession sqlSession;
 	
 	//랭킹 top5를 가져오는 Dao
-	public List<RankingVo> selectRanking5(RankingVo rankingVo){
-		//sqlSession.selectList("ranking.", rankingVo);
-		return null;
+	public List<RankingVo> selectRanking(RankingVo rankingVo){
+		return sqlSession.selectList("ranking.selectRanking", rankingVo);
+	}
+	//자기 최고점수를 가져오는 Dao
+	public RankingVo selectMyRanking(RankingVo rankingVo) {
+		return sqlSession.selectOne("ranking.selectMyRanking", rankingVo);
 	}
 }
