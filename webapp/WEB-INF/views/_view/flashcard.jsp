@@ -3,7 +3,13 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <!DOCTYPE html>
+
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html>
 <head>
 <meta charset="utf-8">
@@ -482,6 +488,13 @@ p.flashcard-font {
 	text-align: center;
 	color: khaki;
 }
+.random-quiz-result-highScore{
+	width: 860px;
+	height: 50px;
+	font-size: 36px;
+	text-align: center;
+	color: aliceblue;
+}
 
 .random-quiz-result-text {
 	width: 860px;
@@ -491,31 +504,94 @@ p.flashcard-font {
 	padding-top: 5px;
 }
 
-.random-quiz-result-xword {
-	width: 860px;
-	height: 100px;
-	font-size: 45px;
-	text-align: center;
-	color: initial;
-}
-
-.random-quiz-result-xmean {
-	width: 860px;
-	height: 50px;
-	font-size: 36px;
-	text-align: center;
-}
-
 .result-image {
 	margin-bottom: 15px;
 	position: absolute;
 	width: 870px;
-	height: 380px;
+	height: 300px;
 }
 
 .random-quiz-result-content {
 	position: relative;
 	z-index: 2;
+}
+.blank-div {
+	width: 860px;
+	height: 100px;
+
+}
+
+
+.result-rank{
+	width: 870px;
+    height: 430px;
+    background-color: cornsilk;
+    margin-bottom: -30px;
+
+}
+.result-rank-header{
+	width: 600px;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 30px;
+}
+.result-rank-list{
+	width: 600px;
+    height: 70px;
+    border: solid;
+    margin: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 5px;
+    background-color: peachpuff;
+}
+
+.result-rank-userImage{
+    width: 70px;
+    height: 70px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.result-rank-nickName{
+	width: 200px;
+    height: 70px;
+    float: left;
+    padding: 10px;
+    padding-top: 20px;
+    font-size: 17px;
+}
+.result-rank-highScore{
+	width: 200px;
+    height: 70px;
+    float: left;
+    padding: 20px;
+    font-size: 20px;
+    text-align: right;
+}
+.rank-image-size{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	
+}
+.result-ranker{
+	width: 100px;
+	height: 70px;
+	float: left;
+	padding-left: 10px;
+}
+.result-ranker-image1{
+	width: 70px;
+    height: 70px;
+}
+.result-ranker-image2{
+	width: 65px;
+    height: 65px;
 }
 
 </style>
@@ -661,22 +737,101 @@ p.flashcard-font {
 							<h4 class="modal-title">랜덤 퀴즈</h4>
 						</div>
 						<div class="container"></div>
+						
 						<div class="modal-body">
 							<img class="result-image"
 								src="/upload/profile/result-background.jpg">
 							<div class="random-quiz-result-header">랜덤 퀴즈 게임 결과</div>
 							<div class="random-quiz-result-content">
-								<div class="random-quiz-result-list" id="random-quiz-size">
-									문제 갯수 :</div>
+								<div class="random-quiz-result-highScore" id="random-quiz-highScore">
+									최고점수 :</div>
 								<div class="random-quiz-result-score" id="random-quiz-score">
 									<p>얻은 점수 :</p>
 								</div>
-								<div class="random-quiz-result-text">틀린 문제</div>
-								<div class="random-quiz-result-xword" id="random-quiz-xWord">
+								<div class="blank-div">
+								
 								</div>
-
-
-
+								<div class="result-rank">
+									<div class="result-rank-header">랭  킹</div>
+									<!-- 1등 -->
+									<div class="result-rank-list">
+										<div class="result-ranker">
+											<img class="result-ranker-image1" src="/upload/profile/rank1-2.png">
+										</div>
+										<div class="result-rank-userImage">
+											<img src="/upload/profile/usericon.png" class="rank-image-size">					
+										</div>
+										<div class="result-rank-nickName">
+											닉네임 들어갈 곳입니다.
+										</div>	
+										<div class="result-rank-highScore">
+											10000 점
+										</div>
+									</div>
+									<!-- 2등 -->
+									<div class="result-rank-list">
+										<div class="result-ranker">
+											<img class="result-ranker-image2" src="/upload/profile/rank2.png">
+										</div>
+										<div class="result-rank-userImage">
+											<img src="/upload/profile/usericon.png" class="rank-image-size">												
+										</div>
+										<div class="result-rank-nickName">
+											닉네임 들어갈 곳2.
+										</div>	
+										<div class="result-rank-highScore">
+											9999 점
+										</div>
+									</div>
+									
+									<!-- 3등 -->
+									<div class="result-rank-list">
+										<div class="result-ranker">
+											<img class="result-ranker-image2" src="/upload/profile/rank3.png">
+										</div>
+										<div class="result-rank-userImage">
+											<img src="/upload/profile/usericon.png" class="rank-image-size">											
+										</div>
+										<div class="result-rank-nickName">
+											닉네임 들어갈 곳3.
+										</div>	
+										<div class="result-rank-highScore">
+											9888 점
+										</div>
+									</div>
+									
+									<!-- 4등 -->
+									<div class="result-rank-list">
+										<div class="result-ranker">
+											<img class="result-ranker-image2" src="/upload/profile/rank4.png">
+										</div>
+										<div class="result-rank-userImage">
+											<img src="/upload/profile/usericon.png" class="rank-image-size">									
+										</div>
+										<div class="result-rank-nickName">
+											닉네임 들어갈 곳4.
+										</div>	
+										<div class="result-rank-highScore">
+											8788 점
+										</div>
+									</div>
+									
+									<!-- 5등 -->
+									<div class="result-rank-list">
+										<div class="result-ranker">
+											<img class="result-ranker-image2" src="/upload/profile/rank5.png">
+										</div>
+										<div class="result-rank-userImage">
+											<img src="/upload/profile/usericon.png" class="rank-image-size">											
+										</div>
+										<div class="result-rank-nickName">
+											닉네임 들어갈 곳5.
+										</div>	
+										<div class="result-rank-highScore">
+											6732 점
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -721,6 +876,8 @@ p.flashcard-font {
 	var incorrectWord = new Array();
 	var incorrectMean = new Array();
 	var userScore = 0;
+	var sessionId = "${sessionScope.id}";
+	var gameName = "RandomQuiz";
 	//랜덤퀴즈 클릭할때
 	$("#randomQuiz").on("click", function() {
 		console.log("${flashcardVo.wordbookNo}");
@@ -738,6 +895,7 @@ p.flashcard-font {
 				/*성공시 처리해야될 코드 작성*/
 				console.log("성공 : " + data);
 				randomQuizList = data;
+				crtRandomNo = -1;
 				randomQuizPrint();
 			},
 			error : function(XHR, status, error) {
@@ -749,7 +907,6 @@ p.flashcard-font {
 	//랜덤퀴즈> 보기클릭했을때
 	$(".quiz-answer").on("click", function() {
 		console.log("보기클릭");
-
 		// 누른곳 체크 이미지 변경	
 		var choiceNo = $(this).find("input").val();
 		$("#ansCheck0" + choiceNo).css("visibility", "visible");
@@ -828,8 +985,13 @@ p.flashcard-font {
 		console.log("현재문제 번호 : " + crtRandomNo + " 리스트 랭쓰 : " + compareLength);
 		//마지막문제면
 		if (crtRandomNo >= compareLength) {
-
+			//세션 아이디 필요? sessionId 로 여기서 사용가능, 게임네임은 gameName 으로 사용가능
 			//결과페이지 출력
+			$("#ansCheck00").css("visibility", "hidden");
+			$("#ansCheck01").css("visibility", "hidden");
+			$("#ansCheck02").css("visibility", "hidden");
+			$("#ansCheck03").css("visibility", "hidden");
+			$(".correct-mark").attr("src", "");
 			console.log("다끝났습니다.");
 			$("#modalClick").trigger("click");
 
@@ -1173,8 +1335,7 @@ p.flashcard-font {
 			//url 바꾸어야합니다.
 			var wordbookNo = "${flashcardVo.wordbookNo}";
 
-			$
-					.ajax({
+			$.ajax({
 						url : "${pageContext.request.contextPath}/${URLId}/scoreupdate",
 						type : "post",
 						//		traditional : true,
