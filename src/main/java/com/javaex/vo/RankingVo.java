@@ -10,7 +10,7 @@ public class RankingVo {
 	
 	private int gameScore;
 	private String userImage;
-	private String usernickname;
+	private String nickName;
 	private int userScore;
 	
 	
@@ -56,11 +56,11 @@ public class RankingVo {
 	public void setUserImage(String userImage) {
 		this.userImage = userImage;
 	}
-	public String getUsernickname() {
-		return usernickname;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setUsernickname(String usernickname) {
-		this.usernickname = usernickname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	public int getUserScore() {
 		return userScore;
@@ -72,7 +72,7 @@ public class RankingVo {
 	public String toString() {
 		return "RankingVo [userNo=" + userNo + ", wordbookNo=" + wordbookNo + ", gameSelectNo=" + gameSelectNo
 				+ ", gameName=" + gameName + ", master=" + master + ", gameScore=" + gameScore + ", userImage="
-				+ userImage + ", usernickname=" + usernickname + ", userScore=" + userScore + "]";
+				+ userImage + ", nickName=" + nickName + ", userScore=" + userScore + "]";
 	}
 
 }

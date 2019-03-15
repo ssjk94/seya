@@ -1043,17 +1043,23 @@ p.flashcard-font {
 					console.log("가져옴? : "+ data);
 				/*성공시 처리해야될 코드 작성*/
 					ranker = data;
-					var rankerTop = new Array(); 
+					var rankerTop = new Array();
 					rankerTop =	ranker[1];
-					console.log("자기 최고 점수" + ranker[0].userScore);
-					console.log("랭커1"+rankerTop[0].gameScore);
-					console.log("랭커2"+rankerTop[1].gameScore);
-					console.log("랭커3"+rankerTop[2].gameScore);
-					console.log("랭커4"+rankerTop[3].gameScore);
-					console.log("랭커5"+rankerTop[4].gameScore);
+					//최고점수
+					console.log(userScore+"유저스고어");
+					$("#random-quiz-score").text("획득 점수 : "+ userScore + " 점");
 					
+					console.log(ranker[0].userScore);
 					
+					$("#random-quiz-highScore").text("최고 점수 : "+ ranker[0].userScore + " 점");
 					
+					for(var i=0;i<rankerTop.length;i++){
+						
+						$("#image-rank"+(i+1)).attr("src", "/upload/profile/"+rankerTop[i].userImage);
+						$("#nickname-rank"+(i+1)).text(rankerTop[i].nickName);
+						$("#score-rank"+(i+1)).text(rankerTop[i].gameScore+" 점");
+
+					};
 					var w = 0;
 		
 					$("#modalClick").trigger("click");
