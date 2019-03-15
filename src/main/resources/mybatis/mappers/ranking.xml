@@ -7,27 +7,28 @@
 	<!-- 쿼리문 작성 -->
 	<select id="selectRanking" parameterType="com.javaex.vo.RankingVo" resultType="com.javaex.vo.RankingVo">
 		<![CDATA[
-			select 		u.userimage, u.nickname, g.gamescore 
-			from 		users u,gamescore g
-			where 		u.userno = g.userno
-			and 			g.gameselectno = 
+			select 		userimage, nickname, gamescore 
+			from 		(select u.userimage, u.nickname, g.gamescore,g.wordbookno,g.gameselectno from users u,gamescore g
+							where 		u.userno = g.userno
+							order by g.gamescore desc)
+			where 		gameselectno = 
 								(select gameselectno from gameselect where gameselectname='${gameName}')
-			and 			g.wordbookno = #{wordbookNo}
+			and 			wordbookno = ${wordbookNo}
 			and 			rownum <= 5
-			order by 	g.gamescore desc
 		]]>
 	</select>
 	<select id="selectMyRanking" parameterType="com.javaex.vo.RankingVo" resultType="com.javaex.vo.RankingVo">
 		<![CDATA[
 			select 	gamescore as userScore 
-			from 	gamescore
-			where 	userno = 
-							(select userno from users where id = '${master}')
-			and 		gameselectno = 
-							(select gameselectno from gameselect where gameselectname='${gameName}')
-			and 		wordbookno = ${wordbookNo}
-			and 		rownum=1
-			order by gamescore desc
+			from 	(select 		gamescore, wordbookno, userno, gameselectno
+						from 		gamescore
+						order by 	gamescore desc)
+			where userno = 
+					(select userno from users where id = '${master}')
+			and gameselectno = 
+					(select gameselectno from gameselect where gameselectname='${gameName}')
+			and wordbookno = ${wordbookNo}
+			and rownum = 1
 		]]>
 	</select>
 </mapper>

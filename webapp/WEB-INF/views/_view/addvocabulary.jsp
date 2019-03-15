@@ -358,6 +358,30 @@ input:disabled {
 	font-size: 25px;
 	width: 94%;
 }
+.add-voca-tip {
+	width:820px;
+	height:200px;
+	border: solid;
+}
+.tip-header{
+	width: 820px;
+	height: 50px;
+	text-align: center;
+
+}
+.tip-content{
+	width:410px;
+	height:150px;
+	float:left;
+	text-align: center;
+}
+.tip-image{
+	width:400px;
+	height:150px;
+	float: left;
+	border: solid;
+
+}
 </style>
 
 </head>
@@ -479,7 +503,11 @@ desired effect
 							저장하기
 						</button>
 					</div>
-
+					<div class="add-voca-tip">
+						<div class="tip-header">사용 TIP!</div>
+						<div class="tip-content">단어만 넣더라도 뜻을 넣어 줍니다!</div>
+						<div class="tip-image"></div>
+					</div>
 				</div>
 					
 				</div>

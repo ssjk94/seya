@@ -759,12 +759,12 @@ p.flashcard-font {
 											<img class="result-ranker-image1" src="/upload/profile/rank1-2.png">
 										</div>
 										<div class="result-rank-userImage">
-											<img src="/upload/profile/usericon.png" class="rank-image-size">					
+											<img src="/upload/profile/usericon.png" class="rank-image-size" id="image-rank1">					
 										</div>
-										<div class="result-rank-nickName">
+										<div class="result-rank-nickName" id="nickname-rank1">
 											닉네임 들어갈 곳입니다.
 										</div>	
-										<div class="result-rank-highScore">
+										<div class="result-rank-highScore" id="score-rank1">
 											10000 점
 										</div>
 									</div>
@@ -774,12 +774,12 @@ p.flashcard-font {
 											<img class="result-ranker-image2" src="/upload/profile/rank2.png">
 										</div>
 										<div class="result-rank-userImage">
-											<img src="/upload/profile/usericon.png" class="rank-image-size">												
+											<img src="/upload/profile/usericon.png" class="rank-image-size" id="image-rank2">												
 										</div>
-										<div class="result-rank-nickName">
+										<div class="result-rank-nickName" id="nickname-rank2">
 											닉네임 들어갈 곳2.
 										</div>	
-										<div class="result-rank-highScore">
+										<div class="result-rank-highScore" id="score-rank2">
 											9999 점
 										</div>
 									</div>
@@ -787,15 +787,15 @@ p.flashcard-font {
 									<!-- 3등 -->
 									<div class="result-rank-list">
 										<div class="result-ranker">
-											<img class="result-ranker-image2" src="/upload/profile/rank3.png">
+											<img class="result-ranker-image2" src="/upload/profile/rank3.png" > 
 										</div>
 										<div class="result-rank-userImage">
-											<img src="/upload/profile/usericon.png" class="rank-image-size">											
+											<img src="/upload/profile/usericon.png" class="rank-image-size" id="image-rank3">											
 										</div>
-										<div class="result-rank-nickName">
+										<div class="result-rank-nickName" id="nickname-rank3">
 											닉네임 들어갈 곳3.
 										</div>	
-										<div class="result-rank-highScore">
+										<div class="result-rank-highScore" id="score-rank3">
 											9888 점
 										</div>
 									</div>
@@ -806,12 +806,12 @@ p.flashcard-font {
 											<img class="result-ranker-image2" src="/upload/profile/rank4.png">
 										</div>
 										<div class="result-rank-userImage">
-											<img src="/upload/profile/usericon.png" class="rank-image-size">									
+											<img src="/upload/profile/usericon.png" class="rank-image-size" id="image-rank4">									
 										</div>
-										<div class="result-rank-nickName">
+										<div class="result-rank-nickName" id="nickname-rank4">
 											닉네임 들어갈 곳4.
 										</div>	
-										<div class="result-rank-highScore">
+										<div class="result-rank-highScore" id="score-rank4">
 											8788 점
 										</div>
 									</div>
@@ -822,12 +822,12 @@ p.flashcard-font {
 											<img class="result-ranker-image2" src="/upload/profile/rank5.png">
 										</div>
 										<div class="result-rank-userImage">
-											<img src="/upload/profile/usericon.png" class="rank-image-size">											
+											<img src="/upload/profile/usericon.png" class="rank-image-size" id="image-rank5">											
 										</div>
-										<div class="result-rank-nickName">
+										<div class="result-rank-nickName" id="nickname-rank5">
 											닉네임 들어갈 곳5.
 										</div>	
-										<div class="result-rank-highScore">
+										<div class="result-rank-highScore" id="score-rank5">
 											6732 점
 										</div>
 									</div>
@@ -877,10 +877,15 @@ p.flashcard-font {
 	var incorrectMean = new Array();
 	var userScore = 0;
 	var sessionId = "${sessionScope.id}";
-	var gameName = "RandomQuiz";
+	var gamename = "RandomQuiz";
+	
 	//랜덤퀴즈 클릭할때
 	$("#randomQuiz").on("click", function() {
+	
 		console.log("${flashcardVo.wordbookNo}");
+		
+		console.log(sessionId);
+		
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 
 		$.ajax({
@@ -894,6 +899,8 @@ p.flashcard-font {
 			success : function(data) {
 				/*성공시 처리해야될 코드 작성*/
 				console.log("성공 : " + data);
+				
+				
 				randomQuizList = data;
 				crtRandomNo = -1;
 				randomQuizPrint();
@@ -914,7 +921,7 @@ p.flashcard-font {
 
 		//정답 판단및 다음진행
 		setTimeout(function() {
-			randomQuizPrint(choiceNo);
+			randomQuizPrint();
 		}, 1000);
 	});
 
@@ -953,8 +960,7 @@ p.flashcard-font {
 			$("#ansCheck0" + answerNo).attr("src",
 					"/upload/profile/circle-mark01.png");
 			//문제에 O, X 체크
-			$(".correct-mark")
-					.attr("src", "/upload/profile/correct-mark01.png");
+			$(".correct-mark").attr("src", "/upload/profile/correct-mark01.png");
 			userScore = userScore + 50;
 		} else {
 			console.log("진짜 정답 번호 체크 false: " + answerNo);
@@ -983,6 +989,8 @@ p.flashcard-font {
 
 		var compareLength = randomQuizList.length - 1;
 		console.log("현재문제 번호 : " + crtRandomNo + " 리스트 랭쓰 : " + compareLength);
+		
+		
 		//마지막문제면
 		if (crtRandomNo >= compareLength) {
 			//세션 아이디 필요? sessionId 로 여기서 사용가능, 게임네임은 gameName 으로 사용가능
@@ -991,17 +999,15 @@ p.flashcard-font {
 			$("#ansCheck01").css("visibility", "hidden");
 			$("#ansCheck02").css("visibility", "hidden");
 			$("#ansCheck03").css("visibility", "hidden");
+			
 			$(".correct-mark").attr("src", "");
 			console.log("다끝났습니다.");
-			$("#modalClick").trigger("click");
-
+			
 			var resultSize = crtRandomNo;
-			$("#random-quiz-size").text("총 문제 수 : " + (resultSize + 1) + " 개");
-			$("#random-quiz-score").text("획득 점수 : " + userScore + " 점");
-			$("#random-quiz-xWord").text(incorrectWord);
-			//			$("#random-quiz-xMean").text(incorrectMean);
+	
 			$('#quizModal').modal('hide');
-
+			console.log(gamename)
+			theendlist(gamename);
 		}
 		//마지막이 아니면
 		else {
@@ -1019,7 +1025,49 @@ p.flashcard-font {
 		//
 
 	};
-
+	function theendlist(gamename){
+		var wordbookNo = "${flashcardVo.wordbookNo}";
+		var sessionId = "${sessionScope.id}";
+		var AllgameName = gamename;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/gamerankingpage", //url 
+			type : "post",
+			//		contentType : "application/json",
+			data : {
+				wordbookNo : wordbookNo,
+				gameName : AllgameName,
+				master : sessionId
+			},
+			dataType : "json",
+			success : function(data) {
+					console.log("가져옴? : "+ data);
+				/*성공시 처리해야될 코드 작성*/
+					ranker = data;
+					var rankerTop = new Array(); 
+					rankerTop =	ranker[1];
+					console.log("자기 최고 점수" + ranker[0].userScore);
+					console.log("랭커1"+rankerTop[0].gameScore);
+					console.log("랭커2"+rankerTop[1].gameScore);
+					console.log("랭커3"+rankerTop[2].gameScore);
+					console.log("랭커4"+rankerTop[3].gameScore);
+					console.log("랭커5"+rankerTop[4].gameScore);
+					
+					
+					
+					var w = 0;
+		
+					$("#modalClick").trigger("click");
+				/* 	$("#random-quiz-highScore").text("총 문제 수 : " +  + " 개");
+					$("#random-quiz-score").text("획득 점수 : " + userScore + " 점"); */
+					
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		}); // /ajax	
+	}
+	
+	
 	//현재 에이잭스는 활성화 상태 by세윤
 	$("#flashQuiz").on("click", function(){
 		
