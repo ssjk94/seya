@@ -110,5 +110,10 @@ public class UsersService {
 		return usersDao.selectOneCountWordName(headerSearchVo);
 	}
 
+	public List<HeaderSearchVo> mselectSearch(HeaderSearchVo headerSearchVo) {
+
+		return usersDao.mselectSearch(headerSearchVo);
+	}
+
 	
 }

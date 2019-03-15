@@ -262,44 +262,64 @@ public class UsersController {
 
 	@RequestMapping(value = "/selectsearch.do")
 	public String searchPage(HeaderSearchVo headerSearchVo, HttpServletRequest req, Model model, HttpSession session,
-			VocabularyListVo vocabularyListVo) {
+			VocabularyListVo vocabularyListVo, Device device) {
 
-		List<HeaderSearchVo> list = usersService.selectSearch(headerSearchVo);
+		if (device.isMobile()) {
 
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println("toString" + list.get(i).toString());
-			// System.out.println("워드북no : " + list.get(i).getWordbookNo());
+			List<HeaderSearchVo> list = usersService.mselectSearch(headerSearchVo);
 
-			headerSearchVo.setWordbookNo(list.get(i).getWordbookNo());
-			int count = usersService.countWordName(headerSearchVo);
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println("toString" + list.get(i).toString());
+				// System.out.println("워드북no : " + list.get(i).getWordbookNo());
 
-			list.get(i).setCount(count);
+				headerSearchVo.setWordbookNo(list.get(i).getWordbookNo());
+				int count = usersService.countWordName(headerSearchVo);
 
-			int wordbookNo = list.get(i).getWordbookNo();
-			vocabularyListVo.setWordbookNo(wordbookNo);
+				list.get(i).setCount(count);
 
-			List<HeaderSearchVo> list2 = usersService.searchWordMeanList(wordbookNo);
-			// System.out.println("워드 민,kor :" + vocabularyListVo.toString());
-
-			String[] wordArr = new String[4];
-			String[] meanArr = new String[4];
-
-			for (int j = 0; j < list2.size(); j++) {
-				wordArr[j] = list2.get(j).getWordName();
-				meanArr[j] = list2.get(j).getMeanName();
+				int wordbookNo = list.get(i).getWordbookNo();
+				vocabularyListVo.setWordbookNo(wordbookNo);
 			}
-			list.get(i).setWordArr(wordArr);
-			list.get(i).setMeanArr(meanArr);
 
-			/*
-			 * for (String b : wordArr) { System.out.println("워드 배열" + b); } for (String b :
-			 * meanArr) { System.out.println("뜻 배열" + b); }
-			 */
+			model.addAttribute("list", list);
+
+			return "mobile/m_gallery";
+
+		} else {
+
+			List<HeaderSearchVo> list = usersService.selectSearch(headerSearchVo);
+
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println("toString" + list.get(i).toString());
+				// System.out.println("워드북no : " + list.get(i).getWordbookNo());
+
+				headerSearchVo.setWordbookNo(list.get(i).getWordbookNo());
+				int count = usersService.countWordName(headerSearchVo);
+
+				list.get(i).setCount(count);
+
+				int wordbookNo = list.get(i).getWordbookNo();
+				vocabularyListVo.setWordbookNo(wordbookNo);
+
+				List<HeaderSearchVo> list2 = usersService.searchWordMeanList(wordbookNo);
+				// System.out.println("워드 민,kor :" + vocabularyListVo.toString());
+
+				String[] wordArr = new String[4];
+				String[] meanArr = new String[4];
+
+				for (int j = 0; j < list2.size(); j++) {
+					wordArr[j] = list2.get(j).getWordName();
+					meanArr[j] = list2.get(j).getMeanName();
+				}
+				list.get(i).setWordArr(wordArr);
+				list.get(i).setMeanArr(meanArr);
+			}
+
+			model.addAttribute("list", list);
+
+			return "main/seyasearch";
 		}
 
-		model.addAttribute("list", list);
-
-		return "main/seyasearch";
 	}
 
 	// 메인페이지

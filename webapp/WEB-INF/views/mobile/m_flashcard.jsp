@@ -278,7 +278,8 @@ p#mean {
 		<div class="m-content">
 			<form action="/selectsearch.do" method="get">
 				<div class="wordbook-content">
-					<input type="text" name="keyword" class="form-control"
+					<input type="hidden" name="id" value="${URLId}"> <input
+						type="text" name="keyword" class="form-control"
 						placeholder="내 단어장 이름검색"> <span class="btn-search">
 						<button type="submit" class="btn-pure">
 							<i class="fa fa-search"></i>

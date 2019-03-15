@@ -108,4 +108,9 @@ public class UsersDao {
 		return sqlSession.selectOne("users.selectOneCountWordName", headerSearchVo);
 	}
 
+	public List<HeaderSearchVo> mselectSearch(HeaderSearchVo headerSearchVo) {
+		
+		return sqlSession.selectList("users.mselectSearch", headerSearchVo);
+	}
+
 }
