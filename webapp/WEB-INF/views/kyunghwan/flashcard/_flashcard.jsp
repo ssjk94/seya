@@ -151,6 +151,7 @@
 					}
 				}
 				function btnRight() {
+					unChkBox();
 					if (i != wordList.length - 1) {
 						i++;
 						$("#flashShow").fadeOut(100, "swing", function() {
@@ -166,6 +167,7 @@
 					}
 				}
 				function btnLeft() {
+					unChkBox();
 					if (i != 0) {
 						i--;
 						$("#flashShow").fadeOut(100, "swing", function() {
@@ -287,6 +289,43 @@
 				console.error(status + " : " + error);
 			}
 		});
+	};
+</script>
+
+<script type="text/javascript">
+	//플래시카드 체킹하면 에이잭스 실행
+	var chkNum = 0;
+	$("#chkbox").on("click",function(){
+		//처음 체킹했을때
+		var sessionId = "${sessionScope.id}";
+		if(chkNum ==0 && sessionId!=""){
+			var flashWord = wordList[i];
+			var flashMean = meanList[i];
+			$
+			.ajax({
+				url : "${pageContext.request.contextPath}/${URLId}/flashwrongword",
+				type : "post",
+				//		traditional : true,
+				data : {
+					wordName : flashWord,
+					meanName : flashMean,
+					master : sessionId
+				},
+				dataType : "html",
+				success : function() {
+					/*성공시 처리해야될 코드 작성*/
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		};
+		chkNum++;
+	});
+	//라이트 레프트 갈시 체크박스 삭제하는 함수 작성
+	function unChkBox(){
+		chkNum = 0;
+		$("#chkbox").prop("checked",false);
 	};
 </script>
 </html>
