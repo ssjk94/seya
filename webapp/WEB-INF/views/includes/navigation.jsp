@@ -33,6 +33,13 @@ h3.gaeyeya {
     color: #ffffff;
     background: #7c8ba8;
 }
+.header > form{
+	float: left;
+}
+.header > span{
+	float: right;
+	margin: 0px 0px 0px 5px;
+}
 
 </style>
 
@@ -56,21 +63,15 @@ h3.gaeyeya {
 			<!-- 전체 단어장 보여줄꺼 -->
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header"><c:choose>
-						<c:when test="${listview eq 0}">
+						<c:when test="${sessionScope.id eq URLId}">
 							<form action="${pageContext.request.contextPath}/${URLId}/list"
 								method="get">
 								<button type="submit"
 									style="background-color: transparent; border: 0px transparent solid">
 									<span>전체 단어장</span>
 								</button>
-								<span class="glyphicon glyphicon-plus direcIcon"
-									aria-hidden="true"
-									onclick="directoryInsert('${sessionScope.id}')"></span> <span
-									class="glyphicon glyphicon-remove direcIcon" aria-hidden="true"
-									onclick="directoryDelete(55)"></span> <span
-									class="glyphicon glyphicon-pencil direcIcon" aria-hidden="true"
-									onclick="directoryUpdate(55,'수정전 디렉')"></span>
 							</form>
+							<span class="glyphicon glyphicon-plus direcIcon direcinsert" aria-hidden="true"></span> 
 						</c:when>
 						<c:otherwise>
 							<form action="${pageContext.request.contextPath}/${URLId}"
@@ -89,7 +90,7 @@ h3.gaeyeya {
 				<c:forEach items="${requestScope.directoryList}" var="wordbookVo">
 					<li class="header">
 						<!-- 디렉토리 번호를 넘기려고함 --> <c:choose>
-							<c:when test="${listview eq 0}">
+							<c:when test="${sessionScope.id eq URLId}">
 								<form action="${pageContext.request.contextPath}/${URLId}/list"
 									method="get">
 									<input name="directoryNo" type="hidden"
@@ -99,6 +100,8 @@ h3.gaeyeya {
 										<span>${wordbookVo.directoryName}</span>
 									</button>
 								</form>
+								<span class="glyphicon glyphicon-remove direcIcon direcdelete" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-pencil direcIcon direcupdate" aria-hidden="true"></span>
 							</c:when>
 							<c:otherwise>
 								<form action="${pageContext.request.contextPath}/${URLId}"
@@ -125,11 +128,10 @@ h3.gaeyeya {
 		location.reload();
 	};
 
-	function directoryInsert(sessionId) {
-		console.log(sessionId);
-
-		var directoryName = prompt("폴더이름을 설정해주세요", "")
-
+	$(".direcinsert").on("click",function(){
+		var sessionId = "${sessionScope.id}";
+		var directoryName = prompt("폴더이름을 설정해주세요", "");
+		
 		//프롬프트 확인 눌렀을때
 		if (directoryName != null) {
 
@@ -151,33 +153,33 @@ h3.gaeyeya {
 							console.error(status + " : " + error);
 						}
 					});
-
 		}
-
-	}
-
-	function directoryDelete(directoryNo) {
-		console.log(directoryNo);
-
+		
+	});
+	
+	$(".direcdelete").on("click",function(){
+		var diretoryNo=$(this).prev().find("input").val();
+		
 		$
-				.ajax({
-					url : "${pageContext.request.contextPath}/${URLId}/directorydelete",
-					type : "post",
-					//			contentType : "application/json",
-					data : {
-						directoryNo : directoryNo
-					},
-					dataType : "html",
-					success : function() {
-						/*성공시 처리해야될 코드 작성*/
-						refreshMemList();
-					},
-					error : function(XHR, status, error) {
-						console.error(status + " : " + error);
-					}
-				});
+		.ajax({
+			url : "${pageContext.request.contextPath}/${URLId}/directorydelete",
+			type : "post",
+			//			contentType : "application/json",
+			data : {
+				directoryNo : directoryNo
+			},
+			dataType : "html",
+			success : function() {
+				/*성공시 처리해야될 코드 작성*/
+				refreshMemList();
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
 
-	}
+//업데이트 생각ㅈ모 해봐야함
 
 	function directoryUpdate(directoryNo, beforeDirectoryName) {
 		console.log(directoryNo, beforeDirectoryName);
