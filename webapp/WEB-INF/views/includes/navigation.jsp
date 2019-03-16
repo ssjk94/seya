@@ -32,13 +32,15 @@ h3.gaeyeya {
 .skin-red-light .sidebar-menu > li.header {
     color: #ffffff;
     background: #7c8ba8;
+    padding-right: 5px;
 }
 .header > form{
 	float: left;
 }
+
 .header > span{
 	float: right;
-	margin: 0px 0px 0px 5px;
+	margin: 0px 0px 0px 10px;
 }
 
 </style>
@@ -158,8 +160,7 @@ h3.gaeyeya {
 	});
 	
 	$(".direcdelete").on("click",function(){
-		var diretoryNo=$(this).prev().find("input").val();
-		
+		var directoryNo=$(this).prev().find("input").val();
 		$
 		.ajax({
 			url : "${pageContext.request.contextPath}/${URLId}/directorydelete",
@@ -179,12 +180,12 @@ h3.gaeyeya {
 		});
 	});
 
-//업데이트 생각ㅈ모 해봐야함 전에꺼
-
-	function directoryUpdate(directoryNo, beforeDirectoryName) {
-		console.log(directoryNo, beforeDirectoryName);
+	
+	$(".direcupdate").on("click",function(){
+		var directoryNo=$(this).prevAll().find("input").val();
+		var beforeDirectoryName = $(this).prevAll().find("span:first").text();
 		var directoryName = prompt("수정할 폴더명을 입력해주세요", beforeDirectoryName);
-
+		console.log(diretoryNo);
 		//프롬프트 확인 눌렀을때
 		if (directoryName != null) {
 
@@ -206,8 +207,7 @@ h3.gaeyeya {
 							console.error(status + " : " + error);
 						}
 					});
-
 		}
+	});
 
-	}
 </script>
