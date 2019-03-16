@@ -282,7 +282,7 @@ public class UsersController {
 
 			model.addAttribute("list", list);
 
-			return "mobile/m_gallery";
+			return "mobile/m_search";
 
 		} else {
 

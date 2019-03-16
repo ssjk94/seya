@@ -276,17 +276,15 @@ p#mean {
 	<c:import url="/WEB-INF/views/mobile/m_header.jsp"></c:import>
 	<div class="m-wrapper">
 		<div class="m-content">
-			<form action="/selectsearch.do" method="get">
-				<div class="wordbook-content">
-					<input type="hidden" name="id" value="${URLId}"> <input
-						type="text" name="keyword" class="form-control"
-						placeholder="내 단어장 이름검색"> <span class="btn-search">
-						<button type="submit" class="btn-pure">
-							<i class="fa fa-search"></i>
-						</button>
-					</span>
-				</div>
-			</form>
+			<div class="wordbook-content">
+				<input type="hidden" name="id" value="${URLId}"> <input
+					type="text" name="keyword" class="form-control"
+					placeholder="내 단어장 이름검색"> <span class="btn-search">
+					<button type="submit" class="btn-pure">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
 		</div>
 		<div class="m-content">
 			<div class="flashcardcontainer">
