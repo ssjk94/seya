@@ -37,8 +37,8 @@ public class WordbookController {
 		}
 
 		// 검색결과 받는거
-		System.out.println("keword: " + keyword);
-		keyword = "안녕하세여";
+//		System.out.println("keword: " + keyword);
+	//	keyword = "안녕하세여";
 		// 기본은 전체 디렉토리
 		// 디렉토리는 가는데
 
