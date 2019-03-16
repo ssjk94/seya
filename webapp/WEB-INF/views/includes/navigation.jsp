@@ -179,7 +179,7 @@ h3.gaeyeya {
 		});
 	});
 
-//업데이트 생각ㅈ모 해봐야함
+//업데이트 생각ㅈ모 해봐야함 전에꺼
 
 	function directoryUpdate(directoryNo, beforeDirectoryName) {
 		console.log(directoryNo, beforeDirectoryName);
