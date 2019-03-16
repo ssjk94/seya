@@ -151,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .fixed .content-wrapper, .fixed .right-side {
-	padding-top: 85px;
+	padding-top: 40px;
 }
 
 .panel-primary {
@@ -159,8 +159,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	margin-top: 35px;
 }
 
-.content-header>.breadcrumb {
+.content-header>div {
 	position: static;
+	background: rgba(124, 139, 168,0.7);
+	border: 1px solid white;
+	color: white;
+	border-radius: 4px;
+	padding: 5px 0 5px 10px;
 }
 
 .panel-height {
@@ -396,12 +401,11 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<div class="path-name btn-padding">
-					<!--단어장 경로 -->
-					<ol class="breadcrumb">
-						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li>VocaList</li>
-					</ol>
+				<div>
+					<span class="fa fa-bank">&nbsp;&nbsp;</span>
+					<a href="${pageContext.request.contextPath}/${URLId}">홈</a>&nbsp;
+					<span>>></span>&nbsp;
+					<span>단어 리스트</span>&nbsp;
 				</div>
 			</section>
 

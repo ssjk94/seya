@@ -157,11 +157,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	background-color: #f5f5f5;
 	color: #dd4b39 !important;
 }
-
-.content-header>.breadcrumb {
+.content-header{
+	padding-top: 5px;
+}
+.content-header>div {
 	position: static;
-	float: left;
-	margin-top: -35px
+	background: rgba(124, 139, 168,0.7);
+	border: 1px solid white;
+	color: white;
+	border-radius: 4px;
+	padding: 5px 0 5px 10px;
 }
 
 .profileborder {
@@ -422,20 +427,11 @@ desired effect
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<div class="path-name">
-					<!--단어장 경로 -->
-					<ol class="breadcrumb">
-						<li><a href="${pageContext.request.contextPath}/${URLId}"><i class="fa fa-dashboard"></i> Home</a></li>
-						<c:choose>
-							<c:when test="${wordbookName eq null }">
-								<li>Make Vocabulary</li>
-							</c:when>
-							<c:otherwise>
-								<li>Modify Vocabulary</li>
-							</c:otherwise>
-						</c:choose>
-					</ol>
-					<!--/단어장 경로 -->
+				<div>
+					<span class="fa fa-bank">&nbsp;&nbsp;</span>
+					<a href="${pageContext.request.contextPath}/${URLId}">홈</a>&nbsp;
+					<span>>></span>&nbsp;
+					<span>단어 추가</span>&nbsp;
 				</div>
 			</section>
 			
@@ -503,11 +499,7 @@ desired effect
 							저장하기
 						</button>
 					</div>
-					<div class="add-voca-tip">
-						<div class="tip-header">사용 TIP!</div>
-						<div class="tip-content">단어만 넣더라도 뜻을 넣어 줍니다!</div>
-						<div class="tip-image"></div>
-					</div>
+					
 				</div>
 					
 				</div>

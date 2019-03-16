@@ -137,12 +137,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 }
 
 .fixed .content-wrapper, .fixed .right-side {
-	padding-top: 85px;
+	padding-top: 40px;
 }
 
-.content-header>.breadcrumb {
+.content-header>div {
 	position: static;
+	background: rgba(124, 139, 168,0.7);
+	border: 1px solid white;
+	margin: 0 5px 0 5px;
+	color: white;
+	border-radius: 4px;
+	padding: 5px 0 5px 10px;
 }
+
 
 .breadcrumb {
 	background-color: #ffffff;
@@ -449,13 +456,10 @@ desired effect
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<div class="path-name">
-					<!--단어장 경로 -->
-					<ol class="breadcrumb">
-						<li><a href="${pageContext.request.contextPath}/${URLId}"><i
-								class="fa fa-dashboard"></i> Home </a></li>
-					</ol>
-					<!--/단어장 경로 -->
+				
+				<div>
+					<span class="fa fa-bank">&nbsp;&nbsp;</span>
+					<span>홈</span>
 				</div>
 				
 			</section>

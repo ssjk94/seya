@@ -284,7 +284,7 @@ body {
 }
 
 .fixed .content-wrapper, .fixed .right-side {
-	padding-top: 85px;
+	padding-top: 40px;
 }
 
 .panel-primary {
@@ -292,8 +292,15 @@ body {
 	margin-top: 35px;
 }
 
-.content-header>.breadcrumb {
+.content-header>div {
 	position: static;
+	background: rgba(124, 139, 168,0.7);
+	border: 1px solid white;
+	color: white;
+	border-radius: 4px;
+	padding: 5px 0 5px 10px;
+	margin-left: 14px;
+    margin-right: 14px;
 }
 
 .panel-height {
@@ -613,14 +620,11 @@ p.flashcard-font {
 
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<div class="path-name">
-					<!--단어장 경로 -->
-					<ol class="breadcrumb">
-						<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-						<li><a href="#">Tables</a></li>
-						<li class="active">Simple</li>
-					</ol>
-					<!--/단어장 경로 -->
+				<div>
+					<span class="fa fa-bank">&nbsp;&nbsp;</span>
+					<a href="${pageContext.request.contextPath}/${URLId}">홈</a>&nbsp;
+					<span>>></span>&nbsp;
+					<span>단어 공부</span>&nbsp;
 				</div>
 			</section>
 
