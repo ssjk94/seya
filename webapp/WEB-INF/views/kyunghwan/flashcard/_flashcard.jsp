@@ -205,16 +205,8 @@
 					$(document).on("keyup", function(e) {
 						console.log(e);
 						switch (e.keyCode) {
-						case 9:
-							console.log("tab");
-							flashcardModify();
-							break;
 						case 13:
 						case 38:
-						case 40:
-							console.log("wm");
-							clickWm();
-							break;
 						case 37:
 							console.log("left");
 							btnLeft();
