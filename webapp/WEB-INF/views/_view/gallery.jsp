@@ -384,7 +384,6 @@ p{
 }
 .wordbookHeader .pull-left{
 	margin-left: 0px;
-	font-size: 20px;
 }
 #pagenation{
 	width: 100%;
@@ -468,9 +467,7 @@ desired effect
 					<!-- 검색결과창 나오는칸 -->
 					<!-- 검색결과 icon -->
 					<div class="fa-key pull-left">
-							검색결과 :
-							<!-- 검색내용 들어갈 칸 --> 
-							<b>${keyword}</b>				
+							단어장				
 					</div>
 					<!-- 단어장 추가하는 버튼이 들어가는칸 -->
 					<c:if test="${URLId eq sessionScope.id}">
