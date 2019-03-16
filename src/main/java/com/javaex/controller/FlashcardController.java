@@ -112,11 +112,4 @@ public class FlashcardController {
 		System.out.println("ajax flash 점수업데이트");
 		flashcardService.setGameScore(flashcardVo);
 	}
-	
-	@ResponseBody
-	@RequestMapping(value = "{URLId}/flashcheck", method = RequestMethod.POST)
-	public void flashCheck(FlashcardVo flashcardVo) {
-		System.out.println("ajax flash 체크 담기");
-		
-	}
 }
