@@ -46,7 +46,11 @@ public class WordbookController {
 		List<WordbookVo> wordbookList = wordbookService.getDefaultWordbookList(urlPathVo);
 		// 워드북의 갯수
 		pagingVo.setTotal(wordbookList.size());
-		pagingVo = wordbookService.pagenation(pagingVo);
+		if (device.isMobile()) {
+			pagingVo = wordbookService.mpagenation(pagingVo);
+		} else {
+			pagingVo = wordbookService.pagenation(pagingVo);
+		}
 
 		// 리스트 잘라주는 문장 들어가야함
 		try {

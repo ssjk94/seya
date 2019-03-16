@@ -211,6 +211,72 @@ form+form {
 	line-height: 60px;
 	font-size: 13px;
 }
+
+.box-default {
+	margin-bottom: 15px;
+}
+
+#pagenation {
+	width: 100%;
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 0 !important;
+	border-radius: 4px;
+}
+
+.pagination>li {
+	display: inline;
+}
+
+.active {
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #337ab7;
+	border-color: #337ab7;
+}
+
+.pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+	margin-left: 0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.pagination>li>a {
+	background: #fafafa;
+	color: #666;
+}
+
+.pagination-sm>li>a, .pagination-sm>li>span {
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.pagination>li>a, .pagination>li>span {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #337ab7;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+
+.disabled {
+	pointer-events: none;
+}
 </style>
 <meta charset="utf-8" name="viewport"
 	content="width=device-width, user-scalable=no">
@@ -263,7 +329,65 @@ form+form {
 					</form>
 				</c:forEach>
 			</div>
+			<!-- 페이지 네이션 -->
+			<form name="pagenationForm" action="${URLId}">
+				<input type="hidden" name="directoryNo" value=""> <input
+					type="hidden" name="index" value="">
+			</form>
+			<c:if test="${!empty wordbookList}">
+				<div id="pagenation">
+					<ul class="pagination pagenation-sm no-margin">
+						<li><a href="#">«</a></li>
+						<c:forEach var="i" begin="${pagingVo.pageStartNum}"
+							end="${pagingVo.pageLastNum}">
+							<li><a href="#"><c:out value="${i}" /></a></li>
+						</c:forEach>
+						<li><a href="#">»</a></li>
+					</ul>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </body>
+<script
+	src="${pageContext.request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	
+$(document).ready(function() {
+	
+	console.log($(".pagination").find("a").text());
+	console.log(${pagingVo.index});
+	
+	var allPageNum = $(".pagination").find("a").text();
+	var nowPageIndex=allPageNum.indexOf("${pagingVo.index}") + 1;
+	
+	$(".pagination li:nth-child("+nowPageIndex+")").addClass("active");
+	
+	//몇번째 자식이냐에 포커스만 주면 끝
+	
+	if(${pagingVo.index}==1){
+		$(".pagination>li:first").find("a").addClass("disabled");
+	}
+	if(${pagingVo.index}==${pagingVo.pageLastNum}){
+		$(".pagination>li:last").find("a").addClass("disabled");
+	}
+});
+	
+$(".pagination").on("click","a",function page(){
+	
+	if($(this).text()=="«"){
+		document.pagenationForm.directoryNo.value = ${directoryNo};
+		document.pagenationForm.index.value=${pagingVo.index}-1;
+	}else if($(this).text()=='»'){
+		document.pagenationForm.directoryNo.value = ${directoryNo};
+		document.pagenationForm.index.value=${pagingVo.index}+1;
+	}else{
+		nowpageNum=$(this).text();
+		document.pagenationForm.directoryNo.value = ${directoryNo};
+		document.pagenationForm.index.value = nowpageNum;
+	}
+	document.pagenationForm.submit();
+	
+});
+	</script>
 </html>
