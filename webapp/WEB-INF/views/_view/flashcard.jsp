@@ -1070,8 +1070,7 @@ p.flashcard-font {
 						$("#score-rank"+(i+1)).text(rankerTop[i].gameScore+" 점");
 
 					};
-					var w = 0;
-		
+					
 					$("#modalClick").trigger("click");
 				/* 	$("#random-quiz-highScore").text("총 문제 수 : " +  + " 개");
 					$("#random-quiz-score").text("획득 점수 : " + userScore + " 점"); */
