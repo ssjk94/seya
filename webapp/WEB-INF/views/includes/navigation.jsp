@@ -17,6 +17,7 @@ h3.gaeyeya {
 .direcIcon {
 	color: #fff;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 .user-panel>.img-circle {
@@ -42,6 +43,13 @@ h3.gaeyeya {
 	float: right;
 	margin: 0px 0px 0px 10px;
 }
+.direcupdate{
+	visibility: hidden;
+}
+.sidebar-menu li:hover .direcupdate{
+	visibility: visible;
+}
+
 
 </style>
 
@@ -66,7 +74,7 @@ h3.gaeyeya {
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header"><c:choose>
 						<c:when test="${sessionScope.id eq URLId}">
-							<form action="${pageContext.request.contextPath}/${URLId}/list"
+							<form action="${pageContext.request.contextPath}/${URLId}"
 								method="get">
 								<button type="submit"
 									style="background-color: transparent; border: 0px transparent solid">
@@ -93,7 +101,7 @@ h3.gaeyeya {
 					<li class="header">
 						<!-- 디렉토리 번호를 넘기려고함 --> <c:choose>
 							<c:when test="${sessionScope.id eq URLId}">
-								<form action="${pageContext.request.contextPath}/${URLId}/list"
+								<form action="${pageContext.request.contextPath}/${URLId}"
 									method="get">
 									<input name="directoryNo" type="hidden"
 										value="${wordbookVo.directoryNo}">
