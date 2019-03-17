@@ -639,7 +639,7 @@ p.flashcard-font {
 					<div class="col-xs-4 col-md-4 text-center" id="flashQuiz">
 						<img class="flashcard-image" data-toggle="modal"
 							data-target="#flashquizModal"
-							src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+							src="/upload/profile/flashcardgame.jpg"
 							alt="플래시 퀴즈">
 						<p class=text-center>플래시 퀴즈</p>
 					</div>
@@ -650,7 +650,7 @@ p.flashcard-font {
 
 					<div class="col-xs-4 col-md-4" id="pairSetGame">
 						<a href="#"><img class="flashcard-image" data-toggle="modal"
-							data-target="#pairSetGameModal" src="dist/images/wordmatch.png"
+							data-target="#pairSetGameModal" src="/upload/profile/wordmatch1.png"
 							alt="짝 맞추기"> </a>
 						<p class=text-center>짝 맞추기</p>
 					</div>
@@ -659,7 +659,7 @@ p.flashcard-font {
 					<div class="col-xs-4 col-md-4" id="randomQuiz">
 						<img class="flashcard-image" data-toggle="modal"
 							data-target="#quizModal"
-							src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+							src="/upload/profile/randomgame.png"
 							alt="랜덤 퀴즈">
 						<p class=text-center>랜덤 퀴즈</p>
 					</div>
@@ -689,7 +689,7 @@ p.flashcard-font {
 							<div class="btn btn-default quiz-answer">
 								<img class="check-mark" id="ansCheck00">
 								<div class="select-answer" id="ans00"></div>
-								<input type="hidden" value=0 class="ansValue">
+								<input type="hidden" value=0>
 							</div>
 
 							<!-- 정답 번호 2번. -->
@@ -697,7 +697,7 @@ p.flashcard-font {
 								<img class="check-mark" id="ansCheck01"
 									src="/upload/profile/white-background01.png">
 								<div class="select-answer" id="ans01"></div>
-								<input type="hidden" value=1 class="ansValue">
+								<input type="hidden" value=1>
 							</div>
 
 							<!-- 정답 번호 3번. -->
@@ -705,7 +705,7 @@ p.flashcard-font {
 								<img class="check-mark" id="ansCheck02"
 									src="/upload/profile/white-background01.png">
 								<div class="select-answer" id="ans02"></div>
-								<input type="hidden" value=2 class="ansValue">
+								<input type="hidden" value=2>
 							</div>
 
 							<!-- 정답 번호 4번. -->
@@ -713,7 +713,7 @@ p.flashcard-font {
 								<img class="check-mark" id="ansCheck03"
 									src="/upload/profile/white-background01.png">
 								<div class="select-answer" id="ans03"></div>
-								<input type="hidden" value=3 class="ansValue">
+								<input type="hidden" value=3>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -925,12 +925,14 @@ p.flashcard-font {
 
 		//정답 판단및 다음진행
 		setTimeout(function() {
-			randomQuizPrint();
-		}, 1000);
+			console.log("니어디감? 초이스넘버? : " + choiceNo);
+			randomQuizPrint(choiceNo);
+		}, 300);
 	});
-
+		
 	//퀴즈 출력(현재번호 출력)
 	function randomQuizPrint(choiceNo) {
+		console.log("니어디감? 초이스넘버체크 : " + choiceNo);
 		var delayTime;
 		if (crtRandomNo == -1) {
 			delayTime = 0;
@@ -952,13 +954,15 @@ p.flashcard-font {
 			$("#ans03")
 					.text("4. " + randomQuizList[crtRandomNo].answerArray[3]);
 		}, delayTime);
-
+		
+		console.log("번호확인 : "+ randomQuizList[crtRandomNo].ansNo);
 		var answerNo = randomQuizList[crtRandomNo].ansNo;
 
 		//정답판단
 		if (answerNo == choiceNo) {
+			
 			console.log("진짜 정답 번호 체크 true : " + answerNo);
-			console.log("누른 정답 번호 체크 true: " + answerNo);
+			console.log("누른 정답 번호 체크 true: " + choiceNo);
 			// 정답체크후 정답시에
 			$("#ansCheck0" + answerNo).css("visibility", "visible");
 			$("#ansCheck0" + answerNo).attr("src",
@@ -966,9 +970,11 @@ p.flashcard-font {
 			//문제에 O, X 체크
 			$(".correct-mark").attr("src", "/upload/profile/correct-mark01.png");
 			userScore = userScore + 50;
+			
 		} else {
+			
 			console.log("진짜 정답 번호 체크 false: " + answerNo);
-			console.log("누른 정답 번호 체크 false: " + answerNo);
+			console.log("누른 정답 번호 체크 false: " + choiceNo);
 			// 정답 아닐때에 
 			$("#ansCheck0" + choiceNo).css("visibility", "visible");
 			$("#ansCheck0" + choiceNo).attr("src",
@@ -1010,7 +1016,7 @@ p.flashcard-font {
 			var resultSize = crtRandomNo;
 	
 			$('#quizModal').modal('hide');
-			console.log(gamename)
+			console.log(gamename);
 			theendlist(gamename);
 		}
 		//마지막이 아니면
