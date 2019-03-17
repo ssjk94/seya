@@ -165,6 +165,11 @@ to {
 .pair-body {
 	height: 70%;
 }
+
+.click-checker{
+
+	border: 2px solid cyan;
+}
 </style>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -877,8 +882,8 @@ p.flashcard-font {
 <script type="text/javascript">
 	var randomQuizList;
 	var crtRandomNo = -1;
-	var incorrectWord = new Array();
-	var incorrectMean = new Array();
+	var incorrectWord;
+	var incorrectMean;
 	var userScore = 0;
 	var sessionId = "${sessionScope.id}";
 	var gamename = "RandomQuiz";
@@ -959,6 +964,7 @@ p.flashcard-font {
 		var answerNo = randomQuizList[crtRandomNo].ansNo;
 
 		//정답판단
+		//랜덤 퀴즈 정답일때
 		if (answerNo == choiceNo) {
 			
 			console.log("진짜 정답 번호 체크 true : " + answerNo);
@@ -970,7 +976,7 @@ p.flashcard-font {
 			//문제에 O, X 체크
 			$(".correct-mark").attr("src", "/upload/profile/correct-mark01.png");
 			userScore = userScore + 50;
-			
+		//랜덤 퀴즈 틀렸을때
 		} else {
 			
 			console.log("진짜 정답 번호 체크 false: " + answerNo);
@@ -986,13 +992,14 @@ p.flashcard-font {
 			$("#ansCheck0" + answerNo).css("visibility", "visible");
 			$("#ansCheck0" + answerNo).attr("src",
 					"/upload/profile/circle-mark01.png");
+			
 			userScore = userScore - 30;
 
-			incorrectWord.push(randomQuizList[crtRandomNo].question);
-
-			incorrectMean
-					.push(randomQuizList[crtRandomNo].answerArray[answerNo]);
-
+			incorrectWord = (randomQuizList[crtRandomNo].question);
+			console.log("틀린단어 확인 : " +incorrectWord);
+			incorrectMean = (randomQuizList[crtRandomNo].answerArray[answerNo]);
+			console.log("틀린 뜻 확인 : " +incorrectMean ); 
+			randomGameWrong();
 		}
 
 		//정답여부 그리기
@@ -1013,6 +1020,8 @@ p.flashcard-font {
 			$(".correct-mark").attr("src", "");
 			console.log("다끝났습니다.");
 			
+			randomQuizGameEnd(gamename);
+			console.log("확인용 확인 : gamename = " + gamename);
 			var resultSize = crtRandomNo;
 	
 			$('#quizModal').modal('hide');
@@ -1083,6 +1092,61 @@ p.flashcard-font {
 			}
 		}); // /ajax	
 	}
+	
+	//randomquiz 게임 끝나고 저장
+	function randomQuizGameEnd(gamename) {
+		var sessionId = "${sessionScope.id}";
+		if (sessionId != "" && userScore != 0) {
+			//url 바꾸어야합니다.
+			var wordbookNo = "${flashcardVo.wordbookNo}";
+			$.ajax({
+						url : "${pageContext.request.contextPath}/${URLId}/scoreupdate",
+						type : "post",
+						//		traditional : true,
+						data : {
+							wordbookNo : wordbookNo,
+							gameName : gamename,
+							gameScore : userScore,
+							master : sessionId
+						},
+						dataType : "html",
+						success : function() {
+							/*성공시 처리해야될 코드 작성*/
+							console.log("랜덤퀴즈게임 인서트");
+						},
+						error : function(XHR, status, error) {
+							console.error(status + " : " + error);
+						}
+					});
+		} //if문
+
+	}
+	
+	//랜덤게임 틀린단어
+	function randomGameWrong() {
+		var sessionId = "${sessionScope.id}"
+			console.log("틀린단어 확인2 : " +incorrectWord );
+			console.log("틀린단어 확인2 : " +incorrectMean );
+			$.ajax({
+				url : "${pageContext.request.contextPath}/${URLId}/wrongword",
+				type : "post",
+				//		traditional : true,
+				data : {
+					wordName : incorrectWord,
+					meanName : incorrectMean,
+					master : sessionId
+				},
+				dataType : "html",
+				success : function() {
+					/*성공시 처리해야될 코드 작성*/
+					console.log("틀린단어 ajax");
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		};//if
+	
 	
 	
 	//현재 에이잭스는 활성화 상태 by세윤
@@ -1169,6 +1233,8 @@ p.flashcard-font {
 				if (pairInsertNum == 1) {
 					pairPressValue($(this).find("div").attr("id"), $(this)
 							.find("span").text());
+					$( 'h1' ).find( 'span' );
+
 				}
 				//두번째 눌렀을때		정답을 체크해야함 여기서
 				else {
@@ -1177,7 +1243,7 @@ p.flashcard-font {
 					pairAnswerConfirm();
 					//정답일 경우
 					if (pairAnswer) {
-						console.log("정답");
+						console.log("정답"); 
 						//점수
 						pairRightScore();
 						pairScoreUpdate();
@@ -1209,7 +1275,7 @@ p.flashcard-font {
 						//목숨
 						pairLifeUpdate()
 						//목숨
-
+						
 						setTimeout(function() {
 							clickEventNone();
 						}, 400);
@@ -1464,6 +1530,7 @@ p.flashcard-font {
 	}
 	function clickEventNone() {
 		for (var i = 0; i < 5; i++) {
+			
 			$("#word" + i).find("span").removeClass("choiceblock");
 			$("#mean" + i).find("span").removeClass("choiceblock");
 		}
