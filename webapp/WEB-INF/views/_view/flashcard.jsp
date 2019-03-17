@@ -1068,7 +1068,9 @@ p.flashcard-font {
 						$("#image-rank"+(i+1)).attr("src", "/upload/profile/"+rankerTop[i].userImage);
 						$("#nickname-rank"+(i+1)).text(rankerTop[i].nickName);
 						$("#score-rank"+(i+1)).text(rankerTop[i].gameScore+" 점");
-
+						console.log("랭커 이미지"+rankerTop[i].userImage);
+						console.log("랭커 닉네임"+rankerTop[i].nickName);
+						console.log("랭커 스코어"+rankerTop[i].gameScore);
 					};
 					
 					$("#modalClick").trigger("click");
