@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+
+
+</style>
 </head>
 <body>
 
@@ -56,6 +60,7 @@
 			</div>
 		</div>
 	      <div class="modal-body pair-body">
+	      	<img class="pair-img-size" src ="/upload/profile/background-pairgame.png">
 	        
 	      	 <div class="clearBox">
 				

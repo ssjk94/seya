@@ -93,10 +93,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 .clearBox {
 	clear: both;
-	text-align: center;
-	padding-top: 5%;
-	padding-bottom: 5%;
-	height: 50%;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    height: 50%;
+    position: relative;
+    z-index: 2;
 }
 
 .clearBox img {
@@ -117,12 +119,14 @@ to {
 }
 .clearBox span {
 	font-size: 25px;
-	display: block;
-	text-align: center;
-	line-height: 113px;
-	vertical-align: middle;
-	animation-duration: 1s;
-	animation-name: slidein;
+    display: block;
+    text-align: center;
+    line-height: 113px;
+    vertical-align: middle;
+    animation-duration: 1s;
+    animation-name: slidein;
+    position: relative;
+    z-index: 2;
 }
 
 .pairSetGameWordBox {
@@ -640,10 +644,15 @@ p.flashcard-font {
 .heart-img{
 	width:40px;
 	height: 40px;
-
-	
 }
-
+.pair-img-size{
+	width: 1070px;
+    height: 544px;
+    position: absolute;
+    opacity: 0.9;
+    z-index: 1;
+    text-align: left; !important
+}
 </style>
 
 </head>
@@ -675,9 +684,12 @@ p.flashcard-font {
 			<section class="content container">
 				<c:import url="/WEB-INF/views/kyunghwan/flashcard/_flashcard.jsp"></c:import>
 				<!--게임링크-->
+				<!-- 경환 body -->
+				<c:import url="/WEB-INF/views/_view/pairsetgame.jsp"></c:import>
+				<!-- 세윤 게임 body -->
+				<c:import url="/WEB-INF/views/_view/flashcardgame.jsp"></c:import>
 				<div class="gamerow text-center">
-					<!-- 세윤 게임 body -->
-					<c:import url="/WEB-INF/views/_view/flashcardgame.jsp"></c:import>
+					
 
 					<div class="col-xs-4 col-md-4 text-center" id="flashQuiz">
 						<img class="flashcard-image" data-toggle="modal"
@@ -687,9 +699,7 @@ p.flashcard-font {
 						<p class=text-center>플래시 퀴즈</p>
 					</div>
 
-					<!-- 경환 body -->
-
-					<c:import url="/WEB-INF/views/_view/pairsetgame.jsp"></c:import>
+					
 
 					<div class="col-xs-4 col-md-4" id="pairSetGame">
 						<a href="#"><img class="flashcard-image" data-toggle="modal"
