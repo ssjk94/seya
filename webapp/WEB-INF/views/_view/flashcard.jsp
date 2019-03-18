@@ -1235,6 +1235,9 @@ p.flashcard-font {
 		timeController = true;
 	});
 	$("#random-exit").on("click",function(){
+		userScore=randomGameScore;
+		gamename = "RandomQuiz";
+		console.log("게임네임 random-exit : " + gamename);
 		randomQuizGameEnd(gamename);
 	});
 	
