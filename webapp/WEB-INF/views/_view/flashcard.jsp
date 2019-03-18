@@ -1347,7 +1347,6 @@ p.flashcard-font {
 			dataType : "json",
 			success : function(pairGameSource){
 				/*성공시 처리해야될 코드 작성*/ //리스트 반환할것
-				timeController = false;
 				pairFinishList = pairGameSource[0];
 				pairRandomList = pairGameSource[1];
 				pairNow=0;
@@ -1357,6 +1356,7 @@ p.flashcard-font {
 				pairScoreUpdate();
 				pairNameUpdate();
 				pairLifeInitialization();
+				timeController = false;
 				pairTimeStart(0);
 				
 			},
@@ -1631,9 +1631,9 @@ p.flashcard-font {
 		pairGameEnd();
 		theendlist(pairGameName);
 	});
-	$("#pair-X").on("click",funtion(){
+	$("#pair-X").on("click",function(){
 		timeController = true;
-	})
+	});
 	//게임 끝나 저장하는 함수
 	function pairGameEnd() {
 		timeController = true;
