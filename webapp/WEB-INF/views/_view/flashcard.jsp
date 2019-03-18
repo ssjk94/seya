@@ -1210,8 +1210,16 @@ p.flashcard-font {
 						
 						$("#random-quiz-highScore").text("최고 점수 : "+ topUserScore + " 점");
 						
+						for(var i=0;i<5;i++){
+							$("#image-rank"+(i+1)).hide();
+							$("#nickname-rank"+(i+1)).hide();
+							$("#score-rank"+(i+1)).hide();
+						}
+						
 						for(var i=0;i<rankerTop.length;i++){
-							
+							$("#image-rank"+(i+1)).show();
+							$("#nickname-rank"+(i+1)).show();
+							$("#score-rank"+(i+1)).show();
 							$("#image-rank"+(i+1)).attr("src", "/upload/profile/"+rankerTop[i].userImage);
 							$("#nickname-rank"+(i+1)).text(rankerTop[i].nickName);
 							$("#score-rank"+(i+1)).text(rankerTop[i].gameScore+" 점");
