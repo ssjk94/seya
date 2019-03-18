@@ -1664,8 +1664,10 @@ p.flashcard-font {
 						}
 					});
 		} //if문
-
-		$("#pairSetGameModal").modal("hide");
+		else{
+			theendlist(pairGameName);
+			$("#pairSetGameModal").modal("hide");	
+		}
 	}
 	function pairGameWrong() {
 		var sessionId = "${sessionScope.id}"
