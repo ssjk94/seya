@@ -28,41 +28,57 @@ h3.gaeyeya {
 
 .box.box-primary {
 	margin-top: 5px;
+	height: 913px;
 }
 
-.skin-red-light .sidebar-menu > li.header {
-    color: #ffffff;
-    background: #7c8ba8;
-    padding-right: 5px;
+.skin-red-light .sidebar-menu>li.header {
+	color: #ffffff;
+	background: #7c8ba8;
+	padding-right: 5px;
 }
-.header > form{
+
+.header>form {
 	float: left;
 }
 
-.header > span{
+.header>span {
 	float: right;
 	margin: 0px 0px 0px 10px;
 }
-.direcupdate{
+
+.direcupdate {
 	visibility: hidden;
 }
-.sidebar-menu li:hover .direcupdate{
+
+.sidebar-menu li:hover .direcupdate {
 	visibility: visible;
 }
-.circle-size{
-	width:100px;
+
+.circle-size {
+	width: 100px;
 	height: 100px;
 }
-.navDirecScroll{
-	overflow-y:scroll; 
+
+.navDirecScroll {
+	overflow-y: scroll;
 	width: 247px;
-    height: 670px;
-}    
-.direcView{
-	width: 230px;
-    height: 670px;
-    overflow: hidden;
+	height: 673px;
 }
+
+.direcView {
+	width: 230px;
+	height: 673px;
+	overflow: hidden;
+}
+
+.directoryView {
+	background-color: transparent;
+	border: 0px transparent solid;
+	width: 150px;
+	overflow: hidden;
+	text-align: left;
+}
+
 </style>
 
 <!-- Left side column. contains the logo and sidebar -->
@@ -95,7 +111,8 @@ h3.gaeyeya {
 											<span>전체 단어장</span>
 										</button>
 									</form>
-									<span class="glyphicon glyphicon-plus direcIcon direcinsert" aria-hidden="true"></span> 
+									<span class="glyphicon glyphicon-plus direcIcon direcinsert"
+										aria-hidden="true"></span>
 								</c:when>
 								<c:otherwise>
 									<form action="${pageContext.request.contextPath}/${URLId}"
@@ -108,7 +125,7 @@ h3.gaeyeya {
 								</c:otherwise>
 							</c:choose></li>
 					</ul>
-		
+
 					<ul class="sidebar-menu" data-widget="tree">
 						<!-- Sidebar Menu -->
 						<c:forEach items="${requestScope.directoryList}" var="wordbookVo">
@@ -119,21 +136,21 @@ h3.gaeyeya {
 											method="get">
 											<input name="directoryNo" type="hidden"
 												value="${wordbookVo.directoryNo}">
-											<button type="submit"
-												style="background-color: transparent; border: 0px transparent solid">
+											<button type="submit" class="directoryView">
 												<span>${wordbookVo.directoryName}</span>
 											</button>
 										</form>
-										<span class="glyphicon glyphicon-remove direcIcon direcdelete" aria-hidden="true"></span>
-										<span class="glyphicon glyphicon-pencil direcIcon direcupdate" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-remove direcIcon direcdelete"
+											aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-pencil direcIcon direcupdate"
+											aria-hidden="true"></span>
 									</c:when>
 									<c:otherwise>
 										<form action="${pageContext.request.contextPath}/${URLId}"
 											method="get">
 											<input name="directoryNo" type="hidden"
 												value="${wordbookVo.directoryNo}">
-											<button type="submit"
-												style="background-color: transparent; border: 0px transparent solid">
+											<button type="submit" class="directoryView">
 												<span>${wordbookVo.directoryName}</span>
 											</button>
 										</form>
@@ -154,84 +171,95 @@ h3.gaeyeya {
 		location.reload();
 	};
 
-	$(".direcinsert").on("click",function(){
-		var sessionId = "${sessionScope.id}";
-		var directoryName = prompt("폴더이름을 설정해주세요", "");
-		
-		//프롬프트 확인 눌렀을때
-		if (directoryName != null) {
+	$(".direcinsert")
+			.on(
+					"click",
+					function() {
+						var sessionId = "${sessionScope.id}";
+						var directoryName = prompt("폴더이름을 설정해주세요", "");
 
-			$
-					.ajax({
-						url : "${pageContext.request.contextPath}/${URLId}/directoryinsert",
-						type : "post",
-						//			contentType : "application/json",
-						data : {
-							URLId : sessionId,
-							directoryName : directoryName
-						},
-						dataType : "html",
-						success : function() {
-							/*성공시 처리해야될 코드 작성*/
-							refreshMemList();
-						},
-						error : function(XHR, status, error) {
-							console.error(status + " : " + error);
+						//프롬프트 확인 눌렀을때
+						if (directoryName != null) {
+
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath}/${URLId}/directoryinsert",
+										type : "post",
+										//			contentType : "application/json",
+										data : {
+											URLId : sessionId,
+											directoryName : directoryName
+										},
+										dataType : "html",
+										success : function() {
+											/*성공시 처리해야될 코드 작성*/
+											refreshMemList();
+										},
+										error : function(XHR, status, error) {
+											console.error(status + " : "
+													+ error);
+										}
+									});
+						}
+
+					});
+
+	$(".direcdelete")
+			.on(
+					"click",
+					function() {
+						var directoryNo = $(this).prev().find("input").val();
+						$
+								.ajax({
+									url : "${pageContext.request.contextPath}/${URLId}/directorydelete",
+									type : "post",
+									//			contentType : "application/json",
+									data : {
+										directoryNo : directoryNo
+									},
+									dataType : "html",
+									success : function() {
+										/*성공시 처리해야될 코드 작성*/
+										refreshMemList();
+									},
+									error : function(XHR, status, error) {
+										console.error(status + " : " + error);
+									}
+								});
+					});
+
+	$(".direcupdate")
+			.on(
+					"click",
+					function() {
+						var directoryNo = $(this).prevAll().find("input").val();
+						var beforeDirectoryName = $(this).prevAll().find(
+								"span:first").text();
+						var directoryName = prompt("수정할 폴더명을 입력해주세요",
+								beforeDirectoryName);
+						console.log(directoryNo);
+						//프롬프트 확인 눌렀을때
+						if (directoryName != null) {
+
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath}/${URLId}/directoryupdate",
+										type : "post",
+										//			contentType : "application/json",
+										data : {
+											directoryNo : directoryNo,
+											directoryName : directoryName
+										},
+										dataType : "html",
+										success : function() {
+											/*성공시 처리해야될 코드 작성*/
+											refreshMemList();
+										},
+										error : function(XHR, status, error) {
+											console.error(status + " : "
+													+ error);
+										}
+									});
 						}
 					});
-		}
-		
-	});
-	
-	$(".direcdelete").on("click",function(){
-		var directoryNo=$(this).prev().find("input").val();
-		$
-		.ajax({
-			url : "${pageContext.request.contextPath}/${URLId}/directorydelete",
-			type : "post",
-			//			contentType : "application/json",
-			data : {
-				directoryNo : directoryNo
-			},
-			dataType : "html",
-			success : function() {
-				/*성공시 처리해야될 코드 작성*/
-				refreshMemList();
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-	});
-
-	
-	$(".direcupdate").on("click",function(){
-		var directoryNo=$(this).prevAll().find("input").val();
-		var beforeDirectoryName = $(this).prevAll().find("span:first").text();
-		var directoryName = prompt("수정할 폴더명을 입력해주세요", beforeDirectoryName);
-		console.log(directoryNo);
-		//프롬프트 확인 눌렀을때
-		if (directoryName != null) {
-
-			$
-					.ajax({
-						url : "${pageContext.request.contextPath}/${URLId}/directoryupdate",
-						type : "post",
-						//			contentType : "application/json",
-						data : {
-							directoryNo : directoryNo,
-							directoryName : directoryName
-						},
-						dataType : "html",
-						success : function() {
-							/*성공시 처리해야될 코드 작성*/
-							refreshMemList();
-						},
-						error : function(XHR, status, error) {
-							console.error(status + " : " + error);
-						}
-					});
-		}
-	});
-
 </script>
