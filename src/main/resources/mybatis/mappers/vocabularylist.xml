@@ -40,7 +40,7 @@
 		from 		seyamean_kor sk, seyaword_eng se
 		where 		lower(se.seyawordname) = lower(#{wordName})
         <![CDATA[
-        and rownum<=3
+        and rownum<=1
         ]]>
 		and 			sk.seyawordno = se.seyawordno
 		group by 	se.seyawordname
