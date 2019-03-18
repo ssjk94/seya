@@ -218,16 +218,10 @@
 			select meanname from word where wordbookno = #{wordbookNo}
 		]]>
 	</select>
-
-	<select id="selectBadMeanChoice" resultType="com.javaex.vo.HeaderSearchVo">
-		<![CDATA[
-			select SEYAMEANNAME from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.RANDOM ) where rownum <5
-		]]>
-	</select>
 	
 	<select id="selectBadMeanChoice2" resultType="String">
 		<![CDATA[
-			select SEYAMEANNAME as badAnswer from ( select seyameanname from seyamean_kor order by DBMS_RANDOM.VALUE(1, 1000) ) where rownum <5
+			select MEANNAME as badAnswer from (select meanname from word order by DBMS_RANDOM.random ) where rownum <5
 		]]>
 	</select>
 	
