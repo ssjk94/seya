@@ -837,14 +837,14 @@ p.flashcard-font {
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">×</button>
-							<h4 class="modal-title">랜덤 퀴즈</h4>
+							<h4 class="modal-title">게임</h4>
 						</div>
 						<div class="container"></div>
 						
 						<div class="modal-body">
 							<img class="result-image"
 								src="/upload/profile/result-background.jpg">
-							<div class="random-quiz-result-header">랜덤 퀴즈 게임 결과</div>
+							<div class="random-quiz-result-header">게임 결과</div>
 							<div class="random-quiz-result-content">
 								<div class="random-quiz-result-highScore" id="random-quiz-highScore">
 									최고점수 :</div>
