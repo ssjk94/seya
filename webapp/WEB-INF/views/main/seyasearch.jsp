@@ -425,6 +425,8 @@ b, strong {
 							placeholder="단어장 검색.."> <span class="input-group-btn">
 							<button type="submit" id="search-btn" class="btn btn-flat">
 								<i class="fa fa-search"></i>
+								
+								
 							</button>
 						</span>
 					</div>
