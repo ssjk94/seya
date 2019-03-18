@@ -1158,49 +1158,53 @@ p.flashcard-font {
 		var AllgameName = gamename;
 		
 		console.log("게임왔는지 확인 : " + AllgameName);
-		$.ajax({
-			url : "${pageContext.request.contextPath}/gamerankingpage", //url 
-			type : "post",
-			//		contentType : "application/json",
-			data : {
-				wordbookNo : wordbookNo,
-				gameName : AllgameName,
-				master : sessionId
-			},
-			dataType : "json",
-			success : function(data) {
-					console.log("가져옴? : "+ data);
-				/*성공시 처리해야될 코드 작성*/
-					ranker = data;
-					var rankerTop = new Array();
-					rankerTop =	ranker[1];
-					//최고점수
-					console.log(userScore+"유저스고어");
-					$("#random-quiz-score").text("획득 점수 : "+ userScore + " 점");
-					
-					console.log(ranker[0].userScore);
-					
-					$("#random-quiz-highScore").text("최고 점수 : "+ ranker[0].userScore + " 점");
-					
-					for(var i=0;i<rankerTop.length;i++){
+			$.ajax({
+				url : "${pageContext.request.contextPath}/gamerankingpage", //url 
+				type : "post",
+				//		contentType : "application/json",
+				data : {
+					wordbookNo : wordbookNo,
+					gameName : AllgameName,
+					master : sessionId
+				},
+				dataType : "json",
+				success : function(data) {
+						console.log("가져옴? : "+ data);
+					/*성공시 처리해야될 코드 작성*/
+						ranker = data;
+						var rankerTop = new Array();
+						rankerTop =	ranker[1];
+						//최고점수
+						console.log(userScore+"유저스고어");
+						$("#random-quiz-score").text("획득 점수 : "+ userScore + " 점");
+						var topUserScore;
+						if(ranker[0] == null){
+							topUserScore = 0;
+						}else{
+							topUserScore = ranker[0].userScore;
+						}
 						
-						$("#image-rank"+(i+1)).attr("src", "/upload/profile/"+rankerTop[i].userImage);
-						$("#nickname-rank"+(i+1)).text(rankerTop[i].nickName);
-						$("#score-rank"+(i+1)).text(rankerTop[i].gameScore+" 점");
-						console.log("랭커 이미지"+rankerTop[i].userImage);
-						console.log("랭커 닉네임"+rankerTop[i].nickName);
-						console.log("랭커 스코어"+rankerTop[i].gameScore);
-					};
-					
-					$("#modalClick").trigger("click");
-				/* 	$("#random-quiz-highScore").text("총 문제 수 : " +  + " 개");
-					$("#random-quiz-score").text("획득 점수 : " + userScore + " 점"); */
-					
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		}); // /ajax	
+						$("#random-quiz-highScore").text("최고 점수 : "+ topUserScore + " 점");
+						
+						for(var i=0;i<rankerTop.length;i++){
+							
+							$("#image-rank"+(i+1)).attr("src", "/upload/profile/"+rankerTop[i].userImage);
+							$("#nickname-rank"+(i+1)).text(rankerTop[i].nickName);
+							$("#score-rank"+(i+1)).text(rankerTop[i].gameScore+" 점");
+							console.log("랭커 이미지"+rankerTop[i].userImage);
+							console.log("랭커 닉네임"+rankerTop[i].nickName);
+							console.log("랭커 스코어"+rankerTop[i].gameScore);
+						};
+						
+						$("#modalClick").trigger("click");
+					/* 	$("#random-quiz-highScore").text("총 문제 수 : " +  + " 개");
+						$("#random-quiz-score").text("획득 점수 : " + userScore + " 점"); */
+						
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			}); // /ajax	
 	}
 	
 	//randomquiz 게임 끝나고 저장
@@ -1272,6 +1276,7 @@ p.flashcard-font {
 			dataType : "json",
 			success : function(flashGameSource){
 			/*성공시 처리해야될 코드 작성*/
+				flashInitialization();
 				for(var i=0;i<flashGameSource.length;i++){
 					flashGameList.push(flashGameSource[i]);
 				}
@@ -1323,7 +1328,7 @@ p.flashcard-font {
 	var pairRandomList = new Array(); //랜덤으로 배치된 배열
 	var pairNow = 0; //현재 진행 단계를 저장하는 변수 객체의갯수
 	var pairScore = 0; //점수를 표현하는 변수
-	var pairGameName = "Pair Set Game" //게임 제목
+	var pairGameName = "Pair Set Game"; //게임 제목
 	var pairInsertNum = 1; //몇번 사용자가 눌렀는지 확인하는 변수
 	var pairAnswer = false; //정답인지 아닌지 확인하는 변수
 	var pairPressId1 = ""; //사용자가누른것이 무엇인지 알기위한 변수
@@ -1573,8 +1578,11 @@ p.flashcard-font {
 		pairNow++;
 		$("#pairNowSituation").find("b:first").text("( " + pairNow + " / ");
 	}
+	//나가기버튼
 	$("#pairExit").on("click", function() {
 		pairGameEnd();
+		theendlist(pairGameName);
+		
 	});
 	//게임 끝나 저장하는 함수
 	function pairGameEnd() {
@@ -1656,6 +1664,8 @@ p.flashcard-font {
 			$("#mean" + i).find("span").removeClass("choiceblock");
 		}
 	}
+	//나가기 버튼 클릭시
+	
 </script>
 
 <!-- 세윤 스크립트 -->
@@ -1698,7 +1708,7 @@ p.flashcard-font {
 								flashScoreUpdate();
 								//끝까지 했을경우 끝내기
 								if (flashListNowNum == flashGameList.length) {
-									//flashEnd();
+									flashEnd();
 								} else {
 									situationUpdate();
 									clearText();
@@ -1728,20 +1738,30 @@ p.flashcard-font {
 									gamename = flashGameName;
 									console.log(gamename);
 									userScore = flashGameScore;
-									$("#flashQuiz").modal("hide");
-									theendlist(gamename);
-									//flashEnd();
+									flashEnd();
 								} else {
 									situationUpdate();
 									flashLifeUpdate();
 									clearText();
-									//flashStart();
+									flashStart();
 								}
 							}//오답
 						}//정답체크 부분
 
 					})
-
+	
+	function flashInitialization(){
+		for(var i=1;i<4;i++){
+			$("#flashLife" +i).attr("src", "/dist/images/heart.png");			
+		};
+		flashGameList = new Array();
+		nowSituation = 0;
+		userScore = 0;
+		flashLife = 0;
+		flashGameScore = 0;
+		flashListNowNum = 0;
+	}
+					
 	//안의 내용을 계속해서 바꿔주는 함수
 	function flashStart() {
 		$("#flashDenote").find("p").text(
@@ -1795,20 +1815,17 @@ p.flashcard-font {
 						dataType : "html",
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
-							
-							gamename = flashGameName;
-							console.log("gameend : + " + gamename);
-							userScore = flashGameScore;
-							theendlist(gamename);
-							
+								
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
 						}
 					});
 		} //if문
-		
-		//refreshMemList();
+		userScore = flashGameScore;
+		gamename = flashGameName;
+		$("#flashquizModal").modal("hide");
+		theendlist(gamename);
 	}
 	function flashWrong(flashWord, flashMean) {
 		//틀렸을때 단어 업데이트 	//미완성

@@ -201,23 +201,6 @@
 						}
 					}
 				}
-				$(function() {
-					$(document).on("keyup", function(e) {
-						console.log(e);
-						switch (e.keyCode) {
-						case 13:
-						case 38:
-						case 37:
-							console.log("left");
-							btnLeft();
-							break;
-						case 39:
-							console.log("right");
-							btnRight();
-							break;
-						}
-					});
-				});
 
 				$(function() {
 					$("#wm-over").click(function() {
