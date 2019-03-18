@@ -1467,6 +1467,7 @@ p.flashcard-font {
 					//끝내기end
 					if (pairNow == pairFinishList.length
 							&& roopNo == pairNowSituation + 1) {
+						userScore = pairScore;
 						pairGameEnd();
 					}
 					;
@@ -1638,6 +1639,7 @@ p.flashcard-font {
 	}
 	//나가기버튼
 	$("#pairExit").on("click", function() {
+		userScore = pairScore;
 		pairGameEnd();
 		
 	});
@@ -1962,6 +1964,7 @@ p.flashcard-font {
 			console.log("x로 인한종료");
 		}else{
 			//끝나는 문장
+			userScore = pairScore;
 			pairGameEnd();
 		}
 	}
