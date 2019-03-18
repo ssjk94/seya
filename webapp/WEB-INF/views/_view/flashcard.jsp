@@ -1728,12 +1728,12 @@ p.flashcard-font {
 									console.log(gamename);
 									userScore = flashGameScore;
 									theendlist(gamename);
-									//flashEnd();
+									flashEnd();
 								} else {
 									situationUpdate();
 									flashLifeUpdate();
 									clearText();
-									//flashStart();
+									flashStart();
 								}
 							}//오답
 						}//정답체크 부분
@@ -1778,7 +1778,7 @@ p.flashcard-font {
 		var sessionId = "${sessionScope.id}";
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 		//모달 숨기고 새로고침
-		if (sessionId != "" && nowSituation == 1) {
+		if (sessionId != "" && nowSituation != 1) {
 			$
 					.ajax({
 						url : "${pageContext.request.contextPath}/${URLId}/flashscoreupdate",
