@@ -282,7 +282,7 @@ p {
 	height: 70px;
 	border-radius: 10px;
 	padding-top: 18px;
-	padding-left: 15px;
+	padding-left: 40px;
 	margin-top: 5px;
 }
 
