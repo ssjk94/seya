@@ -605,6 +605,44 @@ p.flashcard-font {
 	width: 65px;
     height: 65px;
 }
+.modal-header-cotent{
+	width:1060px;
+	height: 130px;
+	
+}
+.modal-game-title{
+	width: 340px;
+	height: 50px;
+	border: 1px solid;
+	float: left;
+}
+.modal-game-score{
+	width: 260px;
+	height: 50px;
+	border: 1px solid;
+	float: left;
+	
+}
+.modal-game-list{
+	width: 200px;
+	height: 50px;
+	border: 1px solid;
+	float: left;
+
+}
+
+.modal-game-life{
+	width: 200px;
+	height: 50px;
+	border: 1px solid;
+	float: right;
+}
+.heart-img{
+	width:40px;
+	height: 40px;
+
+	
+}
 
 </style>
 
@@ -671,15 +709,50 @@ p.flashcard-font {
 				</div>
 			</section>
 			<div class="modal fade" id="quizModal">
-				<div class="modal-dialog lee-dialog" style="width: 80%">
-					<div class="modal-content lee-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title">사지선다 퀴즈</h4>
+				<div class="modal-dialog pair-dialog">
+				    <div class="modal-content pair-content">
+				      <div class="modal-header pair-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					    <!-- 설명이 들어갈 div -->
+						<div class="gameInfo">
+						<!-- GameTitle div -->
+							<div class="pull-left">
+								<p>제목 : &nbsp;&nbsp;</p>
+								<b class="find-game-name">제발좀요</b>
+							</div>
+							<!-- Score div -->
+							<div class="pull-left">
+								<p>점수 : &nbsp;&nbsp;</p>
+								<b class="find-game-score"></b>점
+							</div>
+							<!-- nowSituation div -->
+							<div class="pull-left">
+								<p>현재상황 : &nbsp;&nbsp;</p>
+								<b class="present-game-number"></b>
+								<b class="last-game-number"></b>
+							</div>
+							<!-- Life div -->
+							<div class="pull-right">
+								<p>목숨 : &nbsp;&nbsp;</p>
+								<img id="gameLife1" alt="" src="/dist/images/heart.png">
+								<img id="gameLife2" alt="" src="/dist/images/heart.png">
+								<img id="gameLife3" alt="" src="/dist/images/heart.png">
+							</div>
+			
 						</div>
+							
+							<!-- 시간이 들어갈 div -->
+						<div class="time-bar">
+							<div class="progress">
+								<div
+									class="progress-bar progress-bar-primary progress-bar-striped"
+									role="progressbar" aria-valuenow="100" aria-valuemin="0"
+									aria-valuemax="100" style="width: 100%">
+									<span class="sr-only">40% Complete (success)</span>
+								</div>
+							</div>
+						</div>
+					</div>
 						<div class="modal-body">
 							<div class="quiz-header">다음의 보기에서 알맞은 정답을 선택하세요.</div>
 							<!-- 문제 나오고 , 정답 체크 하는 곳 -->
@@ -885,15 +958,18 @@ p.flashcard-font {
 	var incorrectWord;
 	var incorrectMean;
 	var userScore = 0;
+	var listNumber= 1;
 	var sessionId = "${sessionScope.id}";
 	var gamename = "RandomQuiz";
-	
+	var pairLife = 0;
 	//랜덤퀴즈 클릭할때
 	$("#randomQuiz").on("click", function() {
 	
 		console.log("${flashcardVo.wordbookNo}");
-		
 		console.log(sessionId);
+		
+		$(".find-game-name").text("RandomQuiz");
+		$(".find-game-score").text(userScore);
 		
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 
@@ -909,8 +985,14 @@ p.flashcard-font {
 				/*성공시 처리해야될 코드 작성*/
 				console.log("성공 : " + data);
 				
-				
 				randomQuizList = data;
+				randomQuizList.length;
+				//리스트 첫번째 번호
+				$(".present-game-number").text("( 1 / ");
+				//리스트 마지막 번호
+				$(".last-game-number").text(randomQuizList.length + " )");
+				//
+				pairLifeInitialization();
 				crtRandomNo = -1;
 				randomQuizPrint();
 			},
@@ -937,6 +1019,7 @@ p.flashcard-font {
 		
 	//퀴즈 출력(현재번호 출력)
 	function randomQuizPrint(choiceNo) {
+		
 		console.log("니어디감? 초이스넘버체크 : " + choiceNo);
 		var delayTime;
 		if (crtRandomNo == -1) {
@@ -962,7 +1045,8 @@ p.flashcard-font {
 		
 		console.log("번호확인 : "+ randomQuizList[crtRandomNo].ansNo);
 		var answerNo = randomQuizList[crtRandomNo].ansNo;
-
+		
+		
 		//정답판단
 		//랜덤 퀴즈 정답일때
 		if (answerNo == choiceNo) {
@@ -976,6 +1060,12 @@ p.flashcard-font {
 			//문제에 O, X 체크
 			$(".correct-mark").attr("src", "/upload/profile/correct-mark01.png");
 			userScore = userScore + 50;
+			$(".find-game-score").text(userScore);
+			
+			//리스트 번호 올리기..
+			listNumber = listNumber + 1;
+			$(".present-game-number").text("( "+listNumber+" / ");
+			
 		//랜덤 퀴즈 틀렸을때
 		} else {
 			
@@ -993,20 +1083,38 @@ p.flashcard-font {
 			$("#ansCheck0" + answerNo).attr("src",
 					"/upload/profile/circle-mark01.png");
 			
-			userScore = userScore - 30;
-
-			incorrectWord = (randomQuizList[crtRandomNo].question);
-			console.log("틀린단어 확인 : " +incorrectWord);
-			incorrectMean = (randomQuizList[crtRandomNo].answerArray[answerNo]);
-			console.log("틀린 뜻 확인 : " +incorrectMean ); 
-			randomGameWrong();
+			if (pairLife == 3) {
+			//라이프 초과하여 게임이 끝남
+				setTimeout(function() {
+					gamename = "RandomQuiz";
+					theendlist(gamename);
+				}, 400);
+			} else {
+				userScore = userScore - 30;
+				//유저점수 확인
+				$(".find-game-score").text(userScore);
+				
+				//틀린단어, 뜻 넣기
+				incorrectWord = (randomQuizList[crtRandomNo].question);
+				console.log("틀린단어 확인 : " +incorrectWord);
+				incorrectMean = (randomQuizList[crtRandomNo].answerArray[answerNo]);
+				console.log("틀린 뜻 확인 : " +incorrectMean ); 
+				randomGameWrong();
+				
+				//게임 라이프 체크
+				//라이프 업데이트
+				pairLife++;
+				console.log("업데이트 했는지 페어라이프 : " +pairLife);
+				$("#gameLife" + pairLife).attr("src", "/upload/profile/heart2.gif");
+				
+				//리스트 번호 올리기..
+				listNumber = listNumber + 1;
+				$(".present-game-number").text("( "+listNumber+" / ");
+			}
 		}
-
-		//정답여부 그리기
 
 		var compareLength = randomQuizList.length - 1;
 		console.log("현재문제 번호 : " + crtRandomNo + " 리스트 랭쓰 : " + compareLength);
-		
 		
 		//마지막문제면
 		if (crtRandomNo >= compareLength) {
@@ -1019,7 +1127,7 @@ p.flashcard-font {
 			
 			$(".correct-mark").attr("src", "");
 			console.log("다끝났습니다.");
-			
+			gamename = "RandomQuiz";
 			randomQuizGameEnd(gamename);
 			console.log("확인용 확인 : gamename = " + gamename);
 			var resultSize = crtRandomNo;
@@ -1048,6 +1156,8 @@ p.flashcard-font {
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 		var sessionId = "${sessionScope.id}";
 		var AllgameName = gamename;
+		
+		console.log("게임왔는지 확인 : " + AllgameName);
 		$.ajax({
 			url : "${pageContext.request.contextPath}/gamerankingpage", //url 
 			type : "post",
@@ -1269,7 +1379,11 @@ p.flashcard-font {
 						//틀린단어업데이트
 						//라이프 초과하여 게임이 끝남end
 						if (pairLife == 3) {
-							alert("목숨을 다 사용하여 게임이 끝남");
+							gamename = pairGameName;
+							console.log(gamename);
+							userScore = pairScore;
+							theendlist(gamename);
+							
 						}
 						//라이프 초과하여 게임이 끝남
 						//목숨
@@ -1288,7 +1402,10 @@ p.flashcard-font {
 					//끝내기end
 					if (pairNow == pairFinishList.length
 							&& roopNo == pairNowSituation + 1) {
-						alert("게임이 끝났음");
+						gamename = pairGameName;
+						console.log(gamename);
+						userScore = pairScore;
+						theendlist(gamename);
 					}
 					;
 				}
@@ -1353,6 +1470,7 @@ p.flashcard-font {
 	//목숨 관리를 위한 메소드
 	function pairLifeUpdate() {
 		pairLife++;
+		console.log("업데이트 했는지 페어라이프 : " +pairLife);
 		$("#pairLife" + pairLife).attr("src", "/dist/images/heart2.gif");
 	}
 	function pairLifeInitialization() {
@@ -1401,7 +1519,9 @@ p.flashcard-font {
 			} else if (pairFinishList[pairNow - 1].word2 != null
 					&& pairFinishList[pairNow - 1].mean2 != null) {
 				roopNo = 3;
-			}
+			} else{
+	            roopNo = 2;
+	        }
 		} else {
 			roopNo = 5;
 		}
@@ -1545,6 +1665,8 @@ p.flashcard-font {
 	var flashGameScore = 0; //현재 점수
 	var flashLife = 0; //라이프 1증가마다 하나씩 목숨깍인다
 	var nowSituation = 0; //현재 진행단계를 표현하기위한 변수
+	var userScore = 0;
+	var gamename ="";
 
 	//정답 체크하는 문장
 	$('#flashSubmit')
@@ -1575,7 +1697,7 @@ p.flashcard-font {
 								flashScoreUpdate();
 								//끝까지 했을경우 끝내기
 								if (flashListNowNum == flashGameList.length) {
-									flashEnd();
+									//flashEnd();
 								} else {
 									situationUpdate();
 									clearText();
@@ -1593,16 +1715,25 @@ p.flashcard-font {
 								flashScoreUpdate();
 								//라이프 다 썻을때
 								if (flashLife == 3) {
+									console.log("여기왔냐? 라이프 다쓴 플래시카드");
+									$("#flashQuiz").modal("hide");
+									gamename = flashGameName;
+									userScore= flashGameScore;
+									console.log("제발 점수확인 : "+ userScore);
 									flashEnd();
 								}
 								//끝까지 했을경우 끝내기
 								if (flashListNowNum == flashGameList.length) {
-									flashEnd();
+									gamename = flashGameName;
+									console.log(gamename);
+									userScore = flashGameScore;
+									theendlist(gamename);
+									//flashEnd();
 								} else {
 									situationUpdate();
 									flashLifeUpdate();
 									clearText();
-									flashStart();
+									//flashStart();
 								}
 							}//오답
 						}//정답체크 부분
@@ -1662,15 +1793,20 @@ p.flashcard-font {
 						dataType : "html",
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
+							
+							gamename = flashGameName;
+							console.log("gameend : + " + gamename);
+							userScore = flashGameScore;
+							theendlist(gamename);
+							$("#flashQuiz").modal("hide");
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
 						}
 					});
 		} //if문
-
-		$("#flashQuiz").modal("hide");
-		refreshMemList();
+		
+		//refreshMemList();
 	}
 	function flashWrong(flashWord, flashMean) {
 		//틀렸을때 단어 업데이트 	//미완성

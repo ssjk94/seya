@@ -20,7 +20,7 @@
 			<!-- GameTitle div -->
 				<div id="gameName" class="pull-left">
 					<p>제목 : &nbsp;&nbsp;</p>
-					<b></b>
+					<b>제발살려주세요</b>
 				</div>
 				<!-- Score div -->
 				<div id="gameScore" class="pull-left">
