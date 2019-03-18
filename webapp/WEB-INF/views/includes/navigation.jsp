@@ -193,7 +193,7 @@ h3.gaeyeya {
 		var directoryNo=$(this).prevAll().find("input").val();
 		var beforeDirectoryName = $(this).prevAll().find("span:first").text();
 		var directoryName = prompt("수정할 폴더명을 입력해주세요", beforeDirectoryName);
-		console.log(diretoryNo);
+		console.log(directoryNo);
 		//프롬프트 확인 눌렀을때
 		if (directoryName != null) {
 
