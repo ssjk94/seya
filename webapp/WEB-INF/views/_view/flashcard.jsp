@@ -666,6 +666,9 @@ p.flashcard-font {
 .modal-size-controller{
 	height: 75%;
 }
+.flashcard-image{
+	cursor: pointer;
+}
 </style>
 
 </head>
@@ -704,8 +707,8 @@ p.flashcard-font {
 				<div class="gamerow text-center">
 					
 
-					<div class="col-xs-4 col-md-4 text-center" id="flashQuiz">
-						<img class="flashcard-image" data-toggle="modal"
+					<div class="col-xs-4 col-md-4 text-center" >
+						<img id="flashQuiz" class="flashcard-image" data-toggle="modal"
 							data-target="#flashquizModal"
 							src="/upload/profile/flashcardgame.jpg"
 							alt="플래시 퀴즈">
@@ -714,16 +717,16 @@ p.flashcard-font {
 
 					
 
-					<div class="col-xs-4 col-md-4" id="pairSetGame">
-						<a href="#"><img class="flashcard-image" data-toggle="modal"
+					<div class="col-xs-4 col-md-4">
+						<img id="pairSetGame" class="flashcard-image" data-toggle="modal"
 							data-target="#pairSetGameModal" src="/upload/profile/wordmatch1.png"
-							alt="짝 맞추기"> </a>
+							alt="짝 맞추기">
 						<p class=text-center>짝 맞추기</p>
 					</div>
 
 
-					<div class="col-xs-4 col-md-4" id="randomQuiz">
-						<img class="flashcard-image" data-toggle="modal"
+					<div class="col-xs-4 col-md-4">
+						<img  id="randomQuiz" class="flashcard-image" data-toggle="modal"
 							data-target="#quizModal"
 							src="/upload/profile/randomgame.png"
 							alt="랜덤 퀴즈">
