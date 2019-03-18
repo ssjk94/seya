@@ -28,16 +28,6 @@ public class PairSetGameController {
 		
 		List<Object> pairGameSource = pairSetGameService.getPairGameSource(pairSetGameVo);
 		
-//		for(int i = 0;i<list.size();i++) {
-//			
-//			@SuppressWarnings("unchecked")
-//			List<PairSetGameVo> smallList = (List<PairSetGameVo>) list.get(i);
-//			
-//			for(PairSetGameVo a:smallList) {
-//				System.out.println(i+a.toString());
-//			}
-//		}
-		
 		return pairGameSource;
 	}
 	
@@ -54,9 +44,6 @@ public class PairSetGameController {
 	@RequestMapping(value = "{URLId}/scoreupdate", method = RequestMethod.POST)
 	public void scoreUpdate(PairSetGameVo pairSetGameVo) {
 		System.out.println("게임이 끝난뒤 점수 업데이트");
-		//dao 주석 풀어야함
-		
-		System.out.println("게임점수 업데이트"+pairSetGameVo.toString());
 		
 		pairSetGameService.scoreRankinInsert(pairSetGameVo);
 		

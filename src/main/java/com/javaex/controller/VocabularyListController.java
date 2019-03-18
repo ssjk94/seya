@@ -26,14 +26,7 @@ public class VocabularyListController {
 	
 	@RequestMapping(value = "{URLId}/vocabularylist", method = RequestMethod.GET)
 	public String wordbook(URLPathVo urlPathVo,VocabularyListVo vocabularyListVo,Model md,PagingVo pagingVo) {
-		//no가 있을경우 와
-		//no가 없을경우의 리스트 작성을 해야함
-		//리스트 컨트롤러
-		//이걸 처리 ajax 처리할때는 셀렉문은 히든으로 보내서 씹 가능
-//		List<VocabularyListVo> vocaList=vocabularyListService.getWordAndMean(vocabularyListVo,urlPathVo);
-		
-		System.out.println("보카리스트컨트롤러"+vocabularyListVo.getWordbookNo());
-		System.out.println("보카리스트컨트롤러 디렉"+ urlPathVo.getDirectoryNo());
+
 		//워드북 네임을 가지고 set
 		vocabularyListVo.setWordbookName(vocabularyListService.getWordbookName(vocabularyListVo.getWordbookNo()));
 		
@@ -44,15 +37,8 @@ public class VocabularyListController {
 		pagingVo.setTotal(vocaList.size());
 		pagingVo = vocabularyListService.pagenation(pagingVo);
 		
-		for(VocabularyListVo a:vocaList) {
-			System.out.println("보카리스트서비스 투스트링"+a.toString());
-		}
-		
 		//리스트 잘라주는 문장 들어가야함
 		try {
-			
-			System.out.println("시작"+pagingVo.getListCnt()*(pagingVo.getIndex()-1));
-			System.out.println("끝"+(pagingVo.getListCnt()*(pagingVo.getIndex()-1)+pagingVo.getLastListCnt()));
 			vocaList = vocaList.subList(
 					pagingVo.getListCnt()*(pagingVo.getIndex()-1),
 					pagingVo.getListCnt()*(pagingVo.getIndex()-1)+pagingVo.getLastListCnt());

@@ -3,19 +3,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="addvocabulary">
-
-	<select id="selectWordbookAlldirectoryList" resultType="com.javaex.vo.WordbookVo" parameterType="com.javaex.vo.URLPathVo">
-			<![CDATA[
-		select directoryno, directoryname
-			from 
-			(select d.directoryname,
-			     d.directoryno
-			from	directory d, users u
-			where u.id = #{URLId}
-			and u.userno = d.userno)
-		ORDER BY DIRECTORYNO ASC
-		]]>
-	</select>
 	<!-- 디렉토리 정보가 없을경우 -->
 	<select id="selectDirectoryNoInfo" resultType="com.javaex.vo.URLPathVo" parameterType="com.javaex.vo.URLPathVo">
 		select * 

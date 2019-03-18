@@ -10,10 +10,7 @@
 	
 	</typeAliases>
 	<mappers>
-		<mapper resource="mybatis/mappers/guestbook.xml" />
 		<mapper resource="mybatis/mappers/users.xml" />
-		<mapper resource="mybatis/mappers/meankor.xml" />
-		<mapper resource="mybatis/mappers/wordeng.xml" />
 		<mapper resource="mybatis/mappers/wordbook.xml" />
 		<mapper resource="mybatis/mappers/addvocabulary.xml" />
 		<mapper resource="mybatis/mappers/flashcard.xml" />

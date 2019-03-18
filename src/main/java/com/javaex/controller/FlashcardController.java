@@ -42,32 +42,6 @@ public class FlashcardController {
 		md.addAttribute("wordbookNo", urlPathVo.getWordbookNo());
 		md.addAttribute("directoryList", directoryList);
 
-		// 사지선다게임 모달전용.
-		/*
-		 * List<HeaderSearchVo> wordList =
-		 * flashcardService.getWordChoiceList(headerSearchVo);
-		 * 
-		 * //int wordListSize = wordList.size(); for(int i=0 ; i < wordList.size(); i++
-		 * ) {
-		 * 
-		 * //문제 세팅 headerSearchVo.setWordName(wordList.get(i).getWordName());
-		 * headerSearchVo.setWordbookNo(wordList.get(i).getWordbookNo());
-		 * quizVo.setQuestion(wordList.get(i).getWordName()); //답 세팅 HeaderSearchVo
-		 * meanList2= flashcardService.getMeanChoiceOne(headerSearchVo);
-		 * quizVo.setAnswer(meanList2.getMeanName()); //답 위치 랜덤생성 int ansNo; ansNo =
-		 * random.nextInt(4); quizVo.setAnsNo(ansNo); //틀린답 가져오기 List<HeaderSearchVo>
-		 * badMeanList = flashcardService.getBadMeanChoiceList(headerSearchVo); //틀린 답
-		 * 세팅 ( 정답 세팅 전) String answerArray[] = new String[4];
-		 * 
-		 * for(int j=0; j<badMeanList.size(); j++) {
-		 * 
-		 * answerArray[j] = badMeanList.get(j).getSeyaMeanName(); } // 정답 세팅
-		 * answerArray[ansNo] = meanList2.getMeanName(); // 리스트에 넣음
-		 * quizVo.setAnswerArray(answerArray);
-		 * 
-		 * md.addAttribute("quizVo", quizVo); }
-		 */
-
 		if (device.isMobile()) {
 			return "mobile/m_flashcard";
 		} else {

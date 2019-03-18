@@ -44,14 +44,6 @@ public class UsersController {
 	@Autowired
 	UsersService usersService;
 
-	// 자기아이디 아닐때 or 게스트로 페이지를 봤을때
-	/*
-	 * @RequestMapping("/{URLId}") public String urlCheck(HttpServletRequest req,
-	 * HttpSession session, UsersVo usersVo) {
-	 * 
-	 * return ""; }
-	 */
-
 	// 회원가입
 	@RequestMapping("/userinsert.do")
 	public String insertUser(@ModelAttribute UsersVo usersVo, HttpServletRequest req) {
@@ -82,12 +74,6 @@ public class UsersController {
 			String password = req.getParameter("password");
 
 			if (usersVo.getId().equals(id) && usersVo.getPassword().equals(password)) {
-				/*
-				 * System.out.println("index에서 로그인시에 vo toString, selectoneusers이전"+usersVo.
-				 * toString());
-				 * 
-				 * usersVo.setId(id); System.out.println("usersVo.setId(id) "+ id);
-				 */
 				usersVo = usersService.selectOneUsers(usersVo);
 
 				session.setAttribute("id", id);
@@ -213,12 +199,6 @@ public class UsersController {
 		}
 	}
 
-	@RequestMapping(value = "/leemodi", method = RequestMethod.GET)
-	public String leemodi() {
-		System.out.println("leemodi");
-		return "kyunghwan/profilemodify/_leeprofilemodify";
-	}
-
 	// 헤더 네비게이션 로그인
 	@RequestMapping(value = "/headerlogin.do", method = RequestMethod.POST)
 	public String headerLogin(@ModelAttribute UsersVo usersVo, HttpSession session, HttpServletRequest req, Model model,
@@ -319,20 +299,6 @@ public class UsersController {
 			return "main/seyasearch";
 		}
 
-	}
-
-	// 메인페이지
-	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
-	public String returnMainPage() {
-
-		return "main/mainpage";
-	}
-
-	// 검색
-	@RequestMapping(value = "/searchform", method = RequestMethod.GET)
-	public String searchForm() {
-
-		return "main/searchform";
 	}
 
 	// 아이디 중복체크
