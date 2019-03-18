@@ -1010,18 +1010,22 @@ p.flashcard-font {
 				/*성공시 처리해야될 코드 작성*/
 				timeController = false;
 				console.log("성공 : " + data);
-				
-				randomQuizList = data;
-				randomQuizList.length;
-				randomTimeStart(0);
-				//리스트 첫번째 번호
-				$(".present-game-number").text("( 1 / ");
-				//리스트 마지막 번호
-				$(".last-game-number").text(randomQuizList.length + " )");
-				//
-				gameLifeInitialization();
-				crtRandomNo = -1;
-				randomQuizPrint();
+				if(data.length==0){
+					alert("단어장에 단어가 없습니다.");
+					$('#quizModal').modal('hide');
+				}else{					
+					randomQuizList = data;
+					randomQuizList.length;
+					randomTimeStart(0);
+					//리스트 첫번째 번호
+					$(".present-game-number").text("( 1 / ");
+					//리스트 마지막 번호
+					$(".last-game-number").text(randomQuizList.length + " )");
+					//
+					gameLifeInitialization();
+					crtRandomNo = -1;
+					randomQuizPrint();
+				}
 				
 			},
 			error : function(XHR, status, error) {
@@ -1342,7 +1346,8 @@ p.flashcard-font {
 			success : function(flashGameSource){
 			/*성공시 처리해야될 코드 작성*/
 				if(flashGameSource.length==0){
-					alert("단어장에 단어가 없습니다.")
+					alert("단어장에 단어가 없습니다.");
+					$("#flashquizModal").modal("hide");
 				}else{
 					flashInitialization();
 					for(var i=0;i<flashGameSource.length;i++){
@@ -1375,6 +1380,10 @@ p.flashcard-font {
 			dataType : "json",
 			success : function(pairGameSource){
 				/*성공시 처리해야될 코드 작성*/ //리스트 반환할것
+				if(pairGameSource[0].length==0){
+					alert("단어장에 단어가 없습니다.");
+					$("#pairSetGameModal").modal("hide");
+				}else{					
 				pairFinishList = pairGameSource[0];
 				pairRandomList = pairGameSource[1];
 				pairNow=0;
@@ -1387,6 +1396,7 @@ p.flashcard-font {
 				pairLifeInitialization();
 				timeController = false;
 				pairTimeStart(0);
+				}
 				
 			},
 			error : function(XHR, status, error) {
