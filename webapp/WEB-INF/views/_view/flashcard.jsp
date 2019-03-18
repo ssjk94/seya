@@ -1384,6 +1384,7 @@ p.flashcard-font {
 					alert("단어장에 단어가 없습니다.");
 					$("#pairSetGameModal").modal("hide");
 				}else{					
+					
 				pairFinishList = pairGameSource[0];
 				pairRandomList = pairGameSource[1];
 				pairNow=0;
