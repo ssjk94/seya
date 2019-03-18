@@ -1433,8 +1433,7 @@ p.flashcard-font {
 							gamename = pairGameName;
 							console.log(gamename);
 							userScore = pairScore;
-							$("#pairSetGameModal").modal("hide");
-							theendlist(gamename);
+							pairGameEnd();
 						}
 						//라이프 초과하여 게임이 끝남
 						//목숨
@@ -1453,11 +1452,7 @@ p.flashcard-font {
 					//끝내기end
 					if (pairNow == pairFinishList.length
 							&& roopNo == pairNowSituation + 1) {
-						gamename = pairGameName;
 						pairGameEnd();
-						userScore = pairScore;
-						$("#pairSetGameModal").modal("hide");
-						theendlist(gamename);
 					}
 					;
 				}
@@ -1629,7 +1624,7 @@ p.flashcard-font {
 	//나가기버튼
 	$("#pairExit").on("click", function() {
 		pairGameEnd();
-		theendlist(pairGameName);
+		
 	});
 	$("#pair-X").on("click",function(){
 		timeController = true;
@@ -1637,6 +1632,7 @@ p.flashcard-font {
 	//게임 끝나 저장하는 함수
 	function pairGameEnd() {
 		timeController = true;
+		console.log("여기는 단어 점수 업데이트창");
 		var sessionId = "${sessionScope.id}";
 		setTimeout(function() {
 			clickEventNone();
@@ -1660,6 +1656,8 @@ p.flashcard-font {
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
 							console.log("성공q");
+							$("#pairSetGameModal").modal("hide");
+							theendlist(pairGameName);
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
@@ -1779,11 +1777,6 @@ p.flashcard-font {
 								flashScoreUpdate();
 								//라이프 다 썻을때
 								if (flashLife == 3) {
-									console.log("여기왔냐? 라이프 다쓴 플래시카드");
-									$("#flashQuiz").modal("hide");
-									gamename = flashGameName;
-									userScore= flashGameScore;
-									console.log("제발 점수확인 : "+ userScore);
 									flashEnd();
 								}
 								//끝까지 했을경우 끝내기
@@ -1874,16 +1867,17 @@ p.flashcard-font {
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
 							console.log("플래시카드 성공");
+							userScore = flashGameScore;
+							gamename = flashGameName;
+							$("#flashquizModal").modal("hide");
+							theendlist(gamename);
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
 						}
 					});
 		} //if문
-		userScore = flashGameScore;
-		gamename = flashGameName;
-		$("#flashquizModal").modal("hide");
-		theendlist(gamename);
+		
 	}
 	function flashWrong(flashWord, flashMean) {
 		//틀렸을때 단어 업데이트 	//미완성
@@ -1949,11 +1943,6 @@ p.flashcard-font {
 		}else{
 			//끝나는 문장
 			pairGameEnd();
-			gamename = pairGameName;
-			console.log(gamename);
-			userScore = pairScore;
-			$("#pairSetGameModal").modal("hide");
-			theendlist(gamename);
 		}
 	}
 	
