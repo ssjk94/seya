@@ -367,7 +367,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="main-content-seyaword-line">
 				<div class="recommend-wordbook-list">
 					<div>
-						<img src="/upload/profile/kyohaksa.jpg">
+						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=118">
+							<img src="/upload/profile/kyohaksa.jpg">
+						</a>
 					</div>
 					<!-- 	<div>
 						<p>추천 단어장 제목</p>
@@ -381,7 +383,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 				<div class="recommend-wordbook-list">
 					<div>
-						<img src="/upload/profile/miraen.jpg">
+						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=183">
+							<img src="/upload/profile/miraen.jpg">
+						</a>
 					</div>
 					<!-- 	<div>
 						<p>추천 단어장 제목</p>
@@ -395,7 +399,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 				<div class="recommend-wordbook-list">
 					<div>
-						<img src="/upload/profile/sinsago.jpg">
+						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=470">
+							<img src="/upload/profile/sinsago.jpg">
+						</a>
 					</div>
 					<!-- 	<div>
 						<p>추천 단어장 제목</p>
@@ -409,7 +415,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 				<div class="recommend-wordbook-list">
 					<div>
-						<img src="/upload/profile/neungryul.jpg">
+						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=635">
+							<img src="/upload/profile/neungryul.jpg">
+						</a>
 					</div>
 					<!-- 	<div>
 						<p>추천 단어장 제목</p>
