@@ -1956,6 +1956,7 @@ p.flashcard-font {
 			gamename = flashGameName;
 			userScore = flashGameScore;
 			flashEnd();
+			
 		}
 	}
 	
