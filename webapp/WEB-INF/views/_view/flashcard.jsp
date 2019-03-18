@@ -1454,7 +1454,7 @@ p.flashcard-font {
 					if (pairNow == pairFinishList.length
 							&& roopNo == pairNowSituation + 1) {
 						gamename = pairGameName;
-						console.log(gamename);
+						pairGameEnd();
 						userScore = pairScore;
 						$("#pairSetGameModal").modal("hide");
 						theendlist(gamename);
