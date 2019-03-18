@@ -127,22 +127,31 @@ to {
     animation-name: slidein;
     position: relative;
     z-index: 2;
+    background-color: cornsilk;
 }
 
 .pairSetGameWordBox {
 	width: 100%;
-	height: 100%;
-	float: left;
-	border: 1px solid;
-	overflow: hidden;
+    height: 100%;
+    float: left;
+    border: 1px solid;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .pairSetGameMeanBox {
 	width: 100%;
-	height: 100%;
-	float: left;
-	border: 1px solid;
-	overflow: hidden;
+    height: 100%;
+    float: left;
+    border: 1px solid;
+    border-top-left-radius: 10px;
+    overflow: hidden;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .choiceblock {
@@ -397,21 +406,21 @@ p.flashcard-font {
 }
 
 .quiz-OX {
-	width: 100%;
-	height: 300px;
-	border: solid;
-	float: left;
-	padding: 10px;
-	padding-top: 15px;
-	margin-top: 10px;
-	text-align: center;
+    width: 100%;
+    height: 175px;
+    border: solid;
+    float: left;
+    padding: 10px;
+    padding-top: 15px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .quiz-question {
 	width: 100%;
 	heigth: 70%;
 	font-size: 50px;
-	padding-top: 90px;
+	padding-top: 30px;
 }
 
 .check-mark {
@@ -441,11 +450,12 @@ p.flashcard-font {
 
 .correct-mark {
 	width: 30%;
-	margin-bottom: 15px;
-	min-width: 150px;
-	max-width: 230px;
-	position: absolute;
-	margin-left: -115px;
+    margin-bottom: 15px;
+    min-width: 150px;
+    max-width: 150px;
+    position: absolute;
+    margin-left: -75px;
+    margin-top: -5px;
 }
 
 #ansCheck01 {
@@ -653,6 +663,9 @@ p.flashcard-font {
     z-index: 1;
     text-align: left; !important
 }
+.modal-size-controller{
+	height: 75%;
+}
 </style>
 
 </head>
@@ -763,7 +776,8 @@ p.flashcard-font {
 							</div>
 						</div>
 					</div>
-						<div class="modal-body">
+						<div class="modal-body modal-size-controller">
+						 
 							<div class="quiz-header">다음의 보기에서 알맞은 정답을 선택하세요.</div>
 							<!-- 문제 나오고 , 정답 체크 하는 곳 -->
 							<div class="quiz-OX">
@@ -806,11 +820,8 @@ p.flashcard-font {
 						</div>
 						<div class="modal-footer">
 							<a data-toggle="modal" data-target="#myModal2" id="modalClick"></a>
-
-							<!-- <button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save
-								changes</button> -->
+							 <button type="button" class="btn btn-default" id="random-exit"
+								data-dismiss="modal">나가기</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
