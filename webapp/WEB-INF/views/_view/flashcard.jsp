@@ -1824,8 +1824,13 @@ p.flashcard-font {
 		//게임점수 업데이트			//미완성
 		var sessionId = "${sessionScope.id}";
 		var wordbookNo = "${flashcardVo.wordbookNo}";
+		
+		console.log(flashGameScore);
+		console.log(wordbookNo);
+		console.log(flashGameName);
+		console.log(sessionId);
 		//모달 숨기고 새로고침
-		if (sessionId != "" && nowSituation == 1) {
+		if (sessionId != "") {
 			$
 					.ajax({
 						url : "${pageContext.request.contextPath}/${URLId}/flashscoreupdate",
@@ -1840,7 +1845,7 @@ p.flashcard-font {
 						dataType : "html",
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
-								
+							console.log("플래시카드 성공");
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
