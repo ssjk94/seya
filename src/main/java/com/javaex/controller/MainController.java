@@ -20,7 +20,7 @@ public class MainController {
 		if (device.isMobile()) {
 			return "mobile/m_main";
 		} else {
-			return "main/index";
+			return "main/seyamain";
 		}
 	}
 
