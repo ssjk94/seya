@@ -102,6 +102,9 @@
 .main-header .navbar-custom-menu {
 	margin-right: 22px;
 }
+.p-block-make{
+	display: block;
+}
 
 </style>
 
@@ -174,7 +177,7 @@
 								src="/upload/profile/${sessionScope.userImage}"
 								class="img-circle">
 
-								<p>
+								<p class="p-block-make">
 									${sessionScope.nickName} <small>${sessionScope.userContent}</small>
 								</p></li>
 						</c:if>
