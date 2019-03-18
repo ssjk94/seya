@@ -1341,15 +1341,18 @@ p.flashcard-font {
 			dataType : "json",
 			success : function(flashGameSource){
 			/*성공시 처리해야될 코드 작성*/
-				flashInitialization();
-				for(var i=0;i<flashGameSource.length;i++){
-					flashGameList.push(flashGameSource[i]);
+				if(flashGameSource.length==0){
+					alert("단어장에 단어가 없습니다.")
+				}else{
+					flashInitialization();
+					for(var i=0;i<flashGameSource.length;i++){
+						flashGameList.push(flashGameSource[i]);
+					}
+					timeController = false;
+					flashTimeStart(0);
+					flashStart();
+					flashSetting();
 				}
-				timeController = false;
-				flashTimeStart(0);
-				flashStart();
-				flashSetting();
-				
 			},
 			error : function(XHR, status, error) {
 				console.error(status+" : "+error);
