@@ -71,11 +71,11 @@
 	</style>
 </head>
 <body>
-	<div id="flashquizModal" class="modal fade">
+	<div id="flashquizModal" class="modal fade" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog flash-dialog">
 			<div class="modal-content flash-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
+					<button id="flash-X" type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -132,8 +132,7 @@
 						autocomplete="off" value="">
 				</div>
 				<div class="modal-footer">
-					<button id="flashExit" type="button" class="btn btn-default"
-						data-dismiss="modal">나가기</button>
+					<button id="flashExit" type="button" class="btn btn-default"> 나가기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->

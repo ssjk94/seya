@@ -731,11 +731,11 @@ p.flashcard-font {
 					</div>
 				</div>
 			</section>
-			<div class="modal fade" id="quizModal">
+			<div class="modal fade" id="quizModal" data-backdrop="static" data-keyboard="false">
 				<div class="modal-dialog pair-dialog">
 				    <div class="modal-content pair-content">
 				      <div class="modal-header pair-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <button id="random-X" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					    <!-- 설명이 들어갈 div -->
 						<div class="gameInfo">
 						<!-- GameTitle div -->
@@ -982,7 +982,7 @@ p.flashcard-font {
 	var listNumber= 1;
 	var sessionId = "${sessionScope.id}";
 	var gamename = "RandomQuiz";
-	var pairLife = 0;
+	var gameLife = 0;
 	//랜덤퀴즈 클릭할때
 	$("#randomQuiz").on("click", function() {
 	
@@ -1004,6 +1004,7 @@ p.flashcard-font {
 			dataType : "json",
 			success : function(data) {
 				/*성공시 처리해야될 코드 작성*/
+				timeController = false;
 				console.log("성공 : " + data);
 				
 				randomQuizList = data;
@@ -1014,7 +1015,7 @@ p.flashcard-font {
 				//리스트 마지막 번호
 				$(".last-game-number").text(randomQuizList.length + " )");
 				//
-				pairLifeInitialization();
+				gameLifeInitialization();
 				crtRandomNo = -1;
 				randomQuizPrint();
 			},
@@ -1127,7 +1128,7 @@ p.flashcard-font {
 				//라이프 업데이트
 				pairLife++;
 				console.log("업데이트 했는지 페어라이프 : " +pairLife);
-				$("#gameLife" + pairLife).attr("src", "/upload/profile/heart2.gif");
+				$("#gameLife" + gameLife).attr("src", "/upload/profile/heart2.gif");
 				
 				//리스트 번호 올리기..
 				listNumber = listNumber + 1;
@@ -1229,6 +1230,10 @@ p.flashcard-font {
 			}); // /ajax	
 	}
 	
+	$("#random-X").on("click",function(){
+		timeController = true;
+	});
+	
 	//randomquiz 게임 끝나고 저장
 	function randomQuizGameEnd(gamename) {
 		var sessionId = "${sessionScope.id}";
@@ -1283,6 +1288,19 @@ p.flashcard-font {
 			});
 		};//if
 	
+		//랜덤게임 목숨관리 메소드
+	function gameLifeInitialization() {
+		gameLife = 0;
+		for (var i = 1; i < 4; i++) {
+			$("#gameLife" + i).attr("src", "/dist/images/heart.png");
+		}
+	}
+	function gameLifeUpdate() {
+		gameLife++;
+		console.log("업데이트 했는지 게임라이프 : " +pairLife);
+		$("#gameLife" + gameLife).attr("src", "/dist/images/heart2.gif");
+	}
+		
 	
 	
 	//현재 에이잭스는 활성화 상태 by세윤
@@ -1302,9 +1320,11 @@ p.flashcard-font {
 				for(var i=0;i<flashGameSource.length;i++){
 					flashGameList.push(flashGameSource[i]);
 				}
+				timeController = false;
 				flashTimeStart(0);
 				flashStart();
 				flashSetting();
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status+" : "+error);
@@ -1327,6 +1347,7 @@ p.flashcard-font {
 			dataType : "json",
 			success : function(pairGameSource){
 				/*성공시 처리해야될 코드 작성*/ //리스트 반환할것
+				timeController = false;
 				pairFinishList = pairGameSource[0];
 				pairRandomList = pairGameSource[1];
 				pairNow=0;
@@ -1510,6 +1531,8 @@ p.flashcard-font {
 			$("#pairLife" + i).attr("src", "/dist/images/heart.png");
 		}
 	}
+	
+	
 	//게임제목을 위한 메소드
 	function pairNameUpdate() {
 		$("#gameName").find("b").text(pairGameName);
@@ -1607,10 +1630,13 @@ p.flashcard-font {
 	$("#pairExit").on("click", function() {
 		pairGameEnd();
 		theendlist(pairGameName);
-		
 	});
+	$("#pair-X").on("click",funtion(){
+		timeController = true;
+	})
 	//게임 끝나 저장하는 함수
 	function pairGameEnd() {
+		timeController = true;
 		var sessionId = "${sessionScope.id}";
 		setTimeout(function() {
 			clickEventNone();
@@ -1703,6 +1729,8 @@ p.flashcard-font {
 	var nowSituation = 0; //현재 진행단계를 표현하기위한 변수
 	var userScore = 0;
 	var gamename ="";
+	
+	var timeController = false; // 타임 조정함수
 
 	//정답 체크하는 문장
 	$('#flashSubmit')
@@ -1821,7 +1849,7 @@ p.flashcard-font {
 	}
 	//게임이 끝났을때 실행하는 함수
 	function flashEnd() {
-		//게임점수 업데이트			//미완성
+		timeController=true;
 		var sessionId = "${sessionScope.id}";
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 		
@@ -1884,7 +1912,11 @@ p.flashcard-font {
 		;//if
 	}
 	$("#flashExit").on("click", function() {
+		timeController = true;
 		flashEnd();
+	});
+	$("#flash-X").on("click",function(){
+		timeController = true;
 	});
 </script>
 
@@ -1895,7 +1927,11 @@ p.flashcard-font {
 		location.reload();
 	}
 	function pairTimeStart(counter) {
-
+		
+		if(timeController){
+			counter = 102;
+		};
+		
 		if (counter < 101) {
 
 			setTimeout(function() {
@@ -1908,6 +1944,8 @@ p.flashcard-font {
 
 			}, 600);
 
+		}else if(counter == 102){
+			console.log("x로 인한종료");
 		}else{
 			//끝나는 문장
 			pairGameEnd();
@@ -1921,6 +1959,9 @@ p.flashcard-font {
 	
 	function randomTimeStart(counter) {
 		
+		if(timeController){
+			counter = 102;
+		};
 
 		if (counter < 101) {
 
@@ -1934,7 +1975,9 @@ p.flashcard-font {
 
 			}, 600);
 
-		}else{
+		}else if(counter == 102){
+			console.log("x로 인한종료");
+		}else{			
 			//끝나는 문장
 			$('#quizModal').modal('hide');
 			gamename = 'RandomQuiz';
@@ -1943,7 +1986,9 @@ p.flashcard-font {
 	}
 	
 	function flashTimeStart(counter) {
-
+		if(timeController){
+			counter = 102;
+		};
 		if (counter < 101) {
 
 			setTimeout(function() {
@@ -1951,17 +1996,17 @@ p.flashcard-font {
 				counter++;
 				
 				$(".progress-bar").css("width",counter+"%");
-
+				
 				flashTimeStart(counter);
-
 			}, 600);
 
+		}else if(counter==102){
+			console.log("x로 인한종료");
 		}else{
 			//끝나는 문장
 			gamename = flashGameName;
 			userScore = flashGameScore;
-			flashEnd();
-			
+			flashEnd();			
 		}
 	}
 	
