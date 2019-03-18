@@ -49,7 +49,10 @@ h3.gaeyeya {
 .sidebar-menu li:hover .direcupdate{
 	visibility: visible;
 }
-
+.circle-size{
+	width:100px;
+	height: 100px;
+}
 
 </style>
 
@@ -62,7 +65,7 @@ h3.gaeyeya {
 		<!-- Sidebar user panel (optional) -->
 		<div class="box box-primary">
 			<div class="box-body box-profile">
-				<img class="profile-user-img img-responsive img-circle"
+				<img class="profile-user-img img-responsive img-circle circle-size"
 					src="/upload/profile/${urlPathVo.userImage}"
 					alt="User profile picture">
 
