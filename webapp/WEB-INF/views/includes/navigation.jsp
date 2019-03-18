@@ -53,7 +53,16 @@ h3.gaeyeya {
 	width:100px;
 	height: 100px;
 }
-
+.navDirecScroll{
+	overflow-y:scroll; 
+	width: 247px;
+    height: 670px;
+}    
+.direcView{
+	width: 230px;
+    height: 670px;
+    overflow: hidden;
+}
 </style>
 
 <!-- Left side column. contains the logo and sidebar -->
@@ -74,63 +83,67 @@ h3.gaeyeya {
 			</div>
 			<!-- /.box-body -->
 			<!-- 전체 단어장 보여줄꺼 -->
-			<ul class="sidebar-menu" data-widget="tree">
-				<li class="header"><c:choose>
-						<c:when test="${sessionScope.id eq URLId}">
-							<form action="${pageContext.request.contextPath}/${URLId}"
-								method="get">
-								<button type="submit"
-									style="background-color: transparent; border: 0px transparent solid">
-									<span>전체 단어장</span>
-								</button>
-							</form>
-							<span class="glyphicon glyphicon-plus direcIcon direcinsert" aria-hidden="true"></span> 
-						</c:when>
-						<c:otherwise>
-							<form action="${pageContext.request.contextPath}/${URLId}"
-								method="get">
-								<button type="submit"
-									style="background-color: transparent; border: 0px transparent solid">
-									<span>전체 단어장</span>
-								</button>
-							</form>
-						</c:otherwise>
-					</c:choose></li>
-			</ul>
-
-			<ul class="sidebar-menu" data-widget="tree">
-				<!-- Sidebar Menu -->
-				<c:forEach items="${requestScope.directoryList}" var="wordbookVo">
-					<li class="header">
-						<!-- 디렉토리 번호를 넘기려고함 --> <c:choose>
-							<c:when test="${sessionScope.id eq URLId}">
-								<form action="${pageContext.request.contextPath}/${URLId}"
-									method="get">
-									<input name="directoryNo" type="hidden"
-										value="${wordbookVo.directoryNo}">
-									<button type="submit"
-										style="background-color: transparent; border: 0px transparent solid">
-										<span>${wordbookVo.directoryName}</span>
-									</button>
-								</form>
-								<span class="glyphicon glyphicon-remove direcIcon direcdelete" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-pencil direcIcon direcupdate" aria-hidden="true"></span>
-							</c:when>
-							<c:otherwise>
-								<form action="${pageContext.request.contextPath}/${URLId}"
-									method="get">
-									<input name="directoryNo" type="hidden"
-										value="${wordbookVo.directoryNo}">
-									<button type="submit"
-										style="background-color: transparent; border: 0px transparent solid">
-										<span>${wordbookVo.directoryName}</span>
-									</button>
-								</form>
-							</c:otherwise>
-						</c:choose>
-					</li>
-				</c:forEach>
-			</ul>
+			<div class="direcView">
+				<div class="navDirecScroll">
+					<ul class="sidebar-menu" data-widget="tree">
+						<li class="header"><c:choose>
+								<c:when test="${sessionScope.id eq URLId}">
+									<form action="${pageContext.request.contextPath}/${URLId}"
+										method="get">
+										<button type="submit"
+											style="background-color: transparent; border: 0px transparent solid">
+											<span>전체 단어장</span>
+										</button>
+									</form>
+									<span class="glyphicon glyphicon-plus direcIcon direcinsert" aria-hidden="true"></span> 
+								</c:when>
+								<c:otherwise>
+									<form action="${pageContext.request.contextPath}/${URLId}"
+										method="get">
+										<button type="submit"
+											style="background-color: transparent; border: 0px transparent solid">
+											<span>전체 단어장</span>
+										</button>
+									</form>
+								</c:otherwise>
+							</c:choose></li>
+					</ul>
+		
+					<ul class="sidebar-menu" data-widget="tree">
+						<!-- Sidebar Menu -->
+						<c:forEach items="${requestScope.directoryList}" var="wordbookVo">
+							<li class="header">
+								<!-- 디렉토리 번호를 넘기려고함 --> <c:choose>
+									<c:when test="${sessionScope.id eq URLId}">
+										<form action="${pageContext.request.contextPath}/${URLId}"
+											method="get">
+											<input name="directoryNo" type="hidden"
+												value="${wordbookVo.directoryNo}">
+											<button type="submit"
+												style="background-color: transparent; border: 0px transparent solid">
+												<span>${wordbookVo.directoryName}</span>
+											</button>
+										</form>
+										<span class="glyphicon glyphicon-remove direcIcon direcdelete" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-pencil direcIcon direcupdate" aria-hidden="true"></span>
+									</c:when>
+									<c:otherwise>
+										<form action="${pageContext.request.contextPath}/${URLId}"
+											method="get">
+											<input name="directoryNo" type="hidden"
+												value="${wordbookVo.directoryNo}">
+											<button type="submit"
+												style="background-color: transparent; border: 0px transparent solid">
+												<span>${wordbookVo.directoryName}</span>
+											</button>
+										</form>
+									</c:otherwise>
+								</c:choose>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<!-- 다녀간사람 목록 띄우기 -->
 	</section>
