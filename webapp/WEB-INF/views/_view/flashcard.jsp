@@ -979,6 +979,7 @@ p.flashcard-font {
 	var incorrectWord;
 	var incorrectMean;
 	var userScore = 0;
+	var randomGameScore=0;
 	var listNumber= 1;
 	var sessionId = "${sessionScope.id}";
 	var gamename = "RandomQuiz";
@@ -990,7 +991,7 @@ p.flashcard-font {
 		console.log(sessionId);
 		
 		$(".find-game-name").text("RandomQuiz");
-		$(".find-game-score").text(userScore);
+		$(".find-game-score").text(0);
 		
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 
@@ -1018,6 +1019,7 @@ p.flashcard-font {
 				gameLifeInitialization();
 				crtRandomNo = -1;
 				randomQuizPrint();
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -1082,8 +1084,8 @@ p.flashcard-font {
 					"/upload/profile/circle-mark01.png");
 			//문제에 O, X 체크
 			$(".correct-mark").attr("src", "/upload/profile/correct-mark01.png");
-			userScore = userScore + 50;
-			$(".find-game-score").text(userScore);
+			randomGameScore = randomGameScore + 50;
+			$(".find-game-score").text(randomGameScore);
 			
 			//리스트 번호 올리기..
 			listNumber = listNumber + 1;
@@ -1109,13 +1111,15 @@ p.flashcard-font {
 			if (pairLife == 3) {
 			//라이프 초과하여 게임이 끝남
 				setTimeout(function() {
+					userScore = randomGameScore;
 					gamename = "RandomQuiz";
 					randomQuizGameEnd(gamename);
+					
 				}, 400);
 			} else {
-				userScore = userScore - 30;
+				randomGameScore = randomGameScore - 30;
 				//유저점수 확인
-				$(".find-game-score").text(userScore);
+				$(".find-game-score").text(randomGameScore);
 				
 				//틀린단어, 뜻 넣기
 				incorrectWord = (randomQuizList[crtRandomNo].question);
@@ -1151,6 +1155,7 @@ p.flashcard-font {
 			$(".correct-mark").attr("src", "");
 			console.log("다끝났습니다.");
 			gamename = "RandomQuiz";
+			userScore = randomGameScore;
 			console.log("확인용 확인 : gamename = " + gamename);
 			var resultSize = crtRandomNo;
 			randomQuizGameEnd(gamename);
@@ -1229,10 +1234,15 @@ p.flashcard-font {
 	$("#random-X").on("click",function(){
 		timeController = true;
 	});
+	$("#random-exit").on("click",function(){
+		randomQuizGameEnd(gamename);
+	});
 	
 	//randomquiz 게임 끝나고 저장
 	function randomQuizGameEnd(gamename) {
 		var sessionId = "${sessionScope.id}";
+		timeController = true;
+		console.log("유저스코어 저장시에 왔는지 ? : " +userScore);
 		if (sessionId != "" ) {
 			//url 바꾸어야합니다.
 			var wordbookNo = "${flashcardVo.wordbookNo}";
@@ -1352,6 +1362,7 @@ p.flashcard-font {
 				pairRandomList = pairGameSource[1];
 				pairNow=0;
 				pairScore = 0;
+				pairFeverGo = 0;
 				pairHiddenSetting();
 				pairSetting();
 				pairScoreUpdate();
@@ -1666,8 +1677,8 @@ p.flashcard-font {
 					});
 		} //if문
 		else{
-			theendlist(pairGameName);
 			$("#pairSetGameModal").modal("hide");	
+			theendlist(pairGameName);
 		}
 	}
 	function pairGameWrong() {
