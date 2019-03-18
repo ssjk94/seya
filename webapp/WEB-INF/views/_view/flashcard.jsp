@@ -1879,7 +1879,10 @@ p.flashcard-font {
 						}
 					});
 		} //if문
-		
+		else{
+			$("#flashquizModal").modal("hide");
+			theendlist(gamename);
+		}
 	}
 	function flashWrong(flashWord, flashMean) {
 		//틀렸을때 단어 업데이트 	//미완성
