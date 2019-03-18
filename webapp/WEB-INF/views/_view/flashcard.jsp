@@ -1008,6 +1008,7 @@ p.flashcard-font {
 				
 				randomQuizList = data;
 				randomQuizList.length;
+				randomTimeStart(0);
 				//리스트 첫번째 번호
 				$(".present-game-number").text("( 1 / ");
 				//리스트 마지막 번호
@@ -1301,6 +1302,7 @@ p.flashcard-font {
 				for(var i=0;i<flashGameSource.length;i++){
 					flashGameList.push(flashGameSource[i]);
 				}
+				flashTimeStart(0);
 				flashStart();
 				flashSetting();
 			},
@@ -1334,6 +1336,8 @@ p.flashcard-font {
 				pairScoreUpdate();
 				pairNameUpdate();
 				pairLifeInitialization();
+				pairTimeStart(0);
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status+" : "+error);
@@ -1885,5 +1889,75 @@ p.flashcard-font {
 	function refreshMemList() {
 		location.reload();
 	}
+	function pairTimeStart(counter) {
+
+		if (counter < 101) {
+
+			setTimeout(function() {
+
+				counter++;
+				
+				$(".progress-bar").css("width",counter+"%");
+
+				pairTimeStart(counter);
+
+			}, 600);
+
+		}else{
+			//끝나는 문장
+			pairGameEnd();
+			gamename = pairGameName;
+			console.log(gamename);
+			userScore = pairScore;
+			$("#pairSetGameModal").modal("hide");
+			theendlist(gamename);
+		}
+	}
+	
+	function randomTimeStart(counter) {
+		
+
+		if (counter < 101) {
+
+			setTimeout(function() {
+
+				counter++;
+				
+				$(".progress-bar").css("width",counter+"%");
+
+				randomTimeStart(counter);
+
+			}, 600);
+
+		}else{
+			//끝나는 문장
+			$('#quizModal').modal('hide');
+			gamename = 'RandomQuiz';
+			theendlist(gamename);
+		}
+	}
+	
+	function flashTimeStart(counter) {
+
+		if (counter < 101) {
+
+			setTimeout(function() {
+
+				counter++;
+				
+				$(".progress-bar").css("width",counter+"%");
+
+				flashTimeStart(counter);
+
+			}, 600);
+
+		}else{
+			//끝나는 문장
+			gamename = flashGameName;
+			userScore = flashGameScore;
+			flashEnd();
+		}
+	}
+	
 </script>
 </html>

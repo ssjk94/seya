@@ -47,23 +47,7 @@ function time(){
 }
 
 
-	function start(counter) {
-
-		if (counter < 101) {
-
-			setTimeout(function() {
-
-				counter++;
-				
-				$(".progress-bar").css("width",counter+"%");
-
-				start(counter);
-
-			}, 600);
-
-		}
-
-	}
+	
 </script>
 
 </html>
