@@ -10,6 +10,8 @@
 			width: 1100px;
 			height: 820px;
 			margin-left: 10%;
+			margin-right: 10%;
+			display: inline-block;
 		}
 		
 		.flash-content {

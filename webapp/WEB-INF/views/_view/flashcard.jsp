@@ -1382,8 +1382,8 @@ p.flashcard-font {
 							gamename = pairGameName;
 							console.log(gamename);
 							userScore = pairScore;
+							$("#pairSetGameModal").modal("hide");
 							theendlist(gamename);
-							
 						}
 						//라이프 초과하여 게임이 끝남
 						//목숨
@@ -1405,6 +1405,7 @@ p.flashcard-font {
 						gamename = pairGameName;
 						console.log(gamename);
 						userScore = pairScore;
+						$("#pairSetGameModal").modal("hide");
 						theendlist(gamename);
 					}
 					;
@@ -1727,13 +1728,14 @@ p.flashcard-font {
 									gamename = flashGameName;
 									console.log(gamename);
 									userScore = flashGameScore;
+									$("#flashQuiz").modal("hide");
 									theendlist(gamename);
-									flashEnd();
+									//flashEnd();
 								} else {
 									situationUpdate();
 									flashLifeUpdate();
 									clearText();
-									flashStart();
+									//flashStart();
 								}
 							}//오답
 						}//정답체크 부분
@@ -1778,7 +1780,7 @@ p.flashcard-font {
 		var sessionId = "${sessionScope.id}";
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 		//모달 숨기고 새로고침
-		if (sessionId != "" && nowSituation != 1) {
+		if (sessionId != "" && nowSituation == 1) {
 			$
 					.ajax({
 						url : "${pageContext.request.contextPath}/${URLId}/flashscoreupdate",
@@ -1798,7 +1800,7 @@ p.flashcard-font {
 							console.log("gameend : + " + gamename);
 							userScore = flashGameScore;
 							theendlist(gamename);
-							$("#flashQuiz").modal("hide");
+							
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
@@ -1835,7 +1837,7 @@ p.flashcard-font {
 		;//if
 	}
 	$("#flashExit").on("click", function() {
-		gameEnd();
+		flashEnd();
 	});
 </script>
 
