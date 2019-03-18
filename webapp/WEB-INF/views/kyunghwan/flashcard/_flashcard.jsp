@@ -82,7 +82,7 @@
 }
 
 #mean {
-	font-size: 30px;
+	font-size: 40px;
 	margin-top: 180px;
 }
 
