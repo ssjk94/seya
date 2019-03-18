@@ -1110,7 +1110,7 @@ p.flashcard-font {
 			//라이프 초과하여 게임이 끝남
 				setTimeout(function() {
 					gamename = "RandomQuiz";
-					theendlist(gamename);
+					randomQuizGameEnd(gamename);
 				}, 400);
 			} else {
 				userScore = userScore - 30;
@@ -1151,13 +1151,9 @@ p.flashcard-font {
 			$(".correct-mark").attr("src", "");
 			console.log("다끝났습니다.");
 			gamename = "RandomQuiz";
-			randomQuizGameEnd(gamename);
 			console.log("확인용 확인 : gamename = " + gamename);
 			var resultSize = crtRandomNo;
-	
-			$('#quizModal').modal('hide');
-			console.log(gamename);
-			theendlist(gamename);
+			randomQuizGameEnd(gamename);
 		}
 		//마지막이 아니면
 		else {
@@ -1237,7 +1233,7 @@ p.flashcard-font {
 	//randomquiz 게임 끝나고 저장
 	function randomQuizGameEnd(gamename) {
 		var sessionId = "${sessionScope.id}";
-		if (sessionId != "" && userScore != 0) {
+		if (sessionId != "" ) {
 			//url 바꾸어야합니다.
 			var wordbookNo = "${flashcardVo.wordbookNo}";
 			$.ajax({
@@ -1254,13 +1250,18 @@ p.flashcard-font {
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
 							console.log("랜덤퀴즈게임 인서트");
+							$('#quizModal').modal('hide');
+							theendlist(gamename);
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
 						}
 					});
 		} //if문
-
+		else{
+			$('#quizModal').modal('hide');
+			theendlist(gamename);
+		}
 	}
 	
 	//랜덤게임 틀린단어
@@ -1973,9 +1974,8 @@ p.flashcard-font {
 			console.log("x로 인한종료");
 		}else{			
 			//끝나는 문장
-			$('#quizModal').modal('hide');
 			gamename = 'RandomQuiz';
-			theendlist(gamename);
+			randomQuizGameEnd(gamename);
 		}
 	}
 	
