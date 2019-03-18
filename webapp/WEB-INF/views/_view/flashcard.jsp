@@ -1380,7 +1380,7 @@ p.flashcard-font {
 			dataType : "json",
 			success : function(pairGameSource){
 				/*성공시 처리해야될 코드 작성*/ //리스트 반환할것
-				if(pairGameSource[0].length==0){
+				if(!pairGameSource.length){
 					alert("단어장에 단어가 없습니다.");
 					$("#pairSetGameModal").modal("hide");
 				}else{					
