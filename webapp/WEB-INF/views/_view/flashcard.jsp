@@ -1317,8 +1317,8 @@ p.flashcard-font {
 					console.error(status + " : " + error);
 				}
 			});
-	};//if
-	
+		};//if
+	};
 		//랜덤게임 목숨관리 메소드
 	function gameLifeInitialization() {
 		gameLife = 0;
@@ -1365,9 +1365,6 @@ p.flashcard-font {
 				console.error(status+" : "+error);
 			}
 		});
-		
-		
-		
 	});
 		
 	$("#pairSetGame").on("click", function(){
@@ -1407,6 +1404,7 @@ p.flashcard-font {
 			}
 		});
 	});
+	
 </script>
 
 
