@@ -24,7 +24,7 @@ public class FlashcardController {
 
 	@Autowired
 	FlashcardService flashcardService;
-
+	
 	@RequestMapping(value = "{URLId}/flashcard", method = RequestMethod.GET)
 	public String flashcard(URLPathVo urlPathVo, FlashcardVo flashcardVo, HeaderSearchVo headerSearchVo, QuizVo quizVo,
 			Model md, Random random, Device device) {
