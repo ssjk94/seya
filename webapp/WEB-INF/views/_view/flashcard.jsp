@@ -1310,7 +1310,7 @@ p.flashcard-font {
 				dataType : "html",
 				success : function() {						
 					/*성공시 처리해야될 코드 작성*/
-				}
+				
 				console.log("틀린단어 ajax");
 				},
 				error : function(XHR, status, error) {
