@@ -335,7 +335,6 @@ p#mean {
 
 .quiz-header {
 	width: 100%;
-	height: 100%;
 	font-size: 12px;
 	border: solid 2px;
 	padding: 10px;
@@ -344,14 +343,13 @@ p#mean {
 
 .quiz-answer {
 	width: 100%;
-	height: 70px;
+	height:13%;
 	font-size: 16px;
 	margin-top: 10px;
 	float: right;
-	padding: 10px;
 	text-align: center;
 	border: solid;
-	padding-top: 20px;
+	padding-top: 3%;
 }
 
 .quiz-OX {
@@ -360,7 +358,6 @@ p#mean {
 	border: solid;
 	float: left;
 	padding: 10px;
-	padding-top: 15px;
 	margin-top: 10px;
 	text-align: center;
 }
@@ -369,7 +366,6 @@ p#mean {
 	width: 100%;
 	heigth: 70%;
 	font-size: 50px;
-	padding-top: 30px;
 }
 
 .check-mark {
@@ -644,7 +640,7 @@ p#mean {
 }
 
 .modal-size-controller {
-	height: 75%;
+	height: 62%;
 }
 
 .flashcard-image {
@@ -695,6 +691,7 @@ p#mean {
 	width: 40%;
 	float: left;
 	margin-left: 4%;
+	height: 100%;
 }
 .clearBox:nth-child(2){
 	margin-left: 10%;
@@ -720,6 +717,9 @@ p#mean {
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    text-align: center;
+    display: table;
+    background: cornsilk;
 }
 .pairSetGameMeanBox{
 	width: 100%;
@@ -731,6 +731,28 @@ p#mean {
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    text-align: center;
+    display: table;
+    background: cornsilk;
+}
+.pairSetGameWordBox > span{
+	display: table-cell;
+    vertical-align: middle;
+}
+.pairSetGameMeanBox > span{
+	display: table-cell;
+    vertical-align: middle;
+}
+.click{
+	height: 20%;
+	margin: 11% 0 11% 0;
+}
+.choiceblock {
+	color: darkcyan;
+	font-weight: bold;
+}
+.random-quiz-OX{
+	height: 25%;
 }
 </style>
 </head>
@@ -862,7 +884,7 @@ p#mean {
 							id="flashSubmit" autocomplete="off" value="">
 					</div>
 					<div class="modal-footer">
-						<button id="flashExit" type="button" class="btn btn-default">
+						<button id="flashExit" type="button" class="btn btn-primary">
 							나가기</button>
 					</div>
 				</div>
@@ -925,7 +947,7 @@ p#mean {
 						</div>
 					</div>
 					<div class="modal-body pair-body">
-						<!--	숨기기  
+						 <!-- 이미지 
 						<img class="pair-img-size m-pair-img-size"
 							src="/upload/profile/background-pairgame.png">
 						-->
@@ -1018,10 +1040,12 @@ p#mean {
 								<b class="find-game-name">제발좀요</b>
 							</div>
 							<!-- Score div -->
-							<div class="pull-left">
+							<div class="pull-right">
 								<p>점수 : &nbsp;&nbsp;</p>
 								<b class="find-game-score"></b>점
 							</div>
+						</div>
+						<div class="gameInfo">
 							<!-- nowSituation div -->
 							<div class="pull-left">
 								<p>현재상황 : &nbsp;&nbsp;</p>
@@ -1053,7 +1077,7 @@ p#mean {
 
 						<div class="quiz-header">다음의 보기에서 알맞은 정답을 선택하세요.</div>
 						<!-- 문제 나오고 , 정답 체크 하는 곳 -->
-						<div class="quiz-OX">
+						<div class="random-quiz-OX quiz-OX">
 							<img class="correct-mark" src="">
 							<!-- <img class="correct-mark" src="/upload/profile/correct-mark01.png">
 								<p>정답입니다.</p> -->
@@ -1093,7 +1117,7 @@ p#mean {
 					</div>
 					<div class="modal-footer">
 						<a data-toggle="modal" data-target="#myModal2" id="modalClick"></a>
-						<button type="button" class="btn btn-default" id="random-exit"
+						<button type="button" class="btn btn-primary" id="random-exit"
 							data-dismiss="modal">나가기</button>
 					</div>
 				</div>
@@ -1818,7 +1842,7 @@ p#mean {
 							gamename = pairGameName;
 							console.log(gamename);
 							userScore = pairScore;
-							//pairGameEnd();
+							pairGameEnd();
 						}
 						//라이프 초과하여 게임이 끝남
 						//목숨
@@ -1838,7 +1862,7 @@ p#mean {
 					if (pairNow == pairFinishList.length
 							&& roopNo == pairNowSituation + 1) {
 						userScore = pairScore;
-						//pairGameEnd();
+						pairGameEnd();
 					}
 					;
 				}
@@ -2009,7 +2033,7 @@ p#mean {
 	//나가기버튼
 	$("#pairExit").on("click", function() {
 		userScore = pairScore;
-		//pairGameEnd();
+		pairGameEnd();
 
 	});
 	$("#pair-X").on("click", function() {
@@ -2333,7 +2357,7 @@ p#mean {
 		} else {
 			//끝나는 문장
 			userScore = pairScore;
-			//pairGameEnd();
+			pairGameEnd();
 		}
 	}
 
