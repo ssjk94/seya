@@ -43,7 +43,7 @@
 		}
 		
 		.flashInfo .pull-left {
-			margin-right: 50px;
+			margin-right: 30px;
 		}
 		
 		.flashInfo .pull-right {
