@@ -53,7 +53,7 @@ public class VocabularyListService {
 			
 
 		//배열 길이만큼 워드네임 삽입
-		for(int i =0;i<wordArr.length;i++) {
+		for(int i =wordArr.length-1;i>=0;i--) {
 			vocabularyListVo.setWordName(wordArr[i]);	
 			for(int j=0;j<seyaList.size();j++) {
 				// 대소문자 맞추기
