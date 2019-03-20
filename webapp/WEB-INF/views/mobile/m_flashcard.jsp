@@ -100,7 +100,6 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     border: 1px solid transparent;
     border-radius: 4px;
     box-shadow: none;
-    margin-top: 3%;
 }
 
 .btn-block {
@@ -276,6 +275,7 @@ p#mean {
 .flash-dialog {
 	min-width: 80%;
 	min-height: 40%;
+	height: 97%;
 	display: block;
 }
 
@@ -316,16 +316,20 @@ p#mean {
 }
 
 .flash-body {
-	height: 75%;
+	height: 60%;
 }
 
 #flashDenote {
-	min-height: 100%;
+	height:50%;
+	max-height: 50%;
+	min-height: 50%;
 	display: table;
 }
 
 #flashSubmit {
 	background-color: ghostwhite;
+	height: 25%;
+	margin-top: 10%;
 }
 
 #quiz {
@@ -355,7 +359,6 @@ p#mean {
 
 .quiz-OX {
 	width: 100%;
-	height: 175px;
 	border: solid;
 	float: left;
 	padding: 10px;
@@ -704,9 +707,9 @@ p#mean {
 	height: 100%;
 }
 .pair-content {
-    height: 80%;
-    max-height: 80%;
-    min-height: 80%;
+    height: 97%;
+    max-height: 97%;
+    min-height: 97%;
 }
 .pair-body{
 	height: 60%;
@@ -757,6 +760,9 @@ p#mean {
 }
 .random-quiz-OX{
 	height: 25%;
+}
+#flashExit{
+	margin-top: 3%;
 }
 </style>
 </head>
