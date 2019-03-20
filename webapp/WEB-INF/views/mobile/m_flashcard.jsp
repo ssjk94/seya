@@ -369,6 +369,7 @@ p#mean {
 }
 
 .check-mark {
+    display: contents;
 	width: 50px;
 	height: 50px;
 	float: left;
