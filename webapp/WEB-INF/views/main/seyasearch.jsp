@@ -406,6 +406,9 @@ b, strong {
 	margin-left: 50px;
 	font-size: 20px;
 }
+.checkcheck{
+
+}
 </style>
 
 </head>
@@ -447,7 +450,7 @@ b, strong {
 				<!-- 검색결과  끝-->
 				<!-- 목록에서 단어장이름, 아이디를 뱉을곳 시작 -->
 				<c:forEach items="${list}" var="list">
-					<form action="${list.id}/vocabularylist" class="searchform">
+					<div class="searchform" data-wordbookno="${list.wordbookNo }" data-urlid="${list.id }">
 						<input type="hidden" name="${URLId}" value="${list.id }">
 						<input type="hidden" name="wordbookNo" value="${list.wordbookNo }">
 						<input type="hidden" name="wordbookName" value="${list.wordbookName}">
@@ -485,7 +488,7 @@ b, strong {
 								</div>
 							</div>
 						</div>
-					</form>
+					</div>
 				</c:forEach>
 				<!-- 목록에서 단어장이름, 아이디를 뱉을곳 끝 -->
 
@@ -509,8 +512,6 @@ b, strong {
 
 
 
-
-
 	<!-- REQUIRED JS SCRIPTS -->
 
 	<!-- jQuery 3 -->
@@ -528,8 +529,16 @@ b, strong {
      user experience. -->
 </body>
 <script type="text/javascript">
-	$('.search-result-list').click(function () {
-		$('.searchform').submit();
+	$(".searchform").on("click", function () {
+		var wordbookno = $(this).data("wordbookno");
+		var urlid = $(this).data("urlid");
+		
+		
+		console.log(wordbookno);
+		var httpStr="./"+urlid+"/vocabularylist?wordbookNo="+wordbookno;
+		console.log(httpStr);
+		$(location).attr('href', httpStr);
+
 	});
 		
 	$('#mainlogo').click(function() {
