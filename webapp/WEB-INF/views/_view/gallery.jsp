@@ -692,9 +692,9 @@ desired effect
 	
 	$(document).ready(function() {
 		var pageactive = "";
-			for(var i=2;i<7;i++){
-				pageactive = pageactive+$(".pagination").find("li:nth-child("+i+")").find("a").text()+",";
-			}
+		for(var i=2;i<7;i++){
+			pageactive = pageactive+$(".pagination").find("li:nth-child("+i+")").find("a").text()+",";
+		}
 		console.log("페이지네이션"+pageactive);
 		var pageActiveArr=pageactive.split(",");
 		var nowPageIndex=pageActiveArr.indexOf("${pagingVo.index}") + 2;
