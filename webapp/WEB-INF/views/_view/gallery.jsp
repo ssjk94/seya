@@ -340,11 +340,11 @@ p{
 	padding: 3px 5px 3px 6px;
 	clear: both;
 }
-.infowordbook img{
-	width: 40px;
-	height: 30px;
-	margin-top: 5px;
-	
+.infowordbook img {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 .infowordbook b{
 	font-size: 13px;

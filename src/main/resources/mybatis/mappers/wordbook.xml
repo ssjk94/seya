@@ -112,7 +112,7 @@
 					  from 			directory d, users u
 					  where 		u.id = #{id}
 					  and  			d.userno = u.userno
-					  order by 		d.directoryno asc)
+					  order by 		d.directoryno desc)
 		where 	rownum=1
 	</select>
 	<select id="selectVocabularyInfo" resultType="com.javaex.vo.VocabularyListVo" parameterType="com.javaex.vo.URLPathVo">

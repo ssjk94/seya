@@ -45,13 +45,15 @@
 	<select id="selectSearch" resultType="com.javaex.vo.HeaderSearchVo"
 		parameterType="com.javaex.vo.HeaderSearchVo">
 		<![CDATA[
-			 select distinct u.nickname, wb.wordbookname, u.userimage, wb.wordbookno, u.id
-					    from 		users u, directory d, wordbook wb, word w
-					    where		u.userno = d.userno
-					    and 		d.directoryno = wb.directoryno
-					    and 		wb.wordbookaccess = 0
-					    and 		wb.wordbookname like '%'||#{keyword}||'%'
-					    order by 	wb.wordbookname asc
+			 select distinct nickname, wordbookname, userimage, wordbookno, id
+	from (select distinct u.nickname, wb.wordbookname, u.userimage, wb.wordbookno, u.id
+				from users u, directory d, wordbook wb, word w
+				where u.userno = d.userno
+			and d.directoryno = wb.directoryno
+			and wb.wordbookname like '%'||#{keyword}||'%'
+			and wb.wordbookaccess = 0
+			and rownum <= 10)
+	order by wordbookname asc
 		]]>
 	</select>
 	
@@ -65,7 +67,7 @@
 					    and 		d.directoryno = wb.directoryno
 					    and 		wb.wordbookaccess = 0
 					    and 		wb.wordbookname like '%'||#{keyword}||'%'
-					    order by 	wb.wordbookname asc
+					    order by 	wb.wordbookname desc
 		]]>
 	</select>
 	
