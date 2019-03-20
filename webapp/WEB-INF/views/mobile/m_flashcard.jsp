@@ -1474,7 +1474,24 @@ p#mean {
 			//리스트 번호 올리기..
 			listNumber = listNumber + 1;
 			$(".present-game-number").text("( " + listNumber + " / ");
+			
+			//마지막문제면
+			if (crtRandomNo >= compareLength) {
+				//세션 아이디 필요? sessionId 로 여기서 사용가능, 게임네임은 gameName 으로 사용가능
+				//결과페이지 출력
+				$("#ansCheck00").css("visibility", "hidden");
+				$("#ansCheck01").css("visibility", "hidden");
+				$("#ansCheck02").css("visibility", "hidden");
+				$("#ansCheck03").css("visibility", "hidden");
 
+				$(".correct-mark").attr("src", "");
+				console.log("다끝났습니다.");
+				gamename = "RandomQuiz";
+				userScore = randomGameScore;
+				console.log("확인용 확인 : gamename = " + gamename);
+				var resultSize = crtRandomNo;
+				randomQuizGameEnd(gamename);
+			}			
 			//랜덤 퀴즈 틀렸을때
 		} else {
 			gameLifeUpdate();
@@ -1500,7 +1517,22 @@ p#mean {
 					randomQuizGameEnd(gamename);
 
 				}, 400);
-			} else {
+			}else if(crtRandomNo >= compareLength){
+				//세션 아이디 필요? sessionId 로 여기서 사용가능, 게임네임은 gameName 으로 사용가능
+				//결과페이지 출력
+				$("#ansCheck00").css("visibility", "hidden");
+				$("#ansCheck01").css("visibility", "hidden");
+				$("#ansCheck02").css("visibility", "hidden");
+				$("#ansCheck03").css("visibility", "hidden");
+
+				$(".correct-mark").attr("src", "");
+				console.log("다끝났습니다.");
+				gamename = "RandomQuiz";
+				userScore = randomGameScore;
+				console.log("확인용 확인 : gamename = " + gamename);
+				var resultSize = crtRandomNo;
+				randomQuizGameEnd(gamename);
+			}else {
 				randomGameScore = randomGameScore - 30;
 				//유저점수 확인
 				$(".find-game-score").text(randomGameScore);
@@ -1521,6 +1553,8 @@ p#mean {
 				//리스트 번호 올리기..
 				listNumber = listNumber + 1;
 				$(".present-game-number").text("( " + listNumber + " / ");
+				
+				
 			}
 		}
 
@@ -1529,20 +1563,7 @@ p#mean {
 
 		//마지막문제면
 		if (crtRandomNo >= compareLength) {
-			//세션 아이디 필요? sessionId 로 여기서 사용가능, 게임네임은 gameName 으로 사용가능
-			//결과페이지 출력
-			$("#ansCheck00").css("visibility", "hidden");
-			$("#ansCheck01").css("visibility", "hidden");
-			$("#ansCheck02").css("visibility", "hidden");
-			$("#ansCheck03").css("visibility", "hidden");
 
-			$(".correct-mark").attr("src", "");
-			console.log("다끝났습니다.");
-			gamename = "RandomQuiz";
-			userScore = randomGameScore;
-			console.log("확인용 확인 : gamename = " + gamename);
-			var resultSize = crtRandomNo;
-			randomQuizGameEnd(gamename);
 		}
 		//마지막이 아니면
 		else {
@@ -1556,9 +1577,6 @@ p#mean {
 				$(".correct-mark").attr("src", "");
 			}, 500);
 		}
-
-		//
-
 	};
 	function theendlist(gamename) {
 		var wordbookNo = "${flashcardVo.wordbookNo}";
@@ -1713,7 +1731,7 @@ p#mean {
 		}
 	}
 	function gameLifeUpdate() {
-		console.log("업데이트 했는지 게임라이프 : " + pairLife);
+		console.log("업데이트 했는지 게임라이프 : " + gameLife);
 		$("#gameLife" + gameLife).attr("src", "/dist/images/heart2.gif");
 	}
 
@@ -1770,7 +1788,7 @@ p#mean {
 				if (!pairGameSource.length) {
 					alert("단어장에 단어가 없습니다.");
 					$("#pairSetGameModal").modal("hide");
-				} else {
+				}else {
 
 					pairFinishList = pairGameSource[0];
 					pairRandomList = pairGameSource[1];
@@ -1784,7 +1802,7 @@ p#mean {
 					pairLifeInitialization();
 					timeController = false;
 					pairTimeStart(0);
-				}
+				};
 
 			},
 			error : function(XHR, status, error) {
@@ -1843,15 +1861,13 @@ p#mean {
 						pairHiddenBox();
 						//박스 숨기기
 						pairNowSituation++;
-
+						//끝내기end
+						if (pairNow == pairFinishList.length
+								&& roopNo == pairNowSituation + 1) {
+							userScore = pairScore;
+							pairGameEnd();
+						}
 					}
-					//끝내기end
-					if (pairNow == pairFinishList.length
-							&& roopNo == pairNowSituation + 1) {
-						userScore = pairScore;
-						pairGameEnd();
-					}
-					;
 					//오답일경우
 					else {
 						console.log("오답");
