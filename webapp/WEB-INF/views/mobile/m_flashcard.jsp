@@ -574,6 +574,7 @@ p#mean {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	margin-top: 1px;
 }
 
 .result-ranker {
