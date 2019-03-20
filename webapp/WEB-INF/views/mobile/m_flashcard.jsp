@@ -273,9 +273,9 @@ p#mean {
 }
 
 .flash-dialog {
-	min-width: 80%;
 	min-height: 40%;
 	height: 97%;
+	width:95%;
 	display: block;
 }
 
@@ -316,20 +316,21 @@ p#mean {
 }
 
 .flash-body {
-	height: 60%;
+	height: 67%;
+	min-height: 67%;
 }
 
 #flashDenote {
 	height:50%;
-	max-height: 50%;
-	min-height: 50%;
+	min-height: 40%;
 	display: table;
 }
 
 #flashSubmit {
 	background-color: ghostwhite;
 	height: 25%;
-	margin-top: 10%;
+	min-height:15%;
+	margin-top: 3%;
 }
 
 #quiz {
@@ -647,7 +648,7 @@ p#mean {
 }
 
 .modal-size-controller {
-	height: 62%;
+	height: 66%;
 }
 
 .flashcard-image {
@@ -707,12 +708,12 @@ p#mean {
 	height: 100%;
 }
 .pair-content {
-    height: 97%;
-    max-height: 97%;
-    min-height: 97%;
+    height: 90%;
+    max-height: 90%;
+    min-height: 90%;
 }
 .pair-body{
-	height: 60%;
+	height: 65%;
 }
 .pairSetGameWordBox{
 	width: 100%;
@@ -763,6 +764,12 @@ p#mean {
 }
 #flashExit{
 	margin-top: 3%;
+}
+.progress{
+	margin-bottom: 0px;
+}
+.time-bar{
+	margin-top: 5px;
 }
 </style>
 </head>
