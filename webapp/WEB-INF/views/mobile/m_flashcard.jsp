@@ -831,7 +831,7 @@ p#mean {
 						<div class="randomquiz">
 							<img id="randomQuiz" class="m-randomquiz-image"
 								data-toggle="modal" data-target="#quizModal"
-								src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+								src="${pageContext.request.contextPath}/dist/images/randomgame.png"
 								alt="랜덤 퀴즈">
 						</div>
 						<p class="m-gamename">랜덤 퀴즈</p>
@@ -2298,6 +2298,7 @@ p#mean {
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
 							$("#flashquizModal").modal("hide");
+							userscore = flashGameScore;
 							theendlist(flashGameName);
 						},
 						error : function(XHR, status, error) {
@@ -2307,6 +2308,7 @@ p#mean {
 		} //if문
 		else {
 			$("#flashquizModal").modal("hide");
+			userscore = flashGameScore;
 			theendlist(flashGameName);
 		}
 	}
@@ -2338,6 +2340,7 @@ p#mean {
 	}
 	$("#flashExit").on("click", function() {
 		timeController = true;
+		userscore = flashGameScore;
 		flashEnd();
 	});
 	$("#flash-X").on("click", function() {
