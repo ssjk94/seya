@@ -50,9 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .pair-dialog {
 	width: 1100px;
 	height: 820px;
-	display: inline-block;
-	margin-left: 10%;
-	margin-right: 10%;
+	margin: 30px auto;
 }
 
 .pair-content {
@@ -159,11 +157,12 @@ to {
 	font-weight: bold;
 }
 
-.pair-footer button {
+.modal-footer button {
 	background-color: #7c8ba8;
+	border-color: #7c8ba8;
 }
 
-.pair-footer button:hover {
+.modal-footer button:hover {
 	background-color: #626f87;
 }
 
@@ -669,6 +668,9 @@ p.flashcard-font {
 .flashcard-image{
 	cursor: pointer;
 }
+.modal{
+	width: 100%;
+}
 </style>
 
 </head>
@@ -823,7 +825,7 @@ p.flashcard-font {
 						</div>
 						<div class="modal-footer">
 							<a data-toggle="modal" data-target="#myModal2" id="modalClick"></a>
-							 <button type="button" class="btn btn-default" id="random-exit"
+							 <button type="button" class="btn btn-primary" id="random-exit"
 								data-dismiss="modal">나가기</button>
 						</div>
 					</div>

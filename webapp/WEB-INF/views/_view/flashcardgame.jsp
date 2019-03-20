@@ -9,9 +9,7 @@
 		.flash-dialog {
 			width: 1100px;
 			height: 820px;
-			margin-left: 10%;
-			margin-right: 10%;
-			display: inline-block;
+			margin: 30px auto;
 		}
 		
 		.flash-content {
@@ -132,7 +130,7 @@
 						autocomplete="off" value="">
 				</div>
 				<div class="modal-footer">
-					<button id="flashExit" type="button" class="btn btn-default"> 나가기</button>
+					<button id="flashExit" type="button" class="btn btn-primary"> 나가기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
