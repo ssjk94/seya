@@ -1422,7 +1422,6 @@ p#mean {
 
 		//정답 판단및 다음진행
 		setTimeout(function() {
-			console.log("니어디감? 초이스넘버? : " + choiceNo);
 			randomQuizPrint(choiceNo);
 		}, 300);
 	});
@@ -1567,6 +1566,7 @@ p#mean {
 		var AllgameName = gamename;
 
 		console.log("게임왔는지 확인 : " + AllgameName);
+		console.log("유저스코어왔는지 확인 : " + userScore);
 		$.ajax({
 			url : "${pageContext.request.contextPath}/gamerankingpage", //url 
 			type : "post",
@@ -2157,7 +2157,7 @@ p#mean {
 	var nowSituation = 0; //현재 진행단계를 표현하기위한 변수
 	var userScore = 0;
 	var gamename = "";
-
+	var userScore = 0;
 	var timeController = false; // 타임 조정함수
 
 	//정답 체크하는 문장
@@ -2189,6 +2189,8 @@ p#mean {
 								flashScoreUpdate();
 								//끝까지 했을경우 끝내기
 								if (flashListNowNum == flashGameList.length) {
+									userScore = flashGameScore;
+									gamename = flashGameName;
 									flashEnd();
 								} else {
 									situationUpdate();
@@ -2207,6 +2209,8 @@ p#mean {
 								flashScoreUpdate();
 								//라이프 다 썻을때
 								if (flashLife == 3) {
+									userScore = flashGameScore;
+									gamename = flashGameName;
 									flashEnd();
 								}
 								//끝까지 했을경우 끝내기
@@ -2277,9 +2281,9 @@ p#mean {
 		var sessionId = "${sessionScope.id}";
 		var wordbookNo = "${flashcardVo.wordbookNo}";
 
-		console.log(flashGameScore);
+		console.log("플래시게임스코어 : "+ flashGameScore);
 		console.log(wordbookNo);
-		console.log(flashGameName);
+		console.log("플래시 게임 네임 : "+ flashGameName);
 		console.log(sessionId);
 		//모달 숨기고 새로고침
 		if (sessionId != "") {
@@ -2297,6 +2301,7 @@ p#mean {
 						dataType : "html",
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
+							console.log("플래시게임 ajax 성공시");
 							$("#flashquizModal").modal("hide");
 							userscore = flashGameScore;
 							theendlist(flashGameName);
@@ -2340,7 +2345,10 @@ p#mean {
 	}
 	$("#flashExit").on("click", function() {
 		timeController = true;
-		userscore = flashGameScore;
+		gamename = flashGameName;
+		userScore = flashGameScore;
+		console.log("flash exit " + userScore);
+		console.log("flash exit " + gamename);
 		flashEnd();
 	});
 	$("#flash-X").on("click", function() {
