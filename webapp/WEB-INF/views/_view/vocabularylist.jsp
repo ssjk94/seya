@@ -677,14 +677,14 @@ $(".wordClass").focusout(function(){
 	
 	wordNo=$(this).find($('input[name="wordNo"]')).val();
 	word = $(this).find($('input[name="wordAName"]')).val();
-	var str = wordNo+" "+'0'+" "+word+"\n";
+	var str = wordNo+"#"+'0'+"#"+word+"\n";
 	wordAndMean = wordAndMean + str;
 });
 
 $(".meanClass").focusout(function(){
 	wordNo=$(this).find($('input[name="wordNo"]')).val();
 	word = $(this).find($('input[name="meanAName"]')).val();
-	var str = wordNo+" "+'1'+" "+word+"\n";
+	var str = wordNo+"#"+'1'+"#"+word+"\n";
 	wordAndMean = wordAndMean + str;
 	console.log(wordAndMean);
 });
