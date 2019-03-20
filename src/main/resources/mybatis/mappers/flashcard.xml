@@ -17,7 +17,7 @@
 					and u.userno = d.userno
 					and d.directoryno = wb.directoryno
 					and w.wordbookno = wb.wordbookno)
-			order by rownum asc
+			order by wordno desc
 		]]>
 	</select>
 	<update id="updateFlashcard" parameterType="com.javaex.vo.FlashcardVo">
@@ -34,6 +34,7 @@
 			select wordno,wordname,meanname 
 			from word 
 			where wordbookno = ${wordbookNo}
+			order by wordno desc
 	
 		]]>
 	</select>
@@ -72,13 +73,15 @@
 	</insert>
 	<select id="selectWrongWordbookNo" resultType="int" parameterType="com.javaex.vo.FlashcardVo">
 		<![CDATA[
-			select 		wordbookno 
-			from 		wordbook w,directory d,users u
-			where 		u.id='${master}'
-			and 			u.userno = d.userno
-			and 			d.directoryno = w.directoryno
-			and 			rownum =1
-			order by 	wordbookno asc
+			select wordbookno 
+			from
+				(select w.wordbookno 
+				from wordbook w,directory d,users u
+				where u.id='${master}'
+				and u.userno = d.userno
+				and d.directoryno = w.directoryno
+				order by 	wordbookno asc)
+			where rownum =1
 		]]>
 	</select>
 </mapper>

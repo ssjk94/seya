@@ -26,7 +26,8 @@ public class VocabularyListController {
 	
 	@RequestMapping(value = "{URLId}/vocabularylist", method = RequestMethod.GET)
 	public String wordbook(URLPathVo urlPathVo,VocabularyListVo vocabularyListVo,Model md,PagingVo pagingVo) {
-
+		System.out.println("url"+urlPathVo.getWordbookNo());
+		System.out.println("voca"+vocabularyListVo.getWordbookNo());
 		//워드북 네임을 가지고 set
 		vocabularyListVo.setWordbookName(vocabularyListService.getWordbookName(vocabularyListVo.getWordbookNo()));
 		

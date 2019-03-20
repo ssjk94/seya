@@ -340,11 +340,11 @@ p{
 	padding: 3px 5px 3px 6px;
 	clear: both;
 }
-.infowordbook img{
-	width: 40px;
-	height: 30px;
-	margin-top: 5px;
-	
+.infowordbook img {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 .infowordbook b{
 	font-size: 13px;
@@ -691,12 +691,13 @@ desired effect
 <script type="text/javascript">
 	
 	$(document).ready(function() {
-		
-		console.log($(".pagination").find("a").text());
-		console.log(${pagingVo.index});
-		
-		var allPageNum = $(".pagination").find("a").text();
-		var nowPageIndex=allPageNum.indexOf("${pagingVo.index}") + 1;
+		var pageactive = "";
+		for(var i=2;i<7;i++){
+			pageactive = pageactive+$(".pagination").find("li:nth-child("+i+")").find("a").text()+",";
+		}
+		console.log("페이지네이션"+pageactive);
+		var pageActiveArr=pageactive.split(",");
+		var nowPageIndex=pageActiveArr.indexOf("${pagingVo.index}") + 2;
 		
 		$(".pagination li:nth-child("+nowPageIndex+")").addClass("active");
 		

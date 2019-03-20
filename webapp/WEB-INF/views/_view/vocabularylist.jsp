@@ -736,8 +736,13 @@ function refreshMemList(){
 };
 
 $(document).ready(function() {
-	var allPageNum = $(".pagination").find("a").text();
-	var nowPageIndex=allPageNum.indexOf("${pagingVo.index}") + 1;
+	var pageactive = "";
+	for(var i=2;i<7;i++){
+		pageactive = pageactive+$(".pagination").find("li:nth-child("+i+")").find("a").text()+",";
+	}
+	console.log("페이지네이션"+pageactive);
+	var pageActiveArr=pageactive.split(",");
+	var nowPageIndex=pageActiveArr.indexOf("${pagingVo.index}") + 2;
 	
 	$(".pagination li:nth-child("+nowPageIndex+")").addClass("active");
 	

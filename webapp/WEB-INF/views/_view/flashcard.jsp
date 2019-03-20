@@ -1395,7 +1395,7 @@ p.flashcard-font {
 				pairScore = 0;
 				pairFeverGo = 0;
 				pairHiddenSetting();
-				pairSetting();
+				pairInitialization();
 				pairScoreUpdate();
 				pairNameUpdate();
 				pairLifeInitialization();
@@ -1494,6 +1494,10 @@ p.flashcard-font {
 					}
 					wordInitialization();
 					//끝내기end
+					console.log("나우"+pairNow);
+					console.log("렝스"+pairFinishList.length);
+					console.log("루프"+roopNo)
+					console.log("페어나우시츄"+(pairNowSituation + 1))
 					if (pairNow == pairFinishList.length
 							&& roopNo == pairNowSituation + 1) {
 						userScore = pairScore;

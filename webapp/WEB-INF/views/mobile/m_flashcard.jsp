@@ -273,9 +273,9 @@ p#mean {
 }
 
 .flash-dialog {
-	min-width: 80%;
 	min-height: 40%;
 	height: 97%;
+	width:95%;
 	display: block;
 }
 
@@ -316,20 +316,21 @@ p#mean {
 }
 
 .flash-body {
-	height: 60%;
+	height: 67%;
+	min-height: 67%;
 }
 
 #flashDenote {
 	height:50%;
-	max-height: 50%;
-	min-height: 50%;
+	min-height: 40%;
 	display: table;
 }
 
 #flashSubmit {
 	background-color: ghostwhite;
 	height: 25%;
-	margin-top: 10%;
+	min-height:15%;
+	margin-top: 3%;
 }
 
 #quiz {
@@ -573,6 +574,7 @@ p#mean {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	margin-top: 1px;
 }
 
 .result-ranker {
@@ -647,7 +649,7 @@ p#mean {
 }
 
 .modal-size-controller {
-	height: 62%;
+	height: 66%;
 }
 
 .flashcard-image {
@@ -707,12 +709,12 @@ p#mean {
 	height: 100%;
 }
 .pair-content {
-    height: 97%;
-    max-height: 97%;
-    min-height: 97%;
+    height: 90%;
+    max-height: 90%;
+    min-height: 90%;
 }
 .pair-body{
-	height: 60%;
+	height: 65%;
 }
 .pairSetGameWordBox{
 	width: 100%;
@@ -763,6 +765,12 @@ p#mean {
 }
 #flashExit{
 	margin-top: 3%;
+}
+.progress{
+	margin-bottom: 0px;
+}
+.time-bar{
+	margin-top: 5px;
 }
 </style>
 </head>
@@ -823,7 +831,7 @@ p#mean {
 						<div class="randomquiz">
 							<img id="randomQuiz" class="m-randomquiz-image"
 								data-toggle="modal" data-target="#quizModal"
-								src="${pageContext.request.contextPath}/dist/images/flashcards1.jpg"
+								src="${pageContext.request.contextPath}/dist/images/randomgame.png"
 								alt="랜덤 퀴즈">
 						</div>
 						<p class="m-gamename">랜덤 퀴즈</p>
@@ -1507,8 +1515,7 @@ p#mean {
 
 				//게임 라이프 체크
 				//라이프 업데이트
-				pairLife++;
-				console.log("업데이트 했는지 페어라이프 : " + pairLife);
+				gameLife++;
 				$("#gameLife" + gameLife).attr("src",
 						"/dist/images/heart2.gif");
 
@@ -1700,13 +1707,12 @@ p#mean {
 	function gameLifeInitialization() {
 		gameLife = 0;
 		listNumber = 1;
-		randomScore = 0;
+		randomGameScore = 0;
 		for (var i = 1; i < 4; i++) {
 			$("#gameLife" + i).attr("src", "/dist/images/heart.png");
 		}
 	}
 	function gameLifeUpdate() {
-		gameLife++;
 		console.log("업데이트 했는지 게임라이프 : " + pairLife);
 		$("#gameLife" + gameLife).attr("src", "/dist/images/heart2.gif");
 	}
@@ -2292,6 +2298,7 @@ p#mean {
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
 							$("#flashquizModal").modal("hide");
+							userscore = flashGameScore;
 							theendlist(flashGameName);
 						},
 						error : function(XHR, status, error) {
@@ -2301,6 +2308,7 @@ p#mean {
 		} //if문
 		else {
 			$("#flashquizModal").modal("hide");
+			userscore = flashGameScore;
 			theendlist(flashGameName);
 		}
 	}
@@ -2332,6 +2340,7 @@ p#mean {
 	}
 	$("#flashExit").on("click", function() {
 		timeController = true;
+		userscore = flashGameScore;
 		flashEnd();
 	});
 	$("#flash-X").on("click", function() {

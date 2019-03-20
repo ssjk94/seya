@@ -499,7 +499,6 @@ desired effect
 							저장하기
 						</button>
 					</div>
-					
 				</div>
 					
 				</div>
@@ -531,11 +530,9 @@ desired effect
      
      <script type="text/javascript">
      //wordpadname 추가해야함
-     
-     
      $(".btnAddVoca").on("click",function(){
     	var wordbookNo = $("[name=wordbookNo]").val();
-    	var directoryNo = $("[name=directoryNo]").val();
+    	var directoryNo = "${directoryNo}";
     	var wordName = $("[name=wordName]").val();
   		var wordbookName = $("[name=wordbookName]").val();
   		if(doubleSubmitCheck()){

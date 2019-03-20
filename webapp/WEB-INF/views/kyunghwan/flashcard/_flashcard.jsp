@@ -289,6 +289,7 @@
 				dataType : "html",
 				success : function() {
 					/*성공시 처리해야될 코드 작성*/
+					console.log("성공");
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
