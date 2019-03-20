@@ -1507,8 +1507,7 @@ p#mean {
 
 				//게임 라이프 체크
 				//라이프 업데이트
-				pairLife++;
-				console.log("업데이트 했는지 페어라이프 : " + pairLife);
+				gameLife++;
 				$("#gameLife" + gameLife).attr("src",
 						"/dist/images/heart2.gif");
 
@@ -1700,13 +1699,12 @@ p#mean {
 	function gameLifeInitialization() {
 		gameLife = 0;
 		listNumber = 1;
-		randomScore = 0;
+		randomGameScore = 0;
 		for (var i = 1; i < 4; i++) {
 			$("#gameLife" + i).attr("src", "/dist/images/heart.png");
 		}
 	}
 	function gameLifeUpdate() {
-		gameLife++;
 		console.log("업데이트 했는지 게임라이프 : " + pairLife);
 		$("#gameLife" + gameLife).attr("src", "/dist/images/heart2.gif");
 	}
