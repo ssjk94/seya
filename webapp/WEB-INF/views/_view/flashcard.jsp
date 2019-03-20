@@ -1102,7 +1102,7 @@ p.flashcard-font {
 			
 		//랜덤 퀴즈 틀렸을때
 		} else {
-			
+			gameLifeUpdate();
 			console.log("진짜 정답 번호 체크 false: " + answerNo);
 			console.log("누른 정답 번호 체크 false: " + choiceNo);
 			// 정답 아닐때에 
@@ -1117,7 +1117,7 @@ p.flashcard-font {
 			$("#ansCheck0" + answerNo).attr("src",
 					"/upload/profile/circle-mark01.png");
 			
-			if (pairLife == 3) {
+			if (gameLife == 3) {
 			//라이프 초과하여 게임이 끝남
 				setTimeout(function() {
 					userScore = randomGameScore;
@@ -1139,9 +1139,8 @@ p.flashcard-font {
 				
 				//게임 라이프 체크
 				//라이프 업데이트
-				pairLife++;
-				console.log("업데이트 했는지 페어라이프 : " +pairLife);
-				$("#gameLife" + gameLife).attr("src", "/upload/profile/heart2.gif");
+				gameLife++;
+				$("#gameLife" + gameLife).attr("src", "/dist/images/heart2.gif");
 				
 				//리스트 번호 올리기..
 				listNumber = listNumber + 1;
@@ -1324,13 +1323,13 @@ p.flashcard-font {
 		//랜덤게임 목숨관리 메소드
 	function gameLifeInitialization() {
 		gameLife = 0;
+		listNumber=1;
+		randomGameScore=0;
 		for (var i = 1; i < 4; i++) {
 			$("#gameLife" + i).attr("src", "/dist/images/heart.png");
 		}
 	}
 	function gameLifeUpdate() {
-		gameLife++;
-		console.log("업데이트 했는지 게임라이프 : " +pairLife);
 		$("#gameLife" + gameLife).attr("src", "/dist/images/heart2.gif");
 	}
 		
