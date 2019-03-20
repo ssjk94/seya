@@ -80,26 +80,27 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 }
 
 .btn {
-	display: inline-block;
-	padding: 6px 12px;
-	margin-bottom: 0;
-	font-size: 15px;
-	font-weight: 400;
-	line-height: 1.42857143;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-image: none;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	box-shadow: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: none;
+    margin-top: 3%;
 }
 
 .btn-block {
@@ -342,14 +343,14 @@ p#mean {
 }
 
 .quiz-answer {
-	width: 100%;
-	height:13%;
-	font-size: 16px;
-	margin-top: 10px;
-	float: right;
-	text-align: center;
-	border: solid;
-	padding-top: 3%;
+    width: 100%;
+    height: 13%;
+    font-size: 16px;
+    margin-top: 10px;
+    float: right;
+    text-align: center;
+    border: solid;
+    display: table;
 }
 
 .quiz-OX {
@@ -391,7 +392,9 @@ p#mean {
 }
 
 .select-answer {
-	width: 94%;
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .correct-mark {
@@ -700,10 +703,10 @@ p#mean {
 .pair-dialog{
 	height: 100%;
 }
-.pair-content{
-	height: 97%;
-	max-height: 620px;
-	min-height: 620px;
+.pair-content {
+    height: 80%;
+    max-height: 80%;
+    min-height: 80%;
 }
 .pair-body{
 	height: 60%;
@@ -1232,7 +1235,7 @@ p#mean {
 						</div>
 					</div>
 					<div class="modal-footer">
-						<a href="#" data-dismiss="modal" class="btn modal-footer-border">나가기</a>
+						<a href="#" data-dismiss="modal" class="btn btn-primary">나가기</a>
 					</div>
 				</div>
 			</div>
