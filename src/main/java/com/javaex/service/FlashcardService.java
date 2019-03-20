@@ -146,6 +146,7 @@ public class FlashcardService {
 	public void setWrongWord(FlashcardVo flashcardVo) {
 		String str = flashcardVo.getWordName();
 		int score = flashcardDao.selectWrongWordbookNo(flashcardVo);
+		System.out.println("워드북 no"+score);
 		flashcardVo.setWordbookNo(score);
 		// 알파벳일경우
 		if (str.matches("^[A-Za-z]*$")) {

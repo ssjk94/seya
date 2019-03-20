@@ -77,6 +77,7 @@ public class FlashcardController {
 	@RequestMapping(value = "{URLId}/flashwrongword", method = RequestMethod.POST)
 	public void wrongWord(FlashcardVo flashcardVo) {
 		System.out.println("ajax flash 틀린 단어");
+		System.out.println("확인"+flashcardVo.toString());
 		flashcardService.setWrongWord(flashcardVo);
 	}
 
