@@ -1295,9 +1295,9 @@ p.flashcard-font {
 	//랜덤게임 틀린단어
 	function randomGameWrong() {
 		var sessionId = "${sessionScope.id}"
-		console.log("틀린단어 확인2 : " +incorrectWord );
-		console.log("틀린단어 확인2 : " +incorrectMean );
-		if(sessionId != ""){
+			console.log("틀린단어 확인2 : " +incorrectWord );
+			console.log("틀린단어 확인2 : " +incorrectMean );
+		if (incorrectWord != "" && sessionId != "" && incorrectMean !="") {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/${URLId}/wrongword",
 				type : "post",
@@ -1308,17 +1308,17 @@ p.flashcard-font {
 					master : sessionId
 				},
 				dataType : "html",
-				success : function() {						
+				success : function() {
 					/*성공시 처리해야될 코드 작성*/
-				
-				console.log("틀린단어 ajax");
+					console.log("틀린단어 ajax");
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
 				}
 			});
-		};//if
+		}//if
 	};
+	
 		//랜덤게임 목숨관리 메소드
 	function gameLifeInitialization() {
 		gameLife = 0;
@@ -1365,6 +1365,9 @@ p.flashcard-font {
 				console.error(status+" : "+error);
 			}
 		});
+		
+		
+		
 	});
 		
 	$("#pairSetGame").on("click", function(){
@@ -1404,7 +1407,6 @@ p.flashcard-font {
 			}
 		});
 	});
-	
 </script>
 
 
@@ -1910,8 +1912,11 @@ p.flashcard-font {
 						dataType : "html",
 						success : function() {
 							/*성공시 처리해야될 코드 작성*/
+							console.log("플래시카드 성공");
+							userScore = flashGameScore;
+							gamename = flashGameName;
 							$("#flashquizModal").modal("hide");
-							theendlist(flashGameName);
+							theendlist(gamename);
 						},
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
@@ -1920,7 +1925,7 @@ p.flashcard-font {
 		} //if문
 		else{
 			$("#flashquizModal").modal("hide");
-			theendlist(flashGameName);
+			theendlist(gamename);
 		}
 	}
 	function flashWrong(flashWord, flashMean) {
