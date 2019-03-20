@@ -1723,6 +1723,9 @@ p.flashcard-font {
 		var sessionId = "${sessionScope.id}"
 		if (pairWordValue != "" && sessionId != "") {
 			answerExtract();
+			console.log("페어 틀린단어");
+			console.log(pairWordValue);
+			console.log(pairMeanValue);
 			$.ajax({
 				url : "${pageContext.request.contextPath}/${URLId}/wrongword",
 				type : "post",
