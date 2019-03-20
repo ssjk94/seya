@@ -1733,6 +1733,7 @@ p#mean {
 					for (var i = 0; i < flashGameSource.length; i++) {
 						flashGameList.push(flashGameSource[i]);
 					}
+					clearText();
 					timeController = false;
 					flashTimeStart(0);
 					flashStart();
