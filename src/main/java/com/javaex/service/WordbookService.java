@@ -112,12 +112,12 @@ public class WordbookService {
 		if (pagingVo.getTotal() % pagingVo.getListCnt() == 0) {
 			pagingVo.setPageLastNum(pagingVo.getTotal() / pagingVo.getListCnt());
 		} else {
-			pagingVo.setPageLastNum(pagingVo.getTotal() / pagingVo.getListCnt() + 1);
+			pagingVo.setPageLastNum((pagingVo.getTotal() / pagingVo.getListCnt()) + 1);
 		}
 
 		if (pagingVo.getIndex() < 1) {
 			pagingVo.setIndex(1);
-		} else if (pagingVo.getIndex() > pagingVo.getPageLastNum()) {
+		}else if (pagingVo.getIndex() > pagingVo.getPageLastNum()) {
 			pagingVo.setIndex(pagingVo.getPageLastNum());
 		}
 
