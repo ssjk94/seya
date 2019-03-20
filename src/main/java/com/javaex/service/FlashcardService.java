@@ -153,8 +153,8 @@ public class FlashcardService {
 			flashcardDao.inserWrongWord(flashcardVo);
 		} else {
 			// 알파벳이 아닐경우
-			flashcardVo.setWordName(flashcardVo.getMeanName());
-			flashcardVo.setMeanName(str);
+			flashcardVo.setWordName(str);
+			flashcardVo.setMeanName(flashcardVo.getMeanName());
 			flashcardDao.inserWrongWord(flashcardVo);
 		}
 
