@@ -17,7 +17,7 @@
 					and u.userno = d.userno
 					and d.directoryno = wb.directoryno
 					and w.wordbookno = wb.wordbookno)
-			order by rownum asc
+			order by wordno desc
 		]]>
 	</select>
 	<update id="updateFlashcard" parameterType="com.javaex.vo.FlashcardVo">
@@ -34,6 +34,7 @@
 			select wordno,wordname,meanname 
 			from word 
 			where wordbookno = ${wordbookNo}
+			order by wordno desc
 	
 		]]>
 	</select>
