@@ -367,7 +367,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="main-content-seyaword-line">
 				<div class="recommend-wordbook-list">
 					<div>
-						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=118">
+						<a href="${pageContext.request.contextPath}/seya/flashcard?wordbookNo=118">
 							<img src="/upload/profile/kyohaksa.jpg">
 						</a>
 					</div>
@@ -383,7 +383,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 				<div class="recommend-wordbook-list">
 					<div>
-						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=183">
+						<a href="${pageContext.request.contextPath}/seya/flashcard?wordbookNo=183">
 							<img src="/upload/profile/miraen.jpg">
 						</a>
 					</div>
@@ -399,7 +399,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 				<div class="recommend-wordbook-list">
 					<div>
-						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=470">
+						<a href="${pageContext.request.contextPath}/seya/flashcard?wordbookNo=470">
 							<img src="/upload/profile/sinsago.jpg">
 						</a>
 					</div>
@@ -415,7 +415,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 				<div class="recommend-wordbook-list">
 					<div>
-						<a href="${pageContext.request.contextPath}/admin/flashcard?wordbookNo=635">
+						<a href="${pageContext.request.contextPath}/seya/flashcard?wordbookNo=635">
 							<img src="/upload/profile/neungryul.jpg">
 						</a>
 					</div>
