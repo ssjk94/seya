@@ -790,7 +790,7 @@ desired effect
  
 	$(".pagination").on("click","a",function page(){
 		
-		if($(this).text()=="«"){
+		if($(this).text()=='«'){
 			document.pagenationForm.directoryNo.value = ${directoryNo};
 			document.pagenationForm.index.value=${pagingVo.index}-1;
 		}else if($(this).text()=='»'){

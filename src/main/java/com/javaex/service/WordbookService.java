@@ -141,7 +141,7 @@ public class WordbookService {
 				}
 				pagingVo.setPageStartNum(1);
 			} else {
-				if (pagingVo.getPageLastNum() <= pagingVo.getIndex()) {
+				if (pagingVo.getPageLastNum() <= pagingVo.getIndex()&&pagingVo.getIndex()!=4) {
 					pagingVo.setPageLastNum(pagingVo.getIndex());
 					pagingVo.setPageStartNum(pagingVo.getIndex() - 4);
 				} else {

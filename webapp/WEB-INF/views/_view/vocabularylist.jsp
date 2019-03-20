@@ -755,11 +755,11 @@ $(document).ready(function() {
 $(".pagination").on("click","a",function page(){
 	var wordbookName='${wordbookName}';
 	var wordbookNo = ${wordbookNo};
-	if($(this).text()=="≪"){
+	if($(this).text()=='«'){
 		document.pagenationForm.wordbookName.value=wordbookName;
 		document.pagenationForm.wordbookNo.value=wordbookNo;
 		document.pagenationForm.index.value=${pagingVo.index}-1;
-	}else if($(this).text()=='≫'){
+	}else if($(this).text()=='»'){
 		document.pagenationForm.wordbookName.value=wordbookName;
 		document.pagenationForm.wordbookNo.value=wordbookNo;
 		document.pagenationForm.index.value=${pagingVo.index}+1;
