@@ -90,11 +90,11 @@ public class VocabularyListService {
 	public void wordModify(VocabularyListVo vocabularyListVo) {
 		
 		//배열에 넣음
-		String[] wordArr = vocabularyListVo.getWordName().split("\\r?\\n");
+		String[] wordArr = vocabularyListVo.getWordName().split("\\n");
 		
 		for(int i=0 ; i<wordArr.length; i++) {
 			
-			String[] wordOrMean = wordArr[i].split(" ");
+			String[] wordOrMean = wordArr[i].split("#");
 			//word update
 			if(Integer.parseInt(wordOrMean[1]) == 0) {
 				vocabularyListVo.setWordNo(Integer.parseInt(wordOrMean[0]));
