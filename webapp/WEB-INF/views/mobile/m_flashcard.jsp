@@ -1845,6 +1845,13 @@ p#mean {
 						pairNowSituation++;
 
 					}
+					//끝내기end
+					if (pairNow == pairFinishList.length
+							&& roopNo == pairNowSituation + 1) {
+						userScore = pairScore;
+						pairGameEnd();
+					}
+					;
 					//오답일경우
 					else {
 						console.log("오답");
@@ -1876,13 +1883,7 @@ p#mean {
 						pairInitialization();
 					}
 					wordInitialization();
-					//끝내기end
-					if (pairNow == pairFinishList.length
-							&& roopNo == pairNowSituation + 1) {
-						userScore = pairScore;
-						pairGameEnd();
-					}
-					;
+					
 				}
 
 			})
@@ -2214,7 +2215,7 @@ p#mean {
 									flashEnd();
 								}
 								//끝까지 했을경우 끝내기
-								if (flashListNowNum == flashGameList.length) {
+								else if (flashListNowNum == flashGameList.length) {
 									gamename = flashGameName;
 									console.log(gamename);
 									userScore = flashGameScore;
