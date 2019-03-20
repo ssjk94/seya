@@ -2356,7 +2356,6 @@ p#mean {
 	});
 </script>
 
-
 <!-- 공통 스크립트 -->
 <script type="text/javascript">
 	function refreshMemList() {
