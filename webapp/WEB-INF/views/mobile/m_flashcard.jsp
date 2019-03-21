@@ -831,7 +831,7 @@ p#mean {
 						<div class="randomquiz">
 							<img id="randomQuiz" class="m-randomquiz-image"
 								data-toggle="modal" data-target="#quizModal"
-								src="${pageContext.request.contextPath}/dist/images/randomgame.png"
+								src="/upload/profile/randomgame.png"
 								alt="랜덤 퀴즈">
 						</div>
 						<p class="m-gamename">랜덤 퀴즈</p>
