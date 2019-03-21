@@ -151,10 +151,12 @@ public class FlashcardService {
 		// 알파벳일경우
 		if (str.matches("^[A-Za-z]*$")) {
 			flashcardDao.inserWrongWord(flashcardVo);
+			System.out.println("플래시 서비스 에이잭스");
 		} else {
 			// 알파벳이 아닐경우
-			flashcardVo.setWordName(str);
-			flashcardVo.setMeanName(flashcardVo.getMeanName());
+			flashcardVo.setWordName(flashcardVo.getMeanName());
+			flashcardVo.setMeanName(str);
+			
 			flashcardDao.inserWrongWord(flashcardVo);
 		}
 
