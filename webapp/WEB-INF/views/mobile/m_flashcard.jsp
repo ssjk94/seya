@@ -1511,6 +1511,7 @@ p#mean {
 
 			if (gameLife == 3) {
 				//라이프 초과하여 게임이 끝남
+				randomGameScore = randomGameScore - 30;
 				setTimeout(function() {
 					userScore = randomGameScore;
 					gamename = "RandomQuiz";
@@ -1796,7 +1797,7 @@ p#mean {
 					pairScore = 0;
 					pairFeverGo = 0;
 					pairHiddenSetting();
-					pairSetting();
+					pairInitialization();
 					pairScoreUpdate();
 					pairNameUpdate();
 					pairLifeInitialization();
@@ -2430,6 +2431,7 @@ p#mean {
 		} else {
 			//끝나는 문장
 			gamename = 'RandomQuiz';
+			userScore = randomGameScore;
 			randomQuizGameEnd(gamename);
 		}
 	}
